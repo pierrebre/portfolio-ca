@@ -13,6 +13,7 @@
     "@react-router/serve": "^7.5.3",
     "daisyui": "^5.0.32",
     "isbot": "^5.1.27",
+    "lucide-react": "^0.503.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.5.3"
