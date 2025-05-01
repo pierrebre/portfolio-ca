@@ -10,7 +10,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../public/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2")
+  src: url("/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2")
     format("woff2");
 }
 
@@ -19,7 +19,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../public/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2") 
+  src: url("/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2") 
     format("woff2");
 }
 
@@ -28,7 +28,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../public/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2")
+  src: url("/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2")
     format("woff2");
 }
 
@@ -37,6 +37,6 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../public/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2")
+  src: url("/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2")
     format("woff2");
 }
