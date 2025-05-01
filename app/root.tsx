@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import NavBar from "./components/navbar";
+import Footer from "./components/footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,6 +24,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <NavBar />
         {children}
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
