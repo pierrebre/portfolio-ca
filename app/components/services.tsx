@@ -1,25 +1,5 @@
 import ServiceCard from "./serviceCard";
-
-const services = [
-  {
-    icon: "https://picsum.photos/id/1/200/300",
-    name: "Web Development",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, nisi.",
-  },
-  {
-    icon: "https://picsum.photos/id/1/200/300",
-    name: "Web Development",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, nisi.",
-  },
-  {
-    icon: "https://picsum.photos/id/1/200/300",
-    name: "Web Development",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, nisi.",
-  },
-];
+import { services } from "data/services";
 
 export default function Services() {
   return (

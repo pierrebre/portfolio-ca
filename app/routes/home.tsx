@@ -1,7 +1,7 @@
 import Hero from "~/components/hero";
-import type { Route } from "./+types/home";
-import ServiceCard from "~/components/serviceCard";
 import Services from "~/components/services";
+
+import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
