@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
+import ContactCard from "./components/contactCard";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,6 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <NavBar />
         {children}
+        <ContactCard />
         <Footer />
         <ScrollRestoration />
         <Scripts />
