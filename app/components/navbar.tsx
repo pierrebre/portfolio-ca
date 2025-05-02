@@ -29,6 +29,9 @@ export default function NavBar() {
                   <a href="/">Home</a>
                 </li>
                 <li>
+                  <a href="/projects">Projects</a>
+                </li>
+                <li>
                   <a href="/about">About</a>
                 </li>
                 <li>
@@ -52,6 +55,12 @@ export default function NavBar() {
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
             >
               Home
+            </a>
+            <a
+              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              href="/projects"
+            >
+              Projects
             </a>
             <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
