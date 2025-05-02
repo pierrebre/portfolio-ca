@@ -35,47 +35,63 @@ export default function ContactForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <div>
-            <label>First Name</label>
-            <input type="text" placeholder="John" {...register("firstName")} />
-            {errors.firstName && <span>{errors.firstName.message}</span>}
+    <div className="card bg-base-100 border-base-content/10 border">
+      <div className="card-body">
+        <h2 className="card-title text-2xl">Send a Message</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label className="label">
+                <span className="label-text">First Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="John"
+                className="input w-full"
+                {...register("firstName")}
+              />
+              {errors.firstName && <span>{errors.firstName.message}</span>}
+            </div>
+            <div>
+              <label className="label">
+                <span className="label-text">Last Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Doe"
+                className="input w-full"
+                {...register("lastName")}
+              />
+              {errors.lastName && <span>{errors.lastName.message}</span>}
+            </div>
           </div>
 
           <div>
-            <label>Last Name</label>
-            <input type="text" placeholder="Doe" {...register("lastName")} />
-            {errors.lastName && <span>{errors.lastName.message}</span>}
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="john.doe@example.com"
+              {...register("email")}
+            />
+            {errors.email && <span>{errors.email.message}</span>}
           </div>
-        </div>
 
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="john.doe@example.com"
-            {...register("email")}
-          />
-          {errors.email && <span>{errors.email.message}</span>}
-        </div>
+          <div>
+            <label>Message</label>
+            <textarea
+              placeholder="Your message here..."
+              {...register("message")}
+            ></textarea>
+            {errors.message && <span>{errors.message.message}</span>}
+          </div>
 
-        <div>
-          <label>Message</label>
-          <textarea
-            placeholder="Your message here..."
-            {...register("message")}
-          ></textarea>
-          {errors.message && <span>{errors.message.message}</span>}
-        </div>
-
-        <div>
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Sending..." : "Send Message"}
-          </button>
-        </div>
-      </form>
+          <div>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
