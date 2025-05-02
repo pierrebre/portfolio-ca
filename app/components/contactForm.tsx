@@ -27,11 +27,30 @@ export default function ContactForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<FormSchemaType> = async (
-    data: FormSchemaType
-  ) => {
-    console.log(data);
-    reset();
+  const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
+    try {
+      const response = await fetch("http://localhost:3000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          message: data.message,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error ?? "An error occurred");
+      }
+
+      reset();
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (
