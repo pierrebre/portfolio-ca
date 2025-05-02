@@ -1,15 +1,42 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-urbanist: "Urbanist", sans-serif;
 }
 
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
+@font-face {
+  font-family: "Urbanist";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2")
+    format("woff2");
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+@font-face {
+  font-family: "Urbanist";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2") 
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2")
+    format("woff2");
 }
