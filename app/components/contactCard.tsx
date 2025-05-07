@@ -21,7 +21,7 @@ export default function ContactCard() {
           </p>
 
           <div className="mt-10 flex justify-center gap-2">
-            <a href="/#">
+            <a href="https://calendly.com/contact-pierrebarbe/30min" target="_blank">
               <button className="btn rounded-full font-semibold">
                 <span>Schedule Consultation</span>
                 <CalendarClock className="h-4 w-4 transition-transform" />
