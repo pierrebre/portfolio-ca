@@ -26,9 +26,6 @@ export default function NavBar() {
             <nav>
               <ul className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm">
                 <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
                   <a href="/projects">Projects</a>
                 </li>
                 <li>
@@ -50,12 +47,6 @@ export default function NavBar() {
         </div>
         <div className="navbar-center hidden lg:flex">
           <nav>
-            <a
-              href="/"
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-            >
-              Home
-            </a>
             <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               href="/projects"
