@@ -50,12 +50,15 @@ export default function Hero() {
                 </svg>
               </a>
 
-              <a
-                href="#"
+              <button
                 className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-3"
+                onClick={() => {
+                  const modal = document.getElementById('audit_modal') as HTMLDialogElement;
+                  modal?.showModal();
+                }}
               >
                 Réserve ton audit de site gratuit
-              </a>
+              </button>
             </div>
 
             <div className="border-base-content/10 font-urbanist grid max-w-md grid-cols-3 gap-8 border-t pt-8">
