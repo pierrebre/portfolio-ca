@@ -2,14 +2,15 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-const formSchema = z.object({
+const contactformSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
   message: z.string().min(1, { message: "Message is required" }),
 });
 
-type FormSchemaType = z.infer<typeof formSchema>;
+type FormSchemaType = z.infer<typeof contactformSchema>;
+
 
 export default function ContactForm() {
   const {
@@ -18,7 +19,9 @@ export default function ContactForm() {
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
   } = useForm<FormSchemaType>({
-    resolver: zodResolver(formSchema),
+
+    resolver: zodResolver(contactformSchema),
+
     defaultValues: {
       firstName: "",
       lastName: "",

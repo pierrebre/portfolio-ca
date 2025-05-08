@@ -6,6 +6,7 @@ import CtaBanner from "~/components/cta-banner";
 import Faq from "~/components/faq";
 
 import type { Route } from "./+types/home";
+import AuditModal from "~/components/audit-modal";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -23,6 +24,7 @@ export default function Home() {
       <Process />
      {/*  <CtaBanner /> */}
       <Faq />
+      <AuditModal />
     </>
   );
 }
