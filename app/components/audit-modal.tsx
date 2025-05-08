@@ -1,136 +1,64 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-const auditFormSchema = z.object({
-  websiteUrl: z.string().url({ message: "Valid website URL is required" }),
-  email: z.string().email({ message: "Invalid email address" }),
-  additionalInfo: z.string().optional(),
-});
-
-type AuditFormType = z.infer<typeof auditFormSchema>;
+import { useState } from "react";
+import AuditForm from "./audit-form";
+import Toast from "~/components/toast";
 
 export default function AuditModal() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
-    reset,
-  } = useForm<AuditFormType>({
-    resolver: zodResolver(auditFormSchema),
-    defaultValues: {
-      websiteUrl: "",
-      email: "",
-      additionalInfo: "",
-    },
+  const [toastState, setToastState] = useState({
+    visible: false,
+    message: "",
+    type: "success" as "success" | "error",
   });
 
-  const onSubmit: SubmitHandler<AuditFormType> = async (data) => {
-    try {
-      const response = await fetch("http://localhost:3000/request-audit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          websiteUrl: data.websiteUrl,
-          email: data.email,
-          additionalInfo: data.additionalInfo,
-        }),
-      });
+  const handleFormSubmitResult = (
+    success: boolean,
+    message: string,
+    closeModal: boolean = true
+  ) => {
+    setToastState({
+      visible: true,
+      message:
+        message ||
+        (success
+          ? "Your audit request has been submitted successfully!"
+          : "Failed to submit your audit request. Please try again."),
+      type: success ? "success" : "error",
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error ?? "An error occurred");
-      }
-
-      reset();
-
-      const modal = document.getElementById("audit_modal");
-      if (modal) {
-        (modal as HTMLDialogElement).close();
-      }
-    } catch (err: any) {
-      console.error(err);
+    // If successful and closeModal is true, close the modal after a short delay
+    if (success && closeModal) {
+      setTimeout(() => {
+        const modal = document.getElementById("audit_modal");
+        if (modal) {
+          (modal as HTMLDialogElement).close();
+        }
+      }, 2000); // 2 seconds delay to show the success message
     }
+  };
+
+  const closeToast = () => {
+    setToastState((prev) => ({ ...prev, visible: false }));
   };
 
   return (
     <dialog id="audit_modal" className="modal modal-bottom sm:modal-middle">
-      <div className="modal-box">
+      <div className="modal-box relative">
         <h3 className="font-bold text-lg">Request a Free Audit</h3>
         <p className="py-2">
           Fill out the form below to request a free website audit.
         </p>
+        <AuditForm onSubmitResult={handleFormSubmitResult} />
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
-          <div>
-            <label className="floating-label">
-              <input
-                type="url"
-                placeholder="https://example.com"
-                className="input input-md w-full"
-                {...register("websiteUrl")}
-              />
-              <span className="">Website URL</span>
-            </label>
-            {errors.websiteUrl && (
-              <span className="text-red-500 text-sm">
-                {errors.websiteUrl.message}
-              </span>
-            )}
+        {toastState.visible && (
+          <div className="absolute top-4 right-4 left-4">
+            <Toast
+              message={toastState.message}
+              type={toastState.type}
+              visible={toastState.visible}
+              onClose={closeToast}
+              position="top"
+            />
           </div>
-
-          <div>
-            <label className="floating-label">
-              <input
-                type="email"
-                placeholder="email@example.com"
-                className="input input-md w-full"
-                {...register("email")}
-              />
-              <span className="">Email</span>
-            </label>
-            {errors.email && (
-              <span className="text-red-500 text-sm">
-                {errors.email.message}
-              </span>
-            )}
-          </div>
-
-          <div>
-            <label className="floating-label">
-              <textarea
-                placeholder="Additional information..."
-                className="textarea textarea-md w-full"
-                {...register("additionalInfo")}
-              />
-              <span className="">Additional Information (Optional)</span>
-            </label>
-          </div>
-
-          <div className="modal-action flex justify-between">
-            <button
-              type="button"
-              className="btn btn-outline"
-              onClick={() => {
-                const modal = document.getElementById("audit_modal");
-                if (modal) {
-                  (modal as HTMLDialogElement).close();
-                }
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting..." : "Request Audit"}
-            </button>
-          </div>
-        </form>
+        )}
       </div>
       <form method="dialog" className="modal-backdrop">
         <button>close</button>

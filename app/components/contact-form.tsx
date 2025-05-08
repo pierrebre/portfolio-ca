@@ -12,7 +12,11 @@ const contactformSchema = z.object({
 type FormSchemaType = z.infer<typeof contactformSchema>;
 
 
-export default function ContactForm() {
+type ContactFormProps = {
+  onSubmitResult?: (success: boolean, message?: string) => void;
+};
+
+export default function ContactForm({ onSubmitResult }: ContactFormProps) {
   const {
     register,
     handleSubmit,
@@ -32,27 +36,44 @@ export default function ContactForm() {
 
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          message: data.message,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/send-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            message: data.message,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
+        if (onSubmitResult) {
+          onSubmitResult(false, errorData.error ?? "An error occurred");
+        }
         throw new Error(errorData.error ?? "An error occurred");
+      }
+
+      // Notify parent component about successful submission
+      if (onSubmitResult) {
+        onSubmitResult(true, "Your message has been sent successfully!");
       }
 
       reset();
     } catch (err: any) {
       console.error(err);
+      if (
+        onSubmitResult &&
+        !onSubmitResult.toString().includes("onSubmitResult(false")
+      ) {
+        onSubmitResult(false, err.message || "Failed to send your message");
+      }
     }
   };
 
@@ -67,7 +88,11 @@ export default function ContactForm() {
               className="input input-md w-full"
               {...register("firstName")}
             />
-            {errors.firstName && <span>{errors.firstName.message}</span>}
+            {errors.firstName && (
+              <span className="text-error text-sm">
+                {errors.firstName.message}
+              </span>
+            )}
             <span className="">First Name</span>
           </label>
         </div>
@@ -81,7 +106,11 @@ export default function ContactForm() {
             />
             <span className="">Last Name</span>
           </label>
-          {errors.lastName && <span>{errors.lastName.message}</span>}
+          {errors.lastName && (
+            <span className="text-error text-sm">
+              {errors.lastName.message}
+            </span>
+          )}
         </div>
       </div>
 
@@ -95,7 +124,9 @@ export default function ContactForm() {
           />
           <span className="">Email</span>
         </label>
-        {errors.email && <span>{errors.email.message}</span>}
+        {errors.email && (
+          <span className="text-error text-sm">{errors.email.message}</span>
+        )}
       </div>
 
       <div>
@@ -107,7 +138,9 @@ export default function ContactForm() {
           />
           <span className="">Message</span>
         </label>
-        {errors.message && <span>{errors.message.message}</span>}
+        {errors.message && (
+          <span className="text-error text-sm">{errors.message.message}</span>
+        )}
       </div>
 
       <div>

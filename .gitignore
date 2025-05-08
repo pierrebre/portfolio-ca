@@ -6,3 +6,6 @@
 /build/
 
 /public/images
+
+# local env files
+.env
