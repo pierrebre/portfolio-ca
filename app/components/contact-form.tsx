@@ -28,18 +28,21 @@ export default function ContactForm() {
   });
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/send-email`, {  
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          message: data.message,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/send-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            message: data.message,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
