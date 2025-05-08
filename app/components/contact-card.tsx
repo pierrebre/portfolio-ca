@@ -24,13 +24,11 @@ export default function ContactCard() {
             <a href="https://calendly.com/contact-pierrebarbe/30min" target="_blank">
               <button className="btn rounded-full font-semibold">
                 <span>Schedule Consultation</span>
-                <CalendarClock className="h-4 w-4 transition-transform" />
               </button>
             </a>
             <a href="/contact">
               <button className="btn rounded-full font-semibold">
                 <span>Contact Us</span>
-                <Phone className="h-4 w-4 transition-transform" />
               </button>
             </a>
           </div>
