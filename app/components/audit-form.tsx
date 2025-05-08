@@ -10,7 +10,15 @@ const auditFormSchema = z.object({
 
 type AuditFormType = z.infer<typeof auditFormSchema>;
 
-export default function AuditForm() {
+type AuditFormProps = {
+  onSubmitResult?: (
+    success: boolean,
+    message: string,
+    closeModal?: boolean
+  ) => void;
+};
+
+export default function AuditForm({ onSubmitResult }: AuditFormProps) {
   const {
     register,
     handleSubmit,
@@ -44,17 +52,30 @@ export default function AuditForm() {
 
       if (!response.ok) {
         const errorData = await response.json();
+        if (onSubmitResult) {
+          onSubmitResult(false, errorData.error ?? "An error occurred", false);
+        }
         throw new Error(errorData.error ?? "An error occurred");
       }
 
-      reset();
-
-      const modal = document.getElementById("audit_modal");
-      if (modal) {
-        (modal as HTMLDialogElement).close();
+      if (onSubmitResult) {
+        onSubmitResult(
+          true,
+          "Your audit request has been submitted successfully!",
+          true
+        );
       }
+
+      reset();
     } catch (err: any) {
       console.error(err);
+      if (onSubmitResult) {
+        onSubmitResult(
+          false,
+          err.message || "Failed to submit your audit request",
+          false
+        );
+      }
     }
   };
 
@@ -71,7 +92,7 @@ export default function AuditForm() {
           <span className="">Website URL</span>
         </label>
         {errors.websiteUrl && (
-          <span className="text-red-500 text-sm">
+          <span className="text-error text-sm">
             {errors.websiteUrl.message}
           </span>
         )}
@@ -88,7 +109,7 @@ export default function AuditForm() {
           <span className="">Email</span>
         </label>
         {errors.email && (
-          <span className="text-red-500 text-sm">{errors.email.message}</span>
+          <span className="text-error text-sm">{errors.email.message}</span>
         )}
       </div>
 
