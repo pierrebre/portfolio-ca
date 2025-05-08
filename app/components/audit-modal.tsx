@@ -27,7 +27,7 @@ export default function AuditModal() {
 
   const onSubmit: SubmitHandler<AuditFormType> = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/request-audit", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/request-audit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
