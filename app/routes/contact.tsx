@@ -1,4 +1,4 @@
-import ContactForm from "~/components/contactForm";
+import ContactForm from "~/components/contact-form";
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 
 export default function Contact() {

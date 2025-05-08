@@ -12,8 +12,8 @@ export default function Footer() {
           </aside>
           <nav>
             <h4 className="footer-title">Company</h4>
-            <a className="link link-hover" href="/#" >About us</a>
-            <a className="link link-hover" href="/#">Contact</a>
+            <a className="link link-hover" href="/about" >About</a>
+            <a className="link link-hover" href="/contact">Contact</a>
           </nav>
           <nav>
             <h4 className="footer-title">Legal</h4>

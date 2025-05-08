@@ -1,5 +1,5 @@
 import { projects } from "data/Projects";
-import ProjectCard from "~/components/projectCard";
+import ProjectCard from "~/components/project-card";
 
 export default function Portfolio() {
   return (

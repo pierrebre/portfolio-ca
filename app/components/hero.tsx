@@ -33,7 +33,7 @@ export default function Hero() {
                 href="/contact"
                 className="btn btn-primary text-base-100 rounded-full px-8 py-3"
               >
-                Contact me
+                 Écris‑moi
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -54,7 +54,7 @@ export default function Hero() {
                 href="#"
                 className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-3"
               >
-                View Projects
+                Réserve ton audit de site gratuit
               </a>
             </div>
 
