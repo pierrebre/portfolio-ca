@@ -7,20 +7,38 @@ export type ServiceProps = {
 export const services: ServiceProps[] = [
   {
     icon: "https://picsum.photos/id/1/200/300",
-    name: "Web Development",
+    name: "Optimisation Web‑Performance",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, nisi.",
+      "Analyse Core Web Vitals, optimisation webperformance Québec : code allégé, images compressées, cache malin.",
   },
   {
     icon: "https://picsum.photos/id/2/200/300",
-    name: "UI/UX Design",
+    name: "Création & Maintenance de Sites",
     description:
-      "Dolorum deserunt explicabo veritatis accusamus, eius assumenda expedita nobis.",
+      "WordPress, Next.js ou simple Vanilla JS/HTML/CSS. Thèmes sur mesure, extensions, tests, sécurité : tu dors tranquille. Besoin d’un pigiste WordPress ? J’intègre aussi tes maquettes blocs ACF.",
   },
   {
     icon: "https://picsum.photos/id/3/200/300",
-    name: "SEO Optimization",
+    name: "Automatisation de Workflows",
     description:
-      "Labore dolor in, at incidunt possimus odit itaque praesentium?",
+      "n8n, Make, scripts JS / Python : moins de tâches manuelles, moins d’erreurs, plus de temps pour ton vrai boulot.",
+  },
+  {
+    icon: "https://picsum.photos/id/4/200/300",
+    name: "Audits Techniques Complets",
+    description:
+      "Webperf, SEO, sécurité. Rapport clair, priorités classées, quick wins livrés dès J+1.",
+  },
+  {
+    icon: "https://picsum.photos/id/5/200/300",
+    name: "Gestion Serveur & Déploiement",
+    description:
+      "CI/CD, monitoring, alertes. Du code à la prod sans mauvaise surprise.",
+  },
+  {
+    icon: "https://picsum.photos/id/6/200/300",
+    name: "Intégration d’Outils IA on‑Premise",
+    description:
+      "Chatbots privés, génération de contenu, classement automatique des tickets.",
   },
 ];

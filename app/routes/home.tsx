@@ -1,5 +1,9 @@
 import Hero from "~/components/hero";
 import Services from "~/components/services";
+import WhyMe from "~/components/why-me";
+import Process from "~/components/process";
+import CtaBanner from "~/components/cta-banner";
+import Faq from "~/components/faq";
 
 import type { Route } from "./+types/home";
 
@@ -15,6 +19,10 @@ export default function Home() {
     <>
       <Hero />
       <Services />
+      <WhyMe />
+      <Process />
+     {/*  <CtaBanner /> */}
+      <Faq />
     </>
   );
 }

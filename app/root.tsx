@@ -11,7 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
-import ContactCard from "./components/contactCard";
+import ContactCard from "./components/contact-card";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
