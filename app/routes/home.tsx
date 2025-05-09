@@ -45,16 +45,6 @@ export default function Home() {
       {/* <CtaBanner /> */}
       <Faq />
       <AuditModal />
-
-      {globalToast.visible && (
-        <Toast
-          message={globalToast.message}
-          type={globalToast.type}
-          visible={globalToast.visible}
-          onClose={closeGlobalToast}
-          position="bottom-end"
-        />
-      )}
     </>
   );
 }

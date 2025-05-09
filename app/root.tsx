@@ -12,6 +12,7 @@ import "./app.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import ContactCard from "./components/contact-card";
+import { ToastProvider } from "./context/toast-context";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,10 +24,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <NavBar />
-        {children}
-        <ContactCard />
-        <Footer />
+        <ToastProvider>
+          <NavBar />
+          {children}
+          <ContactCard />
+          <Footer />
+        </ToastProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
