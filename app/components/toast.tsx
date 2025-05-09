@@ -33,13 +33,10 @@ export default function Toast({
 
   if (!message) return null;
 
-  // DaisyUI toast position classes
   const positionClass = `toast toast-${position}`;
 
-  // DaisyUI alert variants based on type
   const alertTypeClass = `alert alert-${type}`;
 
-  // Icon selection based on type
   const getIcon = () => {
     switch (type) {
       case "success":
@@ -57,12 +54,10 @@ export default function Toast({
   if (!isVisible) return null;
 
   return (
-    <div className={positionClass}>
-      <div className={`${alertTypeClass} shadow-lg`}>
-        <div className="flex items-start gap-2">
-          {getIcon()}
-          <span className="font-medium">{message}</span>
-        </div>
+    <div className={`${positionClass} z-10`}>
+      <div className={`${alertTypeClass}`}>
+        {getIcon()}
+        <span className="font-medium">{message}</span>
         <button
           onClick={() => {
             setIsVisible(false);

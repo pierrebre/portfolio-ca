@@ -1,4 +1,4 @@
-import { CalendarClock, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 
 export default function ContactCard() {
   return (
