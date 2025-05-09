@@ -60,7 +60,6 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
         throw new Error(errorData.error ?? "An error occurred");
       }
 
-      // Notify parent component about successful submission
       if (onSubmitResult) {
         onSubmitResult(true, "Your message has been sent successfully!");
       }
