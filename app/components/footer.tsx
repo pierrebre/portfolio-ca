@@ -2,23 +2,33 @@ export default function Footer() {
   return (
     <footer className="border-base-300 bg-base-200 border-t">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="footer footer-vertical sm:footer-horizontal text-base-content py-18 items-end">
+        <div className="footer footer-vertical sm:footer-horizontal items-end py-18 text-base-content">
           <aside className="items-center">
             <p>
-              Pierre Barbé
+              Pierre Barbé
               <br />
-              Copyright {new Date().getFullYear()} All rights reserved
+              © {new Date().getFullYear()} – Tous droits réservés
             </p>
           </aside>
+
           <nav>
-            <h4 className="footer-title">Company</h4>
-            <a className="link link-hover" href="/about" >About</a>
-            <a className="link link-hover" href="/contact">Contact</a>
+            <h4 className="footer-title">Navigation</h4>
+            <a className="link link-hover" href="/projects">
+              Projets
+            </a>
+            <a className="link link-hover" href="/contact">
+              Contact
+            </a>
           </nav>
+
           <nav>
-            <h4 className="footer-title">Legal</h4>
-            <a className="link link-hover" href="/#">Terms of use</a>
-            <a className="link link-hover" href="/#">Privacy policy</a>
+            <h4 className="footer-title">Légal</h4>
+            <a className="link link-hover" href="/terms">
+              Conditions&nbsp;d’utilisation
+            </a>
+            <a className="link link-hover" href="/privacy">
+              Politique&nbsp;de&nbsp;confidentialité
+            </a>
           </nav>
         </div>
       </div>

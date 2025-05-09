@@ -34,9 +34,9 @@ export default function NavBar() {
               <li>
                 <a href="/projects">Projects</a>
               </li>
-              <li>
+{/*               <li>
                 <a href="/about">About</a>
-              </li>
+              </li> */}
               <li>
                 <a href="/contact">Contact</a>
               </li>
@@ -58,12 +58,12 @@ export default function NavBar() {
             >
               Projects
             </a>
-            <a
+{/*             <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               href="/about"
             >
               About
-            </a>
+            </a> */}
             <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               href="/contact"
