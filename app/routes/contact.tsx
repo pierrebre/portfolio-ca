@@ -9,8 +9,8 @@ export default function Contact() {
     showToast(
       message ??
         (success
-          ? "Your message has been sent successfully!"
-          : "Failed to send your message. Please try again."),
+          ? "Ton message a bien été envoyé ! Je te réponds sous 24 h."
+          : "Oups ! L’envoi a échoué. Réessaie dans un instant."),
       success ? "success" : "error"
     );
   };
@@ -19,15 +19,17 @@ export default function Contact() {
     <div className="bg-base-100 font-urbanist mx-auto max-w-7xl">
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold md:text-5xl">Contact Us</h1>
+          <h1 className="text-4xl font-bold md:text-5xl">Contact</h1>
+
           <div className="mt-6 flex items-center justify-center gap-4">
             <div className="bg-primary h-px w-16" />
-            <span className="text-primary">Get in Touch</span>
+            <span className="text-primary">On jase ?</span>
             <div className="bg-primary h-px w-16" />
           </div>
+
           <p className="text-base-content/80 mt-6 text-lg md:text-xl">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus,
-            mollitia!
+            Une idée de projet, une question  ? Écris‑moi, en français ou en anglais, et je
+            reviens vers toi en moins de 24 h.
           </p>
         </div>
       </section>
@@ -35,16 +37,17 @@ export default function Contact() {
       <div className="container mx-auto px-6 py-20">
         <div className="grid gap-12 md:grid-cols-2">
           <div className="space-y-8">
-            <h2 className="card-title text-2xl">Contact Information</h2>
+            <h2 className="card-title text-2xl">Coordonnées</h2>
+
             <div className="mt-6 space-y-6">
               <div className="flex items-start gap-4">
                 <MapPin className="text-primary mt-1 h-6 w-6" />
                 <div>
-                  <h3 className="text-lg font-medium">Global Headquarters</h3>
+                  <h3 className="text-lg font-medium">Bureau principal</h3>
                   <p className="text-base-content/80 mt-1">
-                    123 Innovation Boulevard
+                    123 boulevard Innovation
                     <br />
-                    Montréal, QC HXX 1X1
+                    Montréal, QC&nbsp;HXX&nbsp;1X1
                   </p>
                 </div>
               </div>
@@ -52,11 +55,11 @@ export default function Contact() {
               <div className="flex items-start gap-4">
                 <Phone className="text-primary mt-1 h-6 w-6" />
                 <div>
-                  <h3 className="text-lg font-medium">Phone</h3>
+                  <h3 className="text-lg font-medium">Téléphone</h3>
                   <p className="text-base-content/80 mt-1">
-                    +1 (514) 123-4567
+                    +1&nbsp;(514)&nbsp;123‑4567
                     <br />
-                    24/7 Technical Support
+                    Réponse rapide (FR/EN)
                   </p>
                 </div>
               </div>
@@ -64,7 +67,7 @@ export default function Contact() {
               <div className="flex items-start gap-4">
                 <Mail className="text-primary mt-1 h-6 w-6" />
                 <div>
-                  <h3 className="text-lg font-medium">Email</h3>
+                  <h3 className="text-lg font-medium">Courriel</h3>
                   <p className="text-base-content/80 mt-1">
                     contact@pierrebarbe.ca
                   </p>
@@ -74,18 +77,23 @@ export default function Contact() {
               <div className="flex items-start gap-4">
                 <Clock className="text-primary mt-1 h-6 w-6" />
                 <div>
-                  <h3 className="text-lg font-medium">Office Hours</h3>
+                  <h3 className="text-lg font-medium">Disponibilités</h3>
                   <p className="text-base-content/80 mt-1">
-                    Monday - Friday: 9AM - 6PM
-                    <br />
+                    Lundi – Vendredi : 9 h – 18 h (heure de Montréal)
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="card bg-base-100 border-base-content/10 border">
             <div className="card-body">
-              <h2 className="card-title text-2xl">A project? A message?</h2>
+              <h2 className="card-title text-2xl">Un projet ? Un message ?</h2>
+              <p className="text-base-content/80 mb-4">
+                Décris‑moi ton besoin ; je reviendrai vers toi sous 24 h avec
+                les prochaines étapes.
+              </p>
+
               <ContactForm onSubmitResult={handleFormSubmitResult} />
             </div>
           </div>

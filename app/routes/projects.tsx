@@ -9,12 +9,14 @@ export default function Portfolio() {
           <div className="mb-4 flex justify-center">
             <div className="via-primary h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
           </div>
+
           <h1 className="font-urbanist text-4xl font-bold md:text-5xl">
-            Last <span className="text-primary">Projects</span>
+            Mes <span className="text-primary">projets récents</span>
           </h1>
+
           <p className="text-base-content/80 font-urbanist mx-auto mt-4 max-w-2xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-            praesentium.
+            Aperçu de mandats menés pour des PME et agences web du Québec :
+            performance, éco‑conception et résultats concrets.
           </p>
         </div>
 
