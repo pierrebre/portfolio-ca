@@ -6,7 +6,11 @@ export default function NavBar() {
       <div className="navbar bg-base-100/90 outline-base-content/5 max-w-xs rounded-full py-0 shadow-2xl outline backdrop-blur-sm md:max-w-4xl">
         <div className="navbar-start">
           <div className="dropdown">
-            <button className="btn btn-circle btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-circle btn-ghost lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -21,21 +25,22 @@ export default function NavBar() {
                   d="M4 6h16M4 12h8m-8 6h16"
                 />
               </svg>
-            </button>
+            </div>
 
-            <nav>
-              <ul className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm">
-                <li>
-                  <a href="/projects">Projects</a>
-                </li>
-                <li>
-                  <a href="/about">About</a>
-                </li>
-                <li>
-                  <a href="/contact">Contact</a>
-                </li>
-              </ul>
-            </nav>
+            <ul
+              tabIndex={0}
+              className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm"
+            >
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+              <li>
+                <a href="/about">About</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+            </ul>
           </div>
 
           <a

@@ -1,29 +1,18 @@
-import { useState } from "react";
 import ContactForm from "~/components/contact-form";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import Toast from "~/components/toast";
+import { useToast } from "~/context/toast-context";
 
 export default function Contact() {
-  const [toastState, setToastState] = useState({
-    visible: false,
-    message: "",
-    type: "success" as "success" | "error",
-  });
+  const { showToast } = useToast();
 
   const handleFormSubmitResult = (success: boolean, message?: string) => {
-    setToastState({
-      visible: true,
-      message:
-        message ??
+    showToast(
+      message ??
         (success
           ? "Your message has been sent successfully!"
           : "Failed to send your message. Please try again."),
-      type: success ? "success" : "error",
-    });
-  };
-
-  const closeToast = () => {
-    setToastState((prev) => ({ ...prev, visible: false }));
+      success ? "success" : "error"
+    );
   };
 
   return (
@@ -98,15 +87,6 @@ export default function Contact() {
             <div className="card-body">
               <h2 className="card-title text-2xl">A project? A message?</h2>
               <ContactForm onSubmitResult={handleFormSubmitResult} />
-              {toastState.visible && (
-                <Toast
-                  message={toastState.message}
-                  type={toastState.type}
-                  visible={toastState.visible}
-                  onClose={closeToast}
-                  position="bottom-end"
-                />
-              )}
             </div>
           </div>
         </div>
