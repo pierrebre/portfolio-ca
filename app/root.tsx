@@ -21,6 +21,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <link
+          rel="icon"
+          type="image/png"
+          href="favicon/favicon-96x96.png"
+          sizes="96x96"
+        />
+        <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+        <link rel="shortcut icon" href="favicon/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="favicon/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="Pierre Barbé" />
+        <link rel="manifest" href="favicon/site.webmanifest" />
+
+        <meta property="og:site_name" content="Pierre Barbé Web" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fr_CA" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@PierreBarbe" />
+        <meta name="twitter:site" content="@PierreBarbe" />
         <Links />
       </head>
       <body>

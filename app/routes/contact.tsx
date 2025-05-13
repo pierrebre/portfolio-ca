@@ -2,6 +2,46 @@ import ContactForm from "~/components/contact-form";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { useToast } from "~/context/toast-context";
 
+import type { Route } from "./+types/home";
+
+export function meta({}: Route.MetaArgs) {
+  const url = "https://pierrebarbe.ca/contact";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.png";
+
+  return [
+    { title: "Contact | Pierre Barbé – Développeur webperformant Montréal" },
+    {
+      name: "description",
+      content:
+        "Une question ou un projet ? Écris‑moi ou réserve ta consultation gratuite de 30 min pour booster performance et éco‑conception de ton site.",
+    },
+    {
+      name: "keywords",
+      content:
+        "contact développeur web Montréal, consultation gratuite site web, audit web, performance site, éco‑conception",
+    },
+    {
+      property: "og:title",
+      content: "Contact | Pierre Barbé – Développeur webperformant Montréal",
+    },
+    {
+      property: "og:description",
+      content:
+        "Réserve ta consultation gratuite ou envoie‑moi un message. Réponse en moins de 24 h.",
+    },
+    { property: "og:url", content: url },
+    { property: "og:image", content: image },
+
+    { name: "twitter:title", content: "Contacte Pierre Barbé" },
+    {
+      name: "twitter:description",
+      content: "Web‑performance, éco‑conception, automatisation : parlons‑en !",
+    },
+    { name: "twitter:image", content: image },
+    { name: "twitter:url", content: url },
+  ];
+}
+
 export default function Contact() {
   const { showToast } = useToast();
 
@@ -28,8 +68,8 @@ export default function Contact() {
           </div>
 
           <p className="text-base-content/80 mt-6 text-lg md:text-xl">
-            Une idée de projet, une question  ? Écris‑moi, en français ou en anglais, et je
-            reviens vers toi en moins de 24 h.
+            Une idée de projet, une question  ? Écris‑moi, en français ou en
+            anglais, et je reviens vers toi en moins de 24 h.
           </p>
         </div>
       </section>
