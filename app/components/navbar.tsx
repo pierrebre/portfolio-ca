@@ -31,14 +31,16 @@ export default function NavBar() {
               tabIndex={0}
               className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm"
             >
-              <li>
+              {/*               <li>
                 <a href="/projects">Projects</a>
-              </li>
-{/*               <li>
-                <a href="/about">About</a>
               </li> */}
+
               <li>
                 <a href="/contact">Contact</a>
+              </li>
+              <li className="flex flex-row">
+                <a>Blog</a>
+                <span className="badge badge-info -mt-0.5 -ml-0.5">Soon</span>
               </li>
             </ul>
           </div>
@@ -52,23 +54,22 @@ export default function NavBar() {
         </div>
         <div className="navbar-center hidden lg:flex">
           <nav>
-            <a
+            {/*  <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               href="/projects"
             >
               Projects
-            </a>
-{/*             <a
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-              href="/about"
-            >
-              About
             </a> */}
+
             <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               href="/contact"
             >
               Contact
+            </a>
+            <a className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold">
+              Blog
+              <span className="badge badge-info -mt-3 -ml-0.5">Soon</span>
             </a>
           </nav>
         </div>

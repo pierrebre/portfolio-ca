@@ -1,11 +1,11 @@
 import type { ServiceProps } from "data/services";
 
-export default function ServiceCard({ icon, name, description }: ServiceProps) {
+export default function ServiceCard({ icon: Icon, name, description }: ServiceProps) {
   return (
     <div className="group border-base-content/10 bg-base-100 relative overflow-hidden rounded-2xl border shadow-xs transition-all duration-300 hover:shadow-lg">
       <div className="p-8">
         <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-2xl p-4">
-          <img src={icon} alt={name} className="h-full w-full object-contain" />
+          <Icon className="h-full w-full object-contain" aria-hidden="true" />
         </div>
         <h3 className="font-urbanist text-base-content text-2xl font-semibold">
           {name}
