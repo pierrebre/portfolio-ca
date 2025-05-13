@@ -97,7 +97,7 @@ export default function Hero() {
           <div className="relative lg:w-1/2">
             <div className="relative overflow-hidden rounded-xl shadow-lg">
               <img
-                src="/images/me.png"
+                src="/images/me.avif"
                 alt="Pierre Barbé – développeur webperformant"
                 className="h-[580px] w-full object-cover"
                 width={1152}

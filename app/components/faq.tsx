@@ -16,7 +16,8 @@ export default function Faq() {
         <div className="flex flex-col space-y-2">
           {questions.map((item) => (
             <FaqItem
-              key={item.question}
+              key={item.index}
+              index={item.index}
               question={item.question}
               answer={item.answer}
             />

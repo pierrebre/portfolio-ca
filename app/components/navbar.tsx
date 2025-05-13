@@ -39,7 +39,7 @@ export default function NavBar() {
                 <a href="/contact">Contact</a>
               </li>
               <li className="flex flex-row">
-                <a>Blog</a>
+                <p>Blog</p>
                 <span className="badge badge-info -mt-0.5 -ml-0.5">Soon</span>
               </li>
             </ul>
@@ -67,10 +67,10 @@ export default function NavBar() {
             >
               Contact
             </a>
-            <a className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold">
+            <p className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold">
               Blog
               <span className="badge badge-info -mt-3 -ml-0.5">Soon</span>
-            </a>
+            </p>
           </nav>
         </div>
         <div className="navbar-end h-10">

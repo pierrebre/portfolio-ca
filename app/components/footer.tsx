@@ -11,15 +11,15 @@ export default function Footer() {
           </aside>
 
           <nav>
-            <h4 className="footer-title">Navigation</h4>
-            <a className="link link-hover">Blog</a>
+            <strong className="footer-title">Navigation</strong>
+            <p className="link link-hover">Blog</p>
             <a className="link link-hover" href="/contact">
               Contact
             </a>
           </nav>
 
           <nav>
-            <h4 className="footer-title">Légal</h4>
+            <strong className="footer-title">Légal</strong>
             <a className="link link-hover" href="/terms">
               Conditions&nbsp;d’utilisation
             </a>

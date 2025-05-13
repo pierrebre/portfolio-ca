@@ -12,7 +12,7 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
   return [
     { title: "Développeur web freelance Montréal | Pierre Barbé" },
