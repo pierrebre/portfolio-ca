@@ -11,9 +11,46 @@ import Toast from "~/components/toast";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
+  const url = "https://pierrebarbe.ca/";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.png";
+
   return [
-    { title: "Pierre Barbé" },
-    { name: "description", content: "Welcome to my website!" },
+    { title: "Développeur web freelance Montréal | Pierre Barbé" },
+    {
+      name: "description",
+      content:
+        "Sites rapides, verts et rentables pour PME et agences du Québec. Audit de site gratuit, web‑performance, éco‑conception et automatisation.",
+    },
+    {
+      name: "keywords",
+      content:
+        "développeur web freelance Montréal, optimisation webperformance Québec, audit de site gratuit, pigiste WordPress, éco‑conception web",
+    },
+    {
+      property: "og:title",
+      content: "Développeur web freelance Montréal | Pierre Barbé",
+    },
+    {
+      property: "og:description",
+      content:
+        "Sites rapides, verts et rentables pour PME et agences du Québec. Audit gratuit en 30 min.",
+    },
+    { property: "og:url", content: url },
+    { property: "og:image", content: image },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+
+    {
+      name: "twitter:title",
+      content: "Développeur web freelance Montréal | Pierre Barbé",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Audit gratuit, web‑performance et éco‑conception pour PME et agences.",
+    },
+    { name: "twitter:image", content: image },
+    { name: "twitter:url", content: url },
   ];
 }
 
