@@ -6,16 +6,13 @@ export default function Footer() {
           <aside className="items-center">
             <p>
               Pierre Barbé
-              <br />
-              © {new Date().getFullYear()} – Tous droits réservés
+              <br />© {new Date().getFullYear()} – Tous droits réservés
             </p>
           </aside>
 
           <nav>
             <h4 className="footer-title">Navigation</h4>
-            <a className="link link-hover" href="/projects">
-              Projets
-            </a>
+            <a className="link link-hover">Blog</a>
             <a className="link link-hover" href="/contact">
               Contact
             </a>
