@@ -6,7 +6,7 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/contact";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.png";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: "Contact | Pierre Barbé – Développeur webperformant Montréal" },
