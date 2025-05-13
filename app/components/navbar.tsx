@@ -10,6 +10,9 @@ export default function NavBar() {
               tabIndex={0}
               role="button"
               className="btn btn-circle btn-ghost lg:hidden"
+              aria-label="Menu de navigation"
+              aria-expanded="false"
+              aria-haspopup="menu"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +20,7 @@ export default function NavBar() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -30,17 +34,20 @@ export default function NavBar() {
             <ul
               tabIndex={0}
               className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm"
+              role="menu"
             >
               {/*               <li>
                 <a href="/projects">Projects</a>
               </li> */}
 
-              <li>
-                <a href="/contact">Contact</a>
+              <li role="none">
+                <a href="/contact" role="menuitem">
+                  Contact
+                </a>
               </li>
-              <li className="flex flex-row">
-                <p>Blog</p>
-                <span className="badge badge-info -mt-0.5 -ml-0.5">Soon</span>
+              <li className="flex flex-row" role="none">
+                <p role="menuitem">Blog</p>
+                <span className="badge bg-base-100/95 border-base-content/10 -mt-0.5 -ml-0.5">Soon</span>
               </li>
             </ul>
           </div>
@@ -69,7 +76,7 @@ export default function NavBar() {
             </a>
             <p className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold">
               Blog
-              <span className="badge badge-info -mt-3 -ml-0.5">Soon</span>
+              <span className="badge bg-base-100/95 border-base-content/10 -mt-3 -ml-0.5">Soon</span>
             </p>
           </nav>
         </div>
