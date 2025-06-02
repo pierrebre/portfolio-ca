@@ -28,32 +28,7 @@ export default function Hero() {
               Votre site est-il à la hauteur ? Ou freine-t-il vos visiteurs et
               vos ventes ? Dans un monde numérique rapide, la vitesse, le code
               propre et l’expérience utilisateur font toute la différence.
-              <br /> <br />Home Page Content for Pierre Barbé – Freelance Web Developer, Montreal
-Give Your Website the Edge It Deserves
-Local Web Performance, Clean Code & Eco-Friendly Results. All in One Place
-Is your website really pulling its weight? Or is it stuck in slow mode, leaving visitors and sales behind?
- In today’s crowded digital world, speed matters. Clean code matters. User experience matters. And let’s not forget: the planet matters, too.
-
-Hi, I’m Pierre Barbé.
- I help businesses like yours: SMEs, e-commerce, service providers, and agencies in Quebec, create websites that work harder, load faster, and leave a smaller carbon footprint.
- No tech buzzwords. No cookie-cutter solutions. Just honest, down-to-earth expertise.
-
-[CTA] Book your free site audit now
- Découvrez comment améliorer la vitesse et l'impact de votre site dès aujourd'hui.
-
-
-Websites That Load Fast, Convert More & Waste Less
-Your site isn’t just an online brochure. It’s the front door to your business.
- And if it’s slow, clunky, or poorly maintained, it’s not just frustrating for your visitors, it’s costing you money.
-
-I specialize in turning underperforming websites into efficient, conversion-focused tools that serve both your business and your customers better.
-
-My approach?
- Simple. Practical. Focused on your reality as a local business owner or agency.
- I cut the fat. I fix the bottlenecks. I build only what you need and nothing you don’t.
-
-[CTA] Let’s optimize your website now
- Optimisons votre site ensemble, rapide, simple, efficace.
+              <br /> <br />
               Je suis Pierre Barbé, et j’aide les PME, e-commerces, agences et
               prestataires québécois à créer des sites web plus performants,
               plus rapides et plus responsables. Sans jargon, sans recettes
