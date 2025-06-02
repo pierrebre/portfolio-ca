@@ -97,7 +97,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-medium">Téléphone</h3>
                   <p className="text-base-content/80 mt-1">
-                    +1&nbsp;(514)&nbsp;123‑4567
+                    +1&nbsp;(438)&nbsp;448-8408
                     <br />
                     Réponse rapide (FR/EN)
                   </p>

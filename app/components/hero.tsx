@@ -25,9 +25,39 @@ export default function Hero() {
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">
-              J’aide les PME et agences du Québec à transformer leur présence en
-              ligne : web‑performance, éco‑conception et automatisation, sans
-              jargon ni surprise.
+              Votre site est-il à la hauteur ? Ou freine-t-il vos visiteurs et
+              vos ventes ? Dans un monde numérique rapide, la vitesse, le code
+              propre et l’expérience utilisateur font toute la différence.
+              <br /> <br />Home Page Content for Pierre Barbé – Freelance Web Developer, Montreal
+Give Your Website the Edge It Deserves
+Local Web Performance, Clean Code & Eco-Friendly Results. All in One Place
+Is your website really pulling its weight? Or is it stuck in slow mode, leaving visitors and sales behind?
+ In today’s crowded digital world, speed matters. Clean code matters. User experience matters. And let’s not forget: the planet matters, too.
+
+Hi, I’m Pierre Barbé.
+ I help businesses like yours: SMEs, e-commerce, service providers, and agencies in Quebec, create websites that work harder, load faster, and leave a smaller carbon footprint.
+ No tech buzzwords. No cookie-cutter solutions. Just honest, down-to-earth expertise.
+
+[CTA] Book your free site audit now
+ Découvrez comment améliorer la vitesse et l'impact de votre site dès aujourd'hui.
+
+
+Websites That Load Fast, Convert More & Waste Less
+Your site isn’t just an online brochure. It’s the front door to your business.
+ And if it’s slow, clunky, or poorly maintained, it’s not just frustrating for your visitors, it’s costing you money.
+
+I specialize in turning underperforming websites into efficient, conversion-focused tools that serve both your business and your customers better.
+
+My approach?
+ Simple. Practical. Focused on your reality as a local business owner or agency.
+ I cut the fat. I fix the bottlenecks. I build only what you need and nothing you don’t.
+
+[CTA] Let’s optimize your website now
+ Optimisons votre site ensemble, rapide, simple, efficace.
+              Je suis Pierre Barbé, et j’aide les PME, e-commerces, agences et
+              prestataires québécois à créer des sites web plus performants,
+              plus rapides et plus responsables. Sans jargon, sans recettes
+              toutes faites. Juste du concret, accessible et efficace.
             </p>
 
             <div className="font-urbanist mb-12 flex flex-wrap gap-4">
@@ -61,7 +91,7 @@ export default function Hero() {
                   modal?.showModal();
                 }}
               >
-                Réserve ton audit de site gratuit
+                Réservez votre audit gratuit dès maintenant
               </button>
             </div>
 
@@ -69,7 +99,7 @@ export default function Hero() {
               {[
                 { value: "50+", label: "Projets" },
                 { value: "98 %", label: "Taux de succès" },
-                { value: "5+", label: "Ans d'expérience" },
+                { value: "3+", label: "Ans d'expérience" },
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -123,7 +153,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Badge « Webperf » */}
               <div className="border-base-content/10 bg-base-100/95 absolute top-6 right-6 rounded-lg border px-4 py-3 backdrop-blur-xs">
                 <div className="font-urbanist text-center">
                   <div className="text-primary text-lg font-bold">#1</div>
