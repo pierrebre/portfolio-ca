@@ -25,9 +25,14 @@ export default function Hero() {
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">
-              J’aide les PME et agences du Québec à transformer leur présence en
-              ligne : web‑performance, éco‑conception et automatisation, sans
-              jargon ni surprise.
+              Votre site est-il à la hauteur ? Ou freine-t-il vos visiteurs et
+              vos ventes ? Dans un monde numérique rapide, la vitesse, le code
+              propre et l’expérience utilisateur font toute la différence.
+              <br /> <br />
+              Je suis Pierre Barbé, et j’aide les PME, e-commerces, agences et
+              prestataires québécois à créer des sites web plus performants,
+              plus rapides et plus responsables. Sans jargon, sans recettes
+              toutes faites. Juste du concret, accessible et efficace.
             </p>
 
             <div className="font-urbanist mb-12 flex flex-wrap gap-4">
@@ -61,7 +66,7 @@ export default function Hero() {
                   modal?.showModal();
                 }}
               >
-                Réserve ton audit de site gratuit
+                Réservez votre audit gratuit dès maintenant
               </button>
             </div>
 
@@ -69,7 +74,7 @@ export default function Hero() {
               {[
                 { value: "50+", label: "Projets" },
                 { value: "98 %", label: "Taux de succès" },
-                { value: "5+", label: "Ans d'expérience" },
+                { value: "3+", label: "Ans d'expérience" },
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -123,7 +128,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Badge « Webperf » */}
               <div className="border-base-content/10 bg-base-100/95 absolute top-6 right-6 rounded-lg border px-4 py-3 backdrop-blur-xs">
                 <div className="font-urbanist text-center">
                   <div className="text-primary text-lg font-bold">#1</div>

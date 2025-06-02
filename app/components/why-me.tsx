@@ -3,30 +3,20 @@ import React from "react";
 export default function WhyMe() {
   const features = [
     {
-      title: "Expertise prouvée",
+      title: "Un équilibre entre technologie, écologie et humain",
       description:
-        "5 ans en agence puis en solo, plus de 50 mandats livrés et 98 % de clients satisfaits. Approche itérative et documentée.",
+        "Je rassemble la précision technique, la responsabilité écologique et une communication centrée sur l’humain. Votre site est plus rapide. Vos clients restent plus longtemps. Et vous vous sentez bien quant à votre impact numérique.",
     },
     {
-      title: "Communication bilingue",
+      title: "Bilingue et local",
       description:
-        "Collaboration fluide en français et en anglais, sans jargon. Je traduis les rapports pour ton équipe, côté client ou agence.",
+        "Que vous travailliez en français ou en anglais, je parle votre langue — au sens propre comme au sens technique. Je comprends les subtilités du monde des affaires numériques au Québec et au niveau du Canada.", 
     },
     {
-      title: "Code vert & performant",
+      title: "Des résultats prouvés, pas des promesses",
       description:
-        "Chaque ligne est pensée pour réduire le poids des pages, abaisser la facture énergétique et grimper dans les Core Web Vitals.",
-    },
-    {
-      title: "Budget clair & accessibilité",
-      description:
-        "Devis détaillé, tarifs flexibles de pigiste et livrables compréhensibles : tu sais toujours où part ton argent.",
-    },
-    {
-      title: "Présence locale",
-      description:
-        "Basé à Montréal, je me déplace (ou me connecte) sans délai pour Laval, Longueuil et Québec. Un café pour jaser ? On fixe ça !",
-    },
+        "J’ai aidé plus de 10 entreprises à faire évoluer leur site, améliorer leurs performances et optimiser leur SEO, avec un taux de réussite de 98 %. Le site e-commerce de l’un de mes clients a gagné 38 points sur Google Lighthouse. Ce n’est pas qu’un score technique : c’est plus de conversions, un meilleur classement et une expérience plus fluide pour leurs visiteurs.",
+    }
   ];
 
   return (
@@ -37,7 +27,7 @@ export default function WhyMe() {
             <div className="grid gap-16 md:grid-cols-1">
               <div className="space-y-8">
                 <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                  Pourquoi moi&nbsp;?
+                  Pourquoi les entreprises me font confiance&nbsp;?
                 </h2>
                 <p className="text-base-content/70 mt-2">
                   Des solutions web adaptées à vos besoins
@@ -45,7 +35,6 @@ export default function WhyMe() {
                 <div className="bg-primary h-px w-24" />
               </div>
 
-              {/* Cartes générées à partir de features */}
               <div className="grid grid-cols-1 gap-8 space-y-12 md:grid-cols-2 lg:grid-cols-3">
                 {features.map((item, index) => (
                   <div
