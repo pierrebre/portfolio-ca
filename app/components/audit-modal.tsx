@@ -12,8 +12,8 @@ export default function AuditModal() {
     showToast(
       message ??
         (success
-          ? "Your message has been sent successfully!"
-          : "Failed to send your message. Please try again."),
+          ? "Votre message a été envoyé avec succès !"
+          : "Échec de l'envoi de votre message. Veuillez réessayer."),
       success ? "success" : "error"
     );
 
@@ -30,14 +30,15 @@ export default function AuditModal() {
   return (
     <dialog id="audit_modal" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box relative">
-        <h3 className="font-bold text-lg">Request a Free Audit</h3>
+        <h3 className="font-bold text-lg">Demander un audit gratuit</h3>
         <p className="py-2">
-          Fill out the form below to request a free website audit.
+          Remplissez le formulaire ci-dessous pour demander un audit gratuit de
+          votre site Web.
         </p>
         <AuditForm onSubmitResult={handleFormSubmitResult} />
       </div>
       <form method="dialog" className="modal-backdrop">
-        <button>close</button>
+        <button>fermer</button>
       </form>
     </dialog>
   );

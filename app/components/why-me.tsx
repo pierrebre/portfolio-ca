@@ -15,7 +15,7 @@ export default function WhyMe() {
     {
       title: "Des résultats prouvés, pas des promesses",
       description:
-        "J’ai aidé plus de 10 entreprises à faire évoluer leur site, améliorer leurs performances et optimiser leur SEO, avec un taux de réussite de 98 %. Le site e-commerce de l’un de mes clients a gagné 38 points sur Google Lighthouse. Ce n’est pas qu’un score technique : c’est plus de conversions, un meilleur classement et une expérience plus fluide pour leurs visiteurs.",
+        "J’ai aidé plus de 50 entreprises à faire évoluer leur site, améliorer leurs performances et optimiser leur SEO, avec un taux de réussite de 98 %. Le site e-commerce de l’un de mes clients a gagné 38 points sur Google Lighthouse. Ce n’est pas qu’un score technique : c’est plus de conversions, un meilleur classement et une expérience plus fluide pour leurs visiteurs.",
     }
   ];
 

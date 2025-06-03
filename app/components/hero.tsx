@@ -15,13 +15,13 @@ export default function Hero() {
             <div className="mb-6 flex items-center gap-3">
               <div className="bg-base-content/40 h-px w-8" />
               <span className="font-urbanist text-base-content/80 text-sm font-medium tracking-widest uppercase">
-                Développeur web – Montréal
+                Ton site, plus vite - plus vert
               </span>
             </div>
 
-            <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[4.5rem]">
-              Ton site, plus vite
-              <span className="text-primary block">et plus vert</span>
+            <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[4rem]">
+              Développeur web
+              <span className="text-primary block">Montréal</span>
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">

@@ -63,13 +63,19 @@ export default function Contact() {
 
           <div className="mt-6 flex items-center justify-center gap-4">
             <div className="bg-primary h-px w-16" />
-            <span className="text-primary">On jase ?</span>
+            <span className="text-primary">Parlons de vos objectifs</span>
             <div className="bg-primary h-px w-16" />
           </div>
 
-          <p className="text-base-content/80 mt-6 text-lg md:text-xl">
-            Une idée de projet, une question  ? Écris‑moi, en français ou en
-            anglais, et je reviens vers toi en moins de 24 h.
+          <p className="text-base-content/80 mt-6 text-lg md:text-xl text-center">
+            Que vous soyez interéssé pour un audit gratuit de votre site, que
+            vous ayez quelques questions techniques ou que vous souhaitiez
+            simplement découvrir comment je peux aider votre entreprise en
+            ligne, je suis là.
+            <br />
+            <br />
+            Je travaille avec des entreprises locales à Montréal, Laval,
+            Longueuil et partout au Québec — en français comme en anglais.
           </p>
         </div>
       </section>
@@ -80,18 +86,6 @@ export default function Contact() {
             <h2 className="card-title text-2xl">Coordonnées</h2>
 
             <div className="mt-6 space-y-6">
-              <div className="flex items-start gap-4">
-                <MapPin className="text-primary mt-1 h-6 w-6" />
-                <div>
-                  <h3 className="text-lg font-medium">Bureau principal</h3>
-                  <p className="text-base-content/80 mt-1">
-                    123 boulevard Innovation
-                    <br />
-                    Montréal, QC&nbsp;HXX&nbsp;1X1
-                  </p>
-                </div>
-              </div>
-
               <div className="flex items-start gap-4">
                 <Phone className="text-primary mt-1 h-6 w-6" />
                 <div>
@@ -128,9 +122,9 @@ export default function Contact() {
 
           <div className="card bg-base-100 border-base-content/10 border">
             <div className="card-body">
-              <h2 className="card-title text-2xl">Un projet ? Un message ?</h2>
+              <h2 className="card-title text-2xl">Un projet ? Une question?</h2>
               <p className="text-base-content/80 mb-4">
-                Décris‑moi ton besoin ; je reviendrai vers toi sous 24 h avec
+                Décris‑moi ton besoin ; je reviendrai vers toi rapidement avec
                 les prochaines étapes.
               </p>
 
