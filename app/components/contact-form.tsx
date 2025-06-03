@@ -3,14 +3,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const contactformSchema = z.object({
-  firstName: z.string().min(1, { message: "First name is required" }),
-  lastName: z.string().min(1, { message: "Last name is required" }),
-  email: z.string().email({ message: "Invalid email address" }),
-  message: z.string().min(1, { message: "Message is required" }),
+  firstName: z.string().min(1, { message: "Le prénom est requis" }),
+  lastName: z.string().min(1, { message: "Le nom de famille est requis" }),
+  email: z.string().email({ message: "Adresse e-mail invalide" }),
+  message: z.string().min(1, { message: "Le message est requis" }),
 });
 
 type FormSchemaType = z.infer<typeof contactformSchema>;
-
 
 type ContactFormProps = {
   onSubmitResult?: (success: boolean, message?: string) => void;
@@ -23,9 +22,7 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
   } = useForm<FormSchemaType>({
-
     resolver: zodResolver(contactformSchema),
-
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -55,13 +52,13 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
       if (!response.ok) {
         const errorData = await response.json();
         if (onSubmitResult) {
-          onSubmitResult(false, errorData.error ?? "An error occurred");
+          onSubmitResult(false, errorData.error ?? "Une erreur s'est produite");
         }
-        throw new Error(errorData.error ?? "An error occurred");
+        throw new Error(errorData.error ?? "Une erreur s'est produite");
       }
 
       if (onSubmitResult) {
-        onSubmitResult(true, "Your message has been sent successfully!");
+        onSubmitResult(true, "Votre message a été envoyé avec succès !");
       }
 
       reset();
@@ -71,7 +68,10 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
         onSubmitResult &&
         !onSubmitResult.toString().includes("onSubmitResult(false")
       ) {
-        onSubmitResult(false, err.message || "Failed to send your message");
+        onSubmitResult(
+          false,
+          err.message || "Échec de l'envoi de votre message"
+        );
       }
     }
   };
@@ -83,7 +83,7 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
           <label className="floating-label">
             <input
               type="text"
-              placeholder="John"
+              placeholder="Jean"
               className="input input-md w-full"
               {...register("firstName")}
             />
@@ -92,18 +92,18 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
                 {errors.firstName.message}
               </span>
             )}
-            <span className="">First Name</span>
+            <span className="">Prénom</span>
           </label>
         </div>
         <div>
           <label className="floating-label">
             <input
               type="text"
-              placeholder="Doe"
+              placeholder="Dupont"
               className="input input-md w-full"
               {...register("lastName")}
             />
-            <span className="">Last Name</span>
+            <span className="">Nom de famille</span>
           </label>
           {errors.lastName && (
             <span className="text-error text-sm">
@@ -117,11 +117,11 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
         <label className="floating-label">
           <input
             type="email"
-            placeholder="john.doe@example.com"
+            placeholder="jean.dupont@example.com"
             className="input input-md w-full"
             {...register("email")}
           />
-          <span className="">Email</span>
+          <span className="">Courriel</span>
         </label>
         {errors.email && (
           <span className="text-error text-sm">{errors.email.message}</span>
@@ -131,7 +131,7 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
       <div>
         <label className="floating-label">
           <textarea
-            placeholder="Your message here..."
+            placeholder="Votre message ici..."
             className="textarea textarea-md w-full"
             {...register("message")}
           />
@@ -148,7 +148,7 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
           className="btn btn-primary w-full"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? "Envoi…" : "Envoyer le message"}
         </button>
       </div>
     </form>

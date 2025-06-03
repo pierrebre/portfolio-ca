@@ -19,9 +19,9 @@ export const questions: Question[] = [
   },
   {
     index: 2,
-    question: "Travailles‑tu seulement à Montréal ?",
+    question: "Avec qui je travaille ?",
     answer:
-      "Basé à Montréal, j'interviens aussi pour Québec, Laval, Longueuil et tout le Québec sans frais supplémentaires.",
+      "PME de Montréal, Laval, Longueuil et partout au Québec : des commerces de proximité aux prestataires de services, sans oublier les marques e-commerce en pleine croissance.",
   },
   {
     index: 3,

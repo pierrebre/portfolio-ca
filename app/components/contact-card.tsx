@@ -8,19 +8,19 @@ export default function ContactCard() {
           <div className="bg-primary-800/20 mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2.5 backdrop-blur-sm">
             <Phone className="text-base-100 h-5 w-5" />
             <span className="text-base-100 text-sm font-medium">
-              Support&nbsp;FR/EN&nbsp;24 h/24
+              Support FR/EN – Disponible 24/7
             </span>
           </div>
 
           <h2 className="text-base-100 text-3xl font-bold leading-tight tracking-tight md:text-4xl">
-            Planifie ta consultation gratuite
+           Parlons de vos objectifs
           </h2>
 
           <p className="text-base-100/90 mx-auto mt-6 max-w-2xl text-lg text-justify">
-            Une question, une idée ou l’envie de muscler ton site ? Écris‑moi,
-            ou réserve 30 minutes pour en jaser. C’est gratuit, sans engagement
-            et 100 % transparent : prends l’option qui t’arrange et on se
-            parle !
+            Un projet en tête ? Un site à optimiser ? Parlons-en. Réservez
+            30 min gratuites ou envoyez-moi un message. C’est simple, rapide et
+            sans engagement. Et surtout, c’est vous qui décidez comment on
+            commence.
           </p>
 
           <div className="mt-10 flex justify-center gap-2">
@@ -30,13 +30,13 @@ export default function ContactCard() {
               rel="noopener"
             >
               <button className="btn rounded-full font-semibold">
-                <span>Réserver la consultation</span>
+                <span>Réserver une consultation</span>
               </button>
             </a>
 
             <a href="/contact">
               <button className="btn rounded-full font-semibold">
-                <span>Écris‑moi</span>
+                <span>Envoyer un message</span>
               </button>
             </a>
           </div>

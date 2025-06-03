@@ -20,10 +20,10 @@ export default function Footer() {
 
           <nav>
             <strong className="footer-title">Légal</strong>
-            <a className="link link-hover" href="/terms">
-              Conditions&nbsp;d’utilisation
+            <a className="link link-hover" href="/mentions-legales">
+              Mentions&nbsp;légales
             </a>
-            <a className="link link-hover" href="/privacy">
+            <a className="link link-hover" href="/politique-confidentialite">
               Politique&nbsp;de&nbsp;confidentialité
             </a>
           </nav>

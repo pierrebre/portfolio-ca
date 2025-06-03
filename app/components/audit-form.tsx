@@ -3,8 +3,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const auditFormSchema = z.object({
-  websiteUrl: z.string().url({ message: "Valid website URL is required" }),
-  email: z.string().email({ message: "Invalid email address" }),
+  websiteUrl: z
+    .string()
+    .url({ message: "Une URL de site Web valide est requise" }),
+  email: z.string().email({ message: "Adresse e-mail invalide" }),
   additionalInfo: z.string().optional(),
 });
 
@@ -53,15 +55,19 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
       if (!response.ok) {
         const errorData = await response.json();
         if (onSubmitResult) {
-          onSubmitResult(false, errorData.error ?? "An error occurred", false);
+          onSubmitResult(
+            false,
+            errorData.error ?? "Une erreur s'est produite",
+            false
+          );
         }
-        throw new Error(errorData.error ?? "An error occurred");
+        throw new Error(errorData.error ?? "Une erreur s'est produite");
       }
 
       if (onSubmitResult) {
         onSubmitResult(
           true,
-          "Your audit request has been submitted successfully!",
+          "Votre demande d'audit a été soumise avec succès !",
           true
         );
       }
@@ -72,7 +78,7 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
       if (onSubmitResult) {
         onSubmitResult(
           false,
-          err.message || "Failed to submit your audit request",
+          err.message || "Échec de la soumission de votre demande d'audit",
           false
         );
       }
@@ -85,11 +91,11 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
         <label className="floating-label">
           <input
             type="url"
-            placeholder="https://example.com"
+            placeholder="https://exemple.com"
             className="input input-md w-full"
             {...register("websiteUrl")}
           />
-          <span className="">Website URL</span>
+          <span className="">URL du site Web</span>
         </label>
         {errors.websiteUrl && (
           <span className="text-error text-sm">
@@ -102,11 +108,11 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
         <label className="floating-label">
           <input
             type="email"
-            placeholder="email@example.com"
+            placeholder="courriel@exemple.com"
             className="input input-md w-full"
             {...register("email")}
           />
-          <span className="">Email</span>
+          <span className="">Courriel</span>
         </label>
         {errors.email && (
           <span className="text-error text-sm">{errors.email.message}</span>
@@ -116,11 +122,11 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
       <div>
         <label className="floating-label">
           <textarea
-            placeholder="Additional information..."
+            placeholder="Informations supplémentaires..."
             className="textarea textarea-md w-full"
             {...register("additionalInfo")}
           />
-          <span className="">Additional Information (Optional)</span>
+          <span className="">Informations supplémentaires (optionnel)</span>
         </label>
       </div>
 
@@ -135,14 +141,14 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
             }
           }}
         >
-          Cancel
+          Annuler
         </button>
         <button
           type="submit"
           className="btn btn-primary"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Submitting..." : "Request Audit"}
+          {isSubmitting ? "Envoi en cours..." : "Demander un audit"}
         </button>
       </div>
     </form>
