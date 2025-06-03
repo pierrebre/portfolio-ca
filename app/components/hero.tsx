@@ -25,10 +25,6 @@ export default function Hero() {
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">
-              Votre site est-il à la hauteur ? Ou freine-t-il vos visiteurs et
-              vos ventes ? Dans un monde numérique rapide, la vitesse, le code
-              propre et l’expérience utilisateur font toute la différence.
-              <br /> <br />
               Je suis Pierre Barbé, et j’aide les PME, e-commerces, agences et
               prestataires québécois à créer des sites web plus performants,
               plus rapides et plus responsables. Sans jargon, sans recettes
