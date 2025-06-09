@@ -7,4 +7,5 @@ export default [
   route("projects", "routes/projects.tsx"),
   route("politique-confidentialite", "routes/privacy-policy.tsx"),
   route("mentions-legales", "routes/legal-notice.tsx"),
+  route("*", "routes/not-found.tsx"),
 ] satisfies RouteConfig;
