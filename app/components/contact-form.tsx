@@ -37,42 +37,24 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
         `${import.meta.env.VITE_API_URL}/send-email`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            message: data.message,
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
         }
       );
 
       if (!response.ok) {
         const errorData = await response.json();
-        if (onSubmitResult) {
-          onSubmitResult(false, errorData.error ?? "Une erreur s'est produite");
-        }
         throw new Error(errorData.error ?? "Une erreur s'est produite");
       }
 
-      if (onSubmitResult) {
-        onSubmitResult(true, "Votre message a été envoyé avec succès !");
-      }
-
+      onSubmitResult?.(true, "Votre message a été envoyé avec succès !");
       reset();
     } catch (err: any) {
       console.error(err);
-      if (
-        onSubmitResult &&
-        !onSubmitResult.toString().includes("onSubmitResult(false")
-      ) {
-        onSubmitResult(
-          false,
-          err.message || "Échec de l'envoi de votre message"
-        );
-      }
+      onSubmitResult?.(
+        false,
+        err.message || "Échec de l'envoi de votre message"
+      );
     }
   };
 
