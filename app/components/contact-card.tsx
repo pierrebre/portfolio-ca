@@ -13,7 +13,7 @@ export default function ContactCard() {
           </div>
 
           <h2 className="text-base-100 text-3xl font-bold leading-tight tracking-tight md:text-4xl">
-           Parlons de vos objectifs
+            Parlons de vos objectifs
           </h2>
 
           <p className="text-base-100/90 mx-auto mt-6 max-w-2xl text-lg text-justify">
@@ -23,19 +23,20 @@ export default function ContactCard() {
             commence.
           </p>
 
-          <div className="mt-10 flex justify-center gap-2">
+          <div className="mt-10 flex justify-center gap-2 flex-col-reverse lg:flex-row">
             <a
               href="https://calendly.com/contact-pierrebarbe/30min"
               target="_blank"
               rel="noopener"
+              className="w-full lg:w-auto"
             >
-              <button className="btn rounded-full font-semibold">
+              <button className="btn w-full min-w-[250px] rounded-full font-semibold">
                 <span>Réserver une consultation</span>
               </button>
             </a>
 
-            <a href="/contact">
-              <button className="btn rounded-full font-semibold">
+            <a href="/contact" className="w-full lg:w-auto">
+              <button className="btn w-full min-w-[250px] rounded-full font-semibold">
                 <span>Envoyer un message</span>
               </button>
             </a>

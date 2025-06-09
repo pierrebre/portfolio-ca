@@ -91,7 +91,7 @@ export default function Hero() {
             <div className="relative overflow-hidden rounded-xl shadow-lg">
               <img
                 src="/images/me.avif"
-                alt="Pierre Barbé – développeur webperformant"
+                alt="Portrait de Pierre Barbé, développeur web freelance basé à Montréal spécialisé en performance web et automatisation."
                 className="h-[580px] w-full object-cover"
                 width={1152}
                 height={1152}

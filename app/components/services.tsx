@@ -31,7 +31,7 @@ export default function Services() {
 
           <a
             href="/contact"
-            className="btn btn-primary text-base-100 rounded-full px-8 py-6"
+            className="btn btn-primary text-base-100 rounded-full px-8 py-7"
           >
             Parlons de votre projet et de vos besoins techniques.
           </a>

@@ -29,10 +29,10 @@ export default function Process() {
             </li>
           ))}
         </ul>
-        <div className="flex mt-16 flex-col items-center justify-center px-4">
+        <div className="flex mt-16 flex-col items-center justify-center">
 
           <button
-            className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-3"
+            className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-6.5"
             onClick={() => {
               const modal = document.getElementById(
                 "audit_modal"

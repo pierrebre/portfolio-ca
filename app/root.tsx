@@ -36,6 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
         <meta name="apple-mobile-web-app-title" content="Pierre Barbé" />
         <link rel="manifest" href="favicon/site.webmanifest" />
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
         <meta property="og:site_name" content="Pierre Barbé Web" />
         <meta property="og:type" content="website" />
