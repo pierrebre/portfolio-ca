@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@mdx-js/mdx": "^3.1.0",
     "@react-router/node": "^7.6.0",
     "@react-router/serve": "^7.6.0",
     "daisyui": "^5.0.35",
+    "gray-matter": "^4.0.3",
     "isbot": "^5.1.27",
     "lucide-react": "^0.503.0",
     "react": "^19.1.0",
