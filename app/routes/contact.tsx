@@ -9,7 +9,7 @@ export function meta({}: Route.MetaArgs) {
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
   return [
-    { title: "Contact | Pierre Barbé – Développeur webperformant Montréal" },
+    { title: "Contact | Développeur web freelance Montréal | Pierre Barbé" },
     {
       name: "description",
       content:
