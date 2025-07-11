@@ -9,7 +9,8 @@ export function meta({}: Route.MetaArgs) {
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
   return [
-    { title: "Contact | Développeur web freelance Montréal | Pierre Barbé" },
+    { title: "Contact et devis de site web à Montréal" },
+    { canonical: url },
     {
       name: "description",
       content:
@@ -22,7 +23,7 @@ export function meta({}: Route.MetaArgs) {
     },
     {
       property: "og:title",
-      content: "Contact | Pierre Barbé – Développeur webperformant Montréal",
+      content: "Contact et devis de site web à Montréal",
     },
     {
       property: "og:description",
@@ -31,14 +32,11 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-
-    { name: "twitter:title", content: "Contacte Pierre Barbé" },
-    {
-      name: "twitter:description",
-      content: "Web‑performance, éco‑conception, automatisation : parlons‑en !",
-    },
-    { name: "twitter:image", content: image },
-    { name: "twitter:url", content: url },
+    { property: "og:type", content: "article" },
+    { property: "og:site_name", content: "Pierre Barbé" },
+    { property: "og:locale", content: "fr_CA" },
+    { property: "og:image:width", content: "370" },
+    { property: "og:image:height", content: "374" },
   ];
 }
 

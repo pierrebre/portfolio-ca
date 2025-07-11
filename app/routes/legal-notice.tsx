@@ -1,4 +1,28 @@
 import React from "react";
+import type { Route } from "./+types/home";
+
+export function meta({}: Route.MetaArgs) {
+  const url = "https://pierrebarbe.ca/mentions-legales";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+
+  return [
+    { title: "Mentions légales | Pierre Barbé" },
+    { name: "canonical", content: url },
+    {
+      property: "og:title",
+      content: "Mentions légales",
+    },
+    {
+      property: "og:site_name",
+      content: "Pierre Barbé",
+    },
+    { property: "og:url", content: url },
+    { property: "og:image", content: image },
+    { property: "og:image:width", content: "1198" },
+    { property: "og:image:height", content: "333" },
+    { property: "og:type", content: "article" },
+  ];
+}
 
 export default function LegalNotice() {
   return (
