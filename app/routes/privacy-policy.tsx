@@ -1,3 +1,29 @@
+import type { Route } from "./+types/home";
+
+export function meta({}: Route.MetaArgs) {
+  const url = "https://pierrebarbe.ca/politique-confidentialite";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+
+  return [
+    { title: "Politique de confidentialité | Pierre Barbé" },
+
+    { name: "canonical", content: url },
+    {
+      property: "og:title",
+      content: "Politique de confidentialité",
+    },
+    {
+      property: "og:site_name",
+      content: "Pierre Barbé",
+    },
+    { property: "og:url", content: url },
+    { property: "og:image", content: image },
+    { property: "og:image:width", content: "1198" },
+    { property: "og:image:height", content: "333" },
+    { property: "og:type", content: "article" },
+  ];
+}
+
 export default function PrivacyPolicy() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-12">
