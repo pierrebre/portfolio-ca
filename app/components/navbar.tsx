@@ -46,8 +46,13 @@ export default function NavBar() {
                 </a>
               </li>
               <li className="flex flex-row" role="none">
-                <p role="menuitem">Blog</p>
-                <span className="badge bg-base-100/95 border-base-content/10 -mt-0.5 -ml-0.5">Soon</span>
+                <a
+                  href="https://blog.pierrebarbe.ca"
+                  role="menuitem"
+                  target="_blank"
+                >
+                  Blog
+                </a>
               </li>
             </ul>
           </div>
@@ -74,10 +79,13 @@ export default function NavBar() {
             >
               Contact
             </a>
-            <p className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold">
+            <a
+              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              href="https://blog.pierrebarbe.ca"
+              target="_blank"
+            >
               Blog
-              <span className="badge bg-base-100/95 border-base-content/10 -mt-3 -ml-0.5">Soon</span>
-            </p>
+            </a>
           </nav>
         </div>
         <div className="navbar-end h-10">
