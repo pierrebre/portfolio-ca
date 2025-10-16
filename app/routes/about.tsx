@@ -1,3 +1,17 @@
+import { generateSEOMeta } from "~/utils/seo";
+import type { Route } from "./+types/about";
+
+export function meta({}: Route.MetaArgs) {
+  return generateSEOMeta({
+    title: "À Propos | Pierre Barbé - Développeur Web Freelance à Montréal",
+    description:
+      "Développeur web freelance basé à Montréal, spécialisé en optimisation de performance, WordPress et éco-conception. Découvrez mon parcours et ma philosophie de travail.",
+    url: "https://pierrebarbe.ca/about",
+    keywords:
+      "développeur web Montréal, freelance développeur Québec, optimisation performance web, WordPress développeur, éco-conception web",
+  });
+}
+
 export default function About() {
   return (
     <div className="bg-base-100 font-urbanist mx-auto max-w-7xl">

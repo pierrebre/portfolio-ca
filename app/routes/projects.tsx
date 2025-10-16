@@ -1,5 +1,18 @@
 import { projects } from "data/Projects";
 import ProjectCard from "~/components/project-card";
+import { generateSEOMeta } from "~/utils/seo";
+import type { Route } from "./+types/projects";
+
+export function meta({}: Route.MetaArgs) {
+  return generateSEOMeta({
+    title: "Projets & Réalisations | Pierre Barbé - Portfolio Développeur Web Montréal",
+    description:
+      "Découvrez mes projets récents de développement web pour PME et agences du Québec : optimisation de performance, éco-conception et résultats concrets. Portfolio de développeur web freelance à Montréal.",
+    url: "https://pierrebarbe.ca/projects",
+    keywords:
+      "portfolio développeur web Montréal, projets web Québec, réalisations développeur freelance, optimisation performance projets, sites web PME Montréal",
+  });
+}
 
 export default function Portfolio() {
   return (
