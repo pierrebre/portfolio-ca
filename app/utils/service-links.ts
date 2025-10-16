@@ -3,16 +3,21 @@
  *
  * Mapping centralisé des services vers leurs URLs et variations d'ancres
  * pour le maillage interne SEO-friendly.
+ *
+ * Utilise des slugs stables comme clés pour éviter les problèmes
+ * avec les caractères spéciaux et les noms longs.
  */
 
 export interface ServiceLink {
+  name: string;
   url: string;
   anchors: readonly string[];
   shortDescription: string;
 }
 
 export const SERVICE_LINKS = {
-  "Optimisation Web‑Performance": {
+  "optimisation-web-performance": {
+    name: "Optimisation Web‑Performance",
     url: "/services/optimisation-web-performance",
     shortDescription: "Sites plus rapides, mieux classés sur Google",
     anchors: [
@@ -24,7 +29,8 @@ export const SERVICE_LINKS = {
       "service d'optimisation",
     ],
   },
-  "Création & Maintenance de Sites": {
+  "creation-maintenance-sites": {
+    name: "Création & Maintenance de Sites",
     url: "/services/creation-maintenance-sites",
     shortDescription: "Sites WordPress rapides, propres et durables",
     anchors: [
@@ -36,7 +42,8 @@ export const SERVICE_LINKS = {
       "service de création",
     ],
   },
-  "Automatisation de Workflows (n8n)": {
+  "automatisation-workflows": {
+    name: "Automatisation de Workflows (n8n)",
     url: "/services/automatisation-workflows",
     shortDescription: "Automatise tes processus, gagne du temps",
     anchors: [
@@ -48,7 +55,8 @@ export const SERVICE_LINKS = {
       "service d'automatisation",
     ],
   },
-  "Audits Techniques & Core Web Vitals": {
+  "audits-techniques-core-web-vitals": {
+    name: "Audits Techniques & Core Web Vitals",
     url: "/services/audits-techniques-core-web-vitals",
     shortDescription: "Audits clairs et vulgarisés de ton site",
     anchors: [
@@ -60,7 +68,8 @@ export const SERVICE_LINKS = {
       "service d'audit",
     ],
   },
-  "Gestion Serveur & Déploiement": {
+  "gestion-serveur-deploiement": {
+    name: "Gestion Serveur & Déploiement",
     url: "/services/gestion-serveur-deploiement",
     shortDescription: "Site en ligne, sécurisé et sans souci",
     anchors: [
@@ -72,7 +81,8 @@ export const SERVICE_LINKS = {
       "service serveur",
     ],
   },
-  "Intégration d'Outils IA": {
+  "integration-outils-ia": {
+    name: "Intégration d'Outils IA",
     url: "/services/integration-outils-ia",
     shortDescription: "Intègre des IA utiles pour tes utilisateurs",
     anchors: [
@@ -86,21 +96,29 @@ export const SERVICE_LINKS = {
   },
 } as const;
 
-export type ServiceName = keyof typeof SERVICE_LINKS;
+export type ServiceSlug = keyof typeof SERVICE_LINKS;
 
 /**
- * Retourne l'URL d'un service à partir de son nom
+ * Retourne l'URL d'un service à partir de son slug
  */
-export function getServiceUrl(name: string): string {
-  const service = SERVICE_LINKS[name as ServiceName];
+export function getServiceUrl(slug: string): string {
+  const service = SERVICE_LINKS[slug as ServiceSlug];
   return service?.url || "/services";
 }
 
 /**
- * Retourne la description courte d'un service
+ * Retourne le nom complet d'un service à partir de son slug
  */
-export function getServiceDescription(name: string): string {
-  const service = SERVICE_LINKS[name as ServiceName];
+export function getServiceName(slug: string): string {
+  const service = SERVICE_LINKS[slug as ServiceSlug];
+  return service?.name || "";
+}
+
+/**
+ * Retourne la description courte d'un service à partir de son slug
+ */
+export function getServiceDescription(slug: string): string {
+  const service = SERVICE_LINKS[slug as ServiceSlug];
   return service?.shortDescription || "";
 }
 
@@ -108,9 +126,9 @@ export function getServiceDescription(name: string): string {
  * Retourne une ancre aléatoire pour un service (SEO: variations naturelles)
  * Utile pour éviter la sur-optimisation et varier les ancres de liens internes
  */
-export function getRandomAnchor(serviceName: string): string {
-  const service = SERVICE_LINKS[serviceName as ServiceName];
-  if (!service) return serviceName;
+export function getRandomAnchor(slug: string): string {
+  const service = SERVICE_LINKS[slug as ServiceSlug];
+  if (!service) return slug;
 
   const anchors = service.anchors;
   const randomIndex = Math.floor(Math.random() * anchors.length);
@@ -122,12 +140,14 @@ export function getRandomAnchor(serviceName: string): string {
  * Utile pour générer des listes de navigation
  */
 export function getAllServices(): Array<{
-  name: ServiceName;
+  slug: ServiceSlug;
+  name: string;
   url: string;
   shortDescription: string;
 }> {
-  return Object.entries(SERVICE_LINKS).map(([name, data]) => ({
-    name: name as ServiceName,
+  return Object.entries(SERVICE_LINKS).map(([slug, data]) => ({
+    slug: slug as ServiceSlug,
+    name: data.name,
     url: data.url,
     shortDescription: data.shortDescription,
   }));
@@ -138,46 +158,47 @@ export function getAllServices(): Array<{
  * Basé sur la matrice de pertinence du plan de maillage interne
  */
 export function getRelatedServices(
-  currentServiceName: string,
-): Array<{ name: ServiceName; url: string; shortDescription: string }> {
-  const relatedMap: Record<string, ServiceName[]> = {
-    "Optimisation Web‑Performance": [
-      "Audits Techniques & Core Web Vitals",
-      "Gestion Serveur & Déploiement",
-      "Création & Maintenance de Sites",
+  currentServiceSlug: string,
+): Array<{ slug: ServiceSlug; name: string; url: string; shortDescription: string }> {
+  const relatedMap: Record<ServiceSlug, ServiceSlug[]> = {
+    "optimisation-web-performance": [
+      "audits-techniques-core-web-vitals",
+      "gestion-serveur-deploiement",
+      "creation-maintenance-sites",
     ],
-    "Création & Maintenance de Sites": [
-      "Optimisation Web‑Performance",
-      "Audits Techniques & Core Web Vitals",
-      "Automatisation de Workflows (n8n)",
+    "creation-maintenance-sites": [
+      "optimisation-web-performance",
+      "audits-techniques-core-web-vitals",
+      "automatisation-workflows",
     ],
-    "Automatisation de Workflows (n8n)": [
-      "Intégration d'Outils IA",
-      "Gestion Serveur & Déploiement",
-      "Création & Maintenance de Sites",
+    "automatisation-workflows": [
+      "integration-outils-ia",
+      "gestion-serveur-deploiement",
+      "creation-maintenance-sites",
     ],
-    "Audits Techniques & Core Web Vitals": [
-      "Optimisation Web‑Performance",
-      "Création & Maintenance de Sites",
-      "Gestion Serveur & Déploiement",
+    "audits-techniques-core-web-vitals": [
+      "optimisation-web-performance",
+      "creation-maintenance-sites",
+      "gestion-serveur-deploiement",
     ],
-    "Gestion Serveur & Déploiement": [
-      "Optimisation Web‑Performance",
-      "Automatisation de Workflows (n8n)",
-      "Création & Maintenance de Sites",
+    "gestion-serveur-deploiement": [
+      "optimisation-web-performance",
+      "automatisation-workflows",
+      "creation-maintenance-sites",
     ],
-    "Intégration d'Outils IA": [
-      "Automatisation de Workflows (n8n)",
-      "Création & Maintenance de Sites",
-      "Optimisation Web‑Performance",
+    "integration-outils-ia": [
+      "automatisation-workflows",
+      "creation-maintenance-sites",
+      "optimisation-web-performance",
     ],
   };
 
-  const relatedNames = relatedMap[currentServiceName] || [];
+  const relatedSlugs = relatedMap[currentServiceSlug as ServiceSlug] || [];
 
-  return relatedNames.map((name) => ({
-    name,
-    url: SERVICE_LINKS[name].url,
-    shortDescription: SERVICE_LINKS[name].shortDescription,
+  return relatedSlugs.map((slug) => ({
+    slug,
+    name: SERVICE_LINKS[slug].name,
+    url: SERVICE_LINKS[slug].url,
+    shortDescription: SERVICE_LINKS[slug].shortDescription,
   }));
 }

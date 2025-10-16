@@ -8,7 +8,9 @@ export function meta({}: Route.MetaArgs) {
 
   return [
     { title: "Mentions légales | Pierre Barbé" },
-    { name: "canonical", content: url },
+    { name: "description", content: "Mentions légales, informations éditeur et hébergement du site pierrebarbe.ca." },
+    { name: "robots", content: "noindex, follow" },
+    { tagName: "link", rel: "canonical", href: url },
     {
       property: "og:title",
       content: "Mentions légales",
@@ -19,9 +21,10 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-    { property: "og:image:width", content: "1198" },
-    { property: "og:image:height", content: "333" },
-    { property: "og:type", content: "article" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/avif" },
+    { property: "og:type", content: "website" },
   ];
 }
 

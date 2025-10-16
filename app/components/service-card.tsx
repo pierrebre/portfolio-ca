@@ -6,6 +6,7 @@ interface ServiceCardProps extends ServiceProps {
 }
 
 export default function ServiceCard({
+  key: string,
   icon: Icon,
   name,
   description,

@@ -6,7 +6,9 @@ interface ServiceDropdownProps {
   className?: string;
 }
 
-export default function ServiceDropdown({ className = "" }: ServiceDropdownProps) {
+export default function ServiceDropdown({
+  className = "",
+}: ServiceDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -58,7 +60,11 @@ export default function ServiceDropdown({ className = "" }: ServiceDropdownProps
         aria-haspopup="menu"
         className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold inline-flex items-center gap-1"
       >
-        <a href="/services" className="hover:underline" onClick={(e) => e.stopPropagation()}>
+        <a
+          href="/services"
+          className="hover:underline"
+          onClick={(e) => e.stopPropagation()}
+        >
           Services
         </a>
         <ChevronDown
@@ -76,17 +82,6 @@ export default function ServiceDropdown({ className = "" }: ServiceDropdownProps
           aria-label="Menu des services"
           className="absolute top-full left-0 mt-2 w-72 bg-base-100 rounded-2xl shadow-xl border border-base-content/10 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
         >
-          {/* Lien "Voir tous les services" */}
-          <a
-            href="/services"
-            role="menuitem"
-            className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm font-semibold text-primary border-b border-base-content/10"
-            onClick={() => setIsOpen(false)}
-          >
-            Voir tous les services →
-          </a>
-
-          {/* Liste des services */}
           {services.map((service) => (
             <a
               key={service.name}
@@ -97,9 +92,6 @@ export default function ServiceDropdown({ className = "" }: ServiceDropdownProps
             >
               <div className="font-urbanist text-sm font-semibold text-base-content group-hover:text-primary transition-colors">
                 {service.name}
-              </div>
-              <div className="font-urbanist text-xs text-base-content/60 mt-1 line-clamp-1">
-                {service.shortDescription}
               </div>
             </a>
           ))}

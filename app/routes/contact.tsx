@@ -11,7 +11,8 @@ export function meta({}: Route.MetaArgs) {
 
   return [
     { title: "Contact et devis de site web à Montréal" },
-    { canonical: url },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    { tagName: "link", rel: "canonical", href: url },
     {
       name: "description",
       content:
@@ -33,11 +34,12 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-    { property: "og:type", content: "article" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/avif" },
+    { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
-    { property: "og:image:width", content: "370" },
-    { property: "og:image:height", content: "374" },
   ];
 }
 
