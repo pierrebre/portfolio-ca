@@ -2,6 +2,7 @@ import { Target, Zap, Leaf } from "lucide-react";
 import ServiceCard from "~/components/service-card";
 import { services } from "data/services";
 import { generateSEOMeta } from "~/utils/seo";
+import Breadcrumbs from "~/components/breadcrumbs";
 import type { Route } from "./+types/services._index";
 
 export function meta({}: Route.MetaArgs) {
@@ -29,6 +30,15 @@ const serviceLinks: Record<string, string> = {
 export default function ServicesIndex() {
   return (
     <div className="bg-base-100">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Services" },
+          ]}
+        />
+      </div>
+
       {/* Hero Section */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -1,3 +1,4 @@
+import Breadcrumbs from "~/components/breadcrumbs";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -26,8 +27,18 @@ export function meta({}: Route.MetaArgs) {
 
 export default function PrivacyPolicy() {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-12">
-      <h1 className="text-3xl font-bold mb-6">Politique de confidentialité</h1>
+    <div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Politique de Confidentialité" },
+          ]}
+        />
+      </div>
+
+      <section className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-3xl font-bold mb-6">Politique de confidentialité</h1>
       <p className="mb-4 text-sm text-gray-500">
         Dernière mise à jour : 3 juin 2025
       </p>
@@ -83,8 +94,9 @@ export default function PrivacyPolicy() {
       <h2 className="text-xl font-semibold mt-6 mb-2">🧾 Vos droits</h2>
       <p className="mb-4">
         Vous pouvez demander à consulter, modifier ou supprimer vos données à
-        tout moment, en écrivant à l’adresse ci-dessus.
+        tout moment, en écrivant à l'adresse ci-dessus.
       </p>
-    </section>
+      </section>
+    </div>
   );
 }

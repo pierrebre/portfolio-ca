@@ -1,6 +1,7 @@
 import { projects } from "data/Projects";
 import ProjectCard from "~/components/project-card";
 import { generateSEOMeta } from "~/utils/seo";
+import Breadcrumbs from "~/components/breadcrumbs";
 import type { Route } from "./+types/projects";
 
 export function meta({}: Route.MetaArgs) {
@@ -17,6 +18,15 @@ export function meta({}: Route.MetaArgs) {
 export default function Portfolio() {
   return (
     <div className="bg-base-100">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Projets" },
+          ]}
+        />
+      </div>
+
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-20 text-center">
           <div className="mb-4 flex justify-center">

@@ -1,6 +1,7 @@
 import ContactForm from "~/components/contact-form";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { useToast } from "~/context/toast-context";
+import Breadcrumbs from "~/components/breadcrumbs";
 
 import type { Route } from "./+types/home";
 
@@ -55,6 +56,15 @@ export default function Contact() {
 
   return (
     <div className="bg-base-100 font-urbanist mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Contact" },
+          ]}
+        />
+      </div>
+
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl font-bold md:text-5xl">Contact</h1>

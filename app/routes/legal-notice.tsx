@@ -1,4 +1,5 @@
 import React from "react";
+import Breadcrumbs from "~/components/breadcrumbs";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -26,8 +27,18 @@ export function meta({}: Route.MetaArgs) {
 
 export default function LegalNotice() {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-12">
-      <h1 className="text-3xl font-bold mb-6">Mentions légales</h1>
+    <div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Mentions Légales" },
+          ]}
+        />
+      </div>
+
+      <section className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-3xl font-bold mb-6">Mentions légales</h1>
       <p className="mb-4 text-sm text-gray-500">
         Dernière mise à jour : 3 juin 2025
       </p>
@@ -78,9 +89,10 @@ export default function LegalNotice() {
       </h2>
       <p className="mb-4">
         Le contenu de ce site (textes, visuels, code) est protégé par le droit
-        d’auteur. Toute reproduction, même partielle, est interdite sans
+        d'auteur. Toute reproduction, même partielle, est interdite sans
         autorisation écrite préalable.
       </p>
-    </section>
+      </section>
+    </div>
   );
 }
