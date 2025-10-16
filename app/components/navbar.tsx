@@ -1,4 +1,5 @@
 import ThemeToggle from "./theme-toggle";
+import ServiceDropdown from "./service-dropdown";
 
 export default function NavBar() {
   return (
@@ -41,6 +42,11 @@ export default function NavBar() {
               </li> */}
 
               <li role="none">
+                <a href="/services" role="menuitem">
+                  Services
+                </a>
+              </li>
+              <li role="none">
                 <a href="/contact" role="menuitem">
                   Contact
                 </a>
@@ -50,6 +56,7 @@ export default function NavBar() {
                   href="https://blog.pierrebarbe.ca"
                   role="menuitem"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Blog
                 </a>
@@ -65,13 +72,15 @@ export default function NavBar() {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <nav>
+          <nav className="flex items-center">
             {/*  <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               href="/projects"
             >
               Projects
             </a> */}
+
+            <ServiceDropdown />
 
             <a
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
@@ -83,6 +92,7 @@ export default function NavBar() {
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               href="https://blog.pierrebarbe.ca"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Blog
             </a>

@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -15,8 +16,14 @@ import ContactCard from "./components/contact-card";
 import { ToastProvider } from "./context/toast-context";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  // Pages où le ContactCard ne doit PAS apparaître
+  const hideContactCardOn = ["/contact"];
+  const shouldShowContactCard = !hideContactCardOn.includes(location.pathname);
+
   return (
-    <html lang="en">
+    <html lang="fr-CA">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,7 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ToastProvider>
           <NavBar />
           {children}
-          <ContactCard />
+          {shouldShowContactCard && <ContactCard />}
           <Footer />
         </ToastProvider>
         <ScrollRestoration />

@@ -1,5 +1,6 @@
 import ServiceCard from "./service-card";
 import { services } from "data/services";
+import { getServiceUrl } from "~/utils/service-links";
 
 export default function Services() {
   return (
@@ -20,6 +21,7 @@ export default function Services() {
               icon={service.icon}
               name={service.name}
               description={service.description}
+              linkTo={getServiceUrl(service.name)}
             />
           ))}
         </div>
