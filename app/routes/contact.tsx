@@ -1,6 +1,7 @@
 import ContactForm from "~/components/contact-form";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { useToast } from "~/context/toast-context";
+import Breadcrumbs from "~/components/breadcrumbs";
 
 import type { Route } from "./+types/home";
 
@@ -10,7 +11,8 @@ export function meta({}: Route.MetaArgs) {
 
   return [
     { title: "Contact et devis de site web à Montréal" },
-    { canonical: url },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    { tagName: "link", rel: "canonical", href: url },
     {
       name: "description",
       content:
@@ -32,11 +34,12 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-    { property: "og:type", content: "article" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/avif" },
+    { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
-    { property: "og:image:width", content: "370" },
-    { property: "og:image:height", content: "374" },
   ];
 }
 
@@ -55,6 +58,15 @@ export default function Contact() {
 
   return (
     <div className="bg-base-100 font-urbanist mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Contact" },
+          ]}
+        />
+      </div>
+
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl font-bold md:text-5xl">Contact</h1>

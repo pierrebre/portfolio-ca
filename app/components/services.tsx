@@ -1,5 +1,6 @@
 import ServiceCard from "./service-card";
 import { services } from "data/services";
+import { getServiceUrl } from "~/utils/service-links";
 
 export default function Services() {
   return (
@@ -16,10 +17,11 @@ export default function Services() {
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
             <ServiceCard
-              key={service.name}
+              key={service.key}
               icon={service.icon}
               name={service.name}
               description={service.description}
+              linkTo={getServiceUrl(service.key)}
             />
           ))}
         </div>

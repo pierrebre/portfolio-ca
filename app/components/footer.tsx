@@ -12,7 +12,17 @@ export default function Footer() {
 
           <nav>
             <strong className="footer-title">Navigation</strong>
-            <p className="link link-hover">Blog</p>
+            <a className="link link-hover" href="/services">
+              Services
+            </a>
+            <a
+              className="link link-hover"
+              href="https://blog.pierrebarbe.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog
+            </a>
             <a className="link link-hover" href="/contact">
               Contact
             </a>
