@@ -18,7 +18,6 @@ import { ToastProvider } from "./context/toast-context";
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
-  // Pages où le ContactCard ne doit PAS apparaître
   const hideContactCardOn = ["/contact"];
   const shouldShowContactCard = !hideContactCardOn.includes(location.pathname);
 
