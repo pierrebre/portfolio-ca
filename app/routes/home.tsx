@@ -196,19 +196,15 @@ export function meta({}: Route.MetaArgs) {
             publisher: {
               "@id": `${url}#organization`
             },
-            potentialAction: {
-              "@type": "SearchAction",
-              target: {
-                "@type": "EntryPoint",
-                urlTemplate: "https://pierrebarbe.ca/?s={search_term_string}"
-              },
-              "query-input": "required name=search_term_string"
-            }
+            hasPart: [
+              { "@id": "https://pierrebarbe.ca/services#webpage" },
+              { "@id": "https://pierrebarbe.ca/contact#webpage" }
+            ]
           },
 
-          // 5. WebPage (page d'accueil)
+          // 5. WebPage (page d'accueil - HomePage)
           {
-            "@type": "WebPage",
+            "@type": ["WebPage", "HomePage"],
             "@id": `${url}#webpage`,
             url,
             name: "Développeur web freelance Montréal | Pierre Barbé",

@@ -1,38 +1,41 @@
 import { Server, Shield, Zap, LineChart, CheckCircle2 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
-import { generateSEOMeta, generateServiceSchema } from "~/utils/seo";
+import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/gestion-serveur-deploiement";
 
 export function meta({}: Route.MetaArgs) {
-  return generateSEOMeta({
-    title:
-      "Gestion Serveur & Déploiement de Sites Web | DevOps Montréal | Pierre Barbé",
-    description:
-      "Gestion d'infrastructure serveur, déploiement automatisé (CI/CD), mises à jour et sécurité pour sites web au Québec. Ton site en ligne, sécurisé et disponible 24/7. Développeur DevOps freelance à Montréal.",
+  const schema = generateServicePageSchema({
+    name: "Gestion Serveur & Déploiement",
+    description: "Gestion d'infrastructure serveur, déploiement automatisé (CI/CD), mises à jour et sécurité pour sites web au Québec. Ton site en ligne, sécurisé et disponible 24/7. Développeur DevOps freelance à Montréal.",
     url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement",
-    keywords:
-      "gestion serveur Montréal, déploiement site web, CI/CD pipeline, DevOps freelance Québec, infrastructure cloud, hébergement web sécurisé, mises à jour serveur, disponibilité 24/7",
-    type: "article",
+    serviceType: "Server Management and Deployment",
+    areaServed: ["Montréal", "Québec", "Canada"],
+    breadcrumbs: [
+      { name: "Accueil", url: "https://pierrebarbe.ca/" },
+      { name: "Services", url: "https://pierrebarbe.ca/services" },
+      { name: "Gestion Serveur & Déploiement", url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement" }
+    ]
   });
-}
 
-// JSON-LD Service Schema
-const serviceSchema = generateServiceSchema({
-  name: "Gestion Serveur & Déploiement",
-  description:
-    "Gestion d'infrastructure serveur, déploiement automatisé (CI/CD), mises à jour et sécurité. Ton site en ligne, sécurisé et disponible 24/7.",
-  url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement",
-  serviceType: "Server Management and Deployment",
-});
+  return [
+    ...generateSEOMeta({
+      title: "Gestion Serveur & Déploiement de Sites Web | DevOps Montréal | Pierre Barbé",
+      description: "Gestion d'infrastructure serveur, déploiement automatisé (CI/CD), mises à jour et sécurité pour sites web au Québec. Ton site en ligne, sécurisé et disponible 24/7. Développeur DevOps freelance à Montréal.",
+      url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement",
+      keywords: "gestion serveur Montréal, déploiement site web, CI/CD pipeline, DevOps freelance Québec, infrastructure cloud, hébergement web sécurisé, mises à jour serveur, disponibilité 24/7",
+      type: "article",
+    }),
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(schema)
+    }
+  ];
+}
 
 export default function GestionServeurDeploiement() {
   return (
     <div className="bg-base-100">
-      {/* JSON-LD Service Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs
           items={[
