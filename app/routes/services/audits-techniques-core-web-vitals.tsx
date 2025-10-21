@@ -5,39 +5,42 @@ import {
   TrendingUp,
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
-import { generateSEOMeta, generateServiceSchema } from "~/utils/seo";
+import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/audits-techniques-core-web-vitals";
 
 export function meta({}: Route.MetaArgs) {
-  return generateSEOMeta({
-    title:
-      "Audit Technique de Site Web & Core Web Vitals | Montréal | Pierre Barbé",
-    description:
-      "Audit technique complet de votre site web : Core Web Vitals, performance, accessibilité, SEO et sécurité. Rapport clair et vulgarisé avec plan d'action concret. Audit gratuit de 30 min disponible à Montréal.",
+  const schema = generateServicePageSchema({
+    name: "Audits Techniques & Core Web Vitals",
+    description: "Audit technique complet de votre site web : Core Web Vitals, performance, accessibilité, SEO et sécurité. Rapport clair et vulgarisé avec plan d'action concret. Audit gratuit de 30 min disponible à Montréal.",
     url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
-    keywords:
-      "audit technique site web Montréal, audit Core Web Vitals, analyse performance site, audit accessibilité WCAG, audit SEO technique, santé site web, développeur audit Québec",
-    type: "article",
+    serviceType: "Technical Website Audit",
+    areaServed: ["Montréal", "Québec"],
+    breadcrumbs: [
+      { name: "Accueil", url: "https://pierrebarbe.ca/" },
+      { name: "Services", url: "https://pierrebarbe.ca/services" },
+      { name: "Audits Techniques & Core Web Vitals", url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals" }
+    ]
   });
-}
 
-// JSON-LD Service Schema
-const serviceSchema = generateServiceSchema({
-  name: "Audits Techniques & Core Web Vitals",
-  description:
-    "Audit technique complet de votre site web : Core Web Vitals, performance, accessibilité, SEO et sécurité. Rapport clair et vulgarisé avec plan d'action concret.",
-  url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
-  serviceType: "Technical Website Audit",
-});
+  return [
+    ...generateSEOMeta({
+      title: "Audit Technique de Site Web & Core Web Vitals | Montréal | Pierre Barbé",
+      description: "Audit technique complet de votre site web : Core Web Vitals, performance, accessibilité, SEO et sécurité. Rapport clair et vulgarisé avec plan d'action concret. Audit gratuit de 30 min disponible à Montréal.",
+      url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
+      keywords: "audit technique site web Montréal, audit Core Web Vitals, analyse performance site, audit accessibilité WCAG, audit SEO technique, santé site web, développeur audit Québec",
+      type: "article",
+    }),
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(schema)
+    }
+  ];
+}
 
 export default function AuditsTechniquesCoreWebVitals() {
   return (
     <div className="bg-base-100">
-      {/* JSON-LD Service Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs

@@ -12,13 +12,72 @@ export function meta({}: Route.MetaArgs) {
     url: `https://pierrebarbe.ca${getServiceUrl(s.key)}`
   }));
 
-  const schema = generateServiceIndexSchema({
-    services: servicesList,
-    breadcrumbs: [
-      { name: "Accueil", url: "https://pierrebarbe.ca/" },
-      { name: "Services", url: "https://pierrebarbe.ca/services" }
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://pierrebarbe.ca/services#webpage",
+        "url": "https://pierrebarbe.ca/services",
+        "name": "Services de Développement Web & Performance | Pierre Barbé Montréal",
+        "description": "Découvrez mes services de développement web à Montréal : optimisation performance, WordPress, audits techniques, automatisation et intégration IA",
+        "inLanguage": "fr-CA",
+        "isPartOf": {
+          "@id": "https://pierrebarbe.ca/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://pierrebarbe.ca/services#breadcrumb"
+        },
+        "hasPart": [
+          { "@id": "https://pierrebarbe.ca/services/optimisation-web-performance#service" },
+          { "@id": "https://pierrebarbe.ca/services/creation-maintenance-sites#service" },
+          { "@id": "https://pierrebarbe.ca/services/automatisation-workflows#service" },
+          { "@id": "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals#service" },
+          { "@id": "https://pierrebarbe.ca/services/gestion-serveur-deploiement#service" },
+          { "@id": "https://pierrebarbe.ca/services/integration-outils-ia#service" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://pierrebarbe.ca/services#itemlist",
+        "name": "Services de Développement Web - Pierre Barbé",
+        "description": "Liste complète des services de développement web, optimisation performance et automatisation proposés à Montréal et au Québec",
+        "numberOfItems": servicesList.length,
+        "itemListElement": servicesList.map((service, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Service",
+            "@id": `${service.url}#service`,
+            "name": service.name,
+            "description": service.description,
+            "url": service.url,
+            "provider": {
+              "@id": "https://pierrebarbe.ca/#person"
+            }
+          }
+        }))
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://pierrebarbe.ca/services#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://pierrebarbe.ca/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://pierrebarbe.ca/services"
+          }
+        ]
+      }
     ]
-  });
+  };
 
   return [
     ...generateSEOMeta({

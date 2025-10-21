@@ -7,39 +7,42 @@ import {
 } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
-import { generateSEOMeta, generateServiceSchema } from "~/utils/seo";
+import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/optimisation-web-performance";
 
 export function meta({}: Route.MetaArgs) {
-  return generateSEOMeta({
-    title:
-      "Optimisation Web-Performance & Core Web Vitals | Montréal | Pierre Barbé",
-    description:
-      "Service d'optimisation de la performance web et Core Web Vitals à Montréal. Amélioration de la vitesse de chargement, réduction de l'empreinte carbone et boost du SEO pour PME du Québec. Audit gratuit disponible.",
+  const schema = generateServicePageSchema({
+    name: "Optimisation Web-Performance & Core Web Vitals",
+    description: "Service d'optimisation de la performance web et Core Web Vitals à Montréal. Amélioration de la vitesse de chargement, réduction de l'empreinte carbone et boost du SEO pour PME du Québec. Audit gratuit disponible.",
     url: "https://pierrebarbe.ca/services/optimisation-web-performance",
-    keywords:
-      "optimisation web-performance Montréal, Core Web Vitals amélioration, vitesse site web, LCP FID CLS optimisation, performance site WordPress, éco-conception web Québec, réduction empreinte carbone site",
-    type: "article",
+    serviceType: "Web Performance Optimization",
+    areaServed: ["Montréal", "Québec"],
+    breadcrumbs: [
+      { name: "Accueil", url: "https://pierrebarbe.ca/" },
+      { name: "Services", url: "https://pierrebarbe.ca/services" },
+      { name: "Optimisation Web-Performance", url: "https://pierrebarbe.ca/services/optimisation-web-performance" }
+    ]
   });
-}
 
-// JSON-LD Service Schema
-const serviceSchema = generateServiceSchema({
-  name: "Optimisation Web-Performance & Core Web Vitals",
-  description:
-    "Service d'optimisation de la performance web et Core Web Vitals. Amélioration de la vitesse de chargement, réduction de l'empreinte carbone et boost du SEO.",
-  url: "https://pierrebarbe.ca/services/optimisation-web-performance",
-  serviceType: "Web Performance Optimization",
-});
+  return [
+    ...generateSEOMeta({
+      title: "Optimisation Web-Performance & Core Web Vitals | Montréal | Pierre Barbé",
+      description: "Service d'optimisation de la performance web et Core Web Vitals à Montréal. Amélioration de la vitesse de chargement, réduction de l'empreinte carbone et boost du SEO pour PME du Québec. Audit gratuit disponible.",
+      url: "https://pierrebarbe.ca/services/optimisation-web-performance",
+      keywords: "optimisation web-performance Montréal, Core Web Vitals amélioration, vitesse site web, LCP FID CLS optimisation, performance site WordPress, éco-conception web Québec, réduction empreinte carbone site",
+      type: "article",
+    }),
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(schema)
+    }
+  ];
+}
 
 export default function OptimisationWebPerformance() {
   return (
     <div className="bg-base-100">
-      {/* JSON-LD Service Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
 
       {/* Breadcrumbs */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">

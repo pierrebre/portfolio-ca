@@ -9,6 +9,44 @@ export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/contact";
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebPage", "ContactPage"],
+        "@id": `${url}#webpage`,
+        "url": url,
+        "name": "Contact et devis de site web à Montréal",
+        "description": "Une question ou un projet ? Écris‑moi ou réserve ta consultation gratuite de 30 min pour booster performance et éco‑conception de ton site.",
+        "inLanguage": "fr-CA",
+        "isPartOf": {
+          "@id": "https://pierrebarbe.ca/#website"
+        },
+        "breadcrumb": {
+          "@id": `${url}#breadcrumb`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://pierrebarbe.ca/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": url
+          }
+        ]
+      }
+    ]
+  };
+
   return [
     { title: "Contact et devis de site web à Montréal" },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
@@ -40,6 +78,11 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(schema)
+    }
   ];
 }
 

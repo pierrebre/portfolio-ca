@@ -1,38 +1,41 @@
 import { Bot, Clock, Target, DollarSign, CheckCircle2 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
-import { generateSEOMeta, generateServiceSchema } from "~/utils/seo";
+import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/automatisation-workflows";
 
 export function meta({}: Route.MetaArgs) {
-  return generateSEOMeta({
-    title:
-      "Automatisation de Workflows avec n8n | Gain de Temps pour PME | Montréal",
-    description:
-      "Automatisation de tâches répétitives et workflows avec n8n pour PME du Québec. Économisez du temps, évitez les erreurs humaines et boostez votre productivité. Développeur n8n freelance à Montréal.",
+  const schema = generateServicePageSchema({
+    name: "Automatisation de Workflows avec n8n",
+    description: "Automatisation de tâches répétitives et workflows avec n8n pour PME du Québec. Économisez du temps, évitez les erreurs humaines et boostez votre productivité. Développeur n8n freelance à Montréal.",
     url: "https://pierrebarbe.ca/services/automatisation-workflows",
-    keywords:
-      "automatisation workflows Montréal, n8n développeur Québec, automatisation tâches répétitives, intégration API, workflow automation PME, gain temps automatisation, développeur freelance n8n",
-    type: "article",
+    serviceType: "Workflow Automation",
+    areaServed: ["Montréal", "Québec", "Canada"],
+    breadcrumbs: [
+      { name: "Accueil", url: "https://pierrebarbe.ca/" },
+      { name: "Services", url: "https://pierrebarbe.ca/services" },
+      { name: "Automatisation de Workflows (n8n)", url: "https://pierrebarbe.ca/services/automatisation-workflows" }
+    ]
   });
-}
 
-// JSON-LD Service Schema
-const serviceSchema = generateServiceSchema({
-  name: "Automatisation de Workflows avec n8n",
-  description:
-    "Automatisation de tâches répétitives et workflows avec n8n. Économisez du temps, évitez les erreurs humaines et boostez votre productivité.",
-  url: "https://pierrebarbe.ca/services/automatisation-workflows",
-  serviceType: "Workflow Automation",
-});
+  return [
+    ...generateSEOMeta({
+      title: "Automatisation de Workflows avec n8n | Gain de Temps pour PME | Montréal",
+      description: "Automatisation de tâches répétitives et workflows avec n8n pour PME du Québec. Économisez du temps, évitez les erreurs humaines et boostez votre productivité. Développeur n8n freelance à Montréal.",
+      url: "https://pierrebarbe.ca/services/automatisation-workflows",
+      keywords: "automatisation workflows Montréal, n8n développeur Québec, automatisation tâches répétitives, intégration API, workflow automation PME, gain temps automatisation, développeur freelance n8n",
+      type: "article",
+    }),
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(schema)
+    }
+  ];
+}
 
 export default function AutomatisationWorkflows() {
   return (
     <div className="bg-base-100">
-      {/* JSON-LD Service Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs

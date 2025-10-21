@@ -6,38 +6,42 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
-import { generateSEOMeta, generateServiceSchema } from "~/utils/seo";
+import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/integration-outils-ia";
 
 export function meta({}: Route.MetaArgs) {
-  return generateSEOMeta({
-    title: "Intégration d'Outils IA pour Sites Web | Chatbots & IA | Montréal",
-    description:
-      "Intégration d'intelligence artificielle sur votre site web : chatbots, recommandations de contenu, recherche intelligente et plus. Développeur IA freelance à Montréal pour PME du Québec.",
+  const schema = generateServicePageSchema({
+    name: "Intégration d'Outils IA",
+    description: "Intégration d'intelligence artificielle sur votre site web : chatbots, recommandations de contenu, recherche intelligente et plus. Développeur IA freelance à Montréal pour PME du Québec.",
     url: "https://pierrebarbe.ca/services/integration-outils-ia",
-    keywords:
-      "intégration IA site web Montréal, chatbot personnalisé, intelligence artificielle PME, développeur IA Québec, chatbot GPT, recommandations contenu IA, recherche intelligente site",
-    type: "article",
+    serviceType: "AI Integration Services",
+    areaServed: ["Montréal", "Québec", "Canada"],
+    breadcrumbs: [
+      { name: "Accueil", url: "https://pierrebarbe.ca/" },
+      { name: "Services", url: "https://pierrebarbe.ca/services" },
+      { name: "Intégration d'Outils IA", url: "https://pierrebarbe.ca/services/integration-outils-ia" }
+    ]
   });
-}
 
-// JSON-LD Service Schema
-const serviceSchema = generateServiceSchema({
-  name: "Intégration d'Outils IA",
-  description:
-    "Intégration d'intelligence artificielle sur votre site web : chatbots, recommandations de contenu, recherche intelligente. IA utile, pas gadget.",
-  url: "https://pierrebarbe.ca/services/integration-outils-ia",
-  serviceType: "AI Integration Services",
-});
+  return [
+    ...generateSEOMeta({
+      title: "Intégration d'Outils IA pour Sites Web | Chatbots & IA | Montréal",
+      description: "Intégration d'intelligence artificielle sur votre site web : chatbots, recommandations de contenu, recherche intelligente et plus. Développeur IA freelance à Montréal pour PME du Québec.",
+      url: "https://pierrebarbe.ca/services/integration-outils-ia",
+      keywords: "intégration IA site web Montréal, chatbot personnalisé, intelligence artificielle PME, développeur IA Québec, chatbot GPT, recommandations contenu IA, recherche intelligente site",
+      type: "article",
+    }),
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(schema)
+    }
+  ];
+}
 
 export default function IntegrationOutilsIA() {
   return (
     <div className="bg-base-100">
-      {/* JSON-LD Service Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs
           items={[
