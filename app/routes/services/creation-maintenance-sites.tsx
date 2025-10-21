@@ -1,10 +1,23 @@
 import { Laptop, CheckCircle2, Wrench, Shield } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/creation-maintenance-sites";
 
 export function meta({}: Route.MetaArgs) {
+  return [
+    ...generateSEOMeta({
+      title: "Création & Maintenance de Sites WordPress Rapides | Montréal | Pierre Barbé",
+      description: "Création de sites web WordPress rapides, propres et éco-responsables pour PME du Québec. Maintenance mensuelle, mises à jour et support continu. Développeur web freelance basé à Montréal.",
+      url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
+      keywords: "création site WordPress Montréal, développeur WordPress Québec, maintenance site web, site éco-responsable, développement web PME, freelance WordPress Montréal, site rapide durable",
+      type: "article",
+    }),
+  ];
+}
+
+export default function CreationMaintenanceSites() {
   const schema = generateServicePageSchema({
     name: "Création & Maintenance de Sites WordPress",
     description: "Création de sites web WordPress rapides, propres et éco-responsables pour PME du Québec. Maintenance mensuelle, mises à jour et support continu. Développeur web freelance basé à Montréal.",
@@ -18,25 +31,9 @@ export function meta({}: Route.MetaArgs) {
     ]
   });
 
-  return [
-    ...generateSEOMeta({
-      title: "Création & Maintenance de Sites WordPress Rapides | Montréal | Pierre Barbé",
-      description: "Création de sites web WordPress rapides, propres et éco-responsables pour PME du Québec. Maintenance mensuelle, mises à jour et support continu. Développeur web freelance basé à Montréal.",
-      url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
-      keywords: "création site WordPress Montréal, développeur WordPress Québec, maintenance site web, site éco-responsable, développement web PME, freelance WordPress Montréal, site rapide durable",
-      type: "article",
-    }),
-    {
-      tagName: "script",
-      type: "application/ld+json",
-      children: JSON.stringify(schema)
-    }
-  ];
-}
-
-export default function CreationMaintenanceSites() {
   return (
     <div className="bg-base-100">
+      <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs

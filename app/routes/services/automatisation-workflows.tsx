@@ -1,9 +1,22 @@
 import { Bot, Clock, Target, DollarSign, CheckCircle2 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/automatisation-workflows";
 
 export function meta({}: Route.MetaArgs) {
+  return [
+    ...generateSEOMeta({
+      title: "Automatisation de Workflows avec n8n | Gain de Temps pour PME | Montréal",
+      description: "Automatisation de tâches répétitives et workflows avec n8n pour PME du Québec. Économisez du temps, évitez les erreurs humaines et boostez votre productivité. Développeur n8n freelance à Montréal.",
+      url: "https://pierrebarbe.ca/services/automatisation-workflows",
+      keywords: "automatisation workflows Montréal, n8n développeur Québec, automatisation tâches répétitives, intégration API, workflow automation PME, gain temps automatisation, développeur freelance n8n",
+      type: "article",
+    }),
+  ];
+}
+
+export default function AutomatisationWorkflows() {
   const schema = generateServicePageSchema({
     name: "Automatisation de Workflows avec n8n",
     description: "Automatisation de tâches répétitives et workflows avec n8n pour PME du Québec. Économisez du temps, évitez les erreurs humaines et boostez votre productivité. Développeur n8n freelance à Montréal.",
@@ -17,25 +30,9 @@ export function meta({}: Route.MetaArgs) {
     ]
   });
 
-  return [
-    ...generateSEOMeta({
-      title: "Automatisation de Workflows avec n8n | Gain de Temps pour PME | Montréal",
-      description: "Automatisation de tâches répétitives et workflows avec n8n pour PME du Québec. Économisez du temps, évitez les erreurs humaines et boostez votre productivité. Développeur n8n freelance à Montréal.",
-      url: "https://pierrebarbe.ca/services/automatisation-workflows",
-      keywords: "automatisation workflows Montréal, n8n développeur Québec, automatisation tâches répétitives, intégration API, workflow automation PME, gain temps automatisation, développeur freelance n8n",
-      type: "article",
-    }),
-    {
-      tagName: "script",
-      type: "application/ld+json",
-      children: JSON.stringify(schema)
-    }
-  ];
-}
-
-export default function AutomatisationWorkflows() {
   return (
     <div className="bg-base-100">
+      <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs

@@ -5,10 +5,23 @@ import {
   TrendingUp,
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/audits-techniques-core-web-vitals";
 
 export function meta({}: Route.MetaArgs) {
+  return [
+    ...generateSEOMeta({
+      title: "Audit Technique de Site Web & Core Web Vitals | Montréal | Pierre Barbé",
+      description: "Audit technique complet de votre site web : Core Web Vitals, performance, accessibilité, SEO et sécurité. Rapport clair et vulgarisé avec plan d'action concret. Audit gratuit de 30 min disponible à Montréal.",
+      url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
+      keywords: "audit technique site web Montréal, audit Core Web Vitals, analyse performance site, audit accessibilité WCAG, audit SEO technique, santé site web, développeur audit Québec",
+      type: "article",
+    }),
+  ];
+}
+
+export default function AuditsTechniquesCoreWebVitals() {
   const schema = generateServicePageSchema({
     name: "Audits Techniques & Core Web Vitals",
     description: "Audit technique complet de votre site web : Core Web Vitals, performance, accessibilité, SEO et sécurité. Rapport clair et vulgarisé avec plan d'action concret. Audit gratuit de 30 min disponible à Montréal.",
@@ -22,25 +35,9 @@ export function meta({}: Route.MetaArgs) {
     ]
   });
 
-  return [
-    ...generateSEOMeta({
-      title: "Audit Technique de Site Web & Core Web Vitals | Montréal | Pierre Barbé",
-      description: "Audit technique complet de votre site web : Core Web Vitals, performance, accessibilité, SEO et sécurité. Rapport clair et vulgarisé avec plan d'action concret. Audit gratuit de 30 min disponible à Montréal.",
-      url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
-      keywords: "audit technique site web Montréal, audit Core Web Vitals, analyse performance site, audit accessibilité WCAG, audit SEO technique, santé site web, développeur audit Québec",
-      type: "article",
-    }),
-    {
-      tagName: "script",
-      type: "application/ld+json",
-      children: JSON.stringify(schema)
-    }
-  ];
-}
-
-export default function AuditsTechniquesCoreWebVitals() {
   return (
     <div className="bg-base-100">
+      <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs

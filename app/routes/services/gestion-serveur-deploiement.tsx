@@ -1,9 +1,22 @@
 import { Server, Shield, Zap, LineChart, CheckCircle2 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/gestion-serveur-deploiement";
 
 export function meta({}: Route.MetaArgs) {
+  return [
+    ...generateSEOMeta({
+      title: "Gestion Serveur & Déploiement de Sites Web | DevOps Montréal | Pierre Barbé",
+      description: "Gestion d'infrastructure serveur, déploiement automatisé (CI/CD), mises à jour et sécurité pour sites web au Québec. Ton site en ligne, sécurisé et disponible 24/7. Développeur DevOps freelance à Montréal.",
+      url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement",
+      keywords: "gestion serveur Montréal, déploiement site web, CI/CD pipeline, DevOps freelance Québec, infrastructure cloud, hébergement web sécurisé, mises à jour serveur, disponibilité 24/7",
+      type: "article",
+    }),
+  ];
+}
+
+export default function GestionServeurDeploiement() {
   const schema = generateServicePageSchema({
     name: "Gestion Serveur & Déploiement",
     description: "Gestion d'infrastructure serveur, déploiement automatisé (CI/CD), mises à jour et sécurité pour sites web au Québec. Ton site en ligne, sécurisé et disponible 24/7. Développeur DevOps freelance à Montréal.",
@@ -17,25 +30,9 @@ export function meta({}: Route.MetaArgs) {
     ]
   });
 
-  return [
-    ...generateSEOMeta({
-      title: "Gestion Serveur & Déploiement de Sites Web | DevOps Montréal | Pierre Barbé",
-      description: "Gestion d'infrastructure serveur, déploiement automatisé (CI/CD), mises à jour et sécurité pour sites web au Québec. Ton site en ligne, sécurisé et disponible 24/7. Développeur DevOps freelance à Montréal.",
-      url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement",
-      keywords: "gestion serveur Montréal, déploiement site web, CI/CD pipeline, DevOps freelance Québec, infrastructure cloud, hébergement web sécurisé, mises à jour serveur, disponibilité 24/7",
-      type: "article",
-    }),
-    {
-      tagName: "script",
-      type: "application/ld+json",
-      children: JSON.stringify(schema)
-    }
-  ];
-}
-
-export default function GestionServeurDeploiement() {
   return (
     <div className="bg-base-100">
+      <JsonLd data={schema} />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs
           items={[
