@@ -252,6 +252,7 @@ export default function Home() {
         "@id": `${url}#service-nextjs`,
         name: "Développement Next.js & React",
         description: "Création de sites web rapides et performants avec Next.js et React pour PME et agences",
+        image: image,
         provider: {
           "@id": `${url}#person`
         },
@@ -272,6 +273,7 @@ export default function Home() {
         "@id": `${url}#service-wordpress`,
         name: "Développement WordPress",
         description: "Création et optimisation de sites WordPress sur mesure pour PME québécoises",
+        image: image,
         provider: {
           "@id": `${url}#person`
         },
@@ -292,6 +294,7 @@ export default function Home() {
         "@id": `${url}#service-seo`,
         name: "Optimisation SEO & Web Performance",
         description: "Audit SEO gratuit, optimisation de la vitesse et amélioration du référencement naturel",
+        image: image,
         provider: {
           "@id": `${url}#person`
         },
@@ -325,6 +328,7 @@ export default function Home() {
         "@id": `${url}#service-automation`,
         name: "Automatisation (n8n, Make)",
         description: "Automatisation de processus métier avec n8n et Make pour gagner du temps",
+        image: image,
         provider: {
           "@id": `${url}#person`
         },

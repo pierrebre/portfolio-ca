@@ -118,6 +118,7 @@ export function generateServiceSchema({
 
 /**
  * Génère BreadcrumbList JSON-LD
+ * Note: Le dernier élément (page actuelle) ne doit pas avoir de propriété "item"
  */
 interface BreadcrumbItem {
   name: string;
@@ -127,12 +128,21 @@ interface BreadcrumbItem {
 export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
   return {
     "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": item.url
-    }))
+    "itemListElement": items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      const listItem: any = {
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name
+      };
+
+      // Le dernier élément ne doit pas avoir de propriété "item"
+      if (!isLast) {
+        listItem.item = item.url;
+      }
+
+      return listItem;
+    })
   };
 }
 
@@ -175,6 +185,7 @@ export function generateServicePageSchema({
     description,
     url,
     serviceType,
+    image, // Image du service
     provider: {
       "@type": "Person",
       "@id": "https://pierrebarbe.ca/#person",
@@ -193,8 +204,7 @@ export function generateServicePageSchema({
       serviceUrl: "https://pierrebarbe.ca/contact",
       servicePhone: "+1-438-448-8408",
       availableLanguage: ["fr-CA", "en"]
-    },
-    image
+    }
   };
 
   // Ajouter l'offre si fournie

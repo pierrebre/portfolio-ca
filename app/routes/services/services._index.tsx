@@ -83,8 +83,8 @@ export default function ServicesIndex() {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Services",
-            "item": "https://pierrebarbe.ca/services"
+            "name": "Services"
+            // Pas de "item" pour le dernier élément (page actuelle)
           }
         ]
       }
