@@ -1,5 +1,5 @@
 import Breadcrumbs from "~/components/breadcrumbs";
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/privacy-policy";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/politique-confidentialite";

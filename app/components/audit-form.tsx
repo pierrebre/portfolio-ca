@@ -24,7 +24,7 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<AuditFormType>({
     resolver: zodResolver(auditFormSchema),
@@ -73,14 +73,14 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
       }
 
       reset();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       if (onSubmitResult) {
-        onSubmitResult(
-          false,
-          err.message || "Échec de la soumission de votre demande d'audit",
-          false
-        );
+        const message =
+          err instanceof Error
+            ? err.message
+            : "Échec de la soumission de votre demande d'audit";
+        onSubmitResult(false, message, false);
       }
     }
   };
@@ -136,8 +136,8 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
           className="btn btn-outline"
           onClick={() => {
             const modal = document.getElementById("audit_modal");
-            if (modal) {
-              (modal as HTMLDialogElement).close();
+            if (modal instanceof HTMLDialogElement) {
+              modal.close();
             }
           }}
         >

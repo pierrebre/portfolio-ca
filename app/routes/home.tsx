@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Hero from "~/components/hero";
 import Services from "~/components/services";
 import WhyMe from "~/components/why-me";
@@ -60,24 +59,6 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const [globalToast, setGlobalToast] = useState({
-    visible: false,
-    message: "",
-    type: "success" as "success" | "error",
-  });
-
-  const closeGlobalToast = () => {
-    setGlobalToast((prev) => ({ ...prev, visible: false }));
-  };
-
-  const showGlobalToast = (message: string, type: "success" | "error") => {
-    setGlobalToast({
-      visible: true,
-      message,
-      type,
-    });
-  };
-
   const url = "https://pierrebarbe.ca/";
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
@@ -104,7 +85,7 @@ export default function Home() {
           addressCountry: "CA"
         },
         sameAs: [
-          "https://www.linkedin.com/in/pierre-barbe",
+          "https://www.linkedin.com/in/pierre-barb%C3%A9/",
           "https://github.com/pierrebre",
           "https://twitter.com/PierreBarbe"
         ],
@@ -168,7 +149,7 @@ export default function Home() {
           closes: "18:00"
         },
         sameAs: [
-          "https://www.linkedin.com/in/pierre-barbe",
+          "https://www.linkedin.com/in/pierre-barb%C3%A9/",
           "https://github.com/pierrebre",
           "https://twitter.com/PierreBarbe"
         ],
@@ -201,7 +182,7 @@ export default function Home() {
           availableLanguage: ["fr-CA", "en"]
         },
         sameAs: [
-          "https://www.linkedin.com/in/pierre-barbe",
+          "https://www.linkedin.com/in/pierre-barb%C3%A9/",
           "https://github.com/pierrebre",
           "https://twitter.com/PierreBarbe"
         ]

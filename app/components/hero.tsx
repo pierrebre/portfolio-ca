@@ -56,10 +56,10 @@ export default function Hero() {
               <button
                 className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-3"
                 onClick={() => {
-                  const modal = document.getElementById(
-                    "audit_modal"
-                  ) as HTMLDialogElement;
-                  modal?.showModal();
+                  const modal = document.getElementById("audit_modal");
+                  if (modal instanceof HTMLDialogElement) {
+                    modal.showModal();
+                  }
                 }}
               >
                 Réservez votre audit gratuit dès maintenant
@@ -92,7 +92,7 @@ export default function Hero() {
               <img
                 src="/images/me.avif"
                 alt="Portrait de Pierre Barbé, développeur web freelance basé à Montréal spécialisé en performance web et automatisation."
-                className="h-[580px] w-full object-cover"
+                className="h-auto max-h-[580px] w-full object-cover"
                 width={1152}
                 height={1152}
                 loading="eager"

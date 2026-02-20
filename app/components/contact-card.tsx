@@ -17,9 +17,9 @@ export default function ContactCard() {
           </h2>
 
           <p className="text-base-100/90 mx-auto mt-6 max-w-2xl text-lg text-justify">
-            Un projet en tête ? Un site à optimiser ? Parlons-en. Réservez
-            30 min gratuites ou envoyez-moi un message. C’est simple, rapide et
-            sans engagement. Et surtout, c’est vous qui décidez comment on
+            Un projet en tête ? Un site à optimiser ? Parlons-en. Réservez
+            30 min gratuites ou envoyez-moi un message. C'est simple, rapide et
+            sans engagement. Et surtout, c'est vous qui décidez comment on
             commence.
           </p>
 
@@ -27,18 +27,17 @@ export default function ContactCard() {
             <a
               href="https://calendly.com/contact-pierrebarbe/30min"
               target="_blank"
-              rel="noopener"
-              className="w-full lg:w-auto"
+              rel="noopener noreferrer"
+              className="btn w-full min-w-[250px] rounded-full font-semibold lg:w-auto"
             >
-              <button className="btn w-full min-w-[250px] rounded-full font-semibold">
-                <span>Réserver une consultation</span>
-              </button>
+              Réserver une consultation
             </a>
 
-            <a href="/contact" className="w-full lg:w-auto">
-              <button className="btn w-full min-w-[250px] rounded-full font-semibold">
-                <span>Envoyer un message</span>
-              </button>
+            <a
+              href="/contact"
+              className="btn w-full min-w-[250px] rounded-full font-semibold lg:w-auto"
+            >
+              Envoyer un message
             </a>
           </div>
         </div>

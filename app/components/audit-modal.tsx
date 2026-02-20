@@ -1,8 +1,10 @@
+import { useRef } from "react";
 import { useToast } from "~/context/toast-context";
 import AuditForm from "./audit-form";
 
 export default function AuditModal() {
   const { showToast } = useToast();
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const handleFormSubmitResult = (
     success: boolean,
@@ -19,19 +21,24 @@ export default function AuditModal() {
 
     if (success && closeModal) {
       setTimeout(() => {
-        const modal = document.getElementById("audit_modal");
-        if (modal) {
-          (modal as HTMLDialogElement).close();
-        }
+        dialogRef.current?.close();
       }, 1000);
     }
   };
 
   return (
-    <dialog id="audit_modal" className="modal modal-bottom sm:modal-middle">
+    <dialog
+      ref={dialogRef}
+      id="audit_modal"
+      className="modal modal-bottom sm:modal-middle"
+      aria-labelledby="audit-modal-title"
+      aria-describedby="audit-modal-desc"
+    >
       <div className="modal-box relative">
-        <h3 className="font-bold text-lg">Demander un audit gratuit</h3>
-        <p className="py-2">
+        <h3 id="audit-modal-title" className="font-bold text-lg">
+          Demander un audit gratuit
+        </h3>
+        <p id="audit-modal-desc" className="py-2">
           Remplissez le formulaire ci-dessous pour demander un audit gratuit de
           votre site Web.
         </p>

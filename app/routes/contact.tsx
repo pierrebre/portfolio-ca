@@ -1,9 +1,9 @@
 import ContactForm from "~/components/contact-form";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, Phone } from "lucide-react";
 import { useToast } from "~/context/toast-context";
 import Breadcrumbs from "~/components/breadcrumbs";
 
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/contact";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/contact";

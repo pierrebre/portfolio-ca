@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import ThemeToggle from "./theme-toggle";
 import ServiceDropdown from "./service-dropdown";
 
@@ -37,67 +38,72 @@ export default function NavBar() {
               className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm"
               role="menu"
             >
-              {/*               <li>
-                <a href="/projects">Projects</a>
-              </li> */}
-
               <li role="none">
-                <a href="/services" role="menuitem">
+                <Link to="/services" role="menuitem">
                   Services
-                </a>
+                </Link>
               </li>
               <li role="none">
-                <a href="/contact" role="menuitem">
-                  Contact
-                </a>
+                <Link to="/projects" role="menuitem">
+                  Projets
+                </Link>
               </li>
-              <li className="flex flex-row" role="none">
-                <a
-                  href="https://blog.pierrebarbe.ca"
-                  role="menuitem"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              <li role="none">
+                <Link to="/blog" role="menuitem">
                   Blog
-                </a>
+                </Link>
+              </li>
+              <li role="none">
+                <Link to="/about" role="menuitem">
+                  À propos
+                </Link>
+              </li>
+              <li role="none">
+                <Link to="/contact" role="menuitem">
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
 
-          <a
-            href="/"
+          <Link
+            to="/"
             className="btn btn-ghost font-urbanist from-primary to-primary/70 ml-1 rounded-full bg-gradient-to-r bg-clip-text text-lg font-bold text-transparent"
           >
             Pierre Barbé
-          </a>
+          </Link>
         </div>
+
         <div className="navbar-center hidden lg:flex">
-          <nav className="flex items-center">
-            {/*  <a
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-              href="/projects"
-            >
-              Projects
-            </a> */}
-
+          <nav className="flex items-center" aria-label="Navigation principale">
             <ServiceDropdown />
-
-            <a
+            <Link
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-              href="/contact"
+              to="/projects"
             >
-              Contact
-            </a>
-            <a
+              Projets
+            </Link>
+            <Link
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-              href="https://blog.pierrebarbe.ca"
-              target="_blank"
-              rel="noopener noreferrer"
+              to="/blog"
             >
               Blog
-            </a>
+            </Link>
+            <Link
+              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              to="/about"
+            >
+              À propos
+            </Link>
+            <Link
+              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              to="/contact"
+            >
+              Contact
+            </Link>
           </nav>
         </div>
+
         <div className="navbar-end h-10">
           <ThemeToggle />
         </div>

@@ -1,5 +1,4 @@
 import { processSteps } from "data/process-steps";
-import React from "react";
 
 export default function Process() {
   return (
@@ -34,10 +33,10 @@ export default function Process() {
           <button
             className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-6.5"
             onClick={() => {
-              const modal = document.getElementById(
-                "audit_modal"
-              ) as HTMLDialogElement;
-              modal?.showModal();
+              const modal = document.getElementById("audit_modal");
+              if (modal instanceof HTMLDialogElement) {
+                modal.showModal();
+              }
             }}
           >
             Réservez votre audit gratuit dès maintenant

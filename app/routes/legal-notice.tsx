@@ -1,6 +1,5 @@
-import React from "react";
 import Breadcrumbs from "~/components/breadcrumbs";
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/legal-notice";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/mentions-legales";
@@ -80,7 +79,7 @@ export default function LegalNotice() {
         <a
           href="https://vercel.com"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           className="text-primary underline"
         >
           https://vercel.com
