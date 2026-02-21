@@ -5,18 +5,18 @@ export interface ProcessStep {
 
 export const processSteps: ProcessStep[] = [
   {
-    title: "Analyse gratuite du site",
+    title: "Audit gratuit (30 min)",
     description:
-      "Réservez un audit gratuit. Je vous dirai exactement où en est votre site, ce qui fonctionne, ce qui ne fonctionne pas, et comment y remédier. Sans jargon. Sans engagement.",
+      "On se parle 30 minutes. Je regarde ton site, tes objectifs et tes contraintes. Tu repars avec un diagnostic clair — même si tu ne travailles pas avec moi.",
   },
   {
-    title: "Plan clair et personnalisé",
+    title: "Plan d’action personnalisé",
     description:
-      "Ensemble, nous définirons vos priorités — que ce soit la vitesse, l’automatisation, la sécurité, ou tout cela à la fois. Vous recevrez un plan concret, sans blabla, qui respecte vos objectifs, votre budget et vos échéances.",
+      "Pas de devis template copié-collé. Un plan concret, priorisé, avec des délais et un budget transparent. Tu sais exactement ce que tu paies et pourquoi.",
   },
   {
-    title: "Mise en œuvre et accompagnement",
+    title: "Exécution + suivi",
     description:
-      "Je me charge du code, de la technique et des ajustements, pendant que vous vous concentrez sur la gestion de votre entreprise. Et je ne disparais pas après la livraison. Je suis là quand vous avez besoin de moi.",
+      "Je code, j’optimise, je teste. Tu reçois des mises à jour régulières. Et après la livraison ? Je suis encore là. Pas de disparition.",
   },
 ];

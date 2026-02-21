@@ -112,19 +112,17 @@ export default function Contact() {
 
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold md:text-5xl">Contact</h1>
+          <h1 className="text-4xl font-bold md:text-5xl">Parlons de ton projet</h1>
 
           <div className="mt-6 flex items-center justify-center gap-4">
             <div className="bg-primary h-px w-16" />
-            <span className="text-primary">Parlons de vos objectifs</span>
+            <span className="text-primary">Première consultation gratuite — 30 min</span>
             <div className="bg-primary h-px w-16" />
           </div>
 
           <p className="text-base-content/80 mt-6 text-lg md:text-xl text-center">
-            Que vous soyez interéssé pour un audit gratuit de votre site, que
-            vous ayez quelques questions techniques ou que vous souhaitiez
-            simplement découvrir comment je peux aider votre entreprise en
-            ligne, je suis là.
+            On se parle 30 minutes. Tu m'expliques ton projet, je te donne mes
+            premières recommandations. Aucun engagement, aucune vente forcée.
             <br />
             <br />
             Je travaille avec des entreprises locales à Montréal, Laval,

@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import ThemeToggle from "./theme-toggle";
 import ServiceDropdown from "./service-dropdown";
 
 export default function NavBar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div className="sticky top-0 z-50 mx-4 flex justify-center py-4">
       <div className="navbar bg-base-100/90 outline-base-content/5 max-w-xs rounded-full py-0 shadow-2xl outline backdrop-blur-sm md:max-w-4xl">
@@ -13,8 +17,14 @@ export default function NavBar() {
               role="button"
               className="btn btn-circle btn-ghost lg:hidden"
               aria-label="Menu de navigation"
-              aria-expanded="false"
+              aria-expanded={menuOpen}
               aria-haspopup="menu"
+              onClick={() => setMenuOpen((v) => !v)}
+              onBlur={(e) => {
+                if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) {
+                  setMenuOpen(false);
+                }
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,27 +49,27 @@ export default function NavBar() {
               role="menu"
             >
               <li role="none">
-                <Link to="/services" role="menuitem">
+                <Link to="/services" role="menuitem" onClick={closeMenu}>
                   Services
                 </Link>
               </li>
               <li role="none">
-                <Link to="/projects" role="menuitem">
+                <Link to="/projects" role="menuitem" onClick={closeMenu}>
                   Projets
                 </Link>
               </li>
               <li role="none">
-                <Link to="/blog" role="menuitem">
+                <Link to="/blog" role="menuitem" onClick={closeMenu}>
                   Blog
                 </Link>
               </li>
               <li role="none">
-                <Link to="/about" role="menuitem">
+                <Link to="/about" role="menuitem" onClick={closeMenu}>
                   À propos
                 </Link>
               </li>
               <li role="none">
-                <Link to="/contact" role="menuitem">
+                <Link to="/contact" role="menuitem" onClick={closeMenu}>
                   Contact
                 </Link>
               </li>

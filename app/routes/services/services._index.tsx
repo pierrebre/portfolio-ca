@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import ServiceCard from "~/components/service-card";
 import JsonLd from "~/components/json-ld";
 import { services } from "data/services";
@@ -107,8 +108,12 @@ export default function ServicesIndex() {
               <div className="via-primary h-px w-24 bg-linear-to-r from-transparent to-transparent" />
             </div>
             <h1 className="font-urbanist content text-4xl font-bold md:text-5xl mb-6">
-              Services Web pour Entreprises
+              Services de développement web à Montréal
             </h1>
+            <p className="text-base-content/80 mx-auto max-w-3xl text-lg">
+              Performance, création, automatisation, IA — tout ce dont ton entreprise a besoin pour
+              que son site web travaille vraiment pour toi. Tarifs transparents, résultats mesurables.
+            </p>
           </div>
         </div>
       </section>
@@ -125,6 +130,21 @@ export default function ServicesIndex() {
                 linkTo={getServiceUrl(service.key)}
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-bold">Pas sûr de ce qu'il te faut ?</h2>
+          <p className="text-base-content/70 mt-4">
+            Réserve 30 minutes avec moi — c'est gratuit et sans engagement.
+            On regarde ensemble ce qui freine ton site et ce qui aurait le plus d'impact.
+          </p>
+          <div className="mt-8">
+            <Link to="/contact" className="btn btn-primary rounded-full px-10">
+              Réserver une consultation gratuite
+            </Link>
           </div>
         </div>
       </section>

@@ -24,7 +24,8 @@ export function meta({}: Route.MetaArgs) {
       content:
         "Études de cas concrets : optimisation WordPress +70 pts Lighthouse, e-commerce Shopify +162 % de conversion mobile, automatisation n8n qui économise 10 h/semaine.",
     },
-    { name: "robots", content: "index, follow" },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    { name: "keywords", content: "projets développement web montréal, études de cas performance wordpress, optimisation lighthouse québec, automatisation n8n, résultats mesurables site web" },
     { property: "og:title", content: "Projets — Études de cas | Pierre Barbé" },
     {
       property: "og:description",
@@ -132,7 +133,7 @@ export default function Projects() {
                 Les études de cas arrivent bientôt.
               </p>
               <Link to="/contact" className="btn btn-primary rounded-full mt-6">
-                Discutons de votre projet
+                Discutons de ton projet
               </Link>
             </div>
           ) : null}
@@ -301,10 +302,10 @@ export default function Projects() {
       {/* CTA */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Votre projet, les prochains chiffres</h2>
+          <h2 className="text-3xl font-bold">Ton projet, les prochains chiffres</h2>
           <p className="text-base-content/70 mt-4 text-lg">
             Chaque site est différent. Commençons par un audit gratuit de 30 minutes pour
-            identifier où se trouvent vos gains les plus rapides.
+            identifier où se trouvent tes gains les plus rapides.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="btn btn-primary rounded-full px-10">

@@ -21,7 +21,8 @@ export function meta({}: Route.MetaArgs) {
       content:
         "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
     },
-    { name: "robots", content: "index, follow" },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    { name: "keywords", content: "blog développement web montréal, tutoriels performance web, articles automatisation n8n, éco-conception web québec, core web vitals wordpress" },
     {
       property: "og:title",
       content: "Blog — Web performance, automatisation & éco-conception",
@@ -153,7 +154,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           {/* CTA contact */}
           <div className="mt-16 text-center">
             <p className="text-base-content/70 mb-4">
-              Un sujet que vous aimeriez que j'aborde ?
+              Un sujet que tu aimerais que j'aborde ?
             </p>
             <Link to="/contact" className="btn btn-primary rounded-full px-8">
               Suggérer un article

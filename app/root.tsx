@@ -33,6 +33,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           }}
         />
         <Meta />
+        {/* Preload des fonts Urbanist (normal) pour éviter le FOUT */}
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2" crossOrigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2" crossOrigin="anonymous" />
         <link
           rel="icon"
           type="image/png"

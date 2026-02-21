@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Hero() {
   return (
     <section
@@ -15,28 +17,28 @@ export default function Hero() {
             <div className="mb-6 flex items-center gap-3">
               <div className="bg-base-content/40 h-px w-8" />
               <span className="font-urbanist text-base-content/80 text-sm font-medium tracking-widest uppercase">
-                Ton site, plus vite - plus vert
+                Ton site, plus rapide — plus rentable
               </span>
             </div>
 
             <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[4rem]">
-              Développeur web
+              Développeur web freelance
               <span className="text-primary block">Montréal</span>
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">
-              Je suis Pierre Barbé, et j’aide les PME, e-commerces, agences et
-              prestataires québécois à créer des sites web plus performants,
-              plus rapides et plus responsables. Sans jargon, sans recettes
-              toutes faites. Juste du concret, accessible et efficace.
+              Tu perds des clients parce que ton site est lent, mal référencé
+              ou impossible à maintenir ? J’aide les PME, e-commerces et
+              agences du Québec à avoir des sites qui chargent vite,
+              convertissent mieux et coûtent moins cher à maintenir.
             </p>
 
             <div className="font-urbanist mb-12 flex flex-wrap gap-4">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="btn btn-primary text-base-100 rounded-full px-8 py-3"
               >
-                Écris‑moi
+                Réserve ton audit gratuit
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -44,6 +46,7 @@ export default function Hero() {
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -51,24 +54,19 @@ export default function Hero() {
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
-              </a>
+              </Link>
 
-              <button
+              <Link
+                to="/services"
                 className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-3"
-                onClick={() => {
-                  const modal = document.getElementById("audit_modal");
-                  if (modal instanceof HTMLDialogElement) {
-                    modal.showModal();
-                  }
-                }}
               >
-                Réservez votre audit gratuit dès maintenant
-              </button>
+                Voir mes services
+              </Link>
             </div>
 
             <div className="border-base-content/10 font-urbanist grid max-w-md grid-cols-3 gap-8 border-t pt-8">
               {[
-                { value: "50+", label: "Projets" },
+                { value: "50+", label: "Projets livrés" },
                 { value: "98 %", label: "Taux de succès" },
                 { value: "3+", label: "Ans d'expérience" },
               ].map((stat, index) => (

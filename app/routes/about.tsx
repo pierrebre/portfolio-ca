@@ -24,7 +24,8 @@ export function meta({}: Route.MetaArgs) {
       content:
         "Développeur web freelance à Montréal, spécialisé en web-performance, automatisation n8n et éco-conception. Découvrez mon parcours, ma stack et mes valeurs.",
     },
-    { name: "robots", content: "index, follow" },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    { name: "keywords", content: "pierre barbé développeur web freelance montréal, développeur wordpress québec, optimisation performance web, automatisation n8n, éco-conception web" },
     {
       property: "og:title",
       content: "À propos — Pierre Barbé, développeur web freelance Montréal",
@@ -54,25 +55,31 @@ const timeline = [
     year: "2025",
     title: "Freelance & Spécialisation performance",
     description:
-      "Lancement de pierrebarbe.ca. Focus sur la web-performance, l'éco-conception et l'automatisation n8n pour PME québécoises.",
+      "+38 points Lighthouse sur un e-commerce WordPress. Mise en place de pipelines CI/CD et workflows n8n pour des PME montréalaises. Lancement de pierrebarbe.ca avec un score Lighthouse 95+.",
+  },
+  {
+    year: "2024",
+    title: "Automatisation & intégration IA",
+    description:
+      "Premiers projets d'intégration IA : chatbots GPT entraînés sur contenu client, recherche sémantique. Déploiement de workflows n8n pour cliniques et agences. Spécialisation DevOps sur VPS Linux.",
   },
   {
     year: "2023",
     title: "Développement full-stack agence",
     description:
-      "Développement de sites et applications web pour des clients variés : e-commerce Shopify, refonte WordPress, intégrations API.",
+      "Développement de sites et applications web pour des clients variés : e-commerces Shopify, refontes WordPress, intégrations API. Plus de 20 projets livrés.",
   },
   {
     year: "2022",
     title: "Premiers projets clients",
     description:
-      "Optimisation de sites WordPress existants, audit de performance Lighthouse, premiers projets d'automatisation.",
+      "Optimisation de sites WordPress existants, audits de performance Lighthouse, premiers projets d'automatisation. Découverte de l'éco-conception web.",
   },
   {
     year: "2021",
     title: "Formation et projets personnels",
     description:
-      "Autodidacte puis formation intensive React, TypeScript, Node.js. Premiers projets open source.",
+      "Autodidacte puis formation intensive React, TypeScript, Node.js. Premiers projets open source et contributions communautaires.",
   },
 ];
 
