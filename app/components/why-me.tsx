@@ -1,21 +1,19 @@
-import React from "react";
-
 export default function WhyMe() {
   const features = [
     {
-      title: "Un équilibre entre technologie, écologie et humain",
+      title: "Performance + éco-conception",
       description:
-        "Je rassemble la précision technique, la responsabilité écologique et une communication centrée sur l’humain. Votre site est plus rapide. Vos clients restent plus longtemps. Et vous vous sentez bien quant à votre impact numérique.",
+        "Ton site sera plus rapide, mieux classé sur Google, et plus léger pour la planète. Ce n’est pas du greenwashing : un site éco-conçu est un site performant. L’un ne va pas sans l’autre.",
     },
     {
-      title: "Bilingue et local",
+      title: "Bilingue, local, disponible",
       description:
-        "Que vous travailliez en français ou en anglais, je parle votre langue — au sens propre comme au sens technique. Je comprends les subtilités du monde des affaires numériques au Québec et au niveau du Canada.", 
+        "Français, anglais — je parle ta langue, au sens propre comme technique. Basé à Montréal, je comprends le marché québécois et je réponds en moins de 24 h.",
     },
     {
-      title: "Des résultats prouvés, pas des promesses",
+      title: "Des résultats prouvés",
       description:
-        "J’ai aidé plus de 50 entreprises à faire évoluer leur site, améliorer leurs performances et optimiser leur SEO, avec un taux de réussite de 98 %. Le site e-commerce de l’un de mes clients a gagné 38 points sur Google Lighthouse. Ce n’est pas qu’un score technique : c’est plus de conversions, un meilleur classement et une expérience plus fluide pour leurs visiteurs.",
+        "+38 points Lighthouse sur un site e-commerce. 10 h/semaine économisées grâce à l’automatisation n8n. Ce ne sont pas des promesses — ce sont des chiffres de vrais clients.",
     }
   ];
 
@@ -27,10 +25,10 @@ export default function WhyMe() {
             <div className="grid gap-16 md:grid-cols-1">
               <div className="space-y-8">
                 <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                  Pourquoi les entreprises me font confiance&nbsp;?
+                  Pourquoi les entreprises québécoises me font confiance
                 </h2>
                 <p className="text-base-content/70 mt-2">
-                  Des solutions web adaptées à vos besoins
+                  Pas juste un dev. Un partenaire technique qui rend des comptes.
                 </p>
                 <div className="bg-primary h-px w-24" />
               </div>

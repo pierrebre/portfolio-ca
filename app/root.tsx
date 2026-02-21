@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -15,12 +16,26 @@ import ContactCard from "./components/contact-card";
 import { ToastProvider } from "./context/toast-context";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  const hideContactCardOn = ["/contact"];
+  const shouldShowContactCard = !hideContactCardOn.includes(location.pathname);
+
   return (
-    <html lang="en">
+    <html lang="fr-CA" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Script anti-FOUC : applique le thème avant l'hydratation React */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}`,
+          }}
+        />
         <Meta />
+        {/* Preload des fonts Urbanist (normal) pour éviter le FOUT */}
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2" crossOrigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2" crossOrigin="anonymous" />
         <link
           rel="icon"
           type="image/png"
@@ -34,11 +49,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
           sizes="180x180"
           href="favicon/apple-touch-icon.png"
         />
-        <meta name="apple-mobile-web-app-title" content="Pierre Barbé" />
+        <meta name="apple-mobile-web-app-title" content="Pierre Barbé" />
         <link rel="manifest" href="favicon/site.webmanifest" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Blog — Pierre Barbé"
+          href="/blog/feed.xml"
+        />
 
-        <meta property="og:site_name" content="Pierre Barbé Web" />
+        <meta property="og:site_name" content="Pierre Barbé Web" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="fr_CA" />
 
@@ -49,9 +70,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <ToastProvider>
+          {/* Lien d'évitement pour l'accessibilité */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:btn focus:btn-primary focus:rounded-full"
+          >
+            Aller au contenu principal
+          </a>
           <NavBar />
-          {children}
-          <ContactCard />
+          <main id="main-content">
+            {children}
+          </main>
+          {shouldShowContactCard && <ContactCard />}
           <Footer />
         </ToastProvider>
         <ScrollRestoration />
@@ -67,14 +97,14 @@ export default function App() {
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
-  let details = "An unexpected error occurred.";
+  let details = "Une erreur inattendue s'est produite.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? "404" : "Erreur";
     details =
       error.status === 404
-        ? "The requested page could not be found."
+        ? "La page demandée est introuvable."
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;

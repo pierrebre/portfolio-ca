@@ -19,7 +19,7 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<FormSchemaType>({
     resolver: zodResolver(contactformSchema),
@@ -49,11 +49,13 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
 
       onSubmitResult?.(true, "Votre message a été envoyé avec succès !");
       reset();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
+      const message =
+        err instanceof Error ? err.message : "Échec de l'envoi de votre message";
       onSubmitResult?.(
         false,
-        err.message || "Échec de l'envoi de votre message"
+        message
       );
     }
   };

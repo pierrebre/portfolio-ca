@@ -1,6 +1,12 @@
+import { useState } from "react";
+import { Link } from "react-router";
 import ThemeToggle from "./theme-toggle";
+import ServiceDropdown from "./service-dropdown";
 
 export default function NavBar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div className="sticky top-0 z-50 mx-4 flex justify-center py-4">
       <div className="navbar bg-base-100/90 outline-base-content/5 max-w-xs rounded-full py-0 shadow-2xl outline backdrop-blur-sm md:max-w-4xl">
@@ -11,8 +17,14 @@ export default function NavBar() {
               role="button"
               className="btn btn-circle btn-ghost lg:hidden"
               aria-label="Menu de navigation"
-              aria-expanded="false"
+              aria-expanded={menuOpen}
               aria-haspopup="menu"
+              onClick={() => setMenuOpen((v) => !v)}
+              onBlur={(e) => {
+                if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) {
+                  setMenuOpen(false);
+                }
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -36,58 +48,72 @@ export default function NavBar() {
               className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm"
               role="menu"
             >
-              {/*               <li>
-                <a href="/projects">Projects</a>
-              </li> */}
-
               <li role="none">
-                <a href="/contact" role="menuitem">
-                  Contact
-                </a>
+                <Link to="/services" role="menuitem" onClick={closeMenu}>
+                  Services
+                </Link>
               </li>
-              <li className="flex flex-row" role="none">
-                <a
-                  href="https://blog.pierrebarbe.ca"
-                  role="menuitem"
-                  target="_blank"
-                >
+              <li role="none">
+                <Link to="/projects" role="menuitem" onClick={closeMenu}>
+                  Projets
+                </Link>
+              </li>
+              <li role="none">
+                <Link to="/blog" role="menuitem" onClick={closeMenu}>
                   Blog
-                </a>
+                </Link>
+              </li>
+              <li role="none">
+                <Link to="/about" role="menuitem" onClick={closeMenu}>
+                  À propos
+                </Link>
+              </li>
+              <li role="none">
+                <Link to="/contact" role="menuitem" onClick={closeMenu}>
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
 
-          <a
-            href="/"
+          <Link
+            to="/"
             className="btn btn-ghost font-urbanist from-primary to-primary/70 ml-1 rounded-full bg-gradient-to-r bg-clip-text text-lg font-bold text-transparent"
           >
             Pierre Barbé
-          </a>
+          </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <nav>
-            {/*  <a
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-              href="/projects"
-            >
-              Projects
-            </a> */}
 
-            <a
+        <div className="navbar-center hidden lg:flex">
+          <nav className="flex items-center" aria-label="Navigation principale">
+            <ServiceDropdown />
+            <Link
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-              href="/contact"
+              to="/projects"
             >
-              Contact
-            </a>
-            <a
+              Projets
+            </Link>
+            <Link
               className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
-              href="https://blog.pierrebarbe.ca"
-              target="_blank"
+              to="/blog"
             >
               Blog
-            </a>
+            </Link>
+            <Link
+              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              to="/about"
+            >
+              À propos
+            </Link>
+            <Link
+              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              to="/contact"
+            >
+              Contact
+            </Link>
           </nav>
         </div>
+
         <div className="navbar-end h-10">
           <ThemeToggle />
         </div>

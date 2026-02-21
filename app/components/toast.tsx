@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, XCircle, AlertCircle, AlertTriangle } from "lucide-react";
+import { CheckCircle, XCircle, AlertCircle, AlertTriangle, X } from "lucide-react";
 
 export type ToastProps = {
   message: string;
@@ -16,6 +16,14 @@ export type ToastProps = {
     | "middle-end";
   onClose?: () => void;
   visible?: boolean;
+  duration?: number;
+};
+
+const ICONS: Record<NonNullable<ToastProps["type"]>, React.ReactNode> = {
+  success: <CheckCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
+  error: <XCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
+  warning: <AlertTriangle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
+  info: <AlertCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
 };
 
 export default function Toast({
@@ -24,6 +32,7 @@ export default function Toast({
   position = "bottom-end",
   onClose,
   visible = true,
+  duration = 5000,
 }: ToastProps) {
   const [isVisible, setIsVisible] = useState(visible);
 
@@ -31,55 +40,31 @@ export default function Toast({
     setIsVisible(visible);
   }, [visible]);
 
-  if (!message) return null;
+  if (!message || !isVisible) return null;
 
-  const positionClass = `toast toast-${position}`;
-
-  const alertTypeClass = `alert alert-${type}`;
-
-  const getIcon = () => {
-    switch (type) {
-      case "success":
-        return <CheckCircle className="h-6 w-6" />;
-      case "error":
-        return <XCircle className="h-6 w-6" />;
-      case "warning":
-        return <AlertTriangle className="h-6 w-6" />;
-      case "info":
-      default:
-        return <AlertCircle className="h-6 w-6" />;
-    }
+  const handleClose = () => {
+    setIsVisible(false);
+    onClose?.();
   };
 
-  if (!isVisible) return null;
-
   return (
-    <div className={`${positionClass} z-10`}>
-      <div className={`${alertTypeClass}`}>
-        {getIcon()}
-        <span className="font-medium">{message}</span>
+    <div className={`toast toast-${position} z-50`} role="alert" aria-live="polite">
+      <div className={`alert alert-${type} relative overflow-hidden pr-10 shadow-lg max-w-sm`}>
+        {ICONS[type]}
+        <span className="font-medium text-sm">{message}</span>
         <button
-          onClick={() => {
-            setIsVisible(false);
-            if (onClose) onClose();
-          }}
-          className="btn btn-sm btn-ghost"
+          onClick={handleClose}
+          className="btn btn-xs btn-ghost absolute top-2 right-2"
+          aria-label="Fermer la notification"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <X className="h-3.5 w-3.5" aria-hidden="true" />
         </button>
+        {/* Barre de progression auto-dismiss */}
+        <span
+          className="absolute bottom-0 left-0 h-0.5 bg-current opacity-40 toast-progress"
+          style={{ animationDuration: `${duration}ms` }}
+          aria-hidden="true"
+        />
       </div>
     </div>
   );

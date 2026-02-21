@@ -1,16 +1,56 @@
 import ContactForm from "~/components/contact-form";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, Phone } from "lucide-react";
 import { useToast } from "~/context/toast-context";
+import Breadcrumbs from "~/components/breadcrumbs";
 
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/contact";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/contact";
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebPage", "ContactPage"],
+        "@id": `${url}#webpage`,
+        "url": url,
+        "name": "Contact et devis de site web à Montréal",
+        "description": "Une question ou un projet ? Écris‑moi ou réserve ta consultation gratuite de 30 min pour booster performance et éco‑conception de ton site.",
+        "inLanguage": "fr-CA",
+        "isPartOf": {
+          "@id": "https://pierrebarbe.ca/#website"
+        },
+        "breadcrumb": {
+          "@id": `${url}#breadcrumb`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://pierrebarbe.ca/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": url
+          }
+        ]
+      }
+    ]
+  };
+
   return [
     { title: "Contact et devis de site web à Montréal" },
-    { canonical: url },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    { tagName: "link", rel: "canonical", href: url },
     {
       name: "description",
       content:
@@ -32,11 +72,17 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-    { property: "og:type", content: "article" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/avif" },
+    { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
-    { property: "og:image:width", content: "370" },
-    { property: "og:image:height", content: "374" },
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(schema)
+    }
   ];
 }
 
@@ -55,21 +101,28 @@ export default function Contact() {
 
   return (
     <div className="bg-base-100 font-urbanist mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Contact" },
+          ]}
+        />
+      </div>
+
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold md:text-5xl">Contact</h1>
+          <h1 className="text-4xl font-bold md:text-5xl">Parlons de ton projet</h1>
 
           <div className="mt-6 flex items-center justify-center gap-4">
             <div className="bg-primary h-px w-16" />
-            <span className="text-primary">Parlons de vos objectifs</span>
+            <span className="text-primary">Première consultation gratuite — 30 min</span>
             <div className="bg-primary h-px w-16" />
           </div>
 
           <p className="text-base-content/80 mt-6 text-lg md:text-xl text-center">
-            Que vous soyez interéssé pour un audit gratuit de votre site, que
-            vous ayez quelques questions techniques ou que vous souhaitiez
-            simplement découvrir comment je peux aider votre entreprise en
-            ligne, je suis là.
+            On se parle 30 minutes. Tu m'expliques ton projet, je te donne mes
+            premières recommandations. Aucun engagement, aucune vente forcée.
             <br />
             <br />
             Je travaille avec des entreprises locales à Montréal, Laval,

@@ -1,5 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import Toast, { type ToastProps } from "~/components/toast";
+
+const TOAST_DURATION = 5000;
 
 type ToastState = {
   visible: boolean;
@@ -20,11 +22,27 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     message: "",
     type: "info",
   });
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const showToast = (message: string, type: ToastProps["type"] = "info") =>
+  const closeToast = () => {
+    setToast((t) => ({ ...t, visible: false }));
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
+  const showToast = (message: string, type: ToastProps["type"] = "info") => {
+    if (timerRef.current) clearTimeout(timerRef.current);
     setToast({ visible: true, message, type });
+    timerRef.current = setTimeout(closeToast, TOAST_DURATION);
+  };
 
-  const closeToast = () => setToast((t) => ({ ...t, visible: false }));
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   return (
     <ToastContext.Provider value={{ showToast, closeToast }}>
@@ -35,7 +53,8 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           type={toast.type}
           visible={toast.visible}
           onClose={closeToast}
-          position="bottom-end" // always bottom‑right
+          position="bottom-end"
+          duration={TOAST_DURATION}
         />
       )}
     </ToastContext.Provider>

@@ -1,3 +1,9 @@
 User-agent: *
 Allow: /
+
+# Empêcher l'indexation des assets
+Disallow: /fonts/
+Disallow: /favicon/
+
+# Sitemap
 Sitemap: https://pierrebarbe.ca/sitemap.xml

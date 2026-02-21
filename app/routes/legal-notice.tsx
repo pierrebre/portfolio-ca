@@ -1,5 +1,5 @@
-import React from "react";
-import type { Route } from "./+types/home";
+import Breadcrumbs from "~/components/breadcrumbs";
+import type { Route } from "./+types/legal-notice";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/mentions-legales";
@@ -7,7 +7,9 @@ export function meta({}: Route.MetaArgs) {
 
   return [
     { title: "Mentions légales | Pierre Barbé" },
-    { name: "canonical", content: url },
+    { name: "description", content: "Mentions légales, informations éditeur et hébergement du site pierrebarbe.ca." },
+    { name: "robots", content: "noindex, follow" },
+    { tagName: "link", rel: "canonical", href: url },
     {
       property: "og:title",
       content: "Mentions légales",
@@ -18,16 +20,27 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-    { property: "og:image:width", content: "1198" },
-    { property: "og:image:height", content: "333" },
-    { property: "og:type", content: "article" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/avif" },
+    { property: "og:type", content: "website" },
   ];
 }
 
 export default function LegalNotice() {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-12">
-      <h1 className="text-3xl font-bold mb-6">Mentions légales</h1>
+    <div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Mentions Légales" },
+          ]}
+        />
+      </div>
+
+      <section className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-3xl font-bold mb-6">Mentions légales</h1>
       <p className="mb-4 text-sm text-gray-500">
         Dernière mise à jour : 3 juin 2025
       </p>
@@ -66,7 +79,7 @@ export default function LegalNotice() {
         <a
           href="https://vercel.com"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           className="text-primary underline"
         >
           https://vercel.com
@@ -78,9 +91,10 @@ export default function LegalNotice() {
       </h2>
       <p className="mb-4">
         Le contenu de ce site (textes, visuels, code) est protégé par le droit
-        d’auteur. Toute reproduction, même partielle, est interdite sans
+        d'auteur. Toute reproduction, même partielle, est interdite sans
         autorisation écrite préalable.
       </p>
-    </section>
+      </section>
+    </div>
   );
 }

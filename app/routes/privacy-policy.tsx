@@ -1,4 +1,5 @@
-import type { Route } from "./+types/home";
+import Breadcrumbs from "~/components/breadcrumbs";
+import type { Route } from "./+types/privacy-policy";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/politique-confidentialite";
@@ -7,7 +8,9 @@ export function meta({}: Route.MetaArgs) {
   return [
     { title: "Politique de confidentialité | Pierre Barbé" },
 
-    { name: "canonical", content: url },
+    { name: "description", content: "Politique de confidentialité et protection des données personnelles. Durée de conservation, droits des utilisateurs." },
+    { name: "robots", content: "noindex, follow" },
+    { tagName: "link", rel: "canonical", href: url },
     {
       property: "og:title",
       content: "Politique de confidentialité",
@@ -18,16 +21,27 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-    { property: "og:image:width", content: "1198" },
-    { property: "og:image:height", content: "333" },
-    { property: "og:type", content: "article" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/avif" },
+    { property: "og:type", content: "website" },
   ];
 }
 
 export default function PrivacyPolicy() {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-12">
-      <h1 className="text-3xl font-bold mb-6">Politique de confidentialité</h1>
+    <div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Accueil", href: "/" },
+            { label: "Politique de Confidentialité" },
+          ]}
+        />
+      </div>
+
+      <section className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-3xl font-bold mb-6">Politique de confidentialité</h1>
       <p className="mb-4 text-sm text-gray-500">
         Dernière mise à jour : 3 juin 2025
       </p>
@@ -83,8 +97,9 @@ export default function PrivacyPolicy() {
       <h2 className="text-xl font-semibold mt-6 mb-2">🧾 Vos droits</h2>
       <p className="mb-4">
         Vous pouvez demander à consulter, modifier ou supprimer vos données à
-        tout moment, en écrivant à l’adresse ci-dessus.
+        tout moment, en écrivant à l'adresse ci-dessus.
       </p>
-    </section>
+      </section>
+    </div>
   );
 }

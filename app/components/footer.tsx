@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Footer() {
   return (
     <footer className="border-base-300 bg-base-200 border-t">
@@ -5,27 +7,35 @@ export default function Footer() {
         <div className="footer footer-vertical sm:footer-horizontal items-end py-18 text-base-content">
           <aside className="items-center">
             <p>
-              Pierre Barbé
+              Pierre Barbé
               <br />© {new Date().getFullYear()} – Tous droits réservés
             </p>
           </aside>
 
-          <nav>
+          <nav aria-label="Navigation du pied de page">
             <strong className="footer-title">Navigation</strong>
-            <p className="link link-hover">Blog</p>
-            <a className="link link-hover" href="/contact">
+            <Link className="link link-hover" to="/services">
+              Services
+            </Link>
+            <Link className="link link-hover" to="/blog">
+              Blog
+            </Link>
+            <Link className="link link-hover" to="/about">
+              À propos
+            </Link>
+            <Link className="link link-hover" to="/contact">
               Contact
-            </a>
+            </Link>
           </nav>
 
-          <nav>
+          <nav aria-label="Liens légaux">
             <strong className="footer-title">Légal</strong>
-            <a className="link link-hover" href="/mentions-legales">
+            <Link className="link link-hover" to="/mentions-legales">
               Mentions&nbsp;légales
-            </a>
-            <a className="link link-hover" href="/politique-confidentialite">
+            </Link>
+            <Link className="link link-hover" to="/politique-confidentialite">
               Politique&nbsp;de&nbsp;confidentialité
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
 
-export default function BlogLayout() {
+export default function ServicesLayout() {
   return <Outlet />;
 }
