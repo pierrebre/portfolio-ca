@@ -7,48 +7,50 @@ export interface Question {
 export const questions = [
   {
     index: 0,
-    question: "Quels services web proposez‑vous ?",
+    question: "Combien ça coûte, un site web ?",
     answer:
-      "Je conçois, optimise et maintiens des sites Next.js, WordPress et Shopify, j’automatise vos workflows (n8n/Make) et intègre des IA utiles ; votre site devient plus rapide, plus vert et mieux référencé.",
+      "Ça dépend du projet, mais pour te donner une idée : un site vitrine commence autour de 3 000-5 000 $, une refonte plus complexe peut aller de 5 000 à 15 000 $. Je travaille avec un budget transparent — tu sais exactement ce que tu paies avant de t'engager. L'audit initial de 30 min est gratuit, justement pour qu'on puisse évaluer ton besoin ensemble.",
   },
   {
     index: 1,
-    question:
-      "Quels avantages puis‑je attendre de votre expertise en optimisation web‑performance pour un site e‑commerce existant ?",
+    question: "Freelance ou agence — c'est quoi la différence ?",
     answer:
-      "Je réduis souvent le temps de chargement produit de 3 s à < 1 s, ce qui augmente en moyenne les conversions de 15 %.",
+      "Avec moi, tu parles directement à la personne qui code ton site. Pas de chargé de projet intermédiaire, pas de relais d'information. C'est plus rapide, plus direct, et souvent moins cher qu'une agence — avec le même niveau de qualité. La différence, c'est la relation : tu as un interlocuteur unique qui connaît ton projet de A à Z.",
   },
   {
     index: 2,
-    question:
-      "Je veux migrer mon WordPress vers Next.js ; gérez‑vous la refonte complète ?",
+    question: "Et si je suis pas satisfait du résultat ?",
     answer:
-      "Oui. J’audite, migre le contenu, bâtis l’architecture Next.js et gère les redirections SEO pour une refonte sans perte de trafic.",
+      "Chaque étape du projet est validée avec toi avant de passer à la suivante. Il n'y a pas de \"surprise à la livraison\". Si quelque chose ne te convient pas, on ajuste. Mon objectif, c'est que tu sois fier de ton site — et que tu me recommandes.",
   },
   {
     index: 3,
-    question:
-      "Automatisation IA et Shopify font‑ils partie de votre expertise ?",
+    question: "Ça prend combien de temps ?",
     answer:
-      "Absolument : j’automatise stocks, emails et rapports Shopify via n8n/IA, libérant jusqu’à 10 h de tâches répétitives par semaine.",
+      "Un site vitrine, c'est généralement 3 à 6 semaines. Une refonte ou un projet plus complexe, 6 à 12 semaines. Je te donne un calendrier précis dès le début, avec des jalons clairs. Et si ça change en cours de route, tu es le premier informé.",
   },
   {
     index: 4,
-    question: "Qu’est‑ce que l’éco‑conception web ?",
+    question: "Comment ça se passe si je veux travailler avec toi ?",
     answer:
-      "Réduire le poids des pages, utiliser un hébergement vert et un code sobre pour limiter l’empreinte carbone numérique ; vos visiteurs profitent aussi d’un site plus rapide.",
+      "Simple : tu réserves un appel gratuit de 30 minutes. On regarde ton site et tes objectifs ensemble. Ensuite, je t'envoie un plan d'action chiffré. Si ça te convient, on démarre. Pas de contrat de 47 pages — un document clair avec les livrables, les délais et le budget.",
   },
   {
     index: 5,
-    question:
-      "Je veux un site plus écologique sans sacrifier la vitesse ; quelles technologies recommandez‑vous ?",
+    question: "Tu connais WordPress ? Et Shopify ?",
     answer:
-      "Un site statique, images compressées modernes et hébergement à énergie renouvelable dépassent souvent 90 /100 Lighthouse, sans alourdir vos émissions.",
+      "Oui. Je travaille principalement avec WordPress et Next.js, et je connais aussi Shopify. Mon approche, c'est de recommander la technologie qui fait le plus de sens pour TON projet — pas celle que je préfère. On en discute pendant l'audit gratuit.",
   },
   {
     index: 6,
-    question: "Intégrez‑vous ChatGPT ?",
+    question: "T'as déjà travaillé avec des entreprises dans mon secteur ?",
     answer:
-      "Oui : je déploie chatbots, recherches internes ou résumés automatiques basés sur ChatGPT, hébergés sur vos serveurs pour garder la maîtrise des données.",
+      "J'ai travaillé avec des cliniques médicales, des studios de yoga, des e-commerces et d'autres PME québécoises. Chaque secteur a ses particularités, mais les fondamentaux sont les mêmes : un site rapide, bien référencé et facile à utiliser. Si tu veux voir des exemples, réserve un appel — je te montre ce qui se rapproche le plus de ton projet.",
+  },
+  {
+    index: 7,
+    question: "Est-ce que tu restes disponible après la livraison ?",
+    answer:
+      "Oui, et c'est un de mes engagements. Je propose des forfaits de maintenance mensuels pour garder ton site à jour, sécurisé et performant. Et si tu as une urgence, je suis joignable directement — pas via un formulaire de support.",
   },
 ];

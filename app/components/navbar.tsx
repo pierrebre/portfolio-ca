@@ -73,6 +73,16 @@ export default function NavBar() {
                   Contact
                 </Link>
               </li>
+              <li role="none" className="mt-1">
+                <Link
+                  to="/contact"
+                  role="menuitem"
+                  className="btn btn-primary btn-sm w-full"
+                  onClick={closeMenu}
+                >
+                  Réserve ton audit gratuit
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -114,7 +124,13 @@ export default function NavBar() {
           </nav>
         </div>
 
-        <div className="navbar-end h-10">
+        <div className="navbar-end h-10 gap-2">
+          <Link
+            to="/contact"
+            className="btn btn-primary font-urbanist btn-sm rounded-full hidden lg:flex"
+          >
+            Réserve ton audit gratuit
+          </Link>
           <ThemeToggle />
         </div>
       </div>

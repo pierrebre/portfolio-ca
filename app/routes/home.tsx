@@ -1,5 +1,8 @@
 import Hero from "~/components/hero";
+import Problem from "~/components/problem";
 import Services from "~/components/services";
+import Results from "~/components/results";
+import CtaBand from "~/components/cta-band";
 import WhyMe from "~/components/why-me";
 import Process from "~/components/process";
 import Faq from "~/components/faq";
@@ -13,47 +16,63 @@ export function meta({}: Route.MetaArgs) {
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
   return [
-    { title: "Développeur web freelance Montréal | Pierre Barbé" },
-    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    {
+      title:
+        "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
+    },
+    {
+      name: "robots",
+      content: "index, follow, max-image-preview:large, max-snippet:-1",
+    },
     { tagName: "link", rel: "canonical", href: url },
     {
       name: "description",
       content:
-        "Sites rapides, verts et rentables pour PME et agences du Québec. Audit de site gratuit, web‑performance, éco‑conception et automatisation.",
+        "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Audit gratuit de 30 min.",
     },
     {
       name: "keywords",
       content:
-        "développeur web freelance Montréal, optimisation webperformance Québec, audit de site gratuit, pigiste WordPress, éco‑conception web",
+        "développeur web freelance Montréal, optimisation webperformance Québec, audit de site gratuit, pigiste WordPress, automatisation n8n",
     },
     {
       property: "og:title",
-      content: "Développeur web freelance Montréal | Pierre Barbé",
+      content:
+        "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
     },
     {
       property: "og:description",
       content:
-        "Sites rapides, verts et rentables pour PME et agences du Québec. Audit gratuit en 30 min.",
+        "J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Audit gratuit de 30 min.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "333" },
     { property: "og:image:type", content: "image/avif" },
+    {
+      property: "og:image:alt",
+      content: "Pierre Barbé — Développeur web freelance Montréal",
+    },
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
 
     {
       name: "twitter:title",
-      content: "Développeur web freelance Montréal | Pierre Barbé",
+      content:
+        "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
     },
     {
       name: "twitter:description",
       content:
-        "Audit gratuit, web‑performance et éco‑conception pour PME et agences.",
+        "Audit gratuit 30 min, web‑performance et automatisation pour PME québécoises.",
     },
     { name: "twitter:image", content: image },
+    {
+      name: "twitter:image:alt",
+      content: "Pierre Barbé — Développeur web freelance Montréal",
+    },
     { name: "twitter:url", content: url },
   ];
 }
@@ -62,18 +81,18 @@ export default function Home() {
   const url = "https://pierrebarbe.ca/";
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
-  // JSON-LD complet (Person + LocalBusiness + Organization + WebSite + WebPage + Services)
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      // 1. Person (Pierre Barbé en tant qu'individu)
+      // 1. Person
       {
         "@type": "Person",
         "@id": `${url}#person`,
         name: "Pierre Barbé",
         alternateName: "Pierre Barbe",
         jobTitle: "Développeur Web Freelance",
-        description: "Développeur web freelance spécialisé en Next.js, React, Node.js, WordPress, SEO et automatisation (n8n, Make) à Montréal",
+        description:
+          "Développeur web freelance spécialisé en Next.js, React, WordPress, SEO et automatisation (n8n) à Montréal",
         url,
         image: "https://pierrebarbe.ca/images/pierre-barbe.jpg",
         email: "contact@pierrebarbe.ca",
@@ -82,12 +101,12 @@ export default function Home() {
           "@type": "PostalAddress",
           addressLocality: "Montréal",
           addressRegion: "QC",
-          addressCountry: "CA"
+          addressCountry: "CA",
         },
         sameAs: [
           "https://www.linkedin.com/in/pierre-barb%C3%A9/",
           "https://github.com/pierrebre",
-          "https://twitter.com/PierreBarbe"
+          "https://twitter.com/PierreBarbe",
         ],
         knowsAbout: [
           "Next.js",
@@ -96,22 +115,19 @@ export default function Home() {
           "WordPress",
           "SEO",
           "Web Performance",
-          "Éco-conception web",
           "Automatisation",
           "n8n",
-          "Make"
         ],
-        memberOf: {
-          "@id": `${url}#organization`
-        }
+        memberOf: { "@id": `${url}#organization` },
       },
 
-      // 2. LocalBusiness (pour le référencement local à Montréal)
+      // 2. LocalBusiness
       {
         "@type": ["LocalBusiness", "ProfessionalService"],
         "@id": `${url}#business`,
         name: "Pierre Barbé Web",
-        description: "Services de développement web freelance à Montréal : création de sites rapides, optimisation web-performance, WordPress, SEO et automatisation pour PME et agences du Québec",
+        description:
+          "Services de développement web freelance à Montréal : création de sites rapides, optimisation web-performance, WordPress, SEO et automatisation pour PME et agences du Québec",
         url,
         telephone: "+1-438-448-8408",
         email: "contact@pierrebarbe.ca",
@@ -121,41 +137,30 @@ export default function Home() {
           "@type": "PostalAddress",
           addressLocality: "Montréal",
           addressRegion: "QC",
-          addressCountry: "CA"
+          addressCountry: "CA",
         },
         geo: {
           "@type": "GeoCoordinates",
           latitude: "45.5017",
-          longitude: "-73.5673"
+          longitude: "-73.5673",
         },
         areaServed: [
-          {
-            "@type": "City",
-            name: "Montréal"
-          },
-          {
-            "@type": "State",
-            name: "Québec"
-          },
-          {
-            "@type": "Country",
-            name: "Canada"
-          }
+          { "@type": "City", name: "Montréal" },
+          { "@type": "State", name: "Québec" },
+          { "@type": "Country", name: "Canada" },
         ],
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           opens: "09:00",
-          closes: "18:00"
+          closes: "18:00",
         },
         sameAs: [
           "https://www.linkedin.com/in/pierre-barb%C3%A9/",
           "https://github.com/pierrebre",
-          "https://twitter.com/PierreBarbe"
+          "https://twitter.com/PierreBarbe",
         ],
-        founder: {
-          "@id": `${url}#person`
-        }
+        founder: { "@id": `${url}#person` },
       },
 
       // 3. Organization
@@ -168,24 +173,22 @@ export default function Home() {
           "@type": "ImageObject",
           url: image,
           width: 1200,
-          height: 333
+          height: 333,
         },
-        founder: {
-          "@id": `${url}#person`
-        },
+        founder: { "@id": `${url}#person` },
         contactPoint: {
           "@type": "ContactPoint",
           telephone: "+1-438-448-8408",
           contactType: "Customer Service",
           email: "contact@pierrebarbe.ca",
           areaServed: "CA",
-          availableLanguage: ["fr-CA", "en"]
+          availableLanguage: ["fr-CA", "en"],
         },
         sameAs: [
           "https://www.linkedin.com/in/pierre-barb%C3%A9/",
           "https://github.com/pierrebre",
-          "https://twitter.com/PierreBarbe"
-        ]
+          "https://twitter.com/PierreBarbe",
+        ],
       },
 
       // 4. WebSite
@@ -193,147 +196,188 @@ export default function Home() {
         "@type": "WebSite",
         "@id": `${url}#website`,
         url,
-        name: "Pierre Barbé - Développeur Web Freelance Montréal",
-        description: "Sites rapides, verts et rentables pour PME et agences du Québec",
+        name: "Pierre Barbé — Développeur Web Freelance Montréal",
+        description:
+          "Développeur web freelance à Montréal. Sites rapides, bien référencés et faciles à maintenir pour PME québécoises.",
         inLanguage: "fr-CA",
-        publisher: {
-          "@id": `${url}#organization`
-        },
+        publisher: { "@id": `${url}#organization` },
         hasPart: [
           { "@id": "https://pierrebarbe.ca/services#webpage" },
-          { "@id": "https://pierrebarbe.ca/contact#webpage" }
-        ]
+          { "@id": "https://pierrebarbe.ca/contact#webpage" },
+        ],
       },
 
-      // 5. WebPage (page d'accueil - HomePage)
+      // 5. WebPage / HomePage
       {
         "@type": ["WebPage", "HomePage"],
         "@id": `${url}#webpage`,
         url,
-        name: "Développeur web freelance Montréal | Pierre Barbé",
-        description: "Sites rapides, verts et rentables pour PME et agences du Québec. Audit de site gratuit, web-performance, éco-conception et automatisation.",
+        name: "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
+        description:
+          "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Audit gratuit de 30 min.",
         inLanguage: "fr-CA",
-        isPartOf: {
-          "@id": `${url}#website`
-        },
-        about: {
-          "@id": `${url}#person`
-        },
+        isPartOf: { "@id": `${url}#website` },
+        about: { "@id": `${url}#person` },
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: image,
           width: 1200,
-          height: 333
-        }
+          height: 333,
+        },
       },
 
-      // 6. Service - Développement Next.js & React
+      // 6. Services
       {
         "@type": "Service",
         "@id": `${url}#service-nextjs`,
         name: "Développement Next.js & React",
-        description: "Création de sites web rapides et performants avec Next.js et React pour PME et agences",
-        image: image,
-        provider: {
-          "@id": `${url}#person`
-        },
+        description:
+          "Création de sites web rapides et performants avec Next.js et React pour PME et agences",
+        provider: { "@id": `${url}#person` },
         serviceType: "Web Development",
-        areaServed: {
-          "@type": "City",
-          name: "Montréal"
-        },
+        areaServed: { "@type": "City", name: "Montréal" },
         availableChannel: {
           "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact"
-        }
+          serviceUrl: "https://pierrebarbe.ca/contact",
+        },
       },
-
-      // 7. Service - WordPress
       {
         "@type": "Service",
         "@id": `${url}#service-wordpress`,
         name: "Développement WordPress",
-        description: "Création et optimisation de sites WordPress sur mesure pour PME québécoises",
-        image: image,
-        provider: {
-          "@id": `${url}#person`
-        },
+        description:
+          "Création et optimisation de sites WordPress sur mesure pour PME québécoises",
+        provider: { "@id": `${url}#person` },
         serviceType: "WordPress Development",
-        areaServed: {
-          "@type": "City",
-          name: "Montréal"
-        },
+        areaServed: { "@type": "City", name: "Montréal" },
         availableChannel: {
           "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact"
-        }
+          serviceUrl: "https://pierrebarbe.ca/contact",
+        },
       },
-
-      // 8. Service - SEO & Performance
       {
         "@type": "Service",
         "@id": `${url}#service-seo`,
         name: "Optimisation SEO & Web Performance",
-        description: "Audit SEO gratuit, optimisation de la vitesse et amélioration du référencement naturel",
-        image: image,
-        provider: {
-          "@id": `${url}#person`
-        },
+        description:
+          "Audit SEO gratuit, optimisation de la vitesse et amélioration du référencement naturel",
+        provider: { "@id": `${url}#person` },
         serviceType: "SEO Services",
         areaServed: [
-          {
-            "@type": "City",
-            name: "Montréal"
-          },
-          {
-            "@type": "State",
-            name: "Québec"
-          }
+          { "@type": "City", name: "Montréal" },
+          { "@type": "State", name: "Québec" },
         ],
         availableChannel: {
           "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact"
+          serviceUrl: "https://pierrebarbe.ca/contact",
         },
         offers: {
           "@type": "Offer",
           name: "Audit de site gratuit",
           description: "Audit gratuit en 30 minutes",
           price: "0",
-          priceCurrency: "CAD"
-        }
+          priceCurrency: "CAD",
+        },
       },
-
-      // 9. Service - Automatisation
       {
         "@type": "Service",
         "@id": `${url}#service-automation`,
         name: "Automatisation (n8n, Make)",
-        description: "Automatisation de processus métier avec n8n et Make pour gagner du temps",
-        image: image,
-        provider: {
-          "@id": `${url}#person`
-        },
+        description:
+          "Automatisation de processus métier avec n8n et Make pour gagner du temps",
+        provider: { "@id": `${url}#person` },
         serviceType: "Business Automation",
-        areaServed: {
-          "@type": "Country",
-          name: "Canada"
-        },
+        areaServed: { "@type": "Country", name: "Canada" },
         availableChannel: {
           "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact"
-        }
-      }
-    ]
+          serviceUrl: "https://pierrebarbe.ca/contact",
+        },
+      },
+
+      // 7. FAQPage — objections réelles des prospects PME
+      {
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Combien ça coûte, un site web ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Ça dépend du projet, mais pour donner une idée : un site vitrine commence autour de 3 000-5 000 $, une refonte plus complexe peut aller de 5 000 à 15 000 $. Le budget est transparent — on sait exactement ce qu'on paie avant de s'engager. L'audit initial de 30 min est gratuit.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Freelance ou agence — c'est quoi la différence ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Avec un freelance, on parle directement à la personne qui code le site. Pas de chargé de projet intermédiaire. C'est plus rapide, plus direct, et souvent moins cher qu'une agence — avec le même niveau de qualité.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Et si je ne suis pas satisfait du résultat ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Chaque étape du projet est validée avant de passer à la suivante. Il n'y a pas de surprise à la livraison. Si quelque chose ne convient pas, on ajuste.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Ça prend combien de temps ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Un site vitrine prend généralement 3 à 6 semaines. Une refonte ou un projet plus complexe, 6 à 12 semaines. Un calendrier précis avec des jalons clairs est fourni dès le début.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Comment ça se passe si je veux travailler avec vous ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "On réserve un appel gratuit de 30 minutes. On regarde le site et les objectifs ensemble. Ensuite, on reçoit un plan d'action chiffré. Si ça convient, on démarre.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Vous connaissez WordPress et Shopify ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Oui. Les technologies principales sont WordPress et Next.js, avec une connaissance de Shopify. La recommandation se fait en fonction du projet, pas des préférences personnelles.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Avez-vous déjà travaillé avec des entreprises dans mon secteur ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "L'expérience couvre des cliniques médicales, studios de yoga, e-commerces et autres PME québécoises. Les fondamentaux restent les mêmes : un site rapide, bien référencé et facile à utiliser.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Restez-vous disponible après la livraison ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Oui. Des forfaits de maintenance mensuels sont proposés pour garder le site à jour, sécurisé et performant. En cas d'urgence, le contact est direct — pas via un formulaire de support.",
+            },
+          },
+        ],
+      },
+    ],
   };
 
   return (
     <>
       <JsonLd data={schema} />
       <Hero />
+      <Problem />
       <Services />
+      <Results />
+      <CtaBand />
       <WhyMe />
       <Process />
-      {/* <CtaBanner /> */}
       <Faq />
       <AuditModal />
     </>
