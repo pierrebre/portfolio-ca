@@ -8,6 +8,17 @@ export default function Footer() {
           <aside className="items-center">
             <p>
               Pierre Barbé
+              <br />
+              <span className="text-base-content/60 text-sm">
+                Basé à Montréal, Québec
+              </span>
+              <br />
+              <a
+                href="mailto:contact@pierrebarbe.ca"
+                className="link link-hover text-sm"
+              >
+                contact@pierrebarbe.ca
+              </a>
               <br />© {new Date().getFullYear()} – Tous droits réservés
             </p>
           </aside>

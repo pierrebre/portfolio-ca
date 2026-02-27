@@ -17,20 +17,19 @@ export default function Hero() {
             <div className="mb-6 flex items-center gap-3">
               <div className="bg-base-content/40 h-px w-8" />
               <span className="font-urbanist text-base-content/80 text-sm font-medium tracking-widest uppercase">
-                Ton site, plus rapide — plus rentable
+                Développeur web freelance à Montréal
               </span>
             </div>
 
             <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[4rem]">
-              Développeur web freelance
-              <span className="text-primary block">Montréal</span>
+              Ton site devrait travailler pour toi
+              <span className="text-primary block">— pas contre toi.</span>
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">
-              Tu perds des clients parce que ton site est lent, mal référencé
-              ou impossible à maintenir ? J’aide les PME, e-commerces et
-              agences du Québec à avoir des sites qui chargent vite,
-              convertissent mieux et coûtent moins cher à maintenir.
+              J'aide les PME québécoises à avoir des sites rapides, bien
+              référencés et faciles à maintenir. Performance, automatisation,
+              résultats mesurables.
             </p>
 
             <div className="font-urbanist mb-12 flex flex-wrap gap-4">
@@ -60,15 +59,16 @@ export default function Hero() {
                 to="/services"
                 className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-3"
               >
-                Voir mes services
+                Voir ce que je fais
               </Link>
             </div>
 
-            <div className="border-base-content/10 font-urbanist grid max-w-md grid-cols-3 gap-8 border-t pt-8">
+            <div className="border-base-content/10 font-urbanist grid max-w-lg grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4">
               {[
                 { value: "50+", label: "Projets livrés" },
-                { value: "98 %", label: "Taux de succès" },
-                { value: "3+", label: "Ans d'expérience" },
+                { value: "5+", label: "Ans d'expérience" },
+                { value: "+38 pts", label: "Lighthouse en moyenne" },
+                { value: "< 24 h", label: "Temps de réponse" },
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -95,41 +95,6 @@ export default function Hero() {
                 height={1152}
                 loading="eager"
               />
-
-              <div className="border-base-content/10 bg-base-100/95 absolute bottom-6 left-6 rounded-lg border px-4 py-3 backdrop-blur-xs">
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full">
-                    <svg
-                      className="text-primary h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div className="font-urbanist">
-                    <div className="text-base-content/60 text-xs">
-                      Fiable pour
-                    </div>
-                    <div className="text-sm font-medium">50+ clients</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-base-content/10 bg-base-100/95 absolute top-6 right-6 rounded-lg border px-4 py-3 backdrop-blur-xs">
-                <div className="font-urbanist text-center">
-                  <div className="text-primary text-lg font-bold">#1</div>
-                  <div className="text-base-content/60 text-xs">
-                    Web‑Performance
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

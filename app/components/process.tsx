@@ -9,10 +9,10 @@ export default function Process() {
             <div className="via-primary h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
           </div>
           <h2 className="font-urbanist text-base-content text-4xl font-bold md:text-5xl">
-            Mon approche
+            Comment ça se passe, concrètement
           </h2>
           <p className="text-base-content/70 mt-6">
-            Simple, Transparente et Sans sur-ingénierie
+            Simple, transparent, sans sur-ingénierie.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export default function Process() {
               }
             }}
           >
-            Réservez votre audit gratuit dès maintenant
+            Réserve ton audit gratuit
           </button>
         </div>
       </div>
