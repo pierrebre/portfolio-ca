@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import JsonLd from "~/components/json-ld";
 import { getAllPosts } from "~/lib/content.server";
 import type { Route } from "./+types/blog._index";
 
@@ -54,11 +56,53 @@ const CATEGORY_COLORS: Record<string, string> = {
   Général: "badge-neutral",
 };
 
+const CATEGORY_BUTTON_COLORS: Record<string, string> = {
+  "Web Performance": "btn-primary",
+  Automatisation: "btn-secondary",
+  "Éco-conception": "btn-success",
+  Général: "btn-neutral",
+};
+
 export default function BlogIndex({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData;
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  // Catégories uniques avec comptage, ordre de première apparition (par date décroissante)
+  const categories = Array.from(
+    posts.reduce((acc, p) => {
+      acc.set(p.category, (acc.get(p.category) ?? 0) + 1);
+      return acc;
+    }, new Map<string, number>())
+  );
+
+  const filteredPosts = activeCategory
+    ? posts.filter((p) => p.category === activeCategory)
+    : posts;
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://pierrebarbe.ca/blog",
+    name: "Blog — Pierre Barbé",
+    description:
+      "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
+    url: "https://pierrebarbe.ca/blog",
+    inLanguage: "fr-CA",
+    author: { "@id": "https://pierrebarbe.ca/#person" },
+    blogPost: posts.map((p) => ({
+      "@type": "BlogPosting",
+      "@id": `https://pierrebarbe.ca/blog/${p.slug}#article`,
+      headline: p.title,
+      url: `https://pierrebarbe.ca/blog/${p.slug}`,
+      datePublished: p.date,
+      articleSection: p.category,
+    })),
+  };
 
   return (
     <div className="bg-base-100 font-urbanist min-h-screen">
+      <JsonLd data={blogSchema} />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs items={[{ label: "Accueil", href: "/" }, { label: "Blog" }]} />
       </div>
@@ -84,15 +128,61 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
       {/* Articles */}
       <section className="pb-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+
+          {/* Filtre catégories */}
+          {posts.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filtrer par catégorie">
+              <button
+                onClick={() => setActiveCategory(null)}
+                className={`btn btn-sm rounded-full transition-all ${
+                  activeCategory === null
+                    ? "btn-primary"
+                    : "btn-ghost border border-base-content/20 hover:border-primary/40"
+                }`}
+                aria-pressed={activeCategory === null}
+              >
+                Tous
+                <span className="badge badge-sm ml-1.5">{posts.length}</span>
+              </button>
+              {categories.map(([cat, count]) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
+                  className={`btn btn-sm rounded-full transition-all ${
+                    activeCategory === cat
+                      ? (CATEGORY_BUTTON_COLORS[cat] ?? "btn-primary")
+                      : "btn-ghost border border-base-content/20 hover:border-primary/40"
+                  }`}
+                  aria-pressed={activeCategory === cat}
+                >
+                  {cat}
+                  <span className="badge badge-sm ml-1.5">{count}</span>
+                </button>
+              ))}
+            </div>
+          )}
+
           {posts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-base-content/60 text-lg">
                 Aucun article pour le moment. Revenez bientôt !
               </p>
             </div>
+          ) : filteredPosts.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-base-content/60 text-lg">
+                Aucun article dans cette catégorie pour le moment.
+              </p>
+              <button
+                onClick={() => setActiveCategory(null)}
+                className="btn btn-ghost btn-sm mt-4 text-primary"
+              >
+                Voir tous les articles
+              </button>
+            </div>
           ) : (
             <div className="space-y-8">
-              {posts.map((post) => (
+              {filteredPosts.map((post) => (
                 <article
                   key={post.slug}
                   className="card bg-base-100 border border-base-content/10 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
@@ -154,7 +244,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           {/* CTA contact */}
           <div className="mt-16 text-center">
             <p className="text-base-content/70 mb-4">
-              Un sujet que tu aimerais que j'aborde ?
+              Un sujet que vous aimeriez que j&apos;aborde ?
             </p>
             <Link to="/contact" className="btn btn-primary rounded-full px-8">
               Suggérer un article
