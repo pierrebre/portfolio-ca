@@ -59,6 +59,48 @@ export function Layout({ children }: { children: React.ReactNode }) {
           href="/blog/feed.xml"
         />
 
+        {/* Schema global : WebSite + Person + Organization (Knowledge Graph) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": "https://pierrebarbe.ca/#website",
+                  url: "https://pierrebarbe.ca",
+                  name: "Pierre Barbé",
+                  description:
+                    "Développeur web freelance à Montréal — web performance, automatisation et solutions web pour PME québécoises.",
+                  inLanguage: "fr-CA",
+                  publisher: { "@id": "https://pierrebarbe.ca/#person" },
+                },
+                {
+                  "@type": "Person",
+                  "@id": "https://pierrebarbe.ca/#person",
+                  name: "Pierre Barbé",
+                  url: "https://pierrebarbe.ca",
+                  jobTitle: "Développeur web freelance",
+                  worksFor: { "@id": "https://pierrebarbe.ca/#organization" },
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Montréal",
+                    addressRegion: "QC",
+                    addressCountry: "CA",
+                  },
+                },
+                {
+                  "@type": "Organization",
+                  "@id": "https://pierrebarbe.ca/#organization",
+                  name: "Pierre Barbé Web",
+                  url: "https://pierrebarbe.ca",
+                  founder: { "@id": "https://pierrebarbe.ca/#person" },
+                },
+              ],
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
         <meta property="og:site_name" content="Pierre Barbé Web" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="fr_CA" />

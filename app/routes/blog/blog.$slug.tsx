@@ -39,14 +39,17 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "333" },
+    { property: "og:image:alt", content: post.title },
     { property: "og:type", content: "article" },
     { property: "og:locale", content: "fr_CA" },
     { property: "article:published_time", content: post.date },
     { property: "article:author", content: "Pierre Barbé" },
     { property: "article:section", content: post.category },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
     { name: "twitter:title", content: post.title },
     { name: "twitter:description", content: post.description },
     { name: "twitter:image", content: image },
+    { name: "twitter:image:alt", content: post.title },
   ];
 }
 
@@ -101,6 +104,22 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           { "@type": "ListItem", position: 3, name: post.title, item: url },
         ],
       },
+      ...(post.faq && post.faq.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${url}#faq`,
+              mainEntity: post.faq.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.answer,
+                },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -170,21 +189,17 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         {/* Contenu MDX rendu côté serveur */}
         <div
           className="prose prose-base md:prose-lg max-w-none mt-10
-            prose-headings:font-bold prose-headings:text-base-content
+            prose-headings:font-bold
             prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
-            prose-h2:mt-10 prose-h3:mt-6
-            prose-p:text-base-content/80 prose-p:leading-relaxed
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-base-content prose-strong:font-semibold
-            prose-code:text-primary prose-code:bg-base-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
-            prose-pre:bg-base-200 prose-pre:border prose-pre:border-base-content/10 prose-pre:rounded-xl
-            prose-blockquote:border-l-primary prose-blockquote:text-base-content/70
-            prose-ul:text-base-content/80 prose-ol:text-base-content/80
-            prose-li:marker:text-primary
-            prose-table:text-sm
-            prose-th:text-base-content prose-th:bg-base-200
-            prose-td:text-base-content/80
-            prose-hr:border-base-content/10"
+            prose-h2:mt-10 prose-h3:mt-6 prose-h3:mb-2
+            prose-p:leading-relaxed
+            prose-a:no-underline hover:prose-a:underline
+            prose-code:text-sm prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+            prose-code:before:content-none prose-code:after:content-none
+            [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-base-content/10
+            prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-l-4
+            [&_blockquote]:rounded-r-xl [&_blockquote]:bg-primary/5 [&_blockquote]:py-4
+            prose-table:text-sm [&_thead_th]:bg-base-200"
           dangerouslySetInnerHTML={{ __html: post.html }}
           aria-label={`Contenu de l'article : ${post.title}`}
         />

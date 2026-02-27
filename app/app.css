@@ -85,3 +85,62 @@
   src: url("/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2")
     format("woff2");
 }
+
+/* ============================================================
+   @tailwindcss/typography — activation + thème DaisyUI
+   ============================================================ */
+@plugin "@tailwindcss/typography";
+
+/*
+ * Surcharge des variables de couleur du plugin pour respecter
+ * le thème DaisyUI dynamique (light/dark/custom via data-theme).
+ * color-mix() permet les variantes d'opacité sur des CSS variables.
+ */
+.prose {
+  /* Corps du texte */
+  --tw-prose-body: color-mix(in oklab, var(--color-base-content) 80%, transparent);
+  --tw-prose-lead: color-mix(in oklab, var(--color-base-content) 70%, transparent);
+  /* Titres */
+  --tw-prose-headings: var(--color-base-content);
+  /* Liens */
+  --tw-prose-links: var(--color-primary);
+  /* Gras */
+  --tw-prose-bold: var(--color-base-content);
+  /* Listes */
+  --tw-prose-bullets: var(--color-primary);
+  --tw-prose-counters: var(--color-primary);
+  /* Séparateurs */
+  --tw-prose-hr: color-mix(in oklab, var(--color-base-content) 10%, transparent);
+  /* Citations */
+  --tw-prose-quotes: color-mix(in oklab, var(--color-base-content) 70%, transparent);
+  --tw-prose-quote-borders: var(--color-primary);
+  /* Code inline */
+  --tw-prose-code: var(--color-primary);
+  /* Blocs de code */
+  --tw-prose-pre-code: color-mix(in oklab, var(--color-base-content) 90%, transparent);
+  --tw-prose-pre-bg: var(--color-base-200);
+  /* Tableaux */
+  --tw-prose-th-borders: color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  --tw-prose-td-borders: color-mix(in oklab, var(--color-base-content) 10%, transparent);
+  /* Légendes */
+  --tw-prose-captions: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+}
+
+/* Tables : défilement horizontal sur mobile */
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Task list items générés par remark-gfm (- [ ] / - [x]) */
+.prose .task-list-item {
+  list-style: none;
+  margin-left: -1.5rem;
+}
+
+.prose .task-list-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: var(--color-primary);
+}

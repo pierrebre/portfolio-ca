@@ -15,6 +15,11 @@ import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 
 const CONTENT_DIR = join(process.cwd(), "content", "blog");
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface PostMeta {
   slug: string;
   title: string;
@@ -24,6 +29,7 @@ export interface PostMeta {
   readingTime: number;
   excerpt: string;
   image?: string;
+  faq?: FaqItem[];
 }
 
 export interface PostContent extends PostMeta {
@@ -63,6 +69,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
           readingTime: estimateReadingTime(content),
           excerpt: String(data.excerpt ?? ""),
           image: data.image ? String(data.image) : undefined,
+          faq: Array.isArray(data.faq) ? (data.faq as FaqItem[]) : undefined,
         };
       })
     );
@@ -107,6 +114,7 @@ export async function getPost(slug: string): Promise<PostContent | null> {
       readingTime: estimateReadingTime(content),
       excerpt: String(data.excerpt ?? ""),
       image: data.image ? String(data.image) : undefined,
+      faq: Array.isArray(data.faq) ? (data.faq as FaqItem[]) : undefined,
       html,
     };
   } catch (err) {
