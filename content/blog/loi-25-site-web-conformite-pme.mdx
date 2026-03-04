@@ -1,0 +1,201 @@
+---
+title: "Loi 25 et votre site web : guide de conformité pour PME"
+description: "Votre site web est-il conforme à la Loi 25 ? Cookies, consentement, politique de confidentialité — guide pratique pour PME québécoises par un développeur web."
+date: "2026-03-04"
+category: "Général"
+excerpt: "Depuis septembre 2024, la Loi 25 s'applique pleinement à toutes les entreprises québécoises. Amendes jusqu'à 25 M$, obligations sur les cookies et la politique de confidentialité — voici les 5 actions concrètes à mettre en place sur votre site web."
+faq:
+  - question: "La Loi 25 s'applique-t-elle à mon entreprise si je suis hors Québec ?"
+    answer: "Oui. La Loi 25 s'applique à toute entreprise qui collecte des renseignements personnels de résidents québécois — peu importe où l'entreprise est basée. Si vous avez des clients au Québec et que votre site web leur collecte des données (même juste leur courriel via un formulaire de contact), vous êtes concerné."
+  - question: "Quelle est la différence entre la Loi 25 et le RGPD européen ?"
+    answer: "Les deux lois visent à protéger les données personnelles, mais la Loi 25 est adaptée au contexte québécois. Elle est inspirée du RGPD mais avec ses propres obligations, délais et instances de contrôle (la CAI — Commission d'accès à l'information). Si votre site est conforme au RGPD, vous êtes probablement proche de la conformité Loi 25, mais pas nécessairement à 100 % — vérifiez avec un conseiller juridique."
+  - question: "Est-ce qu'une bannière de cookies suffit pour être conforme à la Loi 25 ?"
+    answer: "Non. Une bannière seule ne suffit pas. Pour être conforme, vous devez obtenir un consentement explicite avant d'activer les cookies non essentiels (analytics, marketing), permettre aux utilisateurs de refuser sans conséquence, documenter les consentements, et offrir la possibilité de retirer le consentement à tout moment. Une simple bannière « En continuant à naviguer, vous acceptez » ne répond pas à ces exigences."
+  - question: "Quelles sont les sanctions prévues par la Loi 25 ?"
+    answer: "Les amendes vont de 1 000 $ à 25 millions de dollars, ou jusqu'à 4 % du chiffre d'affaires mondial de l'entreprise si ce montant est plus élevé. La Commission d'accès à l'information (CAI) peut aussi ordonner des mesures correctives. Les amendes les plus lourdes visent les manquements délibérés ou répétés — mais même une PME peut faire l'objet d'une enquête suite à une plainte d'un consommateur."
+---
+
+Votre site web collecte des données personnelles — un formulaire de contact suffit. Depuis septembre 2024, la Loi 25 s'applique pleinement à TOUTES les entreprises québécoises. Et les amendes ne sont pas symboliques : jusqu'à 25 millions de dollars ou 4 % de votre chiffre d'affaires mondial.
+
+Ce guide explique concrètement ce qu'un propriétaire de PME doit faire sur son site web pour être conforme. Sans jargon juridique, sans fausse simplicité. J'accompagne des PME québécoises dans la mise en conformité technique de leur site au quotidien — voici ce que j'observe sur le terrain.
+
+**Importante précision :** cet article couvre l'aspect technique et web de la conformité. Pour les obligations légales complètes (contrats, politique interne, registre des incidents), consultez un conseiller juridique ou la Commission d'accès à l'information du Québec (cai.quebec.ca).
+
+## La Loi 25, c'est quoi exactement ?
+
+La Loi modernisant des dispositions législatives en matière de protection des renseignements personnels — connue sous le nom de Loi 25 — a été adoptée en 2021. Son déploiement s'est fait en trois phases : 2022, 2023, et septembre 2024 pour son application complète.
+
+En pratique, elle modernise la protection des renseignements personnels au Québec. Elle s'inspire du RGPD européen, mais elle est adaptée au contexte québécois et supervisée par la Commission d'accès à l'information (CAI).
+
+**Qui est concerné ?**
+
+Toute organisation qui collecte, utilise ou communique des renseignements personnels de Québécois — peu importe où l'organisation est basée. Un formulaire de contact sur votre site suffit. Un système d'infolettre suffit. Google Analytics suffit.
+
+**Les amendes :**
+
+- Amendes pénales : jusqu'à 25 millions de dollars ou 4 % du chiffre d'affaires mondial
+- Amendes administratives : jusqu'à 10 millions de dollars ou 2 % du CA mondial
+
+50 % des internautes québécois s'inquiètent de la façon dont leurs données circulent en ligne (Léger 2023). La Loi 25 répond directement à cette préoccupation — et donne aux consommateurs des droits concrets.
+
+## Ce que la Loi 25 exige sur votre site web (concrètement)
+
+### Politique de confidentialité
+
+Vous devez avoir une politique de confidentialité publiée sur votre site, rédigée en termes clairs et simples. Elle doit expliquer :
+
+- Quels renseignements personnels vous collectez (nom, courriel, adresse IP, comportement de navigation)
+- Pourquoi vous les collectez et comment vous les utilisez
+- Combien de temps vous les conservez
+- Qui y a accès (votre équipe, les sous-traitants, les tiers)
+- Les droits des personnes concernées (accès, correction, suppression, portabilité)
+- Les coordonnées du responsable de la protection des renseignements personnels
+
+Elle doit être facilement accessible — un lien dans le pied de page de chaque page est la pratique standard.
+
+### Consentement pour les cookies et les traceurs
+
+C'est ici que la Loi 25 change vraiment les pratiques.
+
+**Avant :** une bannière « En continuant à naviguer, vous acceptez nos cookies » suffisait pour la plupart des sites.
+
+**Depuis septembre 2024 :** le consentement doit être explicite, libre, éclairé et spécifique avant l'activation de tout cookie non essentiel.
+
+Ce que ça veut dire concrètement :
+
+- Les cookies strictement nécessaires au fonctionnement du site (session, panier) : pas de consentement requis
+- Les cookies analytiques (Google Analytics) : consentement requis avant activation
+- Les cookies publicitaires et de reciblage : consentement requis avant activation
+- Le visiteur doit pouvoir refuser facilement, et ce refus ne doit pas bloquer l'accès au site
+
+Un système de gestion du consentement (CMP — Consent Management Platform) avec options granulaires est nécessaire pour répondre à ces exigences.
+
+### Formulaires de collecte et transparence
+
+Chaque formulaire qui collecte des renseignements personnels doit :
+
+- Indiquer clairement pourquoi vous collectez ces informations
+- Inclure un lien vers votre politique de confidentialité à proximité du bouton d'envoi
+- Ne collecter que les données strictement nécessaires à votre usage réel
+
+Cette dernière obligation, souvent appelée le principe de minimisation des données, signifie concrètement : si vous ne téléphonez jamais à vos prospects, ne demandez pas leur numéro de téléphone.
+
+### Droit de portabilité et suppression
+
+Depuis septembre 2024, vos visiteurs ont des droits renforcés :
+
+- Droit d'accès : savoir quelles données vous détenez sur eux
+- Droit de correction : rectifier des données inexactes
+- Droit de suppression : demander l'effacement de leurs données
+- Droit de portabilité : recevoir leurs données dans un format structuré et lisible
+
+Votre site web — et vos processus internes — doivent être en mesure de répondre à ces demandes dans un délai raisonnable (30 jours selon les bonnes pratiques).
+
+## Les 5 actions techniques à mettre en place sur votre site
+
+### Action 1 — Installer un système de consentement cookies conforme
+
+C'est l'action la plus visible et la plus fréquemment manquante. Vous avez besoin d'une solution qui :
+
+- Affiche les options de consentement avant d'activer les cookies non essentiels
+- Distingue les catégories de cookies (essentiels, analytiques, marketing)
+- Mémorise le choix de l'utilisateur
+- Permet de changer d'avis facilement
+
+Des solutions comme **Byscuit** (outil québécois développé par Vortex Solution, conçu spécifiquement pour les obligations canadiennes et québécoises), **Cookieyes** ou **Axeptio** répondent à ces exigences. L'implémentation se fait généralement via un code JavaScript à intégrer sur votre site, ou via un plugin WordPress.
+
+**La différence opt-in vs opt-out :**
+
+- Opt-in (conforme) : les cookies non essentiels sont désactivés par défaut, l'utilisateur doit les activer
+- Opt-out (non conforme) : les cookies sont activés par défaut, l'utilisateur peut les désactiver
+
+La Loi 25 exige le modèle opt-in.
+
+### Action 2 — Rédiger et publier une politique de confidentialité
+
+Votre politique de confidentialité doit être rédigée en français clair, publiée sur votre site, et à jour.
+
+**Ce que je constate chez mes clients :** la majorité ont une politique générée automatiquement par WordPress ou copiée-collée d'un site américain puis traduite approximativement. Ces documents sont généralement insuffisants — ils ne couvrent pas les spécificités de la Loi 25, ils ne mentionnent pas la CAI, et ils utilisent des formulations qui ne correspondent pas à vos pratiques réelles.
+
+Ma recommandation : faites rédiger la politique de confidentialité par un juriste ou un conseiller en protection des données pour le contenu légal. La partie technique — quels cookies, quels outils tiers, où sont hébergées vos données — c'est ce que je configure pour mes clients.
+
+### Action 3 — Configurer Google Analytics pour respecter le consentement
+
+Google Analytics collecte des données sur le comportement de vos visiteurs — ce qui, en vertu de la Loi 25, nécessite leur consentement explicite.
+
+La configuration requiert d'activer le **mode consentement de Google (Google Consent Mode v2)** et de connecter votre CMP à Google Analytics, de sorte que la collecte de données ne s'active qu'après que l'utilisateur a consenti.
+
+**Impact concret :** vous verrez moins de données dans Google Analytics — les utilisateurs qui refusent les cookies analytiques ne seront pas comptabilisés. C'est inévitable et légalement requis. Des modèles de conversion permettent d'estimer les données manquantes, mais la baisse de volume de données est réelle.
+
+### Action 4 — Auditer et améliorer vos formulaires
+
+Pour chaque formulaire de contact, d'inscription ou de commande sur votre site :
+
+1. Ajoutez une mention légale sous le formulaire : « Les informations collectées sont utilisées pour [usage précis]. Consultez notre politique de confidentialité pour en savoir plus. »
+2. Supprimez les champs non essentiels
+3. Vérifiez où sont stockées les données soumises (hébergeur, CRM, outil de marketing)
+4. Si vos données sont traitées par un outil américain (Mailchimp, HubSpot, ActiveCampaign), vérifiez vos obligations ÉFVP
+
+### Action 5 — Créer un processus pour répondre aux demandes
+
+Quand un consommateur vous demande ses données ou leur suppression, vous avez besoin d'un processus pour y répondre. Ça n'a pas besoin d'être compliqué pour une PME :
+
+- Désignez un responsable de la protection des renseignements personnels (une personne dans votre organisation)
+- Documentez où sont stockées les données personnelles que vous collectez
+- Établissez un processus pour retrouver et exporter les données d'une personne si demandé
+- Établissez un processus pour supprimer les données d'une personne si demandé
+- Ce processus doit être documenté par écrit
+
+## L'ÉFVP — quand vos données quittent le Québec
+
+Si vous utilisez des outils avec des serveurs hors Québec — ce qui est très courant (Mailchimp, HubSpot, Stripe, Google, etc.) — vous avez une obligation supplémentaire : réaliser une **Évaluation des facteurs relatifs à la vie privée (ÉFVP)** avant de communiquer des renseignements personnels hors Québec.
+
+L'ÉFVP est une analyse qui évalue si le niveau de protection du pays destinataire est adéquat et documente les mesures prises pour protéger les données malgré le transfert.
+
+**En pratique pour une PME :**
+
+L'utilisation d'outils SaaS américains populaires (Google, Stripe, Mailchimp) ne vous exempte pas de cette obligation. Cependant, l'ÉFVP peut être légère et pratique si les outils ont des certifications de sécurité reconnues et des clauses contractuelles adéquates.
+
+Un hébergement au Canada réduit considérablement cette complexité pour les données de votre site web. C'est l'une des raisons pour lesquelles je recommande systématiquement un hébergement canadien à mes clients — performance et conformité vont de pair. Si vous prévoyez une [optimisation de performance avec migration d'hébergement](/blog/optimisation-vitesse-wordpress), c'est l'occasion idéale de passer à un hébergeur canadien.
+
+## Les erreurs de conformité que je vois le plus souvent
+
+Après avoir accompagné des dizaines de PME québécoises dans la mise en conformité technique de leur site, voici les problèmes qui reviennent systématiquement.
+
+**Politique de confidentialité copiée-collée d'un template anglais**
+
+Un template américain traduit automatiquement ne couvre pas les spécificités de la Loi 25. Il ne mentionne pas la CAI, ne couvre pas les droits spécifiques aux Québécois, et utilise souvent des formulations légales américaines inadaptées. C'est mieux que rien, mais insuffisant.
+
+**Bannière de cookies qui ne bloque pas vraiment les cookies**
+
+Beaucoup de sites affichent une bannière de cookies, mais Google Analytics continue de charger et de collecter des données même si l'utilisateur n'a pas consenti. Pourquoi ? Parce que le code de suivi est dans le thème ou dans un plugin, et la bannière n'est pas connectée à ce code. Ce n'est pas de la conformité — c'est de l'affichage.
+
+**Google Analytics sans mode consentement activé**
+
+Si votre Google Analytics n'est pas configuré avec le mode consentement v2, il collecte des données sur tous vos visiteurs, avec ou sans leur accord. C'est la situation de la majorité des sites WordPress que j'audite.
+
+**Aucun responsable des données identifié**
+
+La Loi 25 exige que le nom et les coordonnées du responsable de la protection des renseignements personnels soient publiés sur votre site. Dans la majorité des cas, c'est simplement le propriétaire de l'entreprise — mais il faut que ce soit documenté et visible.
+
+**Trop de données collectées par les formulaires**
+
+« On collecte le numéro de téléphone au cas où » — c'est une pratique que la Loi 25 veut éliminer. Si vous ne l'utilisez pas, ne le collectez pas.
+
+**Données hébergées aux États-Unis sans ÉFVP**
+
+L'utilisation d'un hébergeur américain ou d'un CRM américain sans ÉFVP réalisée est un manquement potentiel. Ce n'est pas nécessairement intentionnel — la plupart des propriétaires de PME ne réalisent pas que leur hébergement est concerné.
+
+---
+
+La conformité Loi 25 n'est pas un projet ponctuel — c'est un processus continu. Elle fait partie d'un [plan de maintenance régulier de votre site web](/blog/maintenance-site-web-pme-guide), au même titre que les mises à jour de sécurité. Et si vous utilisez WordPress, un [audit de performance complet](/blog/audit-performance-site-web) est souvent le meilleur point de départ pour avoir une vue globale de l'état technique de votre site — conformité incluse.
+
+Si vous cherchez un [développeur web à Montréal](/blog/developpeur-web-freelance-montreal) qui connaît les obligations québécoises, c'est un critère à ne pas négliger dans votre évaluation.
+
+---
+
+> 💡 **Besoin de mettre votre site en conformité avec la Loi 25 ?**
+>
+> J'accompagne les PME québécoises dans la mise en conformité technique de leur site — politique de confidentialité, bandeau cookies conforme, configuration Google Analytics avec mode consentement, audit des formulaires. Discutons de votre situation.
+>
+> [→ Prendre contact](https://www.pierrebarbe.ca/contact)

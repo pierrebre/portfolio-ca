@@ -1,6 +1,6 @@
 ---
-title: "Chatbot IA pour PME : guide pratique d'intégration"
-description: "Un chatbot IA est-il pertinent pour votre PME ? Cas d'usage concrets, coûts réels, étapes d'intégration WordPress. Guide honnête par un développeur terrain à Montréal."
+title: "Chatbot IA pour PME : guide complet 2026"
+description: "Réduisez jusqu'à 50 % vos demandes répétitives avec un chatbot IA. Guide honnête pour PME québécoises : coûts réels, cas d'usage, intégration WordPress."
 date: "2026-02-05"
 category: "Général"
 excerpt: "Tout le monde parle de chatbots IA, mais est-ce vraiment utile pour votre PME québécoise ? Voici un guide honnête : quand ça vaut le coup, quand ça ne vaut pas la peine, et comment bien démarrer."
@@ -13,6 +13,8 @@ faq:
     answer: "Pour une solution clé en main comme Tidio ou Crisp, non — c'est un plugin à installer et configurer. Pour un chatbot personnalisé entraîné sur vos données (documents internes, catalogue produits, FAQ spécifique), oui, un développeur est nécessaire pour construire la pipeline RAG (retrieval-augmented generation) et l'intégration sur mesure. La différence de résultat est significative."
   - question: "Mon chatbot doit-il fonctionner en français pour une PME québécoise ?"
     answer: "Absolument. GPT-4, Claude et les modèles de Mistral AI fonctionnent très bien en français canadien. La qualité de réponse en français est maintenant comparable à l'anglais pour les tâches courantes. Veillez à entraîner votre chatbot sur des données en français (vos textes, FAQ, catalogue) et à tester les réponses avec des questions typiquement québécoises."
+  - question: "Le chatbot collecte-t-il des données soumises à la Loi 25 ?"
+    answer: "Oui. Dès que votre chatbot collecte le prénom, le courriel ou toute information personnelle d'un visiteur québécois, la Loi 25 s'applique. Cela signifie : informer l'utilisateur de ce que vous collectez et pourquoi, obtenir son consentement, et être en mesure de supprimer ses données sur demande. Une solution hébergée au Canada réduit aussi les obligations liées au transfert de données hors Québec."
 ---
 
 Vous entendez parler d'intelligence artificielle partout. ChatGPT, chatbots, assistants virtuels — on dirait que toutes les entreprises s'y mettent. Mais quand vous gérez une PME au Québec, la question n'est pas « est-ce que l'IA existe ». C'est : « est-ce que ça vaut le coup pour MON business ? »
@@ -109,12 +111,20 @@ Un chatbot n'est pas une installation unique que vous oubliez. Il nécessite une
 
 Il y a trois grandes catégories de solutions, chacune avec ses avantages et ses limites.
 
+| Solution | Coût mensuel | Installation | Personnalisation | Données |
+|---|---|---|---|---|
+| Crisp | ~25 €/mois | Plugin WP (facile) | Limitée | Serveurs EU |
+| Tidio | Gratuit → 29 $/mois | Plugin WP (facile) | Moyenne | USA |
+| Solution sur mesure | 20-50 $/mois (API) | Développeur requis | Totale | Canada possible |
+
 **Solutions SaaS clé en main**
 
 Des outils comme Crisp (environ 25 €/mois), Tidio (gratuit jusqu'à un certain volume, puis 29 $/mois) ou Botnation permettent d'avoir un chatbot opérationnel en quelques heures. L'interface de configuration est accessible sans développeur.
 
 Avantages : rapide à mettre en place, support intégré, mises à jour automatiques.
 Limites : personnalisation restreinte, données hébergées sur des serveurs étrangers (souvent américains), fonctionnalités avancées payantes.
+
+**Un point sur la Loi 25 :** si votre chatbot collecte des informations personnelles de visiteurs québécois (prénom, courriel, numéro de téléphone), la [Loi 25](/blog/loi-25-site-web-conformite-pme) s'applique. Vous devez informer l'utilisateur de ce que vous collectez et pourquoi, et être en mesure de supprimer ses données sur demande. Une solution hébergée au Canada simplifie cette conformité.
 
 **Solution sur mesure (avec les outils IA actuels)**
 
