@@ -1,0 +1,263 @@
+---
+title: "Maintenance de site web : guide essentiel pour les PME"
+description: "Mises à jour, sécurité, sauvegardes — votre site a besoin d'entretien régulier. Pourquoi la maintenance évite les pannes coûteuses et combien ça coûte."
+date: "2026-03-21"
+category: "Général"
+excerpt: "Votre site web est comme votre voiture — sans entretien régulier, il finit par tomber en panne au pire moment. 73 % des PME canadiennes ont subi un incident de cybersécurité. Voici pourquoi la maintenance n'est pas optionnelle et comment la structurer."
+faq:
+  - question: "À quelle fréquence faut-il effectuer la maintenance d'un site WordPress ?"
+    answer: "Au minimum, une fois par mois : mises à jour WordPress, plugins et thèmes (testées en staging), vérification des sauvegardes, scan de sécurité et vérification de la performance. Chaque trimestre : nettoyage de la base de données, test de restauration de backup, audit de sécurité approfondi. Chaque année : audit complet de performance et vérification de conformité Loi 25."
+  - question: "Peut-on activer les mises à jour automatiques sur WordPress ?"
+    answer: "Oui, partiellement. Les mises à jour mineures (correctifs de sécurité comme 6.4.1 → 6.4.2) peuvent être automatisées sans risque. Les mises à jour majeures (6.4 → 6.5) doivent être testées d'abord sur un environnement de staging — elles peuvent parfois créer des conflits avec des thèmes ou plugins. Les mises à jour de plugins majeurs suivent la même logique : automatiser les mineurs, tester les majeurs."
+  - question: "Qu'est-ce qu'un environnement de staging et en ai-je besoin ?"
+    answer: "Un environnement de staging est une copie de votre site utilisée pour tester les modifications avant de les appliquer en production. Pour un site vitrine simple, un staging peut sembler excessif — mais pour un site e-commerce, un site avec un formulaire de prise de rendez-vous ou tout site qui génère des revenus, le staging est une nécessité. Une mise à jour qui casse le site en production, c'est des ventes perdues pendant la réparation."
+  - question: "Quelle est la différence entre maintenance préventive et maintenance curative ?"
+    answer: "La maintenance préventive, c'est l'entretien régulier qui évite les pannes : mises à jour, sauvegardes, monitoring. La maintenance curative, c'est la réparation après un problème : site piraté, erreur 500, page cassée après une mise à jour. Le ratio coût est sans appel : 1 heure de maintenance préventive mensuelle évite généralement 5 à 20 heures de maintenance curative par incident."
+---
+
+Votre site web, c'est comme votre voiture — si vous ne faites jamais d'entretien, il finit par tomber en panne au pire moment. Sauf qu'un site web en panne, ça ne vous laisse pas sur le bord de la route : ça vous fait perdre des clients, des commandes et de la crédibilité.
+
+73 % des PME canadiennes ont déjà subi au moins un incident de cybersécurité (BDC). Des mises à jour WordPress ignorées pendant 6 mois, c'est une porte ouverte pour les pirates. Et pourtant, la majorité des PME québécoises que je rencontre n'ont aucun plan de maintenance structuré.
+
+La bonne nouvelle : mettre en place une maintenance efficace n'est pas compliqué. Voici comment.
+
+## Pourquoi la maintenance n'est pas optionnelle
+
+### Sécurité
+
+WordPress est la cible numéro 1 des cyberattaques web — parce qu'il représente 43 % du web mondial, c'est une cible rentable pour les pirates. La majorité des piratages réussis exploitent des failles dans des plugins ou thèmes non mis à jour.
+
+Un plugin non mis à jour depuis 6 mois contient probablement des vulnérabilités connues. Connues des pirates, aussi.
+
+Si votre site collecte des données personnelles — ne serait-ce qu'un formulaire de contact — la [Loi 25](/blog/loi-25-site-web-conformite-pme) vous oblige à prendre des mesures raisonnables pour protéger ces données. Une faille de sécurité due à un plugin non mis à jour n'est pas une excuse légale valable.
+
+### Performance
+
+Un site non maintenu ralentit progressivement. Chaque plugin ajouté, chaque image uploadée sans compression, chaque version de PHP vieillissante dégrade les performances. Un site qui mettait 2 secondes à charger peut atteindre 5 secondes en 18 mois sans maintenance.
+
+Google pénalise les sites lents dans ses résultats de recherche via les [Core Web Vitals](/blog/core-web-vitals-guide-pme). Une performance qui se dégrade silencieusement, c'est un référencement qui régresse.
+
+### Disponibilité
+
+Un plugin incompatible peut mettre votre site hors ligne. Une mise à jour PHP incompatible peut afficher une page blanche à tous vos visiteurs. Un hébergeur qui migre ses serveurs peut causer des interruptions temporaires.
+
+Sans surveillance proactive, vous apprendrez ces problèmes de la bouche d'un client qui ne peut pas vous joindre — pas d'une alerte de monitoring.
+
+### Le coût de la non-maintenance
+
+Réparer un site piraté coûte entre 500 $ et 3 500 $ selon la gravité. Restaurer un site après une mise à jour ratée : 1 à 5 heures de travail. Récupérer un site sans backup propre : parfois impossible.
+
+Un forfait de maintenance mensuel à 200 $ est toujours moins cher qu'une urgence à 1 500 $.
+
+## Les 6 piliers de la maintenance d'un site web
+
+### 1. Mises à jour régulières
+
+WordPress core, thèmes et plugins — au minimum une fois par mois.
+
+**Mon processus pour chaque client :**
+
+1. Sauvegarde complète avant toute mise à jour (filet de sécurité)
+2. Application des mises à jour sur l'environnement de staging en premier
+3. Vérification visuelle des pages clés (accueil, contact, pages de services)
+4. Si tout est bon : application en production
+5. Vérification post-mise à jour avec un scan rapide
+
+Pour PHP : rester sur une version supportée est important pour la sécurité ET la performance. En 2026, PHP 8.2 ou 8.3 est la cible. PHP 7.4 n'est plus supporté depuis fin 2022 — s'il tourne encore sur votre serveur, c'est une vulnérabilité active.
+
+### 2. Sauvegardes automatiques
+
+Les sauvegardes sont votre assurance vie. Sans elles, un problème sérieux peut signifier la perte totale du site.
+
+**La stratégie que j'applique :**
+
+- Sauvegarde complète quotidienne (fichiers + base de données)
+- Stockage hors serveur (Google Drive, Amazon S3, ou Dropbox) — ne jamais garder les backups uniquement sur le même serveur que le site
+- Conservation de 30 jours d'historique minimum
+- Test de restauration complet chaque trimestre
+
+Le test de restauration est souvent oublié. Un backup qui ne se restaure pas correctement, c'est un backup qui ne sert à rien. Je teste la restauration chez chaque client tous les 3 mois.
+
+Outils : **UpdraftPlus** (gratuit pour l'essentiel), **BlogVault** (payant, idéal pour l'e-commerce).
+
+### 3. Surveillance de sécurité
+
+Les mises à jour préventives ne suffisent pas. Un monitoring actif permet de détecter les problèmes avant qu'ils causent des dégâts visibles.
+
+**Ce que je surveille :**
+
+- Scan de malware hebdomadaire (avec Wordfence ou Sucuri)
+- Tentatives de connexion suspectes (brute force)
+- Intégrité des fichiers core de WordPress (modifications non autorisées)
+- Statut SSL (certificat expiré = Chrome affiche une erreur à vos visiteurs)
+
+Si votre site est en rouge dans Google Safe Browsing, c'est une urgence : tous les utilisateurs de Chrome verront un avertissement avant d'accéder à votre site. Ça peut durer des jours si vous ne réagissez pas vite.
+
+Mon [guide des 8 mesures essentielles de sécurité WordPress](/blog/securite-wordpress-guide-pme) détaille chaque protection à mettre en place.
+
+### 4. Monitoring de performance
+
+Les [Core Web Vitals](/blog/core-web-vitals-guide-pme) se dégradent avec le temps — chaque nouveau plugin, chaque image ajoutée peut avoir un impact cumulatif.
+
+**Ce que je vérifie chaque mois :**
+
+- Score Google PageSpeed Insights mobile
+- LCP, INP et CLS (Core Web Vitals)
+- Temps de réponse du serveur (TTFB)
+- Disponibilité du site (uptime)
+
+**Outils :**
+
+- **UptimeRobot** (gratuit) : surveille la disponibilité et envoie une alerte SMS si le site tombe
+- **Google Search Console** : rapport Core Web Vitals par groupe d'URLs
+- **PageSpeed Insights** : mesure mensuelle pour détecter les dérives
+
+### 5. Nettoyage de la base de données
+
+WordPress accumule silencieusement des données inutiles qui alourdissent les requêtes et ralentissent le site.
+
+**Ce qui s'accumule :**
+
+- Révisions d'articles (WordPress en garde une par modification — sur 100 articles avec 20 modifications chacun, c'est 2 000 lignes inutiles)
+- Transients expirés (données temporaires jamais nettoyées)
+- Commentaires spam
+- Tables orphelines laissées par d'anciens plugins
+- Entrées de log de plugins de sécurité ou de cache
+
+**Fréquence recommandée :** chaque trimestre minimum.
+
+**Outil :** **WP-Optimize** (gratuit) — nettoie la base de données en quelques clics. Faites toujours une sauvegarde avant.
+
+### 6. Veille et conformité
+
+La conformité ne se fait pas une fois et reste valable indéfiniment. Les outils changent, les pratiques évoluent, et la Loi 25 est précisée par la Commission d'accès à l'information au fil du temps.
+
+**Vérifications régulières :**
+
+- La politique de confidentialité couvre-t-elle encore vos pratiques actuelles ? (au moins une fois par an)
+- Le bandeau de cookies fonctionne-t-il correctement après les mises à jour ? (chaque trimestre)
+- Les liens brisés (404) sur votre site ? (mensuel avec un outil comme Screaming Frog ou Google Search Console)
+- Les mentions légales sont-elles à jour ? (annuel)
+
+## Combien coûte la maintenance d'un site web au Québec ?
+
+### Forfait maintenance basique (site vitrine)
+
+**100 $ à 300 $/mois**
+
+Inclut :
+
+- Mises à jour mensuelles WordPress, plugins, thèmes
+- Sauvegardes automatiques quotidiennes
+- Monitoring de disponibilité (uptime)
+- Rapport mensuel succinct
+
+Idéal pour : site vitrine 5-10 pages, peu de fonctionnalités dynamiques.
+
+### Forfait maintenance intermédiaire
+
+**300 $ à 600 $/mois**
+
+Inclut tout ce qui précède, plus :
+
+- Mises à jour testées en staging
+- Monitoring de performance (Core Web Vitals)
+- Scan de sécurité hebdomadaire
+- Nettoyage trimestriel de la base de données
+- Rapport mensuel détaillé avec recommandations
+
+Idéal pour : site de services, blog actif, PME avec 50+ visites par jour.
+
+### Forfait maintenance avancé (e-commerce)
+
+**600 $ à 1 500 $/mois**
+
+Inclut tout ce qui précède, plus :
+
+- Monitoring 24/7 avec alertes immédiates
+- Support prioritaire (réponse en moins de 2h en heures ouvrables)
+- Optimisation de performance continue
+- Vérification mensuelle de conformité Loi 25
+- Test trimestriel de restauration de backup
+
+Idéal pour : boutique en ligne, site avec réservations ou paiements, fort volume de trafic.
+
+### Facturation à l'heure (alternative)
+
+Certaines PME préfèrent payer uniquement pour les interventions ponctuelles, à 95-110 $/heure. C'est moins cher à court terme si les besoins sont rares. Le risque : sans monitoring proactif, les problèmes s'accumulent et les interventions d'urgence coûtent bien plus cher.
+
+## La checklist de maintenance mensuelle
+
+Voici exactement ce que je fais pour mes clients chaque mois.
+
+**Semaine 1 — Mises à jour**
+
+- [ ] Sauvegarde complète avant toute modification
+- [ ] Mises à jour WordPress, plugins, thèmes (en staging en premier)
+- [ ] Vérification visuelle post-mise à jour des pages clés
+- [ ] Vérification version PHP (toujours sur 8.x ?)
+
+**Semaine 2 — Sécurité**
+
+- [ ] Scan de malware (Wordfence ou Sucuri)
+- [ ] Vérification des logs de tentatives de connexion
+- [ ] Vérification du statut SSL
+- [ ] Contrôle des sauvegardes (bien effectuées et récentes ?)
+
+**Semaine 3 — Performance**
+
+- [ ] Score PageSpeed Insights mobile
+- [ ] Vérification Core Web Vitals dans Google Search Console
+- [ ] Temps de réponse serveur (TTFB)
+- [ ] Nouvelles images compressées correctement ?
+
+**Semaine 4 — Rapport et nettoyage**
+
+- [ ] Nettoyage base de données si nécessaire (trimestriel)
+- [ ] Vérification des liens brisés
+- [ ] Rapport mensuel : scores avant/après, actions réalisées, recommandations
+
+**Chaque trimestre**
+
+- [ ] Test de restauration de backup
+- [ ] Nettoyage complet de la base de données
+- [ ] Audit de sécurité approfondi
+- [ ] Vérification du bandeau cookies (fonctionne correctement ?)
+
+**Chaque année**
+
+- [ ] Audit de performance complet
+- [ ] Révision de la politique de confidentialité (Loi 25)
+- [ ] Renouvellement du nom de domaine (si applicable)
+- [ ] Bilan général et recommandations stratégiques
+
+## DIY ou professionnel — quand déléguer ?
+
+**Faire vous-même si :**
+
+- Site simple (moins de 5 pages, peu de plugins)
+- Vous êtes à l'aise avec WordPress et ses mises à jour
+- Vous avez le temps d'y consacrer 1 à 2 heures par mois
+- Pas de transactions en ligne, peu de données sensibles
+
+**Déléguer si :**
+
+- Site e-commerce (tout incident = ventes perdues)
+- Plus de 15 plugins actifs (plus complexe à maintenir)
+- Trafic important (50+ visiteurs/jour)
+- Données sensibles (commandes, coordonnées clients)
+- Vous n'avez pas le temps ou l'envie de vous en occuper
+
+Le critère simple : si votre site génère directement ou indirectement des revenus, la maintenance n'est pas un endroit où économiser.
+
+---
+
+Pour comprendre les vrais coûts d'un projet web, incluant la maintenance dans votre budget annuel, consultez mon [guide complet sur les prix des sites web au Québec](/blog/cout-site-web-quebec-prix). Et pour un point de départ sur l'état de votre site, un [audit de performance gratuit](/blog/audit-performance-site-web) est toujours la meilleure première étape.
+
+---
+
+> 💡 **Votre site web est-il bien entretenu ?**
+>
+> Je propose des forfaits de maintenance adaptés aux PME québécoises — mises à jour, sécurité, performance et conformité Loi 25 inclus. Un site bien maintenu, c'est un site qui travaille pour vous.
+>
+> [→ Discutons de votre maintenance](https://www.pierrebarbe.ca/contact)

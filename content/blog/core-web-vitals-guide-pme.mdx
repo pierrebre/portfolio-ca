@@ -1,0 +1,209 @@
+---
+title: "Core Web Vitals : comprendre les métriques Google en 2026"
+description: "LCP, INP, CLS — les Core Web Vitals expliqués simplement. Comprenez ce que Google mesure sur votre site et comment améliorer votre score. Guide pour PME."
+date: "2026-03-09"
+category: "Web Performance"
+excerpt: "Moins de la moitié des sites passent le test des Core Web Vitals de Google — les trois métriques qui mesurent votre expérience utilisateur réelle. Voici ce qu'elles signifient et comment les améliorer concrètement."
+faq:
+  - question: "Les Core Web Vitals influencent-ils vraiment le classement Google ?"
+    answer: "Oui, directement. Depuis juin 2021, les Core Web Vitals font partie des signaux de classement officiels de Google. Un bon score ne vous propulse pas automatiquement en première position — les Core Web Vitals sont un facteur parmi des centaines — mais un mauvais score est une pénalité concrète face à des concurrents qui ont optimisé les leurs sur les mêmes mots-clés."
+  - question: "Quelle est la différence entre les données de labo et les données terrain ?"
+    answer: "Les données de labo proviennent de simulations contrôlées — PageSpeed Insights simule un téléphone d'entrée de gamme avec une connexion 4G lente. Les données terrain proviennent de vrais visiteurs qui ont consulté votre site avec Chrome (données CrUX). Les deux sont utiles : les données terrain reflètent la réalité de vos visiteurs, les données labo aident à comprendre et corriger les problèmes."
+  - question: "Comment améliorer rapidement mon score LCP ?"
+    answer: "Les deux interventions avec le plus grand impact sur le LCP : (1) comprimer et convertir les images en format WebP ou AVIF — une image de 4 Mo compressée à 100 Ko peut améliorer le LCP de plusieurs secondes ; (2) améliorer le temps de réponse du serveur en choisissant un hébergeur avec des serveurs au Canada. Pour un site WordPress, activer un plugin de cache (WP Rocket, LiteSpeed Cache) a aussi un impact immédiat."
+  - question: "Mon site a de bons scores en labo mais de mauvais résultats terrain. Pourquoi ?"
+    answer: "C'est fréquent. Les données terrain incluent tous vos visiteurs réels — y compris ceux sur des connexions lentes ou des appareils anciens. Un écart important entre les deux suggère souvent que votre site performe mal sur les appareils moins puissants (smartphones anciens, connexions 3G), qui représentent pourtant une part significative de votre trafic mobile québécois."
+---
+
+Votre site web est peut-être en train de perdre des positions sur Google sans que vous le sachiez. Depuis 2021, Google utilise les Core Web Vitals comme facteur de classement officiel. Ce sont trois métriques qui mesurent l'expérience réelle de vos visiteurs — vitesse d'affichage, réactivité et stabilité visuelle.
+
+Le problème ? Seulement 47 % des sites web passent le test des Core Web Vitals (données CrUX 2025). Autrement dit, plus d'un site sur deux est pénalisé par Google sans que son propriétaire le sache.
+
+La bonne nouvelle : ces métriques sont mesurables, compréhensibles et améliorables. Voici comment.
+
+## C'est quoi les Core Web Vitals ? (explication sans jargon)
+
+Les Core Web Vitals sont trois métriques que Google utilise pour évaluer l'expérience utilisateur de votre site web. Elles font partie des signaux de classement officiels depuis juin 2021.
+
+Ce qui les distingue des autres métriques de performance : Google les mesure sur de vrais visiteurs, pas seulement en simulation. Via le programme CrUX (Chrome User Experience Report), Google collecte des données anonymisées provenant de millions d'utilisateurs de Chrome à travers le monde — y compris au Québec.
+
+**L'impact sur le SEO :** un bon score CWV ne vous propulse pas seul en première position — c'est un facteur parmi des centaines dans l'algorithme de Google. Mais un mauvais score est une pénalité concrète face à des concurrents qui ont optimisé les leurs sur les mêmes mots-clés.
+
+C'est un peu comme l'inspection mécanique d'un véhicule : ça ne fait pas de vous le meilleur conducteur, mais si vous ratez l'inspection, vous ne pouvez pas rouler.
+
+## Les 3 métriques expliquées simplement
+
+### LCP — Largest Contentful Paint (vitesse d'affichage)
+
+**Ce que ça mesure :** le temps qui s'écoule avant que l'élément de contenu le plus grand de votre page soit visible — généralement votre image principale ou votre titre en grand format.
+
+**Les seuils :**
+
+- Bon : ≤ 2,5 secondes
+- À améliorer : 2,5 à 4 secondes
+- Mauvais : > 4 secondes
+
+**En pratique :** imaginez ouvrir votre propre site sur votre téléphone en 4G. Si l'image d'en-tête prend 4 secondes à apparaître, c'est 4 secondes pendant lesquelles vos visiteurs voient un écran presque vide. C'est le genre de moment où ils décident de revenir en arrière et de cliquer sur un concurrent.
+
+**Ce qui affecte le LCP :**
+
+- Images trop lourdes (format JPEG non optimisé, PNG sans compression)
+- Hébergement lent ou serveurs géographiquement éloignés de vos visiteurs québécois
+- Code CSS ou JavaScript qui bloque l'affichage avant d'être chargé
+- Absence de cache
+
+Chez un client e-commerce à Montréal, le LCP était de 4,2 secondes. Après compression des images en WebP et migration vers un hébergeur avec des serveurs au Canada, il est passé à 1,8 seconde. Le taux de rebond a diminué de 28 % dans les deux semaines suivantes.
+
+### INP — Interaction to Next Paint (réactivité)
+
+**Ce que ça mesure :** le délai entre le moment où un visiteur interagit avec votre page (clic, tap, frappe au clavier) et le moment où la page réagit visuellement.
+
+L'INP a remplacé l'ancien FID (First Input Delay) en mars 2024. La différence : l'INP mesure toutes les interactions sur la durée d'une session, pas seulement la première.
+
+**Les seuils :**
+
+- Bon : ≤ 200 millisecondes
+- À améliorer : 200 à 500 ms
+- Mauvais : > 500 ms
+
+**En pratique :** 200 ms, c'est imperceptible. 500 ms, ça commence à se sentir. 1 000 ms (1 seconde), le visiteur pense que son clic n'a pas fonctionné et clique à nouveau. Sur un bouton « Commander », ça peut créer des commandes en double.
+
+**Ce qui affecte l'INP :**
+
+- JavaScript trop lourd qui monopolise le processeur
+- Trop de plugins WordPress actifs
+- Scripts tiers (chat, analytics, publicités) mal optimisés
+- Code non optimisé dans les thèmes constructeurs de pages
+
+J'ai travaillé sur un site WordPress à Québec avec 35 plugins actifs — INP de 680 ms. Après avoir désactivé 18 plugins inutilisés et remplacé le constructeur de pages, l'INP est descendu à 145 ms.
+
+### CLS — Cumulative Layout Shift (stabilité visuelle)
+
+**Ce que ça mesure :** les déplacements inattendus des éléments visuels pendant le chargement de votre page. Quand une image se charge et pousse le texte vers le bas, c'est du CLS. Quand une bannière apparaît et décale un bouton au moment où vous alliez cliquer dessus, c'est du CLS.
+
+**Les seuils :**
+
+- Bon : ≤ 0,1 (score de 0 = aucun déplacement)
+- À améliorer : 0,1 à 0,25
+- Mauvais : > 0,25
+
+**En pratique :** vous êtes sur un site e-commerce mobile, vous allez cliquer sur « Ajouter au panier » — et juste avant votre tap, une publicité s'affiche et décale le bouton. Vous avez cliqué sur la pub. C'est exactement ce que mesure le CLS, et c'est l'une des principales sources de frustration des visiteurs sur mobile.
+
+**Ce qui affecte le CLS :**
+
+- Images sans attributs de dimensions (width/height) déclarées en HTML
+- Polices web qui se chargent après le texte, causant un recalcul de la mise en page
+- Contenu publicitaire ou widgets tiers chargés dynamiquement
+- Animations CSS qui modifient la disposition des éléments
+
+Le problème le plus fréquent que je rencontre chez les PME québécoises : des images sans attributs `width` et `height`. La correction prend 30 minutes et peut faire passer un CLS de 0,3 à 0,05.
+
+## Comment vérifier vos Core Web Vitals (outils gratuits)
+
+### Google PageSpeed Insights (pagespeed.web.dev)
+
+C'est l'outil officiel de Google — et le plus direct pour comprendre où vous en êtes.
+
+Entrez l'URL de votre page (idéalement votre page d'accueil et votre page la plus importante pour le SEO), et vous obtenez deux types de données :
+
+- **Données terrain (CrUX)** : vos scores réels basés sur de vrais visiteurs. Si vous n'avez pas assez de trafic Chrome pour générer ces données, cette section sera vide — c'est normal pour les sites récents.
+- **Données labo** : une simulation avec les conditions techniques standardisées de Google.
+
+Regardez en priorité la section « Core Web Vitals Assessment » — c'est le verdict final.
+
+### Google Search Console → Rapport Core Web Vitals
+
+Si vous avez Google Search Console connecté à votre site (et vous devriez), allez dans « Expérience » → « Core Web Vitals ». Ce rapport classe vos pages par statut : Bonnes, À améliorer, Mauvaises.
+
+L'avantage par rapport à PageSpeed Insights : vous voyez les problèmes par groupes d'URLs et vous pouvez identifier les pages les plus problématiques en priorité. C'est un outil que je consulte dans chaque [audit de performance de site web](/blog/audit-performance-site-web).
+
+### GTmetrix
+
+GTmetrix donne une vue complémentaire avec la cascade de chargement — l'ordre dans lequel chaque ressource est téléchargée. C'est utile pour comprendre ce qui retarde votre LCP : une image trop lourde ? Un script tiers qui bloque le rendu ?
+
+Le plan gratuit suffit pour la plupart des analyses. Sélectionnez un point de test à Vancouver ou Toronto pour avoir des résultats proches de la réalité canadienne.
+
+## Les 5 optimisations qui améliorent le plus vos scores
+
+### 1. Optimiser les images
+
+Les images sont responsables de 50 à 60 % des problèmes de LCP dans les sites que j'audite.
+
+- Convertissez en **format WebP** (25 à 35 % plus léger que JPEG) ou **AVIF** (encore plus efficace)
+- Visez **moins de 200 Ko par image** pour les images de contenu, moins de 100 Ko pour les miniatures
+- Ajoutez les attributs **width et height** sur toutes vos balises `<img>` pour éliminer le CLS
+- Activez le **lazy loading** (chargement différé) pour les images en bas de page
+
+Pour WordPress, **ShortPixel** (gratuit jusqu'à 100 images/mois) automatise la conversion et la compression.
+
+### 2. Améliorer l'hébergement
+
+Le temps de réponse du serveur (TTFB) est le fondement de votre LCP. Un hébergement lent plafonne tous vos autres efforts d'optimisation.
+
+Pour les PME québécoises, un hébergement avec des serveurs au Canada (Montréal ou Toronto) réduit la latence de 80 à 150 ms pour vos visiteurs locaux. C'est immédiat et mesurable.
+
+PHP 8.x est significativement plus rapide que les versions antérieures — vérifiez que votre hébergeur utilise PHP 8.2 ou plus récent.
+
+### 3. Réduire le JavaScript
+
+Un JavaScript excessif est la cause principale des mauvais INP.
+
+- Activez **defer** ou **async** sur les scripts non critiques pour éviter le blocage du rendu
+- Identifiez les plugins WordPress qui chargent du JavaScript sur des pages où ils ne sont pas utilisés (Query Monitor est un plugin gratuit qui vous montre ça)
+- Limitez les scripts tiers (chat, analytics, pixels de suivi) — chacun a un coût de performance
+
+### 4. Activer le cache
+
+Le cache réduit simultanément le LCP (moins de travail pour le serveur) et l'INP (pages plus légères = processeur moins sollicité).
+
+Pour WordPress : WP Rocket (payant, ~60 $/an), LiteSpeed Cache (gratuit si votre hébergeur utilise LiteSpeed) ou W3 Total Cache (gratuit).
+
+Activez aussi le **cache navigateur** pour les ressources statiques (images, CSS, JavaScript) — elles se chargent depuis l'appareil du visiteur lors des visites suivantes.
+
+### 5. Déclarer les dimensions des images et polices
+
+Pour éliminer le CLS :
+
+- Ajoutez `width` et `height` sur toutes les balises `<img>`
+- Utilisez `font-display: swap` pour les polices web afin d'éviter le décalage de texte au chargement
+- Évitez d'injecter du contenu dynamique (publicités, bandeaux) au-dessus de contenu déjà visible
+
+## Core Web Vitals et WordPress — le cas particulier
+
+WordPress est utilisé par environ 43 % des sites web dans le monde — et probablement par une bonne partie des PME québécoises que vous côtoyez. C'est sa force — et son défi pour la performance.
+
+Les thèmes constructeurs de pages populaires (Divi, Elementor, Avada, WPBakery) chargent des quantités importantes de CSS et JavaScript, dont une grande partie n'est pas utilisée sur chaque page. Résultat : des CWV souvent dans le rouge sans raison apparente.
+
+Les plugins que j'installe chez la majorité de mes clients WordPress :
+
+- **WP Rocket** ou **LiteSpeed Cache** : cache + minification + lazy loading
+- **ShortPixel** ou **Imagify** : compression et conversion des images
+- **Perfmatters** : désactivation ciblée des scripts inutiles par page
+
+La combinaison de ces trois types d'outils règle 80 % des problèmes CWV sur WordPress.
+
+Pour les détails complets de l'optimisation WordPress — images, cache, base de données, hébergement — j'ai un [guide d'optimisation WordPress étape par étape](/blog/optimisation-vitesse-wordpress).
+
+## Faut-il viser un score de 100 sur PageSpeed ?
+
+Non.
+
+Un score de 100 sur PageSpeed Insights est techniquement possible sur certains sites très simples, mais c'est rarement l'objectif pratique pour un site d'entreprise avec du contenu réel.
+
+Ce qui compte vraiment : avoir les trois Core Web Vitals dans les seuils recommandés sur les données terrain — LCP ≤ 2,5 s, INP ≤ 200 ms, CLS ≤ 0,1.
+
+Un site avec un score de 78 et des CWV tous dans le vert sera mieux classé par Google qu'un site avec un score de 95 mais des CWV hors des seuils sur données terrain.
+
+Concentrez vos efforts sur les métriques terrain, pas sur le score cosmétique.
+
+---
+
+Les Core Web Vitals ne sont qu'une partie d'un [audit de performance complet](/blog/audit-performance-site-web) — celui-ci couvre aussi l'hébergement, les scripts, la structure du code et la sécurité. Et pour maintenir vos scores dans le temps, un [plan de maintenance mensuel](/blog/maintenance-site-web-pme-guide) inclut une vérification régulière de vos CWV.
+
+---
+
+> 💡 **Vous voulez connaître vos Core Web Vitals et ce qu'il faut améliorer ?**
+>
+> Je propose un audit de performance gratuit qui inclut l'analyse de vos Core Web Vitals avec des recommandations concrètes et priorisées — adapté à la réalité de votre site et de votre budget.
+>
+> [→ Demander votre audit gratuit](https://www.pierrebarbe.ca/contact)
