@@ -2,50 +2,37 @@ import ContactForm from "~/components/contact-form";
 import { Clock, Mail, Phone } from "lucide-react";
 import { useToast } from "~/context/toast-context";
 import Breadcrumbs from "~/components/breadcrumbs";
+import JsonLd from "~/components/json-ld";
 
 import type { Route } from "./+types/contact";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["WebPage", "ContactPage"],
+      "@id": "https://pierrebarbe.ca/contact#webpage",
+      url: "https://pierrebarbe.ca/contact",
+      name: "Contact et devis de site web à Montréal",
+      description: "Une question ou un projet ? Écris‑moi ou réserve ta consultation gratuite de 30 min pour booster performance et éco‑conception de ton site.",
+      inLanguage: "fr-CA",
+      isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
+      breadcrumb: { "@id": "https://pierrebarbe.ca/contact#breadcrumb" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://pierrebarbe.ca/contact#breadcrumb",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Accueil", item: "https://pierrebarbe.ca/" },
+        { "@type": "ListItem", position: 2, name: "Contact", item: "https://pierrebarbe.ca/contact" },
+      ],
+    },
+  ],
+};
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/contact";
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
-
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["WebPage", "ContactPage"],
-        "@id": `${url}#webpage`,
-        "url": url,
-        "name": "Contact et devis de site web à Montréal",
-        "description": "Une question ou un projet ? Écris‑moi ou réserve ta consultation gratuite de 30 min pour booster performance et éco‑conception de ton site.",
-        "inLanguage": "fr-CA",
-        "isPartOf": {
-          "@id": "https://pierrebarbe.ca/#website"
-        },
-        "breadcrumb": {
-          "@id": `${url}#breadcrumb`
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${url}#breadcrumb`,
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Accueil",
-            "item": "https://pierrebarbe.ca/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Contact",
-            "item": url
-          }
-        ]
-      }
-    ]
-  };
 
   return [
     { title: "Contact et devis de site web à Montréal" },
@@ -54,12 +41,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Une question ou un projet ? Écris‑moi ou réserve ta consultation gratuite de 30 min pour booster performance et éco‑conception de ton site.",
-    },
-    {
-      name: "keywords",
-      content:
-        "contact développeur web Montréal, consultation gratuite site web, audit web, performance site, éco‑conception",
+        "Une question ou un projet ? Écris‑moi ou réserve ta consultation gratuite de 30 min pour booster performance et éco‑conception de ton site.",
     },
     {
       property: "og:title",
@@ -68,7 +50,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "Réserve ta consultation gratuite ou envoie‑moi un message. Réponse en moins de 24 h.",
+        "Réserve ta consultation gratuite ou envoie‑moi un message. Réponse en moins de 24 h.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -78,11 +60,6 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
-    {
-      tagName: "script",
-      type: "application/ld+json",
-      children: JSON.stringify(schema)
-    }
   ];
 }
 
@@ -93,14 +70,15 @@ export default function Contact() {
     showToast(
       message ??
         (success
-          ? "Ton message a bien été envoyé ! Je te réponds sous 24 h."
-          : "Oups ! L’envoi a échoué. Réessaie dans un instant."),
+          ? "Ton message a bien été envoyé ! Je te réponds sous 24 h."
+          : "Oups ! L'envoi a échoué. Réessaie dans un instant."),
       success ? "success" : "error"
     );
   };
 
   return (
     <div className="bg-base-100 font-urbanist mx-auto max-w-7xl">
+      <JsonLd data={contactSchema} />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs
           items={[
@@ -164,7 +142,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-medium">Disponibilités</h3>
                   <p className="text-base-content/80 mt-1">
-                    Lundi – Vendredi : 9 h – 18 h (heure de Montréal)
+                    Lundi – Vendredi : 9 h – 18 h (heure de Montréal)
                   </p>
                 </div>
               </div>
@@ -173,9 +151,9 @@ export default function Contact() {
 
           <div className="card bg-base-100 border-base-content/10 border">
             <div className="card-body">
-              <h2 className="card-title text-2xl">Un projet ? Une question?</h2>
+              <h2 className="card-title text-2xl">Un projet ? Une question?</h2>
               <p className="text-base-content/80 mb-4">
-                Décris‑moi ton besoin ; je reviendrai vers toi rapidement avec
+                Décris‑moi ton besoin ; je reviendrai vers toi rapidement avec
                 les prochaines étapes.
               </p>
 

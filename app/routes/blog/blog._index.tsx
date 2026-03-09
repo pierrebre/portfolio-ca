@@ -24,7 +24,6 @@ export function meta({}: Route.MetaArgs) {
         "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
     },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
-    { name: "keywords", content: "blog développement web montréal, tutoriels performance web, articles automatisation n8n, éco-conception web québec, core web vitals wordpress" },
     {
       property: "og:title",
       content: "Blog — Web performance, automatisation & éco-conception",
@@ -37,7 +36,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: url },
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "333" },
+    { property: "og:image:height", content: "630" },
     { property: "og:type", content: "website" },
     { property: "og:locale", content: "fr_CA" },
     { name: "twitter:title", content: "Blog — Web performance & automatisation | Pierre Barbé" },
@@ -81,22 +80,34 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
 
   const blogSchema = {
     "@context": "https://schema.org",
-    "@type": "Blog",
-    "@id": "https://pierrebarbe.ca/blog",
-    name: "Blog — Pierre Barbé",
-    description:
-      "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
-    url: "https://pierrebarbe.ca/blog",
-    inLanguage: "fr-CA",
-    author: { "@id": "https://pierrebarbe.ca/#person" },
-    blogPost: posts.map((p) => ({
-      "@type": "BlogPosting",
-      "@id": `https://pierrebarbe.ca/blog/${p.slug}#article`,
-      headline: p.title,
-      url: `https://pierrebarbe.ca/blog/${p.slug}`,
-      datePublished: p.date,
-      articleSection: p.category,
-    })),
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "https://pierrebarbe.ca/blog#blog",
+        name: "Blog — Pierre Barbé",
+        description:
+          "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
+        url: "https://pierrebarbe.ca/blog",
+        inLanguage: "fr-CA",
+        author: { "@id": "https://pierrebarbe.ca/#person" },
+        blogPost: posts.map((p) => ({
+          "@type": "BlogPosting",
+          "@id": `https://pierrebarbe.ca/blog/${p.slug}#article`,
+          headline: p.title,
+          url: `https://pierrebarbe.ca/blog/${p.slug}`,
+          datePublished: p.date,
+          articleSection: p.category,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://pierrebarbe.ca/blog#breadcrumb",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: "https://pierrebarbe.ca/" },
+          { "@type": "ListItem", position: 2, name: "Blog" },
+        ],
+      },
+    ],
   };
 
   return (

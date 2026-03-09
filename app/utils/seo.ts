@@ -7,7 +7,6 @@ interface SEOMetaProps {
   imageHeight?: string;
   imageType?: string;
   type?: "website" | "article";
-  keywords?: string;
   noindex?: boolean;
   robots?: string;
 }
@@ -21,11 +20,10 @@ export function generateSEOMeta({
   imageHeight = "630",
   imageType = "image/avif",
   type = "website",
-  keywords,
   noindex = false,
   robots,
 }: SEOMetaProps) {
-  const meta = [
+  return [
     { title },
     { name: "description", content: description },
     {
@@ -56,12 +54,6 @@ export function generateSEOMeta({
     { name: "twitter:creator", content: "@PierreBarbe" },
     { name: "twitter:site", content: "@PierreBarbe" },
   ];
-
-  if (keywords) {
-    meta.push({ name: "keywords", content: keywords });
-  }
-
-  return meta;
 }
 
 /**
@@ -196,7 +188,7 @@ export function generateServicePageSchema({
       telephone: "+1-438-448-8408"
     },
     areaServed: areas.map((area) => ({
-      "@type": area === "Canada" || area === "Québec" ? "State" : "City",
+      "@type": area === "Canada" ? "Country" : area === "Québec" ? "State" : "City",
       name: area,
     })),
     availableChannel: {

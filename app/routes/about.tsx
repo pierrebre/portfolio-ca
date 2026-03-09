@@ -25,7 +25,6 @@ export function meta({}: Route.MetaArgs) {
         "Développeur web freelance à Montréal, spécialisé en web-performance, automatisation n8n et éco-conception. Découvrez mon parcours, ma stack et mes valeurs.",
     },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
-    { name: "keywords", content: "pierre barbé développeur web freelance montréal, développeur wordpress québec, optimisation performance web, automatisation n8n, éco-conception web" },
     {
       property: "og:title",
       content: "À propos — Pierre Barbé, développeur web freelance Montréal",
@@ -38,7 +37,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: url },
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "333" },
+    { property: "og:image:height", content: "630" },
     { property: "og:type", content: "profile" },
     { property: "og:locale", content: "fr_CA" },
     { name: "twitter:title", content: "À propos — Pierre Barbé" },
@@ -146,6 +145,15 @@ const aboutSchema = {
       inLanguage: "fr-CA",
       isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
       about: { "@id": "https://pierrebarbe.ca/#person" },
+      breadcrumb: { "@id": "https://pierrebarbe.ca/about#breadcrumb" },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://pierrebarbe.ca/about#profilepage",
+      url: "https://pierrebarbe.ca/about",
+      name: "À propos — Pierre Barbé",
+      dateCreated: "2025-01-01",
+      mainEntity: { "@id": "https://pierrebarbe.ca/#person" },
     },
     {
       "@type": "BreadcrumbList",
@@ -237,7 +245,7 @@ export default function About() {
                 <div className="grid grid-cols-3 gap-6">
                   {[
                     { value: "50+", label: "Projets" },
-                    { value: "98%", label: "Satisfaction" },
+                    { value: "100%", label: "Livraisons" },
                     { value: "3+", label: "Ans" },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center">
@@ -355,6 +363,12 @@ export default function About() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="btn btn-primary rounded-full px-10 py-3">
               Réserver une consultation gratuite
+            </Link>
+            <Link
+              to="/blog"
+              className="btn btn-ghost rounded-full px-10 py-3 border border-base-content/20"
+            >
+              Lire le blog
             </Link>
             <Link
               to="/services"

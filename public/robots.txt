@@ -5,5 +5,15 @@ Allow: /
 Disallow: /fonts/
 Disallow: /favicon/
 
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 # Sitemap
 Sitemap: https://pierrebarbe.ca/sitemap.xml

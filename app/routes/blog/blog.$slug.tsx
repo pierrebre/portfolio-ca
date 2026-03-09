@@ -32,13 +32,12 @@ export function meta({ data }: Route.MetaArgs) {
     { title: `${post.title} | Pierre Barbé` },
     { tagName: "link", rel: "canonical", href: url },
     { name: "description", content: post.description },
-    { name: "robots", content: "index, follow" },
     { property: "og:title", content: post.title },
     { property: "og:description", content: post.description },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "333" },
+    { property: "og:image:height", content: "630" },
     { property: "og:image:alt", content: post.title },
     { property: "og:type", content: "article" },
     { property: "og:locale", content: "fr_CA" },
@@ -73,14 +72,19 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         "@id": `${url}#article`,
         headline: post.title,
         description: post.description,
-        image,
+        image: {
+          "@type": "ImageObject",
+          url: image,
+          width: 1200,
+          height: 630,
+        },
         datePublished: post.date,
         dateModified: post.date,
         author: {
           "@type": "Person",
           "@id": "https://pierrebarbe.ca/#person",
           name: "Pierre Barbé",
-          url: "https://pierrebarbe.ca",
+          url: "https://pierrebarbe.ca/about",
         },
         publisher: {
           "@type": "Organization",
@@ -104,22 +108,6 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           { "@type": "ListItem", position: 3, name: post.title, item: url },
         ],
       },
-      ...(post.faq && post.faq.length > 0
-        ? [
-            {
-              "@type": "FAQPage",
-              "@id": `${url}#faq`,
-              mainEntity: post.faq.map((item) => ({
-                "@type": "Question",
-                name: item.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: item.answer,
-                },
-              })),
-            },
-          ]
-        : []),
     ],
   };
 
@@ -178,7 +166,9 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
               </div>
             </div>
             <div>
-              <p className="font-semibold text-sm">Pierre Barbé</p>
+              <Link to="/about" className="font-semibold text-sm hover:text-primary transition-colors">
+                Pierre Barbé
+              </Link>
               <p className="text-base-content/50 text-xs">
                 Développeur web freelance · Montréal
               </p>
@@ -243,6 +233,30 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             )}
           </nav>
         )}
+
+        {/* Bio de l'auteur */}
+        <div className="mt-16 p-6 bg-base-200 rounded-2xl flex gap-4 items-start">
+          <div className="avatar placeholder flex-shrink-0">
+            <div className="bg-primary text-primary-content rounded-full w-14">
+              <span className="text-lg font-bold">PB</span>
+            </div>
+          </div>
+          <div>
+            <p className="font-bold text-base">
+              Écrit par{" "}
+              <Link to="/about" className="text-primary hover:underline">
+                Pierre Barbé
+              </Link>
+            </p>
+            <p className="text-base-content/70 text-sm mt-1 leading-relaxed">
+              Développeur web freelance à Montréal, spécialisé en performance WordPress,
+              automatisation n8n et intégration IA pour PME québécoises.{" "}
+              <Link to="/about" className="text-primary hover:underline">
+                En savoir plus →
+              </Link>
+            </p>
+          </div>
+        </div>
 
         {/* CTA retour + contact */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-base-200 rounded-2xl">

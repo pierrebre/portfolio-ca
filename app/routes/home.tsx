@@ -18,7 +18,7 @@ export function meta({}: Route.MetaArgs) {
   return [
     {
       title:
-        "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
+        "Développeur web freelance Montréal — Pierre Barbé",
     },
     {
       name: "robots",
@@ -31,14 +31,8 @@ export function meta({}: Route.MetaArgs) {
         "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Audit gratuit de 30 min.",
     },
     {
-      name: "keywords",
-      content:
-        "développeur web freelance Montréal, optimisation webperformance Québec, audit de site gratuit, pigiste WordPress, automatisation n8n",
-    },
-    {
       property: "og:title",
-      content:
-        "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
+      content: "Développeur web freelance Montréal — Pierre Barbé",
     },
     {
       property: "og:description",
@@ -48,7 +42,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: url },
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "333" },
+    { property: "og:image:height", content: "630" },
     { property: "og:image:type", content: "image/avif" },
     {
       property: "og:image:alt",
@@ -60,8 +54,7 @@ export function meta({}: Route.MetaArgs) {
 
     {
       name: "twitter:title",
-      content:
-        "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
+      content: "Développeur web freelance Montréal — Pierre Barbé",
     },
     {
       name: "twitter:description",
@@ -92,7 +85,7 @@ export default function Home() {
         alternateName: "Pierre Barbe",
         jobTitle: "Développeur Web Freelance",
         description:
-          "Développeur web freelance spécialisé en Next.js, React, WordPress, SEO et automatisation (n8n) à Montréal",
+          "Développeur web freelance spécialisé en React Router v7, React, WordPress, SEO et automatisation (n8n) à Montréal",
         url,
         image: "https://pierrebarbe.ca/images/pierre-barbe.jpg",
         email: "contact@pierrebarbe.ca",
@@ -173,7 +166,7 @@ export default function Home() {
           "@type": "ImageObject",
           url: image,
           width: 1200,
-          height: 333,
+          height: 630,
         },
         founder: { "@id": `${url}#person` },
         contactPoint: {
@@ -204,6 +197,8 @@ export default function Home() {
         hasPart: [
           { "@id": "https://pierrebarbe.ca/services#webpage" },
           { "@id": "https://pierrebarbe.ca/contact#webpage" },
+          { "@id": "https://pierrebarbe.ca/blog#blog" },
+          { "@id": "https://pierrebarbe.ca/about#webpage" },
         ],
       },
 
@@ -222,7 +217,7 @@ export default function Home() {
           "@type": "ImageObject",
           url: image,
           width: 1200,
-          height: 333,
+          height: 630,
         },
       },
 
@@ -294,77 +289,6 @@ export default function Home() {
         },
       },
 
-      // 7. FAQPage — objections réelles des prospects PME
-      {
-        "@type": "FAQPage",
-        "@id": `${url}#faq`,
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Combien ça coûte, un site web ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Ça dépend du projet, mais pour donner une idée : un site vitrine commence autour de 3 000-5 000 $, une refonte plus complexe peut aller de 5 000 à 15 000 $. Le budget est transparent — on sait exactement ce qu'on paie avant de s'engager. L'audit initial de 30 min est gratuit.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Freelance ou agence — c'est quoi la différence ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Avec un freelance, on parle directement à la personne qui code le site. Pas de chargé de projet intermédiaire. C'est plus rapide, plus direct, et souvent moins cher qu'une agence — avec le même niveau de qualité.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Et si je ne suis pas satisfait du résultat ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Chaque étape du projet est validée avant de passer à la suivante. Il n'y a pas de surprise à la livraison. Si quelque chose ne convient pas, on ajuste.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Ça prend combien de temps ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Un site vitrine prend généralement 3 à 6 semaines. Une refonte ou un projet plus complexe, 6 à 12 semaines. Un calendrier précis avec des jalons clairs est fourni dès le début.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Comment ça se passe si je veux travailler avec vous ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "On réserve un appel gratuit de 30 minutes. On regarde le site et les objectifs ensemble. Ensuite, on reçoit un plan d'action chiffré. Si ça convient, on démarre.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Vous connaissez WordPress et Shopify ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Oui. Les technologies principales sont WordPress et Next.js, avec une connaissance de Shopify. La recommandation se fait en fonction du projet, pas des préférences personnelles.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Avez-vous déjà travaillé avec des entreprises dans mon secteur ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "L'expérience couvre des cliniques médicales, studios de yoga, e-commerces et autres PME québécoises. Les fondamentaux restent les mêmes : un site rapide, bien référencé et facile à utiliser.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Restez-vous disponible après la livraison ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Oui. Des forfaits de maintenance mensuels sont proposés pour garder le site à jour, sécurisé et performant. En cas d'urgence, le contact est direct — pas via un formulaire de support.",
-            },
-          },
-        ],
-      },
     ],
   };
 

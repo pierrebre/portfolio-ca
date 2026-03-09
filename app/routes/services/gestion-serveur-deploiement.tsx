@@ -11,7 +11,6 @@ export function meta({}: Route.MetaArgs) {
       title: "Gestion serveur & déploiement de sites web | DevOps Montréal | Pierre Barbé",
       description: "Gestion d'infrastructure serveur, CI/CD, sécurité et monitoring pour sites web au Québec. Ton site en ligne 24/7 sans que tu t'en occupes. Développeur DevOps freelance à Montréal.",
       url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement",
-      keywords: "gestion serveur Montréal, déploiement site web, CI/CD pipeline, DevOps freelance Québec, infrastructure cloud, hébergement web sécurisé",
       type: "article",
     }),
   ];

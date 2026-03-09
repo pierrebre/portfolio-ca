@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import ServiceCard from "~/components/service-card";
 import JsonLd from "~/components/json-ld";
 import { services } from "data/services";
-import { generateSEOMeta, generateServiceIndexSchema } from "~/utils/seo";
+import { generateSEOMeta } from "~/utils/seo";
 import Breadcrumbs from "~/components/breadcrumbs";
 import { getServiceUrl } from "~/utils/service-links";
 import type { Route } from "./+types/services._index";
@@ -13,7 +13,6 @@ export function meta({}: Route.MetaArgs) {
       title: "Services de Développement Web & Performance | Pierre Barbé Montréal",
       description: "Découvrez mes services de développement web à Montréal : optimisation web-performance, création de sites WordPress, audits techniques, automatisation de workflows, gestion serveur et intégration d'IA pour PME et agences du Québec.",
       url: "https://pierrebarbe.ca/services",
-      keywords: "services développement web Montréal, optimisation performance site web, audit Core Web Vitals, création site WordPress Québec, automatisation workflows n8n, gestion serveur, intégration IA, développeur freelance Montréal",
     }),
   ];
 }

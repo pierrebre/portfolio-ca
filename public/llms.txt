@@ -1,0 +1,31 @@
+# pierrebarbe.ca
+
+## About
+Pierre Barbé — Développeur web freelance à Montréal spécialisé en WordPress, performance web, automatisation n8n et intégration IA pour PME au Québec.
+
+## Services
+- Optimisation de performance web et Core Web Vitals : https://pierrebarbe.ca/services/optimisation-web-performance
+- Création et maintenance de sites WordPress & Shopify : https://pierrebarbe.ca/services/creation-maintenance-sites
+- Automatisation de workflows avec n8n : https://pierrebarbe.ca/services/automatisation-workflows
+- Audits techniques et Core Web Vitals : https://pierrebarbe.ca/services/audits-techniques-core-web-vitals
+- Gestion de serveur et déploiement : https://pierrebarbe.ca/services/gestion-serveur-deploiement
+- Intégration d'outils IA : https://pierrebarbe.ca/services/integration-outils-ia
+
+## Blog
+- Optimisation vitesse WordPress : https://pierrebarbe.ca/blog/optimisation-vitesse-wordpress
+- Automatiser son business avec n8n : https://pierrebarbe.ca/blog/automatiser-business-n8n-pme
+- Éco-conception web : https://pierrebarbe.ca/blog/eco-conception-web
+- Chatbot IA pour PME : https://pierrebarbe.ca/blog/chatbot-ia-site-web-pme
+- Audit performance site web : https://pierrebarbe.ca/blog/audit-performance-site-web
+- Développeur web freelance Montréal : https://pierrebarbe.ca/blog/developpeur-web-freelance-montreal
+- Loi 25 conformité site web : https://pierrebarbe.ca/blog/loi-25-site-web-conformite-pme
+- Core Web Vitals guide PME : https://pierrebarbe.ca/blog/core-web-vitals-guide-pme
+- Sécurité WordPress guide PME : https://pierrebarbe.ca/blog/securite-wordpress-guide-pme
+- Maintenance site web PME : https://pierrebarbe.ca/blog/maintenance-site-web-pme-guide
+- Coût site web Québec : https://pierrebarbe.ca/blog/cout-site-web-quebec-prix
+
+## À propos
+https://pierrebarbe.ca/about
+
+## Contact
+https://pierrebarbe.ca/contact
