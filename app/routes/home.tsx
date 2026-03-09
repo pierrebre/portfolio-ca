@@ -118,7 +118,7 @@ export default function Home() {
       {
         "@type": ["LocalBusiness", "ProfessionalService"],
         "@id": `${url}#business`,
-        name: "Pierre Barbé Web",
+        name: "Pierre Barbé",
         description:
           "Services de développement web freelance à Montréal : création de sites rapides, optimisation web-performance, WordPress, SEO et automatisation pour PME et agences du Québec",
         url,
@@ -160,7 +160,7 @@ export default function Home() {
       {
         "@type": "Organization",
         "@id": `${url}#organization`,
-        name: "Pierre Barbé Web",
+        name: "Pierre Barbé",
         url,
         logo: {
           "@type": "ImageObject",

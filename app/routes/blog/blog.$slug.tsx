@@ -89,7 +89,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         publisher: {
           "@type": "Organization",
           "@id": "https://pierrebarbe.ca/#organization",
-          name: "Pierre Barbé Web",
+          name: "Pierre Barbé",
         },
         mainEntityOfPage: {
           "@type": "WebPage",
