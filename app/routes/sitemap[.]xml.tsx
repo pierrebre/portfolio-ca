@@ -2,33 +2,30 @@ import { getAllPosts } from "~/lib/content.server";
 import type { Route } from "./+types/sitemap[.]xml";
 
 const BASE_URL = "https://pierrebarbe.ca";
-const TODAY = new Date().toISOString().split("T")[0];
 
 const STATIC_URLS = [
-  { loc: "/", priority: "1.0", changefreq: "monthly" },
-  { loc: "/about", priority: "0.8", changefreq: "monthly" },
-  { loc: "/projects", priority: "0.8", changefreq: "monthly" },
-  { loc: "/services", priority: "0.9", changefreq: "monthly" },
-  { loc: "/services/optimisation-web-performance", priority: "0.9", changefreq: "monthly" },
-  { loc: "/services/creation-maintenance-sites", priority: "0.9", changefreq: "monthly" },
-  { loc: "/services/automatisation-workflows", priority: "0.9", changefreq: "monthly" },
-  { loc: "/services/audits-techniques-core-web-vitals", priority: "0.9", changefreq: "monthly" },
-  { loc: "/services/gestion-serveur-deploiement", priority: "0.9", changefreq: "monthly" },
-  { loc: "/services/integration-outils-ia", priority: "0.9", changefreq: "monthly" },
-  { loc: "/blog", priority: "0.8", changefreq: "weekly" },
-  { loc: "/contact", priority: "0.8", changefreq: "yearly" },
-  { loc: "/politique-confidentialite", priority: "0.3", changefreq: "yearly" },
-  { loc: "/mentions-legales", priority: "0.3", changefreq: "yearly" },
+  { loc: "/", priority: "1.0", changefreq: "monthly", lastmod: "2026-03-04" },
+  { loc: "/about", priority: "0.8", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/projects", priority: "0.8", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/services", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/services/optimisation-web-performance", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/services/creation-maintenance-sites", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/services/automatisation-workflows", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/services/audits-techniques-core-web-vitals", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/services/gestion-serveur-deploiement", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/services/integration-outils-ia", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/blog", priority: "0.8", changefreq: "weekly", lastmod: "2026-03-04" },
+  { loc: "/contact", priority: "0.8", changefreq: "yearly", lastmod: "2026-02-20" },
 ];
 
 export async function loader(_: Route.LoaderArgs) {
   const posts = await getAllPosts();
 
   const staticEntries = STATIC_URLS.map(
-    ({ loc, priority, changefreq }) => `
+    ({ loc, priority, changefreq, lastmod }) => `
   <url>
     <loc>${BASE_URL}${loc}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`
