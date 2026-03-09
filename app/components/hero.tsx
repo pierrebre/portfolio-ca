@@ -65,9 +65,8 @@ export default function Hero() {
 
             <div className="border-base-content/10 font-urbanist grid max-w-lg grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4">
               {[
-                { value: "50+", label: "Projets livrés" },
-                { value: "5+", label: "Ans d'expérience" },
-                { value: "+38 pts", label: "Lighthouse en moyenne" },
+                { value: "100%", label: "Livraisons" },
+                { value: "3+", label: "Ans" },
                 { value: "< 24 h", label: "Temps de réponse" },
               ].map((stat, index) => (
                 <div

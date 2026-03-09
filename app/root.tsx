@@ -93,7 +93,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 {
                   "@type": "Organization",
                   "@id": "https://pierrebarbe.ca/#organization",
-                  name: "Pierre Barbé Web",
+                  name: "Pierre Barbé",
                   url: "https://pierrebarbe.ca",
                   founder: { "@id": "https://pierrebarbe.ca/#person" },
                 },
@@ -101,7 +101,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             }).replace(/</g, "\\u003c"),
           }}
         />
-        <meta property="og:site_name" content="Pierre Barbé Web" />
+        <meta property="og:site_name" content="Pierre Barbé" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="fr_CA" />
 
