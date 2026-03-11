@@ -78,13 +78,19 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           width: 1200,
           height: 630,
         },
-        datePublished: post.date,
-        dateModified: post.date,
+        datePublished: `${post.date}T00:00:00-05:00`,
+        dateModified: `${post.date}T00:00:00-05:00`,
         author: {
           "@type": "Person",
           "@id": "https://pierrebarbe.ca/#person",
           name: "Pierre Barbé",
           url: "https://pierrebarbe.ca/about",
+          image: {
+            "@type": "ImageObject",
+            url: "https://pierrebarbe.ca/images/me.avif",
+            width: 2662,
+            height: 3201,
+          },
         },
         publisher: {
           "@type": "Organization",
