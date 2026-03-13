@@ -95,8 +95,10 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           "@id": `https://pierrebarbe.ca/blog/${p.slug}#article`,
           headline: p.title,
           url: `https://pierrebarbe.ca/blog/${p.slug}`,
-          datePublished: p.date,
+          datePublished: p.date + "T00:00:00-05:00",
           articleSection: p.category,
+          image: p.image ?? "https://pierrebarbe.ca/images/pb-og-image.avif",
+          author: { "@type": "Person", "@id": "https://pierrebarbe.ca/#person", name: "Pierre Barbé" },
         })),
       },
       {

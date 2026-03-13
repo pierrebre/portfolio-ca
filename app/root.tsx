@@ -59,7 +59,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           href="/blog/feed.xml"
         />
 
-        {/* Schema global : WebSite + Person + Organization (Knowledge Graph) */}
+        {/* Schema global : WebSite + Person (Organization complète définie dans home.tsx) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -89,13 +89,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     addressRegion: "QC",
                     addressCountry: "CA",
                   },
-                },
-                {
-                  "@type": "Organization",
-                  "@id": "https://pierrebarbe.ca/#organization",
-                  name: "Pierre Barbé",
-                  url: "https://pierrebarbe.ca",
-                  founder: { "@id": "https://pierrebarbe.ca/#person" },
                 },
               ],
             }).replace(/</g, "\\u003c"),
