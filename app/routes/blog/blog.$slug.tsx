@@ -65,6 +65,18 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const url = `https://pierrebarbe.ca/blog/${post.slug}`;
   const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.avif";
 
+  const faqSchema = post.faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: post.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }
+    : null;
+
   const blogPostingSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -121,6 +133,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   return (
     <div className="bg-base-100 font-urbanist min-h-screen">
       <JsonLd data={blogPostingSchema} />
+      {faqSchema && <JsonLd data={faqSchema} />}
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs

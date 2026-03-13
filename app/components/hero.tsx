@@ -22,8 +22,8 @@ export default function Hero() {
             </div>
 
             <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[4rem]">
-              Ton site devrait travailler pour toi
-              <span className="text-primary block">— pas contre toi.</span>
+              Développeur web freelance à Montréal
+              <span className="text-primary block">— qui fait travailler ton site pour toi.</span>
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">

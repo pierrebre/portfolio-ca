@@ -17,15 +17,14 @@ export function meta({}: Route.MetaArgs) {
   const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
 
   return [
-    { title: "Projets — Études de cas web performance & automatisation | Pierre Barbé" },
+    { title: "Études de cas — Performance & automatisation | Pierre Barbé" },
     { tagName: "link", rel: "canonical", href: url },
     {
       name: "description",
       content:
         "Études de cas concrets : optimisation WordPress +70 pts Lighthouse, e-commerce Shopify +162 % de conversion mobile, automatisation n8n qui économise 10 h/semaine.",
     },
-    { name: "robots", content: "noindex, follow" },
-    { name: "keywords", content: "projets développement web montréal, études de cas performance wordpress, optimisation lighthouse québec, automatisation n8n, résultats mesurables site web" },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
     { property: "og:title", content: "Projets — Études de cas | Pierre Barbé" },
     {
       property: "og:description",
@@ -35,7 +34,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: url },
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "333" },
+    { property: "og:image:height", content: "630" },
     { property: "og:type", content: "website" },
     { property: "og:locale", content: "fr_CA" },
     { name: "twitter:title", content: "Projets — Études de cas | Pierre Barbé" },

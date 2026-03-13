@@ -1,9 +1,24 @@
 import FaqItem from "./faq-item";
+import JsonLd from "./json-ld";
 import { questions } from "data/questions";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map((q) => ({
+    "@type": "Question",
+    name: q.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: q.answer,
+    },
+  })),
+};
 
 export default function Faq() {
   return (
     <section id="faq" className="bg-base-100 py-20 md:py-28">
+      <JsonLd data={faqSchema} />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-3 flex justify-center">
