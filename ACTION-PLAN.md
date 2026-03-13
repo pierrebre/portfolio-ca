@@ -1,366 +1,351 @@
 # SEO Action Plan — pierrebarbe.ca
-
 **Generated:** 2026-03-13
-**Overall Score:** 72/100
+**Overall Score:** 80/100
 
 ---
 
-## Critical — Fix Immediately
+## CRITICAL — Fix immediately
 
-### C1. Projects page: add `noindex` or populate with real content
-**File:** `app/routes/projects.tsx`
-**Why:** Page is indexed with meta claiming "+70 pts Lighthouse, +162% conversion" but renders only a placeholder. Direct E-E-A-T failure.
-**Fix:** Add `noindex` to meta immediately, then populate with real case studies.
+### C1. Add `FAQPage` schema to homepage FAQ
+**File:** `app/components/faq.tsx`
+**Impact:** Rich result in Google SERPs — expandable Q&A below your listing, +CTR
+**Effort:** 1–2 hours
+
+Import the questions data and inject a `FAQPage` JSON-LD block:
 ```tsx
-// In meta() of projects.tsx — add:
-{ name: "robots", content: "noindex, follow" },
+import JsonLd from "~/components/json-ld";
+import { questions } from "data/questions";
+
+// Inside Faq() component, before the return:
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map((q) => ({
+    "@type": "Question",
+    name: q.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: q.answer,
+    },
+  })),
+};
+
+// Add <JsonLd data={faqSchema} /> before the <section>
 ```
 
-### C2. ThemeToggle: fix hydration CLS for dark-mode users
-**File:** `app/components/theme-toggle.tsx`
-**Why:** Every dark-mode user experiences a layout shift (icon swap) on every page load.
-**Fix:**
+---
+
+### C2. Fix `/projects` noindex vs sitemap conflict
+**File:** `app/routes/projects.tsx:27` and `app/routes/sitemap[.]xml.tsx:9`
+**Impact:** Either index a high-value social proof page OR stop confusing Googlebot
+**Effort:** 30 min
+
+**Option A (Recommended):** Index the page — it has real before/after metrics and can rank:
 ```tsx
-const [theme, setTheme] = useState<string>(() => {
-  if (typeof document === "undefined") return "light";
-  return document.documentElement.getAttribute("data-theme") ?? "light";
-});
-// Remove the useEffect that was syncing localStorage — the anti-FOUC script already handles it
+// projects.tsx line 27 — change:
+{ name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
 ```
 
-### C3. Hero image: add `fetchPriority="high"` + preload
-**Files:** `app/components/hero.tsx`, `app/root.tsx`
-**Why:** LCP candidate has no priority signal to the browser.
-**Fix hero.tsx:**
+**Option B:** If page isn't ready, remove from sitemap:
 ```tsx
-<img ... loading="eager" fetchPriority="high" />
-```
-**Fix root.tsx (inside `<head>`):**
-```tsx
-<link rel="preload" as="image" href="/images/me.avif" type="image/avif" fetchPriority="high" />
+// sitemap[.]xml.tsx — remove the /projects entry from STATIC_URLS
 ```
 
-### C4. Resolve CSP / X-Frame-Options conflict
-**File:** `vercel.json`
-**Why:** `frame-ancestors 'none'` (CSP) and `X-Frame-Options: SAMEORIGIN` contradict each other.
-**Fix:** Remove this line from vercel.json:
-```json
-{ "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+---
+
+### C3. Resolve duplicate schema between `root.tsx` and `home.tsx`
+**File:** `app/root.tsx:64–96`
+**Impact:** Eliminates conflicting @graph signals on homepage
+**Effort:** 30 min
+
+Remove the `WebSite` and `Person` entries from `root.tsx` global schema (lines 64–96). The comprehensive `@graph` in `home.tsx` already covers these with richer data. On all other pages, the root schema was providing a minimal global signal — but it conflicts on the homepage.
+
+```tsx
+// root.tsx — remove the entire <script type="application/ld+json"> block
+// that defines WebSite + Person (lines 63–96)
+// The home.tsx @graph already defines these with @id references
 ```
 
-### C5. Fix `not-found.tsx` to return HTTP 404 status
-**File:** `app/routes/not-found.tsx`
-**Why:** All unmatched URLs return HTTP 200 — Google indexes soft-404 pages.
-**Fix:** Add a loader:
+---
+
+## HIGH — Fix within 1 week
+
+### H1. Add FAQPage schema to blog posts with FAQ frontmatter
+**File:** `app/routes/blog/blog.$slug.tsx`
+**Impact:** Rich results on blog post SERPs
+**Effort:** 2 hours
+
+Update `blog.$slug.tsx` to include FAQ schema when `post.faq` is present in frontmatter. Requires:
+1. Updating `app/lib/content.server.ts` to expose the `faq` frontmatter field in the returned post object
+2. Adding conditional FAQPage schema in `blog.$slug.tsx` blogPostingSchema `@graph`
+
+---
+
+### H2. Add primary keyword to homepage H1
+**File:** `app/components/hero.tsx:24`
+**Impact:** Stronger H1 keyword signal for "développeur web freelance Montréal"
+**Effort:** 15 min
+
+Current: `"Ton site devrait travailler pour toi — pas contre toi."`
+
+Consider a hybrid that keeps the brand voice but adds context:
 ```tsx
-export function loader() {
-  throw new Response(null, { status: 404 });
+<h1>
+  Développeur web freelance à Montréal
+  <span className="text-primary block">— qui fait travailler ton site pour toi.</span>
+</h1>
+```
+Or use an invisible/sr-only H1 supplement, or restructure the heading to include geo-keyword while keeping the tagline.
+
+---
+
+### H3. Fix DaisyUI `themes: all` → `themes: [light, dark]`
+**File:** `app/app.css:2–4`
+**Impact:** ~70% CSS bundle size reduction — improves LCP, especially on mobile
+**Effort:** 5 min
+
+```css
+/* Change from: */
+@plugin "daisyui" {
+  themes: all;
+}
+
+/* To: */
+@plugin "daisyui" {
+  themes: ["light", "dark"];
 }
 ```
 
 ---
 
-## High Priority — Fix This Week
+### H4. Fix BreadcrumbList last item `item` property
+**Files:** `about.tsx:171`, `contact.tsx:27–28`, `projects.tsx:83–85`, `blog.$slug.tsx:115`
+**Impact:** Clean rich result validation in Google Rich Results Test
+**Effort:** 30 min
 
-### H1. Fix `article:published_time` timezone
-**File:** `app/routes/blog/blog.$slug.tsx` line 44
-```tsx
-// Before:
-{ property: "article:published_time", content: post.date },
-// After:
-{ property: "article:published_time", content: `${post.date}T00:00:00-05:00` },
-// Also add:
-{ property: "article:modified_time", content: `${post.date}T00:00:00-05:00` },
+Remove `item` property from the last `ListItem` in each manually-defined BreadcrumbList. Use the existing `generateBreadcrumbSchema()` utility from `app/utils/seo.ts` which already handles this correctly.
+
+Example fix for `about.tsx`:
+```ts
+// Remove line 171: item: "https://pierrebarbe.ca/about",
+// The last ListItem should only have position and name
 ```
 
-### H2. Fix `og:image:height` on projects page
-**File:** `app/routes/projects.tsx` line 38
+Or refactor to use `generateBreadcrumbSchema()` consistently:
+```ts
+import { generateBreadcrumbSchema } from "~/utils/seo";
+// then use generateBreadcrumbSchema([
+//   { name: "Accueil", url: "https://pierrebarbe.ca/" },
+//   { name: "À propos", url: "https://pierrebarbe.ca/about" }
+// ])
+```
+
+---
+
+### H5. Preload italic Urbanist fonts
+**File:** `app/root.tsx:37–38`
+**Impact:** Eliminates FOUT (flash of unstyled text) for italic text
+**Effort:** 10 min
+
+Add preloads for italic variants:
 ```tsx
-// Before:
+<link rel="preload" as="font" type="font/woff2"
+  href="/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2"
+  crossOrigin="anonymous" />
+<link rel="preload" as="font" type="font/woff2"
+  href="/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2"
+  crossOrigin="anonymous" />
+```
+
+---
+
+### H6. Fix og:image:height on `/projects`
+**File:** `app/routes/projects.tsx:38`
+**Impact:** Correct social preview aspect ratio
+**Effort:** 2 min
+
+```tsx
+// Change:
 { property: "og:image:height", content: "333" },
-// After:
+// To:
 { property: "og:image:height", content: "630" },
 ```
 
-### H3. Change `og:type` from `"article"` to `"website"` on service pages
-**Files:** All 6 service route files
-Remove `type: "article"` from the `generateSEOMeta()` call (default is already `"website"`).
+---
 
-### H4. Add `og:image:type` to blog slug and about pages
-**Files:** `app/routes/blog/blog.$slug.tsx`, `app/routes/about.tsx`
+### H7. Add blog-to-service internal links
+**Files:** Content blog MDX files
+**Impact:** Passes link equity to key service pages, improves topical relevance
+**Effort:** 1 hour
+
+| Blog Article | Add Link To |
+|---|---|
+| `core-web-vitals-guide-pme.mdx` | `/services/audits-techniques-core-web-vitals` |
+| `automatiser-business-n8n-pme.mdx` | `/services/automatisation-workflows` |
+| `optimisation-vitesse-wordpress.mdx` | `/services/optimisation-web-performance` |
+| `securite-wordpress-guide-pme.mdx` | `/services/creation-maintenance-sites` |
+| `chatbot-ia-site-web-pme.mdx` | `/services/integration-outils-ia` |
+
+---
+
+## MEDIUM — Fix within 1 month
+
+### M1. Create `public/llms.txt`
+**Impact:** Helps AI crawlers (ChatGPT, Perplexity, Claude) understand site structure — GEO visibility
+**Effort:** 30 min
+
+```markdown
+# Pierre Barbé — Développeur web freelance Montréal
+# https://pierrebarbe.ca
+
+## About
+Pierre Barbé is a freelance web developer based in Montreal, Quebec, Canada.
+Specializing in web performance, React, WordPress, automation (n8n), and AI integration for Quebec SMBs.
+
+## Services
+- Web performance optimization and Core Web Vitals audits
+- Website creation and maintenance (React Router, WordPress)
+- Workflow automation (n8n, Make)
+- AI chatbot and tool integration
+- Server management and deployment
+
+## Content
+Blog covering: web performance, WordPress optimization, automation, AI for SMBs, Quebec digital compliance (Loi 25)
+
+## Contact
+contact@pierrebarbe.ca
++1 (438) 448-8408
+Montreal, Quebec, Canada
+```
+
+---
+
+### M2. Dynamic blog lastmod in sitemap
+**File:** `app/routes/sitemap[.]xml.tsx:17`
+**Impact:** Accurate freshness signals for blog index page
+**Effort:** 30 min
+
 ```tsx
-{ property: "og:image:type", content: "image/avif" },
+// Replace hardcoded date:
+{ loc: "/blog", priority: "0.8", changefreq: "weekly", lastmod: "2026-03-04" },
+
+// With dynamic latest post date:
+const latestPost = posts.sort((a, b) => b.date.localeCompare(a.date))[0];
+// then use latestPost?.date ?? "2026-03-04" in the /blog entry
 ```
 
-### H5. Remove Person schema from `root.tsx`, keep only WebSite
-**File:** `app/root.tsx`
-**Why:** Duplicate `@id` (#person) conflict with home.tsx on the homepage.
-**Fix:** Root schema should only contain `WebSite`. Remove the `Person` node from the global JSON-LD block.
+---
 
-### H6. Fix Organization logo to use square image
-**File:** `app/routes/home.tsx`
-**Why:** Current logo is a 1200×630 banner — fails Google's logo validation.
-**Fix:** Create a 512×512px square PNG (`/images/pb-logo-square.png`) and update:
-```json
-"logo": { "@type": "ImageObject", "url": "https://pierrebarbe.ca/images/pb-logo-square.png", "width": 512, "height": 512 }
+### M3. Add post-specific OG images to blog articles
+**Impact:** Higher social sharing CTR, stronger brand on each share
+**Effort:** 2–4 hours (design + implementation)
+
+Add `image:` field to each MDX frontmatter:
+```yaml
+---
+title: "Chatbot IA pour PME : guide complet 2026"
+image: "https://pierrebarbe.ca/images/blog/chatbot-ia-pme.avif"
+---
 ```
 
-### H7. Fix `geo` coordinates to be numeric in LocalBusiness schema
-**File:** `app/routes/home.tsx`
-```json
-// Before:
-"latitude": "45.5017", "longitude": "-73.5673"
-// After:
-"latitude": 45.5017, "longitude": -73.5673
+`blog.$slug.tsx` already handles `post.image` with fallback to the generic image — just add images.
+
+---
+
+### M4. Track dateModified separately from datePublished
+**File:** `app/routes/blog/blog.$slug.tsx:83` + MDX frontmatter
+**Impact:** Freshness signals for updated articles
+**Effort:** 2 hours
+
+Add `lastUpdated:` field to MDX frontmatter and use it in `BlogPosting.dateModified`:
+```yaml
+date: "2026-02-05"
+lastUpdated: "2026-03-10"
 ```
 
-### H8. Fix sitemap: `/blog` dynamic lastmod + remove priority/changefreq
+---
+
+### M5. Add `<title>` keyword improvement for `/projects`
+**File:** `app/routes/projects.tsx:21`
+**Impact:** Under 60 chars, better SERP display
+**Effort:** 2 min
+
+```tsx
+// Change from (73 chars):
+{ title: "Projets — Études de cas web performance & automatisation | Pierre Barbé" },
+// To (~55 chars):
+{ title: "Études de cas — Performance & automatisation | Pierre Barbé" },
+```
+
+---
+
+### M6. Add `AggregateRating` or `Review` schema to homepage
+**File:** `app/routes/home.tsx` — results/testimonials section
+**Impact:** Star ratings in SERPs if review data is added
+**Effort:** 2 hours (requires adding reviewers with names to results component)
+
+---
+
+### M7. Add image sitemap entries
 **File:** `app/routes/sitemap[.]xml.tsx`
-Full rewrite removing `priority`/`changefreq` (Google ignores both), adding legal pages, making `/blog` lastmod dynamic:
-```tsx
-const blogLastmod = posts[0]?.date ?? "2026-03-04";
-```
-Add:
-```tsx
-{ loc: "/politique-confidentialite", lastmod: "2026-02-20" },
-{ loc: "/mentions-legales", lastmod: "2026-02-20" },
-```
+**Impact:** Google Image Search indexing of portfolio/profile images
+**Effort:** 1 hour
 
-### H9. Fix future-dated articles (3 articles)
-**Files:** `content/blog/securite-wordpress-guide-pme.mdx`, `content/blog/maintenance-site-web-pme-guide.mdx`, `content/blog/cout-site-web-quebec-prix.mdx`
-Either update dates to today (2026-03-13) or ensure `getAllPosts()` filters articles where `date > today`.
-
-### H10. Add `X-Robots-Tag` header for legal pages
-**File:** `vercel.json`
-```json
-{
-  "source": "/(politique-confidentialite|mentions-legales)",
-  "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
-}
+Add `<image:image>` entries to the homepage and about page sitemap entries:
+```xml
+<url>
+  <loc>https://pierrebarbe.ca/</loc>
+  <image:image>
+    <image:loc>https://pierrebarbe.ca/images/me.avif</image:loc>
+    <image:title>Pierre Barbé, développeur web freelance à Montréal</image:title>
+  </image:image>
+</url>
 ```
-
-### H11. Cache MDX compilation in `content.server.ts`
-**File:** `app/lib/content.server.ts`
-**Why:** Each blog request triggers CPU-bound MDX compilation (50-200ms). Serverless containers are reused, so an in-process cache is effective.
-```ts
-const postCache = new Map<string, { mtime: number; content: PostContent }>();
-// Check mtime before re-compiling
-```
-
-### H12. Add CDN cache for blog and service HTML responses
-**File:** `vercel.json`
-```json
-{
-  "source": "/blog/(.*)",
-  "headers": [{ "key": "Cache-Control", "value": "public, s-maxage=3600, stale-while-revalidate=86400" }]
-},
-{
-  "source": "/services/(.*)",
-  "headers": [{ "key": "Cache-Control", "value": "public, s-maxage=3600, stale-while-revalidate=86400" }]
-}
-```
+Requires adding `xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"` to `<urlset>`.
 
 ---
 
-## Medium Priority — Fix This Month
+## LOW — Backlog
 
-### M1. Shorten all title tags to under 60 characters
-**File:** `app/utils/seo.ts` + all service route files
-Current pattern adds `| Montréal | Pierre Barbé` (22 chars) to every service page. Fix pattern:
-- Drop `| Pierre Barbé` (Google appends brand automatically)
-- Merge Montréal into the keyword phrase
-- Example: `"Optimisation performance web à Montréal"` (40 chars) ✅
+### L1. Add `speakable` schema to blog articles
+Add `speakable: { cssSelector: ["h1", ".article-intro"] }` to BlogPosting schema for voice/AI search.
 
-Add length validation in `generateSEOMeta()`:
-```ts
-if (title.length > 60) console.warn(`[SEO] Title too long (${title.length} chars): ${title}`);
-```
+### L2. Add `srcset` to hero image for mobile optimization
+Serve smaller versions of `me.avif` on mobile (e.g., 640px wide) using `<img srcset="...">`.
 
-### M2. Shorten all meta descriptions to 150-160 characters
-**File:** `app/utils/seo.ts`
-Same utility — add a character limit check. All service page descriptions currently exceed 160 chars by 10-78 characters.
+### L3. Add formal certifications to About page
+Google PageSpeed Insights partner badge, or similar third-party credentials — improves E-E-A-T Authoritativeness signal.
 
-### M3. Align H1 with primary keyword on home, about, contact
-**Files:** `app/components/hero.tsx`, `app/routes/about.tsx`, `app/routes/contact.tsx`
-- Homepage: Add a visually de-emphasized subtitle `<p>Développeur web freelance à Montréal</p>` below the H1 tagline
-- About H1: Change to "Pierre Barbé — Développeur web freelance à Montréal"
-- Contact H1: Change to "Parlons de ton projet web à Montréal" (or similar)
+### L4. Add testimonials with names to homepage
+Real client testimonials (with permission) with a `Review` schema significantly improve E-E-A-T. Even 2–3 named testimonials help.
 
-### M4. Add `offers.validFrom` static date to service page schema
-**File:** `app/utils/seo.ts`
-```ts
-// Before:
-validFrom: new Date().toISOString().split('T')[0]
-// After:
-validFrom: "2025-01-01"
-```
+### L5. Explore hreflang for en-CA variant
+The `LocalBusiness` schema declares `availableLanguage: ["fr-CA", "en"]` but no English pages exist. If you serve English clients, a `/en/` section with hreflang would expand reach.
 
-### M5. Add `description` to BlogPosting stubs in `blog._index.tsx`
-**File:** `app/routes/blog/blog._index.tsx`
-```tsx
-blogPost: posts.map((p) => ({
-  ...
-  description: p.excerpt,  // ADD THIS
-  ...
-}))
-```
-
-### M6. Add `url` to Service nodes in `home.tsx`
-**File:** `app/routes/home.tsx`
-Each Service node in the home page JSON-LD should have a `url` pointing to its canonical service page.
-
-### M7. Fix `about.tsx` BreadcrumbList — remove `item` from last element
-**File:** `app/routes/about.tsx`
-The last BreadcrumbList item should not include an `item` property (inconsistent with `generateBreadcrumbSchema` utility).
-
-### M8. Generate OG image as JPEG/WebP for social crawler compatibility
-**File:** `public/images/pb-og-image.avif`
-Generate `pb-og-image.jpg` and use it as primary `og:image` across all routes. Update all `const image = "..."` references.
-
-### M9. Add responsive image variants for hero and about images
-**Files:** `app/components/hero.tsx`, `app/routes/about.tsx`
-Generate `me-480.avif` and `me-768.avif` variants via Sharp at build time, then:
-```tsx
-srcSet="/images/me-480.avif 480w, /images/me-768.avif 768w, /images/me.avif 1152w"
-sizes="(max-width: 768px) 100vw, 50vw"
-```
-
-### M10. Add form accessibility: `aria-invalid`, `aria-describedby`, `role="alert"`
-**File:** `app/components/contact-form.tsx`
-Each form input needs:
-- `id="fieldName"` on input
-- `htmlFor="fieldName"` on label
-- `aria-invalid={!!errors.field}` on input
-- `aria-describedby="fieldName-error"` on input
-- `role="alert"` and `id="fieldName-error"` on error message span
-
-### M11. Remove semantically ineffective `aria-label` from blog content div
-**File:** `app/routes/blog/blog.$slug.tsx` line 200
-A `div` without `role` ignores `aria-label`. Remove the attribute — the parent `<article>` already provides the landmark.
-
-### M12. Restrict DaisyUI to `themes: light, dark`
-**File:** `app/app.css` line 3
-```css
-@plugin "daisyui" {
-  themes: light, dark;
-}
-```
-Removes ~15–25KB from CSS bundle.
-
-### M13. Add Vite `manualChunks` for better cache granularity
-**File:** `vite.config.ts`
-```ts
-build: {
-  rollupOptions: {
-    output: {
-      manualChunks: {
-        "vendor-react": ["react", "react-dom", "react-router"],
-        "vendor-forms": ["react-hook-form", "@hookform/resolvers", "zod"],
-        "vendor-ui": ["lucide-react"],
-      },
-    },
-  },
-},
-```
-
-### M14. Increase image cache TTL to 30 days
-**File:** `vercel.json`
-```json
-{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=604800" }
-```
-
-### M15. Add Twitter Card tags to contact page
-**File:** `app/routes/contact.tsx`
-```tsx
-{ name: "twitter:title", content: "Contact et devis de site web à Montréal" },
-{ name: "twitter:description", content: "Réserve ta consultation gratuite. Réponse en moins de 24 h." },
-{ name: "twitter:image", content: "https://pierrebarbe.ca/images/pb-og-image.jpg" },
-{ name: "twitter:image:alt", content: "Pierre Barbé — Développeur web freelance Montréal" },
-```
-
-### M16. Fix `site.webmanifest` — add `"purpose": "any"` variants
-**File:** `public/favicon/site.webmanifest`
-```json
-"icons": [
-  { "src": "/web-app-manifest-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-  { "src": "/web-app-manifest-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-  { "src": "/web-app-manifest-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-  { "src": "/web-app-manifest-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
-]
-```
-
-### M17. Complete NEQ placeholder in `legal-notice.tsx`
-**File:** `app/routes/legal-notice.tsx` line 68
-Replace `[à compléter si applicable]` with the actual NEQ or remove the line.
+### L6. Add `keywords` meta only where relevant
+Currently only `/projects` has `keywords` meta — it's ignored by Google but may help other engines. Either remove it (Google ignores it) or omit entirely for consistency.
 
 ---
 
-## Low Priority — Backlog
+## Summary Table
 
-### L1. Add `profile:first_name`, `profile:last_name`, `profile:username` to about page OG meta
-**File:** `app/routes/about.tsx`
-
-### L2. Add hreflang self-reference
-**File:** `app/root.tsx` (inside `<head>`)
-```tsx
-<link rel="alternate" hrefLang="fr-CA" href="https://pierrebarbe.ca/" />
-<link rel="alternate" hrefLang="x-default" href="https://pierrebarbe.ca/" />
-```
-
-### L3. Add blog-to-service internal links in 4 MDX articles
-- `core-web-vitals-guide-pme.mdx` → link to `/services/audits-techniques-core-web-vitals`
-- `automatiser-business-n8n-pme.mdx` → link to `/services/automatisation-workflows`
-- `securite-wordpress-guide-pme.mdx` → link to `/services/creation-maintenance-sites`
-- `optimisation-vitesse-wordpress.mdx` → link to `/services/optimisation-web-performance`
-
-### L4. Add service-to-blog links on each service page (3-4 links total)
-- `optimisation-web-performance.tsx` → link to `audit-performance-site-web.mdx`, `core-web-vitals-guide-pme.mdx`
-- `creation-maintenance-sites.tsx` → link to `optimisation-vitesse-wordpress.mdx`, `maintenance-site-web-pme-guide.mdx`
-- `integration-outils-ia.tsx` → link to `chatbot-ia-site-web-pme.mdx`
-
-### L5. Enrich `llms.txt` with descriptions for `/contact`, `/projects`, `/about`
-**File:** `public/llms.txt`
-
-### L6. Add `<meta name="author" content="Pierre Barbé">` to blog posts
-**File:** `app/routes/blog/blog.$slug.tsx`
-
-### L7. Link `BreadcrumbList` from `CollectionPage` in `projects.tsx`
-**File:** `app/routes/projects.tsx`
-```tsx
-"breadcrumb": { "@id": "https://pierrebre.ca/projects#breadcrumb" }
-```
-
-### L8. Add `dateModified` to `ProfilePage` in `about.tsx`
-**File:** `app/routes/about.tsx`
-
-### L9. Add FAQ content blocks to service pages (for AI Overview eligibility)
-Add 3-4 Q&A pairs per service page as visible content (not FAQPage schema).
-
-### L10. Register and link Google Business Profile
-Once GBP is claimed, add its URL to the `sameAs` array in `home.tsx` LocalBusiness/Organization schema.
-
-### L11. Add `Permissions-Policy` newer directives
-**File:** `vercel.json`
-```
-payment=(), usb=()
-```
-
-### L12. Add `<link rel="preload">` for hero image only on homepage
-Move hero image preload from `root.tsx` (all pages) to `home.tsx` links export — avoids preloading an unused resource on non-home pages.
-
----
-
-## Prioritized Quick Win Summary
-
-| # | Action | File | Impact | Effort |
+| Priority | ID | Task | Effort | Impact |
 |---|---|---|---|---|
-| 1 | `fetchPriority="high"` on hero img | `hero.tsx` | LCP -200-400ms | 1 attr |
-| 2 | `<link rel="preload">` for hero image | `root.tsx` | LCP -300-600ms | 3 lines |
-| 3 | Fix ThemeToggle hydration CLS | `theme-toggle.tsx` | CLS eliminated | 5 lines |
-| 4 | Fix `og:image:height` `"333"` → `"630"` | `projects.tsx:38` | Social preview | 1 char |
-| 5 | Remove `X-Frame-Options` header | `vercel.json` | Security fix | 1 line |
-| 6 | Fix `article:published_time` timezone | `blog.$slug.tsx:44` | Rich results | 1 line |
-| 7 | Remove `og:type: "article"` from services | 6 service files | Social preview | 6 files |
-| 8 | Add `noindex` to Projects page | `projects.tsx` | Trust | 1 line |
-| 9 | Fix `offers.validFrom` static date | `seo.ts` | Schema validity | 1 line |
-| 10 | Fix `geo` to numeric values | `home.tsx` | Schema validity | 2 values |
+| Critical | C1 | FAQPage schema on homepage FAQ | 2h | High |
+| Critical | C2 | Fix /projects noindex vs sitemap | 30m | High |
+| Critical | C3 | Remove duplicate schema from root.tsx | 30m | Medium |
+| High | H1 | FAQPage schema for blog posts | 2h | High |
+| High | H2 | Add keyword to homepage H1 | 15m | High |
+| High | H3 | DaisyUI themes: all → [light, dark] | 5m | High (perf) |
+| High | H4 | Fix BreadcrumbList last item | 30m | Medium |
+| High | H5 | Preload italic fonts | 10m | Medium |
+| High | H6 | Fix og:image:height on /projects | 2m | Low |
+| High | H7 | Blog-to-service internal links | 1h | High |
+| Medium | M1 | Create /llms.txt | 30m | Medium (GEO) |
+| Medium | M2 | Dynamic blog lastmod | 30m | Low |
+| Medium | M3 | Post-specific OG images | 4h | Medium |
+| Medium | M4 | Track dateModified in MDX | 2h | Low |
+| Medium | M5 | Shorten /projects title | 2m | Low |
+| Medium | M6 | AggregateRating schema | 2h | Medium |
+| Medium | M7 | Image sitemap entries | 1h | Low |
+| Low | L1–L6 | Various improvements | varies | Low |
