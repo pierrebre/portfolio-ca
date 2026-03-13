@@ -24,7 +24,7 @@ export function meta({}: Route.MetaArgs) {
       content:
         "Études de cas concrets : optimisation WordPress +70 pts Lighthouse, e-commerce Shopify +162 % de conversion mobile, automatisation n8n qui économise 10 h/semaine.",
     },
-    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    { name: "robots", content: "noindex, follow" },
     { name: "keywords", content: "projets développement web montréal, études de cas performance wordpress, optimisation lighthouse québec, automatisation n8n, résultats mesurables site web" },
     { property: "og:title", content: "Projets — Études de cas | Pierre Barbé" },
     {

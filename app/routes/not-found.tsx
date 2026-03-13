@@ -1,5 +1,9 @@
 import type { Route } from "./+types/not-found";
 
+export function loader() {
+  throw new Response(null, { status: 404 });
+}
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Page non trouvée (404) | Pierre Barbé" },

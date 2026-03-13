@@ -93,6 +93,7 @@ export default function Hero() {
                 width={1152}
                 height={1152}
                 loading="eager"
+                fetchPriority="high"
               />
             </div>
           </div>

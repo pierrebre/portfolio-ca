@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ThemeToggle() {
-  // SSR : toujours "light" côté serveur pour éviter le mismatch d'hydratation.
-  // Le script anti-FOUC dans root.tsx applique le bon thème avant React.
-  const [theme, setTheme] = useState<string>("light");
-
-  useEffect(() => {
-    // Lecture du localStorage uniquement côté client après montage
-    const saved = localStorage.getItem("theme") ?? "light";
-    setTheme(saved);
-  }, []);
+  // Lazy initializer: reads data-theme already set by the anti-FOUC script.
+  // Safe for SSR because the function only runs on the client after mount.
+  const [theme, setTheme] = useState<string>(() => {
+    if (typeof document === "undefined") return "light";
+    return document.documentElement.getAttribute("data-theme") ?? "light";
+  });
 
   const toggleTheme = () => {
     const next = theme === "light" ? "dark" : "light";
