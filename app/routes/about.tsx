@@ -14,7 +14,7 @@ import type { Route } from "./+types/about";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/about";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: "À propos — Pierre Barbé, développeur web freelance Montréal" },
@@ -153,6 +153,7 @@ const aboutSchema = {
       url: "https://pierrebarbe.ca/about",
       name: "À propos — Pierre Barbé",
       dateCreated: "2025-01-01",
+      dateModified: "2026-02-20",
       mainEntity: { "@id": "https://pierrebarbe.ca/#person" },
     },
     {
@@ -169,7 +170,6 @@ const aboutSchema = {
           "@type": "ListItem",
           position: 2,
           name: "À propos",
-          item: "https://pierrebarbe.ca/about",
         },
       ],
     },
@@ -235,9 +235,10 @@ export default function About() {
                   src="/images/me.avif"
                   alt="Pierre Barbé, développeur web freelance à Montréal"
                   className="w-full h-auto max-h-[500px] object-cover"
-                  width={800}
-                  height={800}
+                  width={2662}
+                  height={3201}
                   loading="eager"
+                  fetchPriority="high"
                 />
               </div>
               {/* Stats overlay */}

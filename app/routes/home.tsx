@@ -13,7 +13,7 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     {
@@ -43,7 +43,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
-    { property: "og:image:type", content: "image/avif" },
+    { property: "og:image:type", content: "image/jpeg" },
     {
       property: "og:image:alt",
       content: "Pierre Barbé — Développeur web freelance Montréal",
@@ -72,7 +72,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const url = "https://pierrebarbe.ca/";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   const schema = {
     "@context": "https://schema.org",
@@ -87,7 +87,7 @@ export default function Home() {
         description:
           "Développeur web freelance spécialisé en React Router v7, React, WordPress, SEO et automatisation (n8n) à Montréal",
         url,
-        image: "https://pierrebarbe.ca/images/pierre-barbe.jpg",
+        image: "https://pierrebarbe.ca/images/me.avif",
         email: "contact@pierrebarbe.ca",
         telephone: "+1-438-448-8408",
         address: {
@@ -164,9 +164,9 @@ export default function Home() {
         url,
         logo: {
           "@type": "ImageObject",
-          url: image,
-          width: 1200,
-          height: 630,
+          url: "https://pierrebarbe.ca/images/pierre-barbe-logo.png",
+          width: 512,
+          height: 512,
         },
         founder: { "@id": `${url}#person` },
         contactPoint: {
@@ -228,6 +228,7 @@ export default function Home() {
         name: "Développement Next.js & React",
         description:
           "Création de sites web rapides et performants avec Next.js et React pour PME et agences",
+        url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
         provider: { "@id": `${url}#person` },
         serviceType: "Web Development",
         areaServed: { "@type": "City", name: "Montréal" },
@@ -242,6 +243,7 @@ export default function Home() {
         name: "Développement WordPress",
         description:
           "Création et optimisation de sites WordPress sur mesure pour PME québécoises",
+        url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
         provider: { "@id": `${url}#person` },
         serviceType: "WordPress Development",
         areaServed: { "@type": "City", name: "Montréal" },
@@ -256,6 +258,7 @@ export default function Home() {
         name: "Optimisation SEO & Web Performance",
         description:
           "Audit SEO gratuit, optimisation de la vitesse et amélioration du référencement naturel",
+        url: "https://pierrebarbe.ca/services/optimisation-web-performance",
         provider: { "@id": `${url}#person` },
         serviceType: "SEO Services",
         areaServed: [
@@ -280,6 +283,7 @@ export default function Home() {
         name: "Automatisation (n8n, Make)",
         description:
           "Automatisation de processus métier avec n8n et Make pour gagner du temps",
+        url: "https://pierrebarbe.ca/services/automatisation-workflows",
         provider: { "@id": `${url}#person` },
         serviceType: "Business Automation",
         areaServed: { "@type": "Country", name: "Canada" },

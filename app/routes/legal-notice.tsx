@@ -3,7 +3,7 @@ import type { Route } from "./+types/legal-notice";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/mentions-legales";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: "Mentions légales | Pierre Barbé" },
@@ -22,7 +22,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
-    { property: "og:image:type", content: "image/avif" },
+    { property: "og:image:type", content: "image/jpeg" },
     { property: "og:type", content: "website" },
   ];
 }
@@ -64,9 +64,9 @@ export default function LegalNotice() {
 
       <h2 className="text-xl font-semibold mt-6 mb-2">🆔 Enregistrement</h2>
       <p className="mb-4">
-        Numéro d’entreprise (NEQ) : [à compléter si applicable]
+        Travailleur autonome opérant sous son nom légal.
         <br />
-        Enregistré au Registraire des entreprises du Québec
+        Non assujetti à l’immatriculation au Registraire des entreprises du Québec.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">💻 Hébergement</h2>
