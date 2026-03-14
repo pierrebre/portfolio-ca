@@ -11,7 +11,6 @@ export function meta({}: Route.MetaArgs) {
       title: "Création & Maintenance de Sites WordPress & Shopify | Montréal | Pierre Barbé",
       description: "Création de sites WordPress et Shopify rapides et durables pour PME du Québec. Forfaits maintenance à partir de 150 $/mois. Développeur freelance Montréal sans contrat annuel.",
       url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
-      type: "article",
     }),
   ];
 }

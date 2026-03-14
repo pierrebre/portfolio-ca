@@ -190,9 +190,20 @@ export default function Projects() {
                         <p className="text-base-content/50 text-sm font-medium mb-3">
                           {project.client}
                         </p>
-                        <p className="text-base-content/70 leading-relaxed mb-6">
+                        <p className="text-base-content/70 leading-relaxed mb-4">
                           {project.description}
                         </p>
+
+                        <div className="space-y-3 mb-6">
+                          <div>
+                            <h3 className="text-sm font-semibold text-base-content/60 uppercase tracking-wide mb-1">Défi</h3>
+                            <p className="text-base-content/70 text-sm leading-relaxed">{project.challenge}</p>
+                          </div>
+                          <div>
+                            <h3 className="text-sm font-semibold text-base-content/60 uppercase tracking-wide mb-1">Solution</h3>
+                            <p className="text-base-content/70 text-sm leading-relaxed">{project.solution}</p>
+                          </div>
+                        </div>
 
                         {/* Métriques avant/après */}
                         <div className="grid grid-cols-2 gap-3 mb-6">

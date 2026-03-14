@@ -11,7 +11,6 @@ export function meta({}: Route.MetaArgs) {
       title: "Optimisation performance web & Core Web Vitals | Montréal | Pierre Barbé",
       description: "Ton site met plus de 3 secondes à charger ? J'audite et optimise la performance web de ton site WordPress, Shopify ou React : LCP, INP, CLS, images, cache. Audit gratuit 30 min disponible.",
       url: "https://pierrebarbe.ca/services/optimisation-web-performance",
-      type: "article",
     }),
   ];
 }

@@ -13,7 +13,7 @@ export async function loader() {
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/blog";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: "Blog — Web performance, automatisation & éco-conception | Pierre Barbé" },

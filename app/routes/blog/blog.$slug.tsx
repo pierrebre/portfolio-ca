@@ -65,18 +65,6 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const url = `https://pierrebarbe.ca/blog/${post.slug}`;
   const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.avif";
 
-  const faqSchema = post.faq?.length
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: post.faq.map((item) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: { "@type": "Answer", text: item.answer },
-        })),
-      }
-    : null;
-
   const blogPostingSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -92,7 +80,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           height: 630,
         },
         datePublished: `${post.date}T00:00:00-05:00`,
-        dateModified: `${post.date}T00:00:00-05:00`,
+        dateModified: `${post.updatedDate ?? post.date}T00:00:00-05:00`,
         author: {
           "@type": "Person",
           "@id": "https://pierrebarbe.ca/#person",
@@ -116,7 +104,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         },
         inLanguage: "fr-CA",
         articleSection: post.category,
-        wordCount: post.readingTime * 200,
+        wordCount: post.wordCount,
       },
       {
         "@type": "BreadcrumbList",
@@ -124,7 +112,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Accueil", item: "https://pierrebarbe.ca/" },
           { "@type": "ListItem", position: 2, name: "Blog", item: "https://pierrebarbe.ca/blog" },
-          { "@type": "ListItem", position: 3, name: post.title, item: url },
+          { "@type": "ListItem", position: 3, name: post.title },
         ],
       },
     ],
@@ -133,7 +121,6 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   return (
     <div className="bg-base-100 font-urbanist min-h-screen">
       <JsonLd data={blogPostingSchema} />
-      {faqSchema && <JsonLd data={faqSchema} />}
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs

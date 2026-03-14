@@ -15,10 +15,10 @@ export function generateSEOMeta({
   title,
   description,
   url,
-  image = "https://pierrebarbe.ca/images/pb-og-image.avif",
+  image = "https://pierrebarbe.ca/images/pb-og-image.jpg",
   imageWidth = "1200",
   imageHeight = "630",
-  imageType = "image/avif",
+  imageType = "image/jpeg",
   type = "website",
   noindex = false,
   robots,
@@ -54,58 +54,6 @@ export function generateSEOMeta({
     { name: "twitter:creator", content: "@PierreBarbe" },
     { name: "twitter:site", content: "@PierreBarbe" },
   ];
-}
-
-/**
- * Génère le schéma JSON-LD Service pour les pages de service
- * Améliore le référencement et l'affichage dans les résultats de recherche Google
- */
-interface ServiceSchemaProps {
-  name: string;
-  description: string;
-  url: string;
-  serviceType?: string;
-  areaServed?: string | string[];
-  provider?: {
-    name: string;
-    url: string;
-  };
-}
-
-export function generateServiceSchema({
-  name,
-  description,
-  url,
-  serviceType = "Service",
-  areaServed = ["Montréal", "Québec"],
-  provider = {
-    name: "Pierre Barbé",
-    url: "https://pierrebarbe.ca",
-  },
-}: ServiceSchemaProps) {
-  const areas = Array.isArray(areaServed) ? areaServed : [areaServed];
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name,
-    description,
-    url,
-    serviceType,
-    provider: {
-      "@type": "Person",
-      name: provider.name,
-      url: provider.url,
-    },
-    areaServed: areas.map((area) => ({
-      "@type": "City",
-      name: area,
-    })),
-    availableChannel: {
-      "@type": "ServiceChannel",
-      serviceUrl: "https://pierrebarbe.ca/contact",
-    },
-  };
 }
 
 /**
