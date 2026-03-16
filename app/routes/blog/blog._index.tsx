@@ -228,7 +228,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                     <h2 className="card-title text-xl sm:text-2xl font-bold leading-snug">
                       <Link
                         to={`/blog/${post.slug}`}
-                        className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
+                        className="w-fit hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
                       >
                         {post.title}
                       </Link>

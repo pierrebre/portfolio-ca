@@ -21,8 +21,8 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[4rem]">
-              Développeur web freelance à Montréal
+            <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[3rem]">
+              Développeur web freelance à Montréal{" "}
             </h1>
 
             <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">
