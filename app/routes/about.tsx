@@ -152,9 +152,14 @@ const aboutSchema = {
       "@id": "https://pierrebarbe.ca/about#profilepage",
       url: "https://pierrebarbe.ca/about",
       name: "À propos — Pierre Barbé",
-      dateCreated: "2025-01-01",
-      dateModified: "2026-02-20",
-      mainEntity: { "@id": "https://pierrebarbe.ca/#person" },
+      dateCreated: "2025-01-01T00:00:00-05:00",
+      dateModified: "2026-02-20T00:00:00-05:00",
+      mainEntity: {
+        "@type": "Person",
+        "@id": "https://pierrebarbe.ca/#person",
+        name: "Pierre Barbé",
+        url: "https://pierrebarbe.ca/about",
+      },
     },
     {
       "@type": "BreadcrumbList",
