@@ -152,9 +152,14 @@ const aboutSchema = {
       "@id": "https://pierrebarbe.ca/about#profilepage",
       url: "https://pierrebarbe.ca/about",
       name: "À propos — Pierre Barbé",
-      dateCreated: "2025-01-01",
-      dateModified: "2026-02-20",
-      mainEntity: { "@id": "https://pierrebarbe.ca/#person" },
+      dateCreated: "2025-01-01T00:00:00-05:00",
+      dateModified: "2026-02-20T00:00:00-05:00",
+      mainEntity: {
+        "@type": "Person",
+        "@id": "https://pierrebarbe.ca/#person",
+        name: "Pierre Barbé",
+        url: "https://pierrebarbe.ca/about",
+      },
     },
     {
       "@type": "BreadcrumbList",
@@ -232,11 +237,13 @@ export default function About() {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-xl">
                 <img
-                  src="/images/me.avif"
+                  src="/images/me-800.avif"
+                  srcSet="/images/me-800.avif 800w, /images/me.avif 2662w"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   alt="Pierre Barbé, développeur web freelance à Montréal"
                   className="w-full h-auto max-h-[500px] object-cover"
-                  width={2662}
-                  height={3201}
+                  width={800}
+                  height={962}
                   loading="eager"
                   fetchPriority="high"
                 />

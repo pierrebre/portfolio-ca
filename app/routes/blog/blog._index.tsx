@@ -98,7 +98,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           datePublished: p.date + "T00:00:00-05:00",
           articleSection: p.category,
           image: p.image ?? "https://pierrebarbe.ca/images/pb-og-image.avif",
-          author: { "@type": "Person", "@id": "https://pierrebarbe.ca/#person", name: "Pierre Barbé" },
+          author: { "@type": "Person", "@id": "https://pierrebarbe.ca/#person", name: "Pierre Barbé", url: "https://pierrebarbe.ca/about" },
         })),
       },
       {
