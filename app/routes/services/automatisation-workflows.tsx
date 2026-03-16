@@ -11,7 +11,6 @@ export function meta({}: Route.MetaArgs) {
       title: "Automatisation de workflows avec n8n | Gain de temps pour PME | Montréal",
       description: "J'automatise tes tâches répétitives avec n8n : onboarding clients, rappels, rapports, intégrations API. À partir de 500 $. Développeur n8n freelance à Montréal.",
       url: "https://pierrebarbe.ca/services/automatisation-workflows",
-      type: "article",
     }),
   ];
 }
@@ -179,6 +178,23 @@ export default function AutomatisationWorkflows() {
             >
               <p className="font-semibold text-sm">Héberger n8n sur ton propre serveur ?</p>
               <p className="text-primary text-sm mt-1">→ Gestion serveur & déploiement</p>
+            </Link>
+          </div>
+          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Link
+              to="/blog/automatiser-business-n8n-pme"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Comment automatiser son business avec n8n en 2026</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
+            </Link>
+            <Link
+              to="/blog/cout-site-web-quebec-prix"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Combien coûte l'automatisation vs les coûts manuels ?</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
             </Link>
           </div>
         </div>

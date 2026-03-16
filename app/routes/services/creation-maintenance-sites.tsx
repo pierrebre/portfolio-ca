@@ -206,6 +206,23 @@ export default function CreationMaintenanceSites() {
               <p className="text-primary text-sm mt-1">→ Automatisation de workflows</p>
             </Link>
           </div>
+          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Link
+              to="/blog/securite-wordpress-guide-pme"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Guide sécurité WordPress pour PME</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
+            </Link>
+            <Link
+              to="/blog/maintenance-site-web-pme-guide"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Guide complet : maintenance de site web pour PME</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
+            </Link>
+          </div>
         </div>
       </section>
 

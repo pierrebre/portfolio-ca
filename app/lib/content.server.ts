@@ -96,9 +96,12 @@ export async function getAllPosts(): Promise<PostMeta[]> {
       })
     );
 
-    const sorted = posts.sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+    const now = new Date();
+    now.setHours(23, 59, 59, 999);
+
+    const sorted = posts
+      .filter((p) => new Date(p.date) <= now)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     allPostsCache = { mtime: newestMtime, posts: sorted };
     return sorted;

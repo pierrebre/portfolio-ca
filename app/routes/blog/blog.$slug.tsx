@@ -42,7 +42,7 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:type", content: "article" },
     { property: "og:locale", content: "fr_CA" },
     { property: "article:published_time", content: `${post.date}T00:00:00-05:00` },
-    { property: "article:modified_time", content: `${post.date}T00:00:00-05:00` },
+    { property: "article:modified_time", content: `${post.updatedDate ?? post.date}T00:00:00-05:00` },
     { property: "article:author", content: "Pierre Barbé" },
     { property: "article:section", content: post.category },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
