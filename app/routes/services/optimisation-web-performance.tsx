@@ -236,6 +236,23 @@ export default function OptimisationWebPerformance() {
               <p className="text-primary text-sm mt-1">→ Création & maintenance de sites</p>
             </Link>
           </div>
+          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Link
+              to="/blog/audit-performance-site-web"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Comment auditer les performances de ton site web</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
+            </Link>
+            <Link
+              to="/blog/core-web-vitals-guide-pme"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Guide Core Web Vitals pour PME québécoises</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -11,7 +11,6 @@ export function meta({}: Route.MetaArgs) {
       title: "Audit technique de site web & Core Web Vitals | Montréal | Pierre Barbé",
       description: "Audit technique complet : Core Web Vitals, SEO, accessibilité, sécurité. Rapport clair avec plan d'action. Audit express gratuit (30 min) ou audit complet à partir de 500 $.",
       url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
-      type: "article",
     }),
   ];
 }
@@ -21,7 +20,7 @@ const auditPoints = [
   { icon: Search, title: "SEO technique", description: "Structure des URLs, balises meta, sitemap, robots.txt, données structurées, indexation. Ce que Google voit de ton site." },
   { icon: Shield, title: "Accessibilité WCAG 2.1", description: "Navigation clavier, lecteurs d'écran, contrastes, ARIA. Un site accessible est un site que tout le monde peut utiliser." },
   { icon: FileText, title: "Sécurité", description: "HTTPS, headers de sécurité, failles connues, plugins vulnérables. La sécurité n'est pas optionnelle." },
-  { icon: Smartphone, title: "Mobile", description: "Responsive, vitesse mobile, UX tactile. 18 % de tes visiteurs sont sur mobile — si ton site leur est hostile, tu perds des clients." },
+  { icon: Smartphone, title: "Mobile", description: "Responsive, vitesse mobile, UX tactile. Plus de 60 % de tes visiteurs sont sur mobile — si ton site leur est hostile, tu perds des clients." },
   { icon: CheckCircle, title: "Éco-conception", description: "Poids des pages, requêtes HTTP, empreinte carbone estimée. Un site éco-conçu est un site performant." },
 ];
 
@@ -137,6 +136,23 @@ export default function AuditsTechniquesCoreWebVitals() {
             >
               <p className="font-semibold text-sm">L'audit montre qu'une refonte serait plus rentable ?</p>
               <p className="text-primary text-sm mt-1">→ Création & maintenance de sites</p>
+            </Link>
+          </div>
+          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Link
+              to="/blog/audit-performance-site-web"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Comment auditer les performances de ton site web</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
+            </Link>
+            <Link
+              to="/blog/core-web-vitals-guide-pme"
+              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Guide Core Web Vitals pour PME québécoises</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
             </Link>
           </div>
         </div>

@@ -1,7 +1,8 @@
+import { data } from "react-router";
 import type { Route } from "./+types/not-found";
 
-export function loader() {
-  throw new Response(null, { status: 404 });
+export async function loader() {
+  return data(null, { status: 404 });
 }
 
 export function meta({}: Route.MetaArgs) {

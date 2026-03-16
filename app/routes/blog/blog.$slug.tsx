@@ -42,7 +42,7 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:type", content: "article" },
     { property: "og:locale", content: "fr_CA" },
     { property: "article:published_time", content: `${post.date}T00:00:00-05:00` },
-    { property: "article:modified_time", content: `${post.date}T00:00:00-05:00` },
+    { property: "article:modified_time", content: `${post.updatedDate ?? post.date}T00:00:00-05:00` },
     { property: "article:author", content: "Pierre Barbé" },
     { property: "article:section", content: post.category },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
@@ -167,10 +167,8 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           </p>
 
           <div className="mt-6 flex items-center gap-3">
-            <div className="avatar placeholder">
-              <div className="bg-primary text-primary-content rounded-full w-10">
-                <span className="text-sm font-bold">PB</span>
-              </div>
+            <div className="bg-primary text-primary-content rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
+              <span className="text-sm font-bold">PB</span>
             </div>
             <div>
               <Link to="/about" className="font-semibold text-sm hover:text-primary transition-colors">
@@ -243,10 +241,8 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
 
         {/* Bio de l'auteur */}
         <div className="mt-16 p-6 bg-base-200 rounded-2xl flex gap-4 items-start">
-          <div className="avatar placeholder flex-shrink-0">
-            <div className="bg-primary text-primary-content rounded-full w-14">
-              <span className="text-lg font-bold">PB</span>
-            </div>
+          <div className="bg-primary text-primary-content rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
+            <span className="text-lg font-bold">PB</span>
           </div>
           <div>
             <p className="font-bold text-base">

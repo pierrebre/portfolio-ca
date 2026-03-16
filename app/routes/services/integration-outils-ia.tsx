@@ -11,7 +11,6 @@ export function meta({}: Route.MetaArgs) {
       title: "Intégration d'outils IA pour ton site web | Chatbots & IA | Montréal",
       description: "Intègre l'IA sur ton site : chatbot GPT entraîné sur ton contenu, recherche sémantique, recommandations. Développeur IA freelance à Montréal. Données hébergées chez toi.",
       url: "https://pierrebarbe.ca/services/integration-outils-ia",
-      type: "article",
     }),
   ];
 }
@@ -148,6 +147,23 @@ export default function IntegrationOutilsIA() {
             >
               <p className="font-semibold text-sm">Besoin d'un site pour héberger ton chatbot ?</p>
               <p className="text-primary text-sm mt-1">→ Création & maintenance de sites</p>
+            </Link>
+          </div>
+          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Link
+              to="/blog/chatbot-ia-site-web-pme"
+              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Chatbot IA pour site web : guide complet pour PME</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
+            </Link>
+            <Link
+              to="/blog/automatiser-business-n8n-pme"
+              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
+            >
+              <p className="font-semibold text-sm">Automatisation + IA : comment les combiner avec n8n</p>
+              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
             </Link>
           </div>
         </div>
