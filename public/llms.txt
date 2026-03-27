@@ -22,6 +22,9 @@ Pierre Barbé — Développeur web freelance à Montréal spécialisé en WordPr
 - Sécurité WordPress guide PME : https://pierrebarbe.ca/blog/securite-wordpress-guide-pme
 - Maintenance site web PME : https://pierrebarbe.ca/blog/maintenance-site-web-pme-guide
 - Coût site web Québec : https://pierrebarbe.ca/blog/cout-site-web-quebec-prix
+- WordPress PME Québec 2026 — choix de plateforme : https://pierrebarbe.ca/blog/wordpress-pme-quebec-2026
+- n8n vs Zapier vs Make — comparatif PME 2026 : https://pierrebarbe.ca/blog/n8n-vs-zapier-vs-make-pme-2026
+- Site web lent — coût réel pour une PME : https://pierrebarbe.ca/blog/cout-site-lent-pme-conversions
 
 ## À propos
 https://pierrebarbe.ca/about
