@@ -10,7 +10,7 @@ import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import { useIntersectionObserver } from "~/hooks/use-intersection-observer";
 import { projects } from "data/projects";
-import type { Route } from "./+types/projects";
+import type { Route } from "./+types/projects._index";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/projects";
@@ -206,7 +206,7 @@ export default function Projects() {
                         </div>
 
                         {/* Métriques avant/après */}
-                        <div className="grid grid-cols-2 gap-3 mb-6">
+{/*                         <div className="grid grid-cols-2 gap-3 mb-6">
                           {project.metrics.map((metric) => (
                             <div
                               key={metric.label}
@@ -229,13 +229,22 @@ export default function Projects() {
                               </div>
                             </div>
                           ))}
-                        </div>
+                        </div> */}
                       </div>
 
                       <div className="flex flex-wrap gap-3">
+                        {project.href && (
+                          <Link
+                            to={project.href}
+                            className="btn btn-primary btn-sm rounded-full gap-1"
+                          >
+                            Voir l'étude de cas
+                            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                          </Link>
+                        )}
                         <Link
                           to="/contact"
-                          className="btn btn-primary btn-sm rounded-full gap-1"
+                          className={`btn btn-sm rounded-full gap-1 ${project.href ? "btn-ghost border border-base-content/20" : "btn-primary"}`}
                         >
                           Projet similaire ?
                           <ArrowRight className="h-4 w-4" aria-hidden="true" />

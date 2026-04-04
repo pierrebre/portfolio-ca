@@ -17,9 +17,30 @@ export interface Project {
   readonly duration: string;
   readonly year: number;
   readonly featured: boolean;
+  readonly href?: string;
 }
 
 export const projects: Project[] = [
+  {
+    slug: "piscines-jolicoeur",
+    title: "Corrections WordPress & intégration CRM — Service de Piscines Jolicoeur",
+    client: "Service de Piscines Jolicoeur (Rive-Nord de Montréal)",
+    category: "Création de site",
+    tags: ["WordPress", "Fluent Forms", "Plannit CRM"],
+    description:
+      "Diagnostic et correction de dysfonctionnements sur un site WordPress avec intégration CRM Plannit pour une PME piscines. Formulaire cassé, mapping CRM erroné, soumissions en double.",
+    challenge:
+      "Le site développé par une agence externe sans support présentait plusieurs dysfonctionnements dans la liaison formulaire–CRM : données mal mappées, champs manquants, logique conditionnelle cassée et doublons.",
+    solution:
+      "Diagnostic complet par logging custom et analyse du code PHP. Correction du mapping services, ajout des champs manquants, correction de la logique conditionnelle et suppression des déclenchements en double.",
+    metrics: [
+      { label: "Problèmes identifiés", before: "Multiples", after: "0" },
+    ],
+    duration: "Mars 2026",
+    year: 2026,
+    featured: true,
+    href: "/projects/piscines-jolicoeur",
+  },
   {
     slug: "optimisation-performance-ecommerce-wordpress",
     title: "Optimisation performance — Site e-commerce WordPress",

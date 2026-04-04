@@ -36,7 +36,10 @@ export default [
     route("feed.xml", "routes/blog/feed[.]xml.tsx"),
   ]),
 
-  route("projects", "routes/projects.tsx"),
+  route("projects", "routes/projects/projects._layout.tsx", [
+    index("routes/projects/projects._index.tsx"),
+    route(":slug", "routes/projects/projects.$slug.tsx"),
+  ]),
 
   route("sitemap.xml", "routes/sitemap[.]xml.tsx"),
 
