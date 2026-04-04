@@ -6,7 +6,8 @@ const BASE_URL = "https://pierrebarbe.ca";
 const STATIC_URLS = [
   { loc: "/", priority: "1.0", changefreq: "monthly", lastmod: "2026-03-04" },
   { loc: "/about", priority: "0.8", changefreq: "monthly", lastmod: "2026-02-20" },
-  { loc: "/projects", priority: "0.8", changefreq: "monthly", lastmod: "2026-02-20" },
+  { loc: "/projects", priority: "0.8", changefreq: "monthly", lastmod: "2026-04-04" },
+  { loc: "/projects/piscines-jolicoeur", priority: "0.7", changefreq: "monthly", lastmod: "2026-04-04" },
   { loc: "/services", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
   { loc: "/services/optimisation-web-performance", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
   { loc: "/services/creation-maintenance-sites", priority: "0.9", changefreq: "monthly", lastmod: "2026-02-20" },
