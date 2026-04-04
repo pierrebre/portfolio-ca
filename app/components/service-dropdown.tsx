@@ -51,29 +51,31 @@ export default function ServiceDropdown({
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
-      {/* Bouton trigger */}
-      <button
-        ref={buttonRef}
-        type="button"
-        onClick={toggleDropdown}
-        aria-expanded={isOpen}
-        aria-haspopup="menu"
-        className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold inline-flex items-center gap-1"
-      >
+      {/* Trigger : lien Services + bouton chevron */}
+      <div className="inline-flex items-center">
         <a
           href="/services"
-          className="hover:underline"
-          onClick={(e) => e.stopPropagation()}
+          className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full rounded-r-none pr-1 text-sm font-semibold"
         >
           Services
         </a>
-        <ChevronDown
-          className={`w-4 h-4 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-          aria-hidden="true"
-        />
-      </button>
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={toggleDropdown}
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
+          aria-label="Ouvrir le menu des services"
+          className="btn btn-ghost hover:bg-primary/10 hover:text-primary rounded-full rounded-l-none pl-1 min-w-0 min-h-[44px] w-[44px]"
+        >
+          <ChevronDown
+            className={`w-4 h-4 transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+            aria-hidden="true"
+          />
+        </button>
+      </div>
 
       {/* Dropdown menu */}
       {isOpen && (
