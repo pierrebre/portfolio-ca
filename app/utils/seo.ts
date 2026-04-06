@@ -112,7 +112,7 @@ export function generateServicePageSchema({
   url,
   serviceType = "Professional Service",
   areaServed = ["Montréal", "Québec"],
-  image = "https://pierrebarbe.ca/images/pb-og-image.avif",
+  image = "https://pierrebarbe.ca/images/pb-og-image.jpg",
   offers,
   breadcrumbs,
 }: ServicePageSchemaProps) {

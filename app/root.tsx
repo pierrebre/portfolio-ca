@@ -38,8 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2" crossOrigin="anonymous" />
-        {/* Preload de l'image hero (LCP) */}
-        <link rel="preload" as="image" type="image/avif" href="/images/me-800.avif" />
+        {/* Hero image preload moved to home.tsx and about.tsx via links() export */}
         <link
           rel="icon"
           type="image/png"

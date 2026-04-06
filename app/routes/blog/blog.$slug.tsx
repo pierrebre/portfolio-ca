@@ -26,7 +26,7 @@ export function meta({ data }: Route.MetaArgs) {
 
   const { post } = data;
   const url = `https://pierrebarbe.ca/blog/${post.slug}`;
-  const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: `${post.title} | Pierre Barbé` },
@@ -63,7 +63,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const { post, adjacent } = loaderData;
   const url = `https://pierrebarbe.ca/blog/${post.slug}`;
-  const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   const blogPostingSchema = {
     "@context": "https://schema.org",
