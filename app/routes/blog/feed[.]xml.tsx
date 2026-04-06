@@ -50,7 +50,7 @@ export async function loader(_: Route.LoaderArgs) {
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${FEED_URL}" rel="self" type="application/rss+xml" />
     <image>
-      <url>${BASE_URL}/images/pb-og-image.avif</url>
+      <url>${BASE_URL}/images/pb-og-image.jpg</url>
       <title>Blog — Pierre Barbé</title>
       <link>${BASE_URL}/blog</link>
     </image>${items}

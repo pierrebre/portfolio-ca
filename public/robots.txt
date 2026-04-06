@@ -15,5 +15,8 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 # Sitemap
 Sitemap: https://pierrebarbe.ca/sitemap.xml

@@ -38,7 +38,7 @@ export function meta({ data }: Route.MetaArgs) {
 
   const study = CASE_STUDIES[data.slug];
   const url = `https://pierrebarbe.ca/projects/${data.slug}`;
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: study.metaTitle },

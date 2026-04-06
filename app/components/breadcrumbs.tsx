@@ -11,29 +11,9 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
-  // Génération du JSON-LD pour BreadcrumbList
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.label,
-      ...(item.href && {
-        item: `https://pierrebarbe.ca${item.href}`,
-      }),
-    })),
-  };
-
   return (
     <>
-      {/* JSON-LD Schema pour SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-
-      {/* Navigation visible avec microdata */}
+      {/* Navigation visible avec microdata — JSON-LD is handled in each route's @graph */}
       <nav aria-label="Fil d'Ariane" className="mb-8">
         <ol
           className="flex flex-wrap items-center gap-2 text-sm"

@@ -14,7 +14,7 @@ import type { Route } from "./+types/projects._index";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/projects";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: "Études de cas — Performance & automatisation | Pierre Barbé" },

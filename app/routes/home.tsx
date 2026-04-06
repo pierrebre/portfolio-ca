@@ -11,6 +11,12 @@ import JsonLd from "~/components/json-ld";
 
 import type { Route } from "./+types/home";
 
+export function links() {
+  return [
+    { rel: "preload", as: "image", type: "image/avif", href: "/images/me-800.avif" },
+  ];
+}
+
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/";
   const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
@@ -102,7 +108,7 @@ export default function Home() {
           "https://twitter.com/PierreBarbe",
         ],
         knowsAbout: [
-          "Next.js",
+          "React Router v7",
           "React",
           "Node.js",
           "WordPress",

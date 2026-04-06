@@ -3,7 +3,7 @@ import type { Route } from "./+types/privacy-policy";
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/politique-confidentialite";
-  const image = "https://pierrebarbe.ca/images/pb-og-image.avif";
+  const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
     { title: "Politique de confidentialité | Pierre Barbé" },
