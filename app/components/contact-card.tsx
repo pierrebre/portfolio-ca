@@ -23,21 +23,12 @@ export default function ContactCard() {
             commence.
           </p>
 
-          <div className="mt-10 flex justify-center gap-2 flex-col-reverse lg:flex-row">
-            <a
-              href="https://calendly.com/contact-pierrebarbe/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn w-full min-w-[250px] rounded-full font-semibold lg:w-auto"
-            >
-              Réserver une consultation
-            </a>
-
+          <div className="mt-10 flex justify-center">
             <a
               href="/contact"
               className="btn w-full min-w-[250px] rounded-full font-semibold lg:w-auto"
             >
-              Envoyer un message
+              Réserver ma consultation gratuite
             </a>
           </div>
         </div>
