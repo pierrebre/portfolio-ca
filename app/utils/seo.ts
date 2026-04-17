@@ -46,13 +46,10 @@ export function generateSEOMeta({
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
 
-    // Twitter
-    { name: "twitter:card", content: "summary_large_image" },
+    // Twitter (card/creator/site set globally in root.tsx)
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
     { name: "twitter:image", content: image },
-    { name: "twitter:creator", content: "@PierreBarbe" },
-    { name: "twitter:site", content: "@PierreBarbe" },
   ];
 }
 

@@ -53,7 +53,6 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:image:height", content: "630" },
     { property: "og:type", content: "article" },
     { property: "og:locale", content: "fr_CA" },
-    { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: study.metaTitle },
     { name: "twitter:description", content: study.metaDescription },
     { name: "twitter:image", content: image },
