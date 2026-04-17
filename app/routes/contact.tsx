@@ -132,7 +132,6 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
-    { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "Contact & devis site web à Montréal — Pierre Barbé" },
     {
       name: "twitter:description",
