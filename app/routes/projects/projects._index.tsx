@@ -323,12 +323,13 @@ export default function Projects() {
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold">Ton projet, les prochains chiffres</h2>
           <p className="text-base-content/70 mt-4 text-lg">
-            Chaque site est différent. Commençons par un audit gratuit de 30 minutes pour
-            identifier où se trouvent tes gains les plus rapides.
+            Chaque site est différent. Commençons par un premier échange gratuit
+            (mail ou visio) pour identifier où se trouvent tes gains les plus
+            rapides.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Réserver un audit gratuit
+              Parle-moi de ton projet
             </Link>
             <Link
               to="/services"

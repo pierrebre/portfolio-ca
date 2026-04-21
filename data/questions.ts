@@ -9,7 +9,7 @@ export const questions = [
     index: 0,
     question: "Combien ça coûte, un site web ?",
     answer:
-      "Ça dépend du projet, mais pour te donner une idée : un site vitrine commence autour de 3 000-5 000 $, une refonte plus complexe peut aller de 5 000 à 15 000 $. Je travaille avec un budget transparent — tu sais exactement ce que tu paies avant de t'engager. L'audit initial de 30 min est gratuit, justement pour qu'on puisse évaluer ton besoin ensemble.",
+      "Ça dépend du projet, mais pour te donner une idée : un site vitrine commence autour de 3 000-5 000 $, une refonte plus complexe peut aller de 5 000 à 15 000 $. Je travaille avec un budget transparent — tu sais exactement ce que tu paies avant de t'engager. Le premier échange est gratuit (mail ou visio), justement pour qu'on puisse évaluer ton besoin ensemble.",
   },
   {
     index: 1,
@@ -33,19 +33,19 @@ export const questions = [
     index: 4,
     question: "Comment ça se passe si je veux travailler avec toi ?",
     answer:
-      "Simple : tu réserves un appel gratuit de 30 minutes. On regarde ton site et tes objectifs ensemble. Ensuite, je t'envoie un plan d'action chiffré. Si ça te convient, on démarre. Pas de contrat de 47 pages — un document clair avec les livrables, les délais et le budget.",
+      "Simple : tu me contactes pour un premier échange gratuit (mail ou visio, tu décides). On regarde ton site et tes objectifs ensemble. Ensuite, je t'envoie un plan d'action chiffré. Si ça te convient, on démarre. Pas de contrat de 47 pages — un document clair avec les livrables, les délais et le budget.",
   },
   {
     index: 5,
     question: "Tu connais WordPress ? Et Shopify ?",
     answer:
-      "Oui. Je travaille principalement avec WordPress et Next.js, et je connais aussi Shopify. Mon approche, c'est de recommander la technologie qui fait le plus de sens pour TON projet — pas celle que je préfère. On en discute pendant l'audit gratuit.",
+      "Oui. Je travaille principalement avec WordPress et Next.js, et je connais aussi Shopify. Mon approche, c'est de recommander la technologie qui fait le plus de sens pour TON projet — pas celle que je préfère. On en discute pendant le premier échange.",
   },
   {
     index: 6,
     question: "T'as déjà travaillé avec des entreprises dans mon secteur ?",
     answer:
-      "J'ai travaillé avec des cliniques médicales, des studios de yoga, des e-commerces et d'autres PME québécoises. Chaque secteur a ses particularités, mais les fondamentaux sont les mêmes : un site rapide, bien référencé et facile à utiliser. Si tu veux voir des exemples, réserve un appel — je te montre ce qui se rapproche le plus de ton projet.",
+      "J'ai travaillé avec des cliniques médicales, des studios de yoga, des e-commerces et d'autres PME québécoises. Chaque secteur a ses particularités, mais les fondamentaux sont les mêmes : un site rapide, bien référencé et facile à utiliser. Si tu veux voir des exemples, contacte-moi — je te montre ce qui se rapproche le plus de ton projet.",
   },
   {
     index: 7,

@@ -1,13 +1,24 @@
 import type { Question } from "data/questions";
 
-export default function FaqItem({ question, answer, index }: Question) {
-  const itemId = `faq-item-${index}`;
+interface FaqItemProps extends Question {
+  accordionName?: string;
+  idPrefix?: string;
+}
+
+export default function FaqItem({
+  question,
+  answer,
+  index,
+  accordionName = "my-accordion-2",
+  idPrefix = "faq-item",
+}: FaqItemProps) {
+  const itemId = `${idPrefix}-${index}`;
 
   return (
     <div className="collapse collapse-arrow bg-base-100 border border-base-300">
       <input
         type="radio"
-        name="my-accordion-2"
+        name={accordionName}
         id={itemId}
         aria-labelledby={`${itemId}-header`}
       />

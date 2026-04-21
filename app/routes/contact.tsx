@@ -17,7 +17,7 @@ const contactSchema = {
       url: `${SITE}/contact`,
       name: "Contact et devis site web à Montréal",
       description:
-        "Demande un devis site web ou réserve ta consultation gratuite de 30 min. Développeur freelance à Montréal — Laval, Longueuil, partout au Québec.",
+        "Demande un devis site web ou un premier échange gratuit (mail ou visio). Développeur freelance à Montréal — Laval, Longueuil, partout au Québec.",
       inLanguage: "fr-CA",
       isPartOf: { "@id": `${SITE}/#website` },
       breadcrumb: { "@id": `${SITE}/contact#breadcrumb` },
@@ -113,7 +113,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Demande un devis site web ou réserve ta consultation gratuite 30 min. Développeur freelance à Montréal, Laval, Longueuil & Québec. Réponse sous 24 h.",
+        "Demande un devis site web ou un premier échange gratuit (mail ou visio). Développeur freelance à Montréal, Laval, Longueuil & Québec. Réponse sous 24 h.",
     },
     {
       property: "og:title",
@@ -122,7 +122,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "Devis site web gratuit ou consultation 30 min. Montréal, Laval, Longueuil & Québec. Réponse sous 24 h.",
+        "Devis site web gratuit ou premier échange (mail ou visio). Montréal, Laval, Longueuil & Québec. Réponse sous 24 h.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -136,7 +136,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "twitter:description",
       content:
-        "Devis site web gratuit ou consultation 30 min. Montréal, Laval, Longueuil & Québec.",
+        "Devis site web gratuit ou premier échange (mail ou visio). Montréal, Laval, Longueuil & Québec.",
     },
     { name: "twitter:image", content: image },
   ];
@@ -171,12 +171,12 @@ export default function Contact() {
       <section className="py-20">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl font-bold md:text-5xl">
-            Devis site web &amp; consultation gratuite — Montréal
+            Devis site web &amp; premier échange gratuit — Montréal
           </h1>
 
           <div className="mt-6 flex items-center justify-center gap-4">
             <div className="bg-primary h-px w-16" />
-            <span className="text-primary">Consultation 30 min offerte — réponse sous 24 h</span>
+            <span className="text-primary">Premier échange gratuit — réponse sous 24 h</span>
             <div className="bg-primary h-px w-16" />
           </div>
 

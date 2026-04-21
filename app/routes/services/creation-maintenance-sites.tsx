@@ -231,12 +231,13 @@ export default function CreationMaintenanceSites() {
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold">Discutons de ton projet</h2>
           <p className="text-base-content/70 mt-4">
-            Chaque projet est différent. Un appel de 30 minutes suffit pour identifier
-            la meilleure approche et te donner une fourchette de prix réaliste.
+            Chaque projet est différent. Un premier échange (mail ou visio)
+            suffit pour identifier la meilleure approche et te donner une
+            fourchette de prix réaliste. C'est gratuit.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Réserver un appel gratuit
+              Parle-moi de ton projet
             </Link>
             <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
               Voir tous mes services

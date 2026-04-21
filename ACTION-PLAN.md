@@ -1,72 +1,135 @@
-# SEO Action Plan — pierrebarbe.ca
+# Plan d'action SEO — pierrebarbe.ca
 
-**Generated:** 2026-04-06
-**Current Score:** 74/100
-**Target Score:** 85+ / 100
+**Date :** 2026-04-06 | **Score actuel :** 83/100 | **Cible :** 90/100
 
 ---
 
-## Phase 1 — Quick Wins (This Week) — Est. +6 points
+## CRITIQUE (fix immédiatement)
 
-| # | Action | File | Effort | Category |
-|---|---|---|---|---|
-| 1 | Add `OAI-SearchBot` Allow block to robots.txt | `public/robots.txt` | 2 min | GEO |
-| 2 | Remove duplicate BreadcrumbList `<script>` from breadcrumbs component | `app/components/breadcrumbs.tsx` | 5 min | Schema |
-| 3 | Standardize all og:image to `pb-og-image.jpg` (not AVIF) | `app/routes/blog/blog.$slug.tsx` + all routes | 15 min | On-Page |
-| 4 | Move hero `<link rel="preload">` from root layout to home + about routes | `app/root.tsx` → `app/routes/home.tsx`, `about.tsx` | 15 min | CWV |
-| 5 | Add `/politique-confidentialite` + `/mentions-legales` to sitemap | `app/routes/sitemap[.]xml.tsx` | 5 min | Sitemap |
-| 6 | Fix blog index lastmod to derive from newest post | `app/routes/sitemap[.]xml.tsx` | 10 min | Sitemap |
-| 7 | Update `Person.knowsAbout`: "Next.js" → "React Router v7" | `app/routes/home.tsx` | 2 min | Schema |
+### 1. Ajouter des images uniques par article de blog
+- **Impact :** Content quality +5, Images +15, CTR social
+- **Effort :** 2-3 heures (génération IA ou Unsplash/Pexels)
+- **Détail :** Chaque article doit avoir une hero image unique avec alt text descriptif en FR-CA. Utiliser des images 1200x630 pour le OG et une version responsive pour le contenu.
+- **Fichiers :** `content/blog/*.mdx` (ajouter champ `image` dans frontmatter), `app/routes/blog/blog.$slug.tsx` (déjà supporte `post.image`)
 
-**Total effort: ~1 hour**
-
----
-
-## Phase 2 — Content & Images (Weeks 2-3) — Est. +5 points
-
-| # | Action | Effort | Category |
-|---|---|---|---|
-| 8 | Add inline source attribution to all blog post statistics | 2-3 hrs | Content/GEO |
-| 9 | Create 1-2 images/charts per blog post (SVG bar charts, comparison tables, screenshots) | 4-6 hrs | Images |
-| 10 | Generate article-specific OG images for each blog post | 2-3 hrs | Images |
-| 11 | Add 2-3 more project case studies with real client details | 4-8 hrs | Content/E-E-A-T |
-| 12 | Add client testimonials to About page or homepage | 1-2 hrs | E-E-A-T |
+### 2. Créer `llms-full.txt`
+- **Impact :** AI Search Readiness +5
+- **Effort :** 30 minutes
+- **Détail :** `llms.txt` existe déjà (bien structuré). Ajouter `llms-full.txt` avec le contenu complet des pages principales pour ingestion LLM approfondie.
+- **Fichiers :** `public/llms-full.txt`
 
 ---
 
-## Phase 3 — Technical Polish (Week 4) — Est. +3 points
+## HIGH (fix dans la semaine)
 
-| # | Action | Effort | Category |
-|---|---|---|---|
-| 13 | Add font metric overrides to @font-face (size-adjust, ascent-override) | 1 hr | CWV/CLS |
-| 14 | Add edge caching: `s-maxage=60, stale-while-revalidate=300` for static routes | 30 min | CWV/TTFB |
-| 15 | Implement IndexNow (key file + API submission on deploy) | 1 hr | Technical |
-| 16 | Upgrade llms.txt to full spec (license, description, contact, full titles) | 30 min | GEO |
-| 17 | Add `keywords` property to BlogPosting schema from frontmatter | 30 min | Schema |
-| 18 | Remove deprecated `<priority>` and `<changefreq>` from sitemap | 10 min | Sitemap |
+### 3. Ajouter des images dans le contenu MDX des articles
+- **Impact :** Content quality +3, Images +10, engagement
+- **Effort :** 3-4 heures
+- **Détail :** Au minimum 1-2 images/illustrations par article (captures d'écran, diagrammes, tableaux visuels). Ajouter des attributs `alt`, `width`, `height`, `loading="lazy"`.
+
+### 4. Convertir OG image en WebP
+- **Impact :** Performance +2, réduction 234 Ko par partage social
+- **Effort :** 15 minutes
+- **Détail :** Convertir `pb-og-image.jpg` (314 Ko) en WebP (~80 Ko). Les plateformes sociales supportent WebP depuis 2024.
+- **Fichier :** `public/images/pb-og-image.webp`, mettre à jour les références dans le code.
+
+### 5. Ajouter témoignages clients avec Review schema
+- **Impact :** E-E-A-T +5, Schema +3, trust signals
+- **Effort :** 2 heures
+- **Détail :** Collecter 3-5 témoignages clients et les afficher sur la home/services avec schema `Review` ou `AggregateRating`.
+
+### 6. Améliorer le maillage services → blog
+- **Impact :** On-Page SEO +3, crawl depth
+- **Effort :** 1 heure
+- **Détail :** Chaque page service devrait lier vers 2-3 articles de blog pertinents (section "Lire aussi"). Seule `/services/creation-maintenance-sites` le fait actuellement.
+- **Fichiers :** `app/routes/services/*.tsx`
 
 ---
 
-## Phase 4 — Authority Building (Ongoing) — Est. +4 points
+## MEDIUM (fix dans le mois)
 
-| # | Action | Effort | Category |
-|---|---|---|---|
-| 19 | Create and verify Google Business Profile | 1 hr + verification | Local/GEO |
-| 20 | Add GBP URL to sameAs in Person + LocalBusiness schema | 5 min | Schema |
-| 21 | Establish Reddit presence (r/Quebec, r/webdev — answer Loi 25/CWV questions) | Ongoing | GEO |
-| 22 | Upgrade RSS feed to full-content (`<content:encoded>`) | 45 min | GEO |
-| 23 | Add `CreativeWork` schema to project case study pages | 30 min | Schema |
+### 7. Enrichir la page Contact title tag
+- **Impact :** On-Page SEO +1
+- **Effort :** 5 minutes
+- **Détail :** Changer "Contact et devis de site web à Montréal" → "Contact — Devis site web à Montréal | Pierre Barbé"
+- **Fichier :** `app/routes/contact.tsx`
+
+### 8. Ajouter `noindex` aux pages légales
+- **Impact :** Technical SEO +1, crawl budget
+- **Effort :** 5 minutes
+- **Détail :** `/mentions-legales` et `/politique-confidentialite` n'apportent pas de valeur SEO.
+- **Fichiers :** `app/routes/legal-notice.tsx`, `app/routes/privacy-policy.tsx`
+
+### 9. Réduire les font preloads de 4 à 2
+- **Impact :** Performance +1
+- **Effort :** 10 minutes
+- **Détail :** Ne précharger que Urbanist Regular et Bold. Les variantes italic/medium peuvent être chargées en différé.
+- **Fichier :** `app/root.tsx` (lignes 37-40)
+
+### 10. Ajouter des images OG uniques par page service
+- **Impact :** Images +5, CTR social
+- **Effort :** 2 heures
+- **Détail :** Créer des images OG 1200x630 spécifiques pour chaque service et la page projets.
+
+### 11. Convertir logo PNG en SVG
+- **Impact :** Performance +1, Images +2
+- **Effort :** 30 minutes
+- **Détail :** `pierre-barbe-logo.png` (70 Ko) → SVG pour le schema et le web manifest.
+
+### 12. Ajouter HowTo schema sur les articles guides
+- **Impact :** Schema +2, rich results
+- **Effort :** 1 heure
+- **Détail :** Les articles comme "Sécuriser WordPress", "Audit performance", "Core Web Vitals" sont des guides étape par étape qui bénéficieraient du markup HowTo.
+
+### 13. Enrichir la page Projects avec plus d'études de cas
+- **Impact :** Content quality +3, E-E-A-T +2
+- **Effort :** 3-4 heures par étude de cas
+- **Détail :** Actuellement 1 étude de cas complète + 2 résumés. Viser 3-5 études complètes avec métriques avant/après.
 
 ---
 
-## Projected Score After All Phases: ~88/100
+## LOW (backlog)
 
-| Category | Current | After Phase 1-4 |
-|---|---|---|
-| Technical SEO | 78 | 88 |
-| Content Quality | 76 | 85 |
-| On-Page SEO | 82 | 88 |
-| Schema | 72 | 88 |
-| Performance | 70 | 82 |
-| AI Search Readiness | 71 | 84 |
-| Images | 45 | 75 |
+### 14. Ajouter citation capsules dans les articles de blog
+- **Impact :** AI Search Readiness +3
+- **Effort :** 2-3 heures
+- **Détail :** Courts paragraphes auto-contenus avec source, chiffre, et contexte — optimisés pour être cités par les LLM dans les AI Overviews.
+
+### 15. Ajouter `article:tag` meta pour les articles de blog
+- **Impact :** On-Page SEO +1
+- **Effort :** 15 minutes
+- **Détail :** Les tags/catégories existent dans les articles mais ne sont pas exposés dans les meta tags `article:tag`.
+- **Fichier :** `app/routes/blog/blog.$slug.tsx`
+
+### 16. Implémenter `loading="lazy"` sur les images hors viewport
+- **Impact :** Performance +1
+- **Effort :** 30 minutes
+- **Détail :** Les composants services, results, projects devraient lazy-loader leurs images (quand des images y seront ajoutées).
+
+### 17. Ajouter une page auteur dédiée `/blog/auteur/pierre-barbe`
+- **Impact :** E-E-A-T +2
+- **Effort :** 1-2 heures
+- **Détail :** Page auteur avec bio complète, liste des articles, liens sociaux — renforce le signal d'expertise pour Google.
+
+---
+
+## Impact projeté
+
+| Action | Score impact estimé |
+|--------|-------------------|
+| Images blog uniques (#1, #3) | +8 |
+| llms-full.txt (#2) | +3 |
+| Témoignages + Review schema (#5) | +3 |
+| Maillage services→blog (#6) | +2 |
+| WebP OG image (#4) | +1 |
+| Autres medium/low | +3 |
+| **Total projeté** | **~90/100** |
+
+---
+
+## Prochaines étapes recommandées
+
+1. **Semaine 1** : Items #1 (images blog) et #2 (llms.txt) — impact le plus élevé
+2. **Semaine 2** : Items #3 (images MDX), #4 (WebP), #5 (témoignages)
+3. **Semaine 3** : Items #6-#8 (maillage, contact title, noindex légales)
+4. **Mois 2** : Items #9-#17 (optimisations incrémentales)

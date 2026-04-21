@@ -34,7 +34,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Audit gratuit de 30 min.",
+        "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Premier échange gratuit.",
     },
     {
       property: "og:title",
@@ -43,7 +43,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Audit gratuit de 30 min.",
+        "J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Premier échange gratuit.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -65,7 +65,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "twitter:description",
       content:
-        "Audit gratuit 30 min, web‑performance et automatisation pour PME québécoises.",
+        "Premier échange gratuit, web‑performance et automatisation pour PME québécoises.",
     },
     { name: "twitter:image", content: image },
     {
@@ -215,7 +215,7 @@ export default function Home() {
         url,
         name: "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
         description:
-          "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Audit gratuit de 30 min.",
+          "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Premier échange gratuit.",
         inLanguage: "fr-CA",
         isPartOf: { "@id": `${url}#website` },
         about: { "@id": `${url}#person` },
@@ -277,8 +277,8 @@ export default function Home() {
         },
         offers: {
           "@type": "Offer",
-          name: "Audit de site gratuit",
-          description: "Audit gratuit en 30 minutes",
+          name: "Premier échange gratuit",
+          description: "Premier échange gratuit par courriel ou visio pour cadrer ton projet",
           price: "0",
           priceCurrency: "CAD",
         },

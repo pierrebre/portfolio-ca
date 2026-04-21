@@ -174,12 +174,13 @@ export default function IntegrationOutilsIA() {
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold">Parlons de ton cas d'usage IA</h2>
           <p className="text-base-content/70 mt-4">
-            30 minutes pour identifier si l'IA peut vraiment t'aider — et comment.
-            Si ce n'est pas le bon moment pour toi, je te le dis honnêtement.
+            Un premier échange gratuit (mail ou visio) pour identifier si l'IA
+            peut vraiment t'aider — et comment. Si ce n'est pas le bon moment
+            pour toi, je te le dis honnêtement.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Réserver un appel gratuit
+              Parle-moi de ton projet
             </Link>
             <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
               Voir tous mes services

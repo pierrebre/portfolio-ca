@@ -17,10 +17,9 @@ export default function ContactCard() {
           </h2>
 
           <p className="text-base-100/90 mx-auto mt-6 max-w-2xl text-lg text-justify">
-            Un projet en tête ? Un site à optimiser ? Parlons-en. Réservez
-            30 min gratuites ou envoyez-moi un message. C'est simple, rapide et
-            sans engagement. Et surtout, c'est vous qui décidez comment on
-            commence.
+            Un projet en tête ? Un site à optimiser ? Parlons-en. Contactez-moi
+            pour un premier échange gratuit — par courriel ou visio, vous
+            choisissez. C'est simple, rapide et sans engagement.
           </p>
 
           <div className="mt-10 flex justify-center">
@@ -28,7 +27,7 @@ export default function ContactCard() {
               href="/contact"
               className="btn w-full min-w-[250px] rounded-full font-semibold lg:w-auto"
             >
-              Réserver ma consultation gratuite
+              Me contacter — c'est gratuit
             </a>
           </div>
         </div>
