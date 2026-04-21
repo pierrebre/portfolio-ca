@@ -159,12 +159,35 @@ const aboutSchema = {
       url: "https://pierrebarbe.ca/about",
       name: "À propos — Pierre Barbé",
       dateCreated: "2025-01-01T00:00:00-05:00",
-      dateModified: "2026-02-20T00:00:00-05:00",
+      dateModified: "2026-04-21T00:00:00-04:00",
       mainEntity: {
         "@type": "Person",
         "@id": "https://pierrebarbe.ca/#person",
         name: "Pierre Barbé",
         url: "https://pierrebarbe.ca/about",
+        jobTitle: "Développeur Web Freelance",
+        knowsLanguage: ["fr-CA", "en"],
+        knowsAbout: [
+          "Web Development",
+          "Web Performance",
+          "Core Web Vitals",
+          "Eco-design",
+          "WCAG Accessibility",
+          "WordPress",
+          "WooCommerce",
+          "React",
+          "Next.js",
+          "React Router",
+          "TypeScript",
+          "Node.js",
+          "n8n",
+          "Make",
+          "Lighthouse",
+          "SEO",
+          "Schema.org",
+          "Vercel",
+          "Docker",
+        ],
       },
     },
     {
@@ -210,13 +233,13 @@ export default function About() {
                 </span>
               </div>
               <h1 className="text-4xl font-bold md:text-5xl">
-                Bonjour, je suis
-                <span className="text-primary block mt-1">Pierre Barbé</span>
+                Pierre Barbé
+                <span className="text-primary block mt-1">développeur web freelance à Montréal</span>
               </h1>
               <p className="text-base-content/80 mt-6 text-lg leading-relaxed">
-                Je suis développeur web freelance basé à Montréal. J'aide les PME,
-                e-commerces et agences québécoises à avoir des sites plus rapides,
-                plus verts et mieux automatisés.
+                Depuis 2021, j'aide les PME, e-commerces et agences du Québec à avoir
+                des sites plus rapides, plus verts et mieux automatisés. Basé à Montréal,
+                je travaille partout au Canada en télétravail — en français ou en anglais.
               </p>
               <p className="text-base-content/80 mt-4 text-lg leading-relaxed">
                 Mon approche : du concret, de la transparence, et pas de promesses
@@ -366,17 +389,118 @@ export default function About() {
         </div>
       </section>
 
+      {/* Freelance vs agence */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Pourquoi choisir un freelance plutôt qu'une agence ?
+            </h2>
+            <p className="text-base-content/70 mt-4 max-w-2xl mx-auto">
+              Une question légitime — voici comment je me positionne face aux
+              agences web de Montréal.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="bg-base-200 rounded-2xl p-6">
+              <h3 className="font-bold text-lg mb-3 text-primary">Pas d'intermédiaire</h3>
+              <p className="text-base-content/80 text-sm leading-relaxed">
+                Vous parlez directement à la personne qui code. Pas de chef de
+                projet qui traduit, pas de briefs mal transmis, pas de délais qui
+                s'étirent entre les équipes. La boucle entre vos retours et le
+                déploiement prend des heures, pas des semaines.
+              </p>
+            </div>
+            <div className="bg-base-200 rounded-2xl p-6">
+              <h3 className="font-bold text-lg mb-3 text-primary">Tarifs plus justes</h3>
+              <p className="text-base-content/80 text-sm leading-relaxed">
+                Pas de locaux à payer, pas de couche commerciale, pas de marge
+                sur des freelances sous-traitants. Le budget va dans le code et
+                l'optimisation. Pour la plupart des projets PME, c'est 30 à 50 %
+                moins cher qu'une agence à qualité égale.
+              </p>
+            </div>
+            <div className="bg-base-200 rounded-2xl p-6">
+              <h3 className="font-bold text-lg mb-3 text-primary">Code transparent</h3>
+              <p className="text-base-content/80 text-sm leading-relaxed">
+                Vous recevez un repo Git propre, une documentation claire et un
+                code que n'importe quel autre développeur peut reprendre. Pas de
+                lock-in technologique, pas de dépendance à mes outils. Votre
+                projet reste le vôtre.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 bg-primary/5 border border-primary/20 rounded-2xl p-6">
+            <p className="text-base-content/80 leading-relaxed">
+              <strong>L'agence reste pertinente</strong> pour les gros projets
+              multi-disciplinaires (branding + vidéo + pub + web + 10 profils
+              coordonnés). Pour un site performant, un audit technique ou une
+              automatisation ciblée, un freelance spécialisé livre plus vite, à
+              meilleur coût. Si votre besoin dépasse mon périmètre, je vous
+              redirige — je préfère ne pas prendre un projet plutôt que le bâcler.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Ressources */}
+      <section className="bg-base-200 py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-bold md:text-3xl">Envie d'aller plus loin ?</h2>
+          <p className="text-base-content/70 mt-4 leading-relaxed">
+            Je partage régulièrement ce que j'apprends sur le blog. Quelques
+            guides pratiques pour les PME québécoises :
+          </p>
+          <ul className="mt-6 flex flex-wrap justify-center gap-3">
+            <li>
+              <Link
+                to="/blog/core-web-vitals-guide-pme"
+                className="btn btn-sm btn-ghost rounded-full border border-base-content/20"
+              >
+                Guide Core Web Vitals
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog/loi-25-site-web-conformite-pme"
+                className="btn btn-sm btn-ghost rounded-full border border-base-content/20"
+              >
+                Conformité Loi 25
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog/cout-site-web-quebec-prix"
+                className="btn btn-sm btn-ghost rounded-full border border-base-content/20"
+              >
+                Coût d'un site web au Québec
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog/automatiser-business-n8n-pme"
+                className="btn btn-sm btn-ghost rounded-full border border-base-content/20"
+              >
+                Automatiser sa PME avec n8n
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold">Travaillons ensemble</h2>
           <p className="text-base-content/70 mt-4 text-lg leading-relaxed">
             Vous avez un projet, un site à optimiser ou un processus à automatiser ?
-            Je suis disponible pour une consultation gratuite de 30 minutes.
+            Parlons-en — premier échange gratuit, par mail ou visio.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="btn btn-primary rounded-full px-10 py-3">
-              Réserver une consultation gratuite
+              Parle-moi de ton projet
             </Link>
             <Link
               to="/blog"

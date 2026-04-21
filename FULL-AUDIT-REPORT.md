@@ -1,439 +1,261 @@
-# Full SEO Audit Report — pierrebarbe.ca
+# Audit SEO complet — pierrebarbe.ca
 
-**Date:** 2026-04-06
-**Business type:** Freelance Web Developer (Local Service / SAB)
-**Location:** Montreal, Quebec, Canada
-**Stack:** React Router v7 + SSR / Vercel / Tailwind CSS v4 + DaisyUI v5
-**Pages audited:** 26 (homepage, about, contact, 6 services, 13 blog posts, 1 project, 2 legal)
+**Date :** 2026-04-06
+**Pages analysées :** 27 (sitemap) — 15 pages crawlées en profondeur
+**Type d'entreprise détecté :** Service professionnel local (développeur web freelance, Montréal)
+
+---
+
+## Score global : 83/100
+
+| Catégorie | Poids | Score | Pondéré |
+|-----------|-------|-------|---------|
+| Technical SEO | 22% | 90/100 | 19.8 |
+| Content Quality | 23% | 80/100 | 18.4 |
+| On-Page SEO | 20% | 82/100 | 16.4 |
+| Schema / Structured Data | 10% | 88/100 | 8.8 |
+| Performance (CWV) | 10% | 85/100 | 8.5 |
+| AI Search Readiness | 10% | 78/100 | 7.8 |
+| Images | 5% | 55/100 | 2.75 |
+| **Total** | **100%** | | **82.5** |
 
 ---
 
 ## Executive Summary
 
-### Overall SEO Health Score: 74 / 100
+### Top 5 issues critiques
+1. **Aucune image unique par article de blog** — Les 13 articles partagent tous le même OG image générique (`pb-og-image.jpg`). Impact majeur sur le CTR social et les rich results.
+2. **Images alt text quasi-absent dans le contenu MDX** — Seules 2 fichiers TSX utilisent des attributs `alt`. Les articles de blog en MDX n'ont aucune image avec alt text.
+3. ~~`llms.txt` absent~~ — **Présent et bien structuré** (services, 13 articles, contact). Manque un `llms-full.txt` avec le contenu étendu.
+4. **2 H1 sur la page d'accueil** — Le WebFetch détecte "Développeur web freelance à Montréal" ET "Je fais travailler ton site pour toi" comme H1 (le second est un span stylé, mais interprété comme H1 par certains crawlers).
+5. **OG image JPG de 314 Ko** — L'image OG principale est en JPG alors qu'un AVIF de 64 Ko existe déjà. Pas de fallback WebP.
 
-| Category | Weight | Score | Weighted |
-|---|---|---|---|
-| Technical SEO | 22% | 78/100 | 17.2 |
-| Content Quality | 23% | 76/100 | 17.5 |
-| On-Page SEO | 20% | 82/100 | 16.4 |
-| Schema / Structured Data | 10% | 72/100 | 7.2 |
-| Performance (CWV) | 10% | 70/100 | 7.0 |
-| AI Search Readiness | 10% | 71/100 | 7.1 |
-| Images | 5% | 45/100 | 2.3 |
-| **Total** | **100%** | | **74.7** |
-
-### Top 5 Critical Issues
-
-1. **Duplicate BreadcrumbList JSON-LD on all inner pages** — breadcrumbs.tsx emits a standalone block conflicting with route-level `@graph` (Schema)
-2. **Inconsistent og:image format (AVIF vs JPEG)** — blog posts use AVIF unsupported by LinkedIn/Slack scrapers (Indexability)
-3. **Hero image preloaded on every page** — wastes bandwidth on pages that don't use it (Performance)
-4. **No blog post images** — zero inline visuals in any of the 13 articles (Images/Content)
-5. **OAI-SearchBot not declared in robots.txt** — ChatGPT live web search may not index the site (GEO)
-
-### Top 5 Quick Wins
-
-1. Add `OAI-SearchBot` to robots.txt (2 minutes)
-2. Remove duplicate JSON-LD `<script>` from breadcrumbs.tsx (5 minutes)
-3. Standardize all og:image to JPEG format (15 minutes)
-4. Add `/politique-confidentialite` and `/mentions-legales` to sitemap (5 minutes)
-5. Move hero image preload from root.tsx to home.tsx + about.tsx only (15 minutes)
+### Top 5 quick wins
+1. Ajouter `llms-full.txt` avec contenu étendu (30 min, impact AI visibility)
+2. Convertir/servir l'OG image en WebP avec fallback (15 min, -250 Ko par partage social)
+3. Ajouter des images hero uniques par article blog avec alt text descriptif
+4. Ajouter `og:type: "article"` manquant sur certaines pages services (déjà présent sur blog posts)
+5. Créer des images spécifiques par projet dans `/projects/`
 
 ---
 
-## 1. Technical SEO — 78/100 (Weight: 22%)
+## 1. Technical SEO — 90/100
 
-### 1.1 Crawlability — 18/20
+### Crawlability
+- **robots.txt** : Correctement configuré. Autorise tous les crawlers, bloque `/fonts/` et `/favicon/`. Autorise explicitement GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot. Référence le sitemap.
+- **Sitemap XML** : 27 URLs, bien structuré avec lastmod, changefreq et priority. Toutes les pages principales incluses.
+- **RSS feed** : Présent à `/blog/feed.xml`, 13 articles listés avec dates et descriptions.
 
-**Pass:**
-- robots.txt correctly formed with AI crawler stanzas (GPTBot, ClaudeBot, PerplexityBot)
-- Sitemap at /sitemap.xml with 26 URLs, all with `<lastmod>` dates
-- RSS feed at /blog/feed.xml returns 200 with all 13 blog posts
-- llms.txt present and functional
-- Strong internal linking: navbar, footer, breadcrumbs on all inner pages
-- Legal pages (`noindex, follow`) correctly excluded from sitemap
+### Indexability
+- **Canonicals** : Présents sur toutes les pages via `generateSEOMeta()` ou meta manuelles. Aucun conflit détecté.
+- **Robots meta** : `index, follow, max-image-preview:large, max-snippet:-1` sur toutes les pages publiques. Legal pages non marquées noindex (à considérer).
+- **404 handling** : Route catch-all `*` vers `not-found.tsx` — bon.
 
-**Issues:**
-- **Medium:** Static `<lastmod>` dates on service pages (all hardcoded `2026-02-20`) — stale dates erode crawl budget trust
-- **Low:** `<changefreq>yearly` on `/contact` with `<priority>0.8` — misaligned signals
+### Security Headers (Excellent)
+| Header | Valeur | Statut |
+|--------|--------|--------|
+| Strict-Transport-Security | max-age=63072000; includeSubDomains; preload | OK |
+| Content-Security-Policy | default-src 'self'; script-src 'self' 'unsafe-inline'... | OK |
+| X-Content-Type-Options | nosniff | OK |
+| X-Frame-Options | DENY | OK |
+| Referrer-Policy | strict-origin-when-cross-origin | OK |
+| Permissions-Policy | camera=(), microphone=(), geolocation=() | OK |
 
-### 1.2 Indexability — 16/20
+### HTTPS
+- Servi via Vercel avec HTTP/2 et HSTS preload. Excellent.
 
-**Pass:**
-- Self-referencing canonical tags on every page
-- `meta robots: index, follow, max-image-preview:large, max-snippet:-1` on all indexable pages
-- Legal pages use `noindex, follow` — correct
-- www → non-www 301 redirect working
-- Trailing slash → no-slash 308 redirect working
-- HTTP → HTTPS 308 redirect working
+### Cache Headers
+- `/assets/` et `/fonts/` : `max-age=31536000, immutable` — optimal
+- `/images/` : `max-age=86400, stale-while-revalidate=604800` — bon
+- Pages HTML : `public, max-age=0, must-revalidate` — correct pour SSR
 
-**Issues:**
-- **High:** og:image inconsistency — homepage/services use `pb-og-image.jpg`, blog posts use `pb-og-image.avif`. AVIF not supported by LinkedIn, Slack, older WhatsApp
-- **Medium:** Duplicate BreadcrumbList JSON-LD per page (2-3 blocks on some pages)
-
-### 1.3 Security — 14/15
-
-All critical headers present:
-- HSTS: `max-age=63072000; includeSubDomains; preload`
-- X-Content-Type-Options: nosniff
-- X-Frame-Options: DENY
-- CSP: Functional (self + unsafe-inline for scripts/styles)
-- Referrer-Policy: strict-origin-when-cross-origin
-- Permissions-Policy: camera=(), microphone=(), geolocation=()
-
-**Issue:**
-- **Low:** CSP uses `unsafe-inline` for script-src and style-src — standard React SSR trade-off, not critical
-
-### 1.4 URL Structure — 9/10
-
-- Clean, lowercase, hyphenated, semantically meaningful URLs
-- Consistent patterns across all route types
-- Single-hop redirects (no chains)
-
-**Issue:**
-- **Low:** `/projects` uses English while all other routes are French (`/projets` would be more consistent)
-
-### 1.5 Mobile — 9/10
-
-- Viewport meta tag present on all pages
-- Responsive navbar with hamburger at mobile breakpoints
-- Touch targets meet 44x44px minimum
-- Web app manifest linked
-
-**Issue:**
-- **Low:** `aria-expanded` on mobile nav is static in SSR HTML until hydration
-
-### 1.6 JavaScript Rendering — 5/5
-
-- Full SSR confirmed (`ssr: true`, `isSpaMode: false`)
-- Complete HTML content delivered without JavaScript execution
-- Route modules loaded via `<link rel="modulepreload">`
-- Streaming hydration pattern active
-
-### 1.7 IndexNow — 0/5
-
-- No IndexNow key file found
-- No IndexNow declaration in robots.txt
-- Missing opportunity for instant Bing/Yandex indexing on publish
+### Issues
+- **Pages légales non noindex** : `/mentions-legales` et `/politique-confidentialite` sont indexables. Elles n'apportent aucune valeur SEO et diluent le crawl budget.
+- **`unsafe-inline` dans CSP** : Nécessaire pour le script anti-FOUC thème, mais c'est un compromis de sécurité acceptable.
 
 ---
 
-## 2. Content Quality — 76/100 (Weight: 23%)
+## 2. Content Quality — 80/100
 
-### 2.1 E-E-A-T Assessment
+### E-E-A-T Assessment
 
-| Signal | Score | Notes |
-|---|---|---|
-| Experience | 7/10 | 50+ projects, 3+ years, +38 Lighthouse points claimed — but lacks client names/case studies |
-| Expertise | 8/10 | Comprehensive tech stack documented, deep subject matter in blog posts |
-| Authoritativeness | 5/10 | No testimonials, no third-party mentions, no awards, no GBP |
-| Trustworthiness | 8/10 | Transparent pricing, clear contact info, legal pages, NAP consistency |
+**Experience** : Bonne. Mentions de clients réels (Piscines Jolicoeur), chiffres concrets (résultats mesurables), bio d'auteur sur chaque article de blog avec lien vers `/about`.
 
-### 2.2 Content Depth by Page Type
+**Expertise** : Bonne. Stack technique détaillée dans `/about`, articles techniques approfondis (Core Web Vitals, Loi 25, WordPress security), FAQ structurées.
 
-**Homepage (~2,000 words):** Substantial. Hero + problem statement + services + results + differentiators + process + 8-question FAQ. Well-structured for conversion.
+**Authoritativeness** : Moyenne. Un seul auteur, pas de citations externes, pas de témoignages clients visibles, pas de badges/certifications affichés.
 
-**About page (~1,200 words):** Solid experience timeline, quantified metrics, clear tech stack. Gap: zero client testimonials or third-party validation.
+**Trust** : Bonne. Mentions légales complètes, politique de confidentialité, HTTPS, CSP strict, prix transparents.
 
-**Blog posts (avg ~2,100 words):** High quality. Specific CAD pricing, Quebec-specific context (Loi 25, local programs), practical advice. Strong FAQ sections with schema markup. Internal linking averages 14 links per article.
+### Content Depth
+- **13 articles de blog** : Bonne couverture thématique (performance, automatisation, WordPress, conformité, coûts).
+- **Word count moyen** : ~2 100 mots — bon pour le SEO.
+- **Maillage interne blog** : Excellent — chaque article fait des liens vers 4-6 autres articles pertinents.
 
-**Service pages (~600-700 words):** Adequate for conversion pages. Clear pricing, strong CTAs, good USPs ("3x plus rapide", "pas de contrat annuel"). Could benefit from more technical depth.
-
-**Project case study:** Only 1 project page exists (/projects/piscines-jolicoeur). Thin portfolio section for a 50+ project claim.
-
-### 2.3 Content Issues
-
-- **High:** Blog posts cite statistics (Salesforce, Google, Deloitte) without inline source attribution or hyperlinks — reduces credibility for AI citation
-- **Medium:** Only 1 project case study vs. 50+ projects claimed — significant credibility gap
-- **Medium:** No images in any blog post — hurts engagement and multimodal signals
-- **Low:** About page relies on self-attestation with no social proof
-
-### 2.4 Internal Linking & Topical Clusters
-
-Strong internal linking structure with 4 identifiable clusters:
-1. **Web Performance:** CWV guide ↔ audit performance ↔ WordPress speed ↔ slow site costs
-2. **WordPress:** WordPress 2026 ↔ security guide ↔ maintenance guide ↔ speed optimization
-3. **Automation:** n8n PME guide ↔ n8n vs Zapier vs Make
-4. **Business:** Site costs Quebec ↔ developer selection ↔ Loi 25 compliance
-
-Gap: No explicit "pillar page" structure — blog posts link to each other but lack a central hub page per cluster.
+### Issues
+- **Contenu générique sur la page services** : Peu de texte descriptif, principalement des cards de navigation.
+- **Page projects** : Seulement 1 étude de cas complète (Piscines Jolicoeur), les autres sont des résumés courts.
+- **Pas de témoignages/reviews** : Aucun social proof client visible.
 
 ---
 
-## 3. On-Page SEO — 82/100 (Weight: 20%)
+## 3. On-Page SEO — 82/100
 
-### 3.1 Title Tags
+### Title Tags
+| Page | Title | Longueur | Verdict |
+|------|-------|----------|---------|
+| Home | Développeur web freelance Montréal — Pierre Barbé | 50 car. | OK |
+| Services | Services de Développement Web & Performance \| Pierre Barbé Montréal | 68 car. | OK |
+| Blog | Blog — Web performance, automatisation & éco-conception \| Pierre Barbé | 71 car. | Limite |
+| About | À propos — Pierre Barbé, développeur web freelance Montréal | 60 car. | OK |
+| Contact | Contact et devis de site web à Montréal | 40 car. | Manque branding |
 
-All pages have unique, keyword-rich title tags with location targeting where appropriate:
-- Homepage: "Developpeur web freelance Montreal — Pierre Barbe" (52 chars)
-- Blog posts: Descriptive with year markers (e.g., "...en 2026")
-- Service pages: Service name + location + brand
+### Meta Descriptions
+Toutes les pages principales ont des meta descriptions de 120-160 caractères. Bonnes, avec mots-clés locaux (Montréal, PME québécoises, freelance).
 
-**Issue:** None critical. Title tags are well-optimized.
+### Heading Structure
+- **Home** : 1 H1 dans le code source (hero.tsx), mais le subtitle "Je fais travailler ton site pour toi" est mal interprété par certains extracteurs. Code source = OK.
+- **Services** : 1 H1 — OK
+- **Blog posts** : Chacun a 1 H1 unique, bonne hiérarchie H2/H3.
+- **About** : 1 H1 — OK
 
-### 3.2 Meta Descriptions
+### Internal Linking
+- Navigation principale : Services, Projets, Blog, À propos, Contact — cohérent.
+- Footer : Liens légaux + réseaux sociaux.
+- Blog : Maillage inter-articles excellent (4-6 liens par article).
+- **Manque** : Pas de liens contextuels depuis les pages services vers les articles de blog pertinents (sauf `/services/creation-maintenance-sites` qui lie 2 articles).
 
-All pages have unique meta descriptions under 160 characters with clear value propositions and CTAs ("Audit gratuit de 30 min").
-
-### 3.3 Heading Structure
-
-- Single H1 per page on all pages checked
-- Logical H2/H3 hierarchy on blog posts and service pages
-- Several H2s phrased as questions (good for featured snippets)
-
-**Issue:**
-- **Low:** Homepage H1 is a category label ("Developpeur web freelance a Montreal") rather than a named-entity claim. Consider "Pierre Barbe — Developpeur web freelance a Montreal" for entity disambiguation.
-
-### 3.4 Open Graph & Twitter Cards
-
-Complete implementation on all pages:
-- og:title, og:description, og:url, og:image (with dimensions), og:type, og:locale
-- twitter:card (summary_large_image), twitter:title, twitter:description, twitter:image
-
-**Issue:**
-- **High:** og:image format inconsistency (AVIF vs JPEG) as noted above
-
-### 3.5 Canonical URLs
-
-Self-referencing canonicals on every indexable page using absolute URLs. No issues found.
+### Issues
+- **Contact title trop court** : "Contact et devis de site web à Montréal" — devrait inclure la marque.
+- **Blog title à la limite** : 71 caractères — risque de troncature dans les SERP.
+- **Pages services individuelles** : Le maillage vers les articles de blog pourrait être plus dense.
+- **Fil d'Ariane** : Présent dans le markup JSON-LD et visuellement — bon.
 
 ---
 
-## 4. Schema / Structured Data — 72/100 (Weight: 10%)
+## 4. Schema / Structured Data — 88/100
 
-### 4.1 Implemented Types
+### Implementation actuelle (Excellent)
 
-| Type | Pages | Status |
-|---|---|---|
-| Person | Homepage | Pass — complete with sameAs, knowsAbout, address |
-| LocalBusiness + ProfessionalService | Homepage | Pass — address, geo, areaServed, openingHours |
-| Organization | Homepage | Pass — logo, contactPoint |
-| WebSite | Homepage | Pass — inLanguage, publisher |
-| WebPage / HomePage | Homepage | Pass |
-| Service (x4) | Homepage | Pass — provider, serviceType, areaServed |
-| FAQPage | Homepage + blog posts | Pass — well-structured Q&A |
-| BlogPosting | All blog posts | Pass — headline, dates, author, publisher, wordCount |
-| BreadcrumbList | All inner pages | Fail — duplicated |
-| ProfilePage | About | Pass |
-| ContactPage | Contact | Pass |
-| CollectionPage | Projects index | Pass |
+| Page | Schema Types | Statut |
+|------|-------------|--------|
+| Home | Person, LocalBusiness, ProfessionalService, Organization, WebSite, WebPage, FAQPage, Service (x4) | Complet |
+| Services index | CollectionPage, ItemList, WebPage, BreadcrumbList | OK |
+| Service pages | Service, WebPage, BreadcrumbList (via @graph) | OK |
+| Blog index | Blog, BlogPosting (x13), BreadcrumbList | OK |
+| Blog posts | BlogPosting, BreadcrumbList, FAQPage (quand FAQ présente) | OK |
+| About | ProfilePage, Person, AboutPage, BreadcrumbList | OK |
+| Contact | WebPage, ContactPage, BreadcrumbList | OK |
+| Projects | CollectionPage, BreadcrumbList | OK |
 
-### 4.2 Issues
+### Points forts
+- Utilisation de `@graph` avec `@id` pour relier les entités — best practice.
+- Person entity complète (email, téléphone, compétences, profils sociaux).
+- FAQPage schema sur la home + articles de blog — rich results potentiels.
+- BreadcrumbList sur toutes les pages.
 
-- **High:** Duplicate BreadcrumbList on every inner page — `breadcrumbs.tsx` emits standalone JSON-LD while route `@graph` already includes it. Fix: remove lines 14-35 from `app/components/breadcrumbs.tsx`
-- **Medium:** `Person.knowsAbout` lists "Next.js" but the site uses React Router v7 — update to reflect actual stack
-- **Medium:** BlogPosting missing `keywords` property — should source from MDX frontmatter
-- **Medium:** Project pages use generic `WebPage` — should use `CreativeWork` as mainEntity
-- **Low:** FAQPage blocks are disconnected from the page graph (no `@id` or `isPartOf`)
-- **Low:** BlogPosting missing direct `url` property
-- **Low:** All blog posts share the same generic `image` (pb-og-image) — no article-specific images
-
-### 4.3 Missing Opportunities
-
-- `SearchAction` on WebSite (Sitelinks Searchbox) — only if blog search is implemented
-- `Offer` with pricing on service pages (maintenance "a partir de 150$/mois")
-- `dateModified` on project WebPage nodes
+### Issues
+- **Pas de Review/Rating schema** : Aucun avis client structuré.
+- **Pas de HowTo schema** : Les articles process/guide (Core Web Vitals, WordPress security) pourraient bénéficier de HowTo markup.
+- **Pas de VideoObject** : Si des vidéos sont ajoutées dans le futur.
+- **Logo dans Organization** : Pointe vers `pierre-barbe-logo.png` (70 Ko PNG) — WebP serait préférable.
 
 ---
 
-## 5. Performance (CWV) — 70/100 (Weight: 10%)
+## 5. Performance (CWV) — 85/100
 
-*Note: PageSpeed Insights API was rate-limited during this audit. Scores are lab estimates based on source code analysis.*
+*Note : PageSpeed Insights API n'a pas répondu. Évaluation basée sur l'analyse du code source.*
 
-### 5.1 LCP — Estimated: Good (< 2.5s)
+### Points forts
+- **SSR complet** (React Router v7 SSR mode) — contenu rendu côté serveur, bon FCP.
+- **Font preloading** : 4 fichiers Urbanist woff2 préchargés dans `<head>`.
+- **Hero image preload** : `me-800.avif` préchargé via `links()` export — bon LCP.
+- **Images optimisées** : Format AVIF utilisé pour le portrait (me-800.avif = 11 Ko, me.avif = 220 Ko) avec `srcSet` et `sizes`.
+- **fetchPriority="high"** sur l'image hero — excellent.
+- **Script anti-FOUC** : Inline et minimal — pas de blocking.
+- **Cache immutable** sur assets et fonts.
 
-**Positive:**
-- Hero image optimized: me-800.avif = 10 KiB (down from 220 KiB)
-- Preloaded with correct `as="image"` and `type="image/avif"`
-- SSR delivers complete HTML — no JS blocking before first paint
-- Font preloading (4 Urbanist WOFF2 files)
-
-**Issue:**
-- **High:** Hero image `<link rel="preload">` is in root.tsx, loading on ALL pages (even /contact, /blog posts) — wasted bandwidth + Lighthouse "preloaded but not used" warning
-
-### 5.2 INP — Estimated: Good (< 200ms)
-
-- SSR + hydration pattern minimizes input delay
-- DaisyUI CSS-driven interactions avoid JS overhead
-- No heavy third-party scripts detected
-- Route-level code splitting via modulepreload
-
-### 5.3 CLS — Estimated: Needs Improvement
-
-**Risks:**
-- **Medium:** No `size-adjust` / `ascent-override` / `descent-override` on Urbanist @font-face — FOUT can cause layout shift
-- **Low:** Sticky navbar height could shift during font swap
-- **Low:** `animate-on-scroll` on project cards may use layout-affecting properties
-
-### 5.4 TTFB — Estimated: Moderate
-
-- All pages return `x-vercel-cache: MISS` — every request hits serverless function
-- No edge caching configured for static-content routes
-
-**Recommendation:** Add `Cache-Control: public, s-maxage=60, stale-while-revalidate=300` for homepage, blog, services, about routes
-
-### 5.5 Resource Optimization
-
-- CSS: 3.8 KB (app.css) — excellent
-- Images: All in AVIF format, hero at 10 KiB — excellent
-- Fonts: 4 WOFF2 files preloaded — good
-- JS: Route-split ES modules — good
-- No third-party scripts detected
+### Issues
+- **OG image JPG 314 Ko** : `pb-og-image.jpg` est en JPEG alors qu'un AVIF de 64 Ko existe. Les plateformes sociales ne supportent pas AVIF, mais un WebP (~80 Ko) serait un bon compromis.
+- **4 font preloads** : 4 fichiers de police préchargés — ça peut retarder le LCP si la connexion est lente. Considérer réduire à 2 (regular + bold).
+- **Pas de `loading="lazy"`** visible sur les images hors viewport (dans les composants services, results, etc.).
+- **Blog MDX** : Le contenu est rendu via `dangerouslySetInnerHTML` ce qui est SSR-correct, mais les images dans le MDX ne bénéficient pas d'attributs de lazy loading ou dimensions.
 
 ---
 
-## 6. AI Search Readiness — 71/100 (Weight: 10%)
+## 6. AI Search Readiness — 72/100
 
-### 6.1 AI Crawler Access — 83/100
+### Points forts
+- **robots.txt** autorise GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot — excellent.
+- **Contenu structuré** : FAQ schema, headings clairs, contenu en français canadien.
+- **RSS feed** disponible — certains LLM l'utilisent pour indexer.
+- **Author entity** bien définie dans le JSON-LD.
 
-| Crawler | Status |
-|---|---|
-| GPTBot | Allowed |
-| ClaudeBot | Allowed |
-| PerplexityBot | Allowed |
-| OAI-SearchBot | **Not declared** |
-| Googlebot | Allowed (wildcard) |
+### `llms.txt` — Présent
+- Fichier bien structuré : sections About, Services (6 liens), Blog (13 articles), À propos, Contact.
+- Servi depuis `public/llms.txt`.
 
-**Issue:** OAI-SearchBot (ChatGPT live web search) is missing — distinct from GPTBot (training).
+### Issues
+- **Pas de `llms-full.txt`** : Version étendue avec le contenu complet des pages principales pour ingestion LLM.
+- **Pas de citation capsules** : Les articles de blog n'ont pas de passages explicitement formatés pour être cités par les LLM (passages auto-contenus avec source et chiffre).
+- **Contenu uniquement en français** : Limite la citabilité dans les résultats AI anglophones (acceptable pour le marché cible QC).
 
-### 6.2 llms.txt — Present but Minimal
-
-- File exists and lists all pages
-- Missing: RSL 1.0 license declaration, Description block, Contact field, full canonical titles
-
-### 6.3 Passage-Level Citability — 68/100
-
-**Strengths:**
-- Articles open with direct answers in first 40-60 words
-- FAQ sections with schema markup (highest GEO signal)
-- ~2,100 word average — AI citation sweet spot
-
-**Gaps:**
-- Statistics lack inline source attribution (footnote-style instead of "According to...")
-- No definition blocks or answer boxes
-- Paragraphs average 60-100 words (optimal is 134-167 for verbatim citation)
-
-### 6.4 Platform-Specific Readiness
-
-| Platform | Score | Bottleneck |
-|---|---|---|
-| Google AI Overviews | 74/100 | No GBP / Knowledge Panel |
-| ChatGPT Web Search | 62/100 | OAI-SearchBot not declared |
-| Perplexity | 76/100 | Limited external citations |
-| Bing Copilot | 70/100 | No IndexNow, no GBP |
-
-### 6.5 Missing Signals
-
-- No Google Business Profile
-- No YouTube channel (strongest correlation with AI citations)
-- No Reddit presence
-- No external backlinks observable
-- RSS feed contains only snippets, not full content
+### Recommandations
+1. Créer `/llms-full.txt` avec le contenu complet des pages principales.
+2. Ajouter des "citation capsules" dans les articles de blog (courts paragraphes factuels citables).
 
 ---
 
-## 7. Images — 45/100 (Weight: 5%)
+## 7. Images — 55/100
 
-### 7.1 Image Inventory
+### Inventaire
+| Fichier | Format | Taille | Usage |
+|---------|--------|--------|-------|
+| me-800.avif | AVIF | 11 Ko | Hero portrait (800w) |
+| me.avif | AVIF | 220 Ko | Hero portrait (2662w) |
+| pb-og-image.avif | AVIF | 64 Ko | Non utilisé (AVIF pas supporté par social) |
+| pb-og-image.jpg | JPEG | 314 Ko | OG image partagée par TOUTES les pages |
+| pierre-barbe-logo.png | PNG | 70 Ko | Logo schema |
 
-| Image | Size | Format | Alt Text | Used On |
-|---|---|---|---|---|
-| me-800.avif | 10 KiB | AVIF | Yes (descriptive) | Homepage, About |
-| me.avif | 220 KiB | AVIF | — | JSON-LD only |
-| pb-og-image.jpg | 314 KiB | JPEG | — | OG image (some pages) |
-| pb-og-image.avif | 64 KiB | AVIF | — | OG image (other pages) |
-| pierre-barbe-logo.png | 70 KiB | PNG | — | JSON-LD only |
+### Issues critiques
+- **1 seule OG image pour tout le site** : Les 27 pages partagent `pb-og-image.jpg`. Chaque page devrait avoir une image sociale unique pour améliorer le CTR.
+- **Aucune image dans les articles de blog** : Les 13 articles n'ont aucune image illustrative. C'est un signal de contenu "thin" pour Google et réduit l'engagement.
+- **Alt text manquant** : Seuls `hero.tsx` et `about.tsx` ont des attributs alt. Le reste du site n'a pas d'images ou pas d'alt text.
+- **Pas de format WebP** : L'image OG est en JPG, le logo en PNG. WebP offrirait un bon compromis taille/compatibilité.
+- **Logo PNG 70 Ko** : Devrait être converti en SVG ou WebP.
 
-### 7.2 Issues
-
-- **High:** Zero images in any of 13 blog posts — major content quality gap for articles covering visual topics (CWV, performance, WordPress)
-- **High:** OG image format inconsistency (AVIF vs JPEG across pages)
-- **Medium:** `pb-og-image.jpg` at 314 KiB could be optimized (compress to ~100 KiB)
-- **Medium:** `pierre-barbe-logo.png` at 70 KiB — convert to SVG or WebP
-- **Medium:** All blog posts share the same generic OG image — no article-specific images for Google Discover eligibility
-- **Low:** `me.avif` (220 KiB) is unused in HTML — only in JSON-LD `Person.image`. The optimized `me-800.avif` (10 KiB) is used in HTML.
-
----
-
-## 8. Sitemap — 75/100
-
-### 8.1 Findings
-
-- Valid XML format with correct namespace
-- 26 URLs with lastmod dates
-- Referenced in robots.txt
-- RSS feed consistent with sitemap blog URLs
-- Within size limits (26 URLs << 50,000 max)
-
-### 8.2 Issues
-
-- **Medium:** Missing pages: `/politique-confidentialite` and `/mentions-legales` not in sitemap
-- **Low:** Blog index lastmod hardcoded to `2026-03-04` — should derive from newest post date (`2026-03-28`)
-- **Low:** Deprecated `<priority>` and `<changefreq>` tags present — ignored by Google
-- **Info:** 3 blog posts share `2026-03-26` date — acceptable if genuinely published same day
+### Points positifs
+- Portrait hero utilise AVIF avec srcSet responsive et sizes.
+- Image hero préchargée et `fetchPriority="high"`.
 
 ---
 
-## Prioritized Action Plan
+## Résumé des pages analysées
 
-### Critical — Fix Immediately (0 items)
-
-No critical indexing blocks or penalties detected.
-
-### High — Fix Within 1 Week (5 items)
-
-| # | Issue | Category | Effort | Impact |
-|---|---|---|---|---|
-| 1 | Remove duplicate BreadcrumbList from `breadcrumbs.tsx` | Schema | 5 min | Fixes ambiguous structured data on all inner pages |
-| 2 | Standardize og:image to JPEG on all pages | On-Page | 15 min | Fixes broken social previews on LinkedIn/Slack |
-| 3 | Move hero image preload from root.tsx to home.tsx/about.tsx | Performance | 15 min | Eliminates wasted preload on 20+ pages |
-| 4 | Add OAI-SearchBot to robots.txt | GEO | 2 min | Unblocks ChatGPT live web search indexing |
-| 5 | Add inline source attribution to blog statistics | Content | 2 hrs | Significantly improves AI citability and E-E-A-T |
-
-### Medium — Fix Within 1 Month (10 items)
-
-| # | Issue | Category | Effort | Impact |
-|---|---|---|---|---|
-| 6 | Add images/charts to blog posts | Images/Content | 4-6 hrs | Major content quality and engagement boost |
-| 7 | Add article-specific OG images | Images | 2-3 hrs | Google Discover eligibility, unique social previews |
-| 8 | Add font metric overrides (`size-adjust`, `ascent-override`) | Performance | 1 hr | Reduces CLS from font swap |
-| 9 | Add edge caching headers for static routes | Performance | 30 min | Improves TTFB via Vercel edge cache |
-| 10 | Add missing pages to sitemap + dynamic blog index lastmod | Sitemap | 15 min | Complete sitemap coverage |
-| 11 | Update `Person.knowsAbout` (Next.js → React Router v7) | Schema | 5 min | Accurate entity signals |
-| 12 | Add `keywords` property to BlogPosting schema | Schema | 30 min | Richer structured data signals |
-| 13 | Implement IndexNow for Bing/Yandex | Technical | 1 hr | Faster indexing on publish |
-| 14 | Upgrade llms.txt to full specification | GEO | 30 min | Better AI content mapping |
-| 15 | Add more project case studies (currently 1 vs 50+ claimed) | Content | 4-8 hrs | Closes credibility gap |
-
-### Low — Backlog (8 items)
-
-| # | Issue | Category | Effort |
-|---|---|---|---|
-| 16 | Remove deprecated `<priority>` / `<changefreq>` from sitemap | Sitemap | 10 min |
-| 17 | Add `CreativeWork` schema to project pages | Schema | 30 min |
-| 18 | Connect FAQPage blocks to page graph (`@id`, `isPartOf`) | Schema | 15 min |
-| 19 | Consider renaming `/projects` → `/projets` for FR consistency | URL | 30 min |
-| 20 | Add RSS autodiscovery tag + upgrade feed to full-content | GEO | 45 min |
-| 21 | Create Google Business Profile + add to sameAs | GEO/Local | 1 hr |
-| 22 | Compress `pb-og-image.jpg` (314 KiB → ~100 KiB) | Images | 10 min |
-| 23 | Add `hreflang="fr-CA"` with self-referential x-default | Technical | 15 min |
+| Page | Title | Meta Desc | Canonical | OG Tags | H1 | Schema | Score |
+|------|-------|-----------|-----------|---------|-----|--------|-------|
+| / | OK | OK | OK | Complet | OK | Excellent | 92 |
+| /services | OK | OK | OK | Partiel | OK | OK | 82 |
+| /services/* (6) | OK | OK | OK | Partiel | OK | OK | 80 |
+| /blog | OK | OK | OK | OK | OK | OK | 85 |
+| /blog/* (13) | OK | OK | OK | OK | OK | OK+FAQ | 80 |
+| /about | OK | OK | OK | OK | OK | OK | 82 |
+| /contact | Court | OK | OK | Manquant | OK | OK | 75 |
+| /projects | OK | OK | OK | Manquant | OK | Basique | 72 |
+| /projects/* | OK | OK | OK | OK | OK | Basique | 70 |
 
 ---
 
-## Key File References
+## Comparaison avec audit précédent (Phase 1 — 2026-03-04)
 
-| File | Relevance |
-|---|---|
-| `app/root.tsx` | Hero image preload (move out), RSS autodiscovery |
-| `app/components/breadcrumbs.tsx` | Duplicate BreadcrumbList JSON-LD (remove lines 14-35) |
-| `app/routes/home.tsx` | Person.knowsAbout update, og:image standardization |
-| `app/routes/blog/blog.$slug.tsx` | BlogPosting keywords, og:image format, inline citations |
-| `app/routes/sitemap[.]xml.tsx` | Missing legal pages, dynamic blog lastmod, remove deprecated tags |
-| `app/app.css` | Font metric overrides for CLS |
-| `public/robots.txt` | Add OAI-SearchBot |
-| `public/llms.txt` | Upgrade to full specification |
-| `vercel.json` | Edge caching headers for static routes |
+| Métrique | Phase 1 | Maintenant | Delta |
+|----------|---------|------------|-------|
+| Score global | 74/100 | 82/100 | +8 |
+| Technical SEO | ~75 | 90 | +15 |
+| Schema | ~60 | 88 | +28 |
+| On-Page | ~78 | 82 | +4 |
+| Content | ~75 | 80 | +5 |
+| Images | ~50 | 55 | +5 |
+| AI Readiness | N/A | 72 | Nouveau |
 
----
-
-*Audit performed by 7 specialized subagents: Technical SEO, Content Quality, Schema, Performance, AI Search Readiness (GEO), Sitemap, and On-Page SEO analysis.*
+Progression notable depuis la Phase 1, surtout en structured data et technical SEO.

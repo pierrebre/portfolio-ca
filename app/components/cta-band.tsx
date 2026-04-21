@@ -8,15 +8,15 @@ export default function CtaBand() {
           Prêt à améliorer ton site ?
         </h2>
         <p className="text-base-content/70 font-urbanist mx-auto mb-8 max-w-xl text-lg">
-          Réserve 30 minutes avec moi. C'est gratuit, sans engagement, et tu
-          repars avec un diagnostic clair — même si on ne travaille pas
-          ensemble.
+          Parle-moi de ton projet — échange gratuit par mail ou visio, sans
+          engagement, et tu repars avec un diagnostic clair même si on ne
+          travaille pas ensemble.
         </p>
         <Link
           to="/contact"
           className="btn btn-primary text-base-100 rounded-full px-8"
         >
-          Réserver mon audit gratuit →
+          Parle-moi de ton projet →
         </Link>
       </div>
     </section>
