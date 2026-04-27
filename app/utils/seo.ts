@@ -55,7 +55,8 @@ export function generateSEOMeta({
 
 /**
  * Génère BreadcrumbList JSON-LD
- * Note: Le dernier élément (page actuelle) ne doit pas avoir de propriété "item"
+ * Google recommande désormais d'inclure `item` sur le dernier élément
+ * (page courante) pour activer le rich result Breadcrumb dans la SERP.
  */
 interface BreadcrumbItem {
   name: string;
@@ -65,21 +66,12 @@ interface BreadcrumbItem {
 export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
   return {
     "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, index) => {
-      const isLast = index === items.length - 1;
-      const listItem: any = {
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name
-      };
-
-      // Le dernier élément ne doit pas avoir de propriété "item"
-      if (!isLast) {
-        listItem.item = item.url;
-      }
-
-      return listItem;
-    })
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url,
+    })),
   };
 }
 

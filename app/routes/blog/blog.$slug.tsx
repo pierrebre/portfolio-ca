@@ -81,23 +81,8 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         },
         datePublished: `${post.date}T00:00:00-05:00`,
         dateModified: `${post.updatedDate ?? post.date}T00:00:00-05:00`,
-        author: {
-          "@type": "Person",
-          "@id": "https://pierrebarbe.ca/#person",
-          name: "Pierre Barbé",
-          url: "https://pierrebarbe.ca/about",
-          image: {
-            "@type": "ImageObject",
-            url: "https://pierrebarbe.ca/images/me.avif",
-            width: 2662,
-            height: 3201,
-          },
-        },
-        publisher: {
-          "@type": "Organization",
-          "@id": "https://pierrebarbe.ca/#organization",
-          name: "Pierre Barbé",
-        },
+        author: { "@id": "https://pierrebarbe.ca/#person" },
+        publisher: { "@id": "https://pierrebarbe.ca/#organization" },
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id": url,
@@ -112,7 +97,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Accueil", item: "https://pierrebarbe.ca/" },
           { "@type": "ListItem", position: 2, name: "Blog", item: "https://pierrebarbe.ca/blog" },
-          { "@type": "ListItem", position: 3, name: post.title },
+          { "@type": "ListItem", position: 3, name: post.title, item: url },
         ],
       },
     ],

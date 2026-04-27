@@ -76,17 +76,43 @@ function PiscinesJolicoeur() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebPage",
-        "@id": `${url}#webpage`,
+        "@type": "Article",
+        "@id": `${url}#article`,
         url,
+        headline:
+          "Corrections WordPress & intégration CRM pour Service de Piscines Jolicoeur",
         name: "Corrections WordPress & intégration CRM pour Service de Piscines Jolicoeur",
         description:
           "Diagnostic et correction de dysfonctionnements sur un site WordPress avec intégration CRM Plannit pour une PME piscines sur la Rive-Nord de Montréal.",
         inLanguage: "fr-CA",
         isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
+        mainEntityOfPage: { "@id": `${url}#webpage` },
         author: { "@id": "https://pierrebarbe.ca/#person" },
         publisher: { "@id": "https://pierrebarbe.ca/#organization" },
         datePublished: "2026-04-04T00:00:00-05:00",
+        dateModified: "2026-04-04T00:00:00-05:00",
+        articleSection: "Études de cas",
+        keywords: [
+          "WordPress",
+          "Fluent Forms",
+          "Plannit CRM",
+          "Intégration CRM",
+          "PHP",
+          "PME Québec",
+        ],
+        image: "https://pierrebarbe.ca/images/pb-og-image.jpg",
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: "Corrections WordPress & intégration CRM pour Service de Piscines Jolicoeur",
+        inLanguage: "fr-CA",
+        isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: "https://pierrebarbe.ca/images/pb-og-image.jpg",
+        },
         breadcrumb: { "@id": `${url}#breadcrumb` },
       },
       {
@@ -109,6 +135,7 @@ function PiscinesJolicoeur() {
             "@type": "ListItem",
             position: 3,
             name: "Service de Piscines Jolicoeur",
+            item: url,
           },
         ],
       },

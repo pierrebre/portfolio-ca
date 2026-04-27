@@ -8,6 +8,9 @@ interface FaqProps {
   accordionName?: string;
   idPrefix?: string;
   className?: string;
+  // Stable ID for the FAQPage node — lets parent WebPage @graph reference it
+  // via mainEntity. Defaults to home page #faq.
+  schemaId?: string;
 }
 
 export default function Faq({
@@ -16,10 +19,12 @@ export default function Faq({
   accordionName = "my-accordion-2",
   idPrefix = "faq-item",
   className = "bg-base-100 py-20 md:py-28",
+  schemaId = "https://pierrebarbe.ca/#faq",
 }: FaqProps) {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": schemaId,
     mainEntity: questions.map((q) => ({
       "@type": "Question",
       name: q.question,

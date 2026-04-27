@@ -31,6 +31,12 @@ export default function AuditsTechniquesCoreWebVitals() {
     url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
     serviceType: "Technical Website Audit",
     areaServed: ["Montréal", "Québec"],
+    offers: {
+      name: "Audit express gratuit",
+      description: "Audit express de 30 minutes : Core Web Vitals, SEO de base et 3 priorités d'action. Aucun engagement.",
+      price: "0",
+      priceCurrency: "CAD",
+    },
     breadcrumbs: [
       { name: "Accueil", url: "https://pierrebarbe.ca/" },
       { name: "Services", url: "https://pierrebarbe.ca/services" },

@@ -123,17 +123,20 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
       {/* Hero */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold md:text-5xl">Blog</h1>
+          <h1 className="text-4xl font-bold md:text-5xl">
+            Blog web-performance, WordPress &amp; automatisation pour PME du Québec
+          </h1>
           <div className="mt-6 flex items-center justify-center gap-4">
             <div className="bg-primary h-px w-16" />
             <span className="text-primary text-sm font-medium">
-              Web performance · Automatisation · Éco-conception
+              Web performance · WordPress · Automatisation n8n · Loi 25
             </span>
             <div className="bg-primary h-px w-16" />
           </div>
           <p className="text-base-content/70 mx-auto mt-6 max-w-2xl text-lg">
-            Des articles pratiques pour aider les PME québécoises à avoir des sites
-            plus rapides, plus verts et mieux automatisés.
+            Des articles pratiques pour aider les PME québécoises à avoir des
+            sites plus rapides, mieux référencés et faciles à maintenir —
+            écrits par un développeur freelance basé à Montréal.
           </p>
         </div>
       </section>
