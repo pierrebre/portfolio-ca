@@ -7,3 +7,6 @@
 
 # local env files
 .env
+
+# raw SEO audit outputs (kept locally, source of truth for SEO-STATUS.md)
+/audit-*/
