@@ -150,6 +150,18 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
                 })}
               </time>
             </span>
+            {post.updatedDate && post.updatedDate !== post.date && (
+              <span className="text-primary/70 flex items-center gap-1 text-sm font-medium">
+                · Mis à jour le{" "}
+                <time dateTime={post.updatedDate}>
+                  {new Date(post.updatedDate).toLocaleDateString("fr-CA", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </span>
+            )}
             <span className="text-base-content/50 flex items-center gap-1 text-sm">
               <Clock className="h-4 w-4" aria-hidden="true" />
               {post.readingTime} min de lecture
