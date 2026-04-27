@@ -30,6 +30,12 @@ export default function AutomatisationWorkflows() {
     url: "https://pierrebarbe.ca/services/automatisation-workflows",
     serviceType: "Workflow Automation",
     areaServed: ["Montréal", "Québec", "Canada"],
+    offers: {
+      name: "Workflow simple n8n",
+      description: "Conception, développement et déploiement d'un workflow n8n de 2 à 3 étapes (intégration API, déclencheur, action).",
+      price: "500",
+      priceCurrency: "CAD",
+    },
     breadcrumbs: [
       { name: "Accueil", url: "https://pierrebarbe.ca/" },
       { name: "Services", url: "https://pierrebarbe.ca/services" },

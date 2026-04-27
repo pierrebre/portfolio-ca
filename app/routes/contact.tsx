@@ -29,14 +29,14 @@ const contactSchema = {
       "@id": `${SITE}/contact#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Accueil", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: "Contact" },
+        { "@type": "ListItem", position: 2, name: "Contact", item: `${SITE}/contact` },
       ],
     },
     {
       "@type": "Person",
       "@id": `${SITE}/#person`,
       name: "Pierre Barbé",
-      url: `${SITE}/about`,
+      url: `${SITE}/`,
       email: "contact@pierrebarbe.ca",
       telephone: "+1-438-448-8408",
       jobTitle: "Développeur Web Freelance",
@@ -55,7 +55,7 @@ const contactSchema = {
     {
       "@type": ["LocalBusiness", "ProfessionalService"],
       "@id": `${SITE}/#business`,
-      name: "Pierre Barbé — Développeur Web Freelance",
+      name: "Pierre Barbé",
       url: SITE,
       telephone: "+1-438-448-8408",
       email: "contact@pierrebarbe.ca",
@@ -69,8 +69,8 @@ const contactSchema = {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: "45.5017",
-        longitude: "-73.5673",
+        latitude: "45.50174",
+        longitude: "-73.56726",
       },
       areaServed: [
         { "@type": "City", name: "Montréal" },

@@ -5,6 +5,9 @@ Allow: /
 Disallow: /fonts/
 Disallow: /favicon/
 
+# Endpoint interne React Router (manifest de navigation)
+Disallow: /__manifest
+
 # AI Crawlers
 User-agent: GPTBot
 Allow: /

@@ -118,6 +118,7 @@ export default function Home() {
           "n8n",
         ],
         memberOf: { "@id": `${url}#organization` },
+        worksFor: { "@id": `${url}#organization` },
       },
 
       // 2. LocalBusiness
@@ -140,11 +141,13 @@ export default function Home() {
         },
         geo: {
           "@type": "GeoCoordinates",
-          latitude: "45.5017",
-          longitude: "-73.5673",
+          latitude: "45.50174",
+          longitude: "-73.56726",
         },
         areaServed: [
           { "@type": "City", name: "Montréal" },
+          { "@type": "City", name: "Laval" },
+          { "@type": "City", name: "Longueuil" },
           { "@type": "State", name: "Québec" },
           { "@type": "Country", name: "Canada" },
         ],
@@ -200,6 +203,14 @@ export default function Home() {
           "Développeur web freelance à Montréal. Sites rapides, bien référencés et faciles à maintenir pour PME québécoises.",
         inLanguage: "fr-CA",
         publisher: { "@id": `${url}#organization` },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://pierrebarbe.ca/blog?q={search_term_string}",
+          },
+          "query-input": "required name=search_term_string",
+        },
         hasPart: [
           { "@id": "https://pierrebarbe.ca/services#webpage" },
           { "@id": "https://pierrebarbe.ca/contact#webpage" },
@@ -219,6 +230,7 @@ export default function Home() {
         inLanguage: "fr-CA",
         isPartOf: { "@id": `${url}#website` },
         about: { "@id": `${url}#person` },
+        mainEntity: { "@id": `${url}#faq` },
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: image,

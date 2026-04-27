@@ -63,6 +63,12 @@ export default function CreationMaintenanceSites() {
     url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
     serviceType: "Web Development and Maintenance",
     areaServed: ["Montréal", "Québec"],
+    offers: {
+      name: "Forfait maintenance Essentiel",
+      description: "Mises à jour, sauvegardes hebdomadaires, monitoring 24/7, support et 1 h de corrections par mois. Sans contrat annuel.",
+      price: "150",
+      priceCurrency: "CAD",
+    },
     breadcrumbs: [
       { name: "Accueil", url: "https://pierrebarbe.ca/" },
       { name: "Services", url: "https://pierrebarbe.ca/services" },

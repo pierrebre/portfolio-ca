@@ -3,6 +3,7 @@ import {
   Links,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
   useLocation,
@@ -14,6 +15,18 @@ import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import ContactCard from "./components/contact-card";
 import { ToastProvider } from "./context/toast-context";
+
+// Force le pathname en minuscules pour éliminer la duplication de contenu
+// (ex. /SERVICES, /About, /Blog renvoyaient HTTP 200 avec le même contenu).
+// 308 = permanent + préserve méthode, recommandé par GSC.
+export function loader({ request }: Route.LoaderArgs) {
+  const url = new URL(request.url);
+  if (/[A-Z]/.test(url.pathname)) {
+    url.pathname = url.pathname.toLowerCase();
+    throw redirect(url.toString(), 308);
+  }
+  return null;
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -33,11 +46,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           }}
         />
         <Meta />
-        {/* Preload des fonts Urbanist pour éviter le FOUT */}
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2" crossOrigin="anonymous" />
+        {/* Preload du seul subset normal latin-ext nécessaire au-dessus du pli;
+            les autres variantes (italique / latin de base) chargent via @font-face avec font-display: swap */}
         <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2" crossOrigin="anonymous" />
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2" crossOrigin="anonymous" />
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2" crossOrigin="anonymous" />
+        {/* Hreflang — site monolingue FR-CA */}
+        <link rel="alternate" hrefLang="fr-CA" href="https://pierrebarbe.ca/" />
+        <link rel="alternate" hrefLang="x-default" href="https://pierrebarbe.ca/" />
         {/* Hero image preload moved to home.tsx and about.tsx via links() export */}
         <link
           rel="icon"
