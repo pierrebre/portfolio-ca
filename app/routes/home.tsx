@@ -95,7 +95,7 @@ export default function Home() {
         url,
         image: "https://pierrebarbe.ca/images/me.avif",
         email: "contact@pierrebarbe.ca",
-        telephone: "+1-438-448-8408",
+        telephone: "+1-438-543-6986",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Montréal",
@@ -129,7 +129,7 @@ export default function Home() {
         description:
           "Services de développement web freelance à Montréal : création de sites rapides, optimisation web-performance, WordPress, SEO et automatisation pour PME et agences du Québec",
         url,
-        telephone: "+1-438-448-8408",
+        telephone: "+1-438-543-6986",
         email: "contact@pierrebarbe.ca",
         image,
         priceRange: "$$",
@@ -180,7 +180,7 @@ export default function Home() {
         founder: { "@id": `${url}#person` },
         contactPoint: {
           "@type": "ContactPoint",
-          telephone: "+1-438-448-8408",
+          telephone: "+1-438-543-6986",
           contactType: "Customer Service",
           email: "contact@pierrebarbe.ca",
           areaServed: "CA",

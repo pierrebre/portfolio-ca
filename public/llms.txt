@@ -18,7 +18,6 @@ Pierre Barbé — Développeur web freelance à Montréal spécialisé en WordPr
 - Audit performance site web : https://pierrebarbe.ca/blog/audit-performance-site-web
 - Développeur web freelance Montréal : https://pierrebarbe.ca/blog/developpeur-web-freelance-montreal
 - Loi 25 conformité site web : https://pierrebarbe.ca/blog/loi-25-site-web-conformite-pme
-- Core Web Vitals guide PME : https://pierrebarbe.ca/blog/core-web-vitals-guide-pme
 - Sécurité WordPress guide PME : https://pierrebarbe.ca/blog/securite-wordpress-guide-pme
 - Maintenance site web PME : https://pierrebarbe.ca/blog/maintenance-site-web-pme-guide
 - Coût site web Québec : https://pierrebarbe.ca/blog/cout-site-web-quebec-prix

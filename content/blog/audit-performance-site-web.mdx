@@ -2,7 +2,7 @@
 title: "Audit performance site web : guide complet 2026"
 description: "Seuls 48 % des sites passent les Core Web Vitals sur mobile en 2025. Guide pour auditer votre performance web : outils, métriques clés et cas concret."
 date: "2026-02-26"
-updatedDate: "2026-03-04"
+updatedDate: "2026-06-06"
 category: "Web Performance"
 excerpt: "53 % des visiteurs mobiles quittent une page qui met plus de 3 secondes à charger. Un site qui charge en 1 seconde convertit 2,5 à 3x plus qu'un site en 5 secondes. Voici la méthode exacte que j'utilise pour auditer la performance des sites de mes clients au Québec — outils, métriques et cas concret."
 faq:
@@ -14,6 +14,8 @@ faq:
     answer: "Oui, directement. Depuis 2021, les Core Web Vitals (LCP, INP, CLS) sont des signaux de classement officiels dans l'algorithme de Google. Un site avec un LCP supérieur à 4 secondes est pénalisé dans les résultats de recherche par rapport à un concurrent plus rapide sur les mêmes mots-clés."
   - question: "Quels sont les problèmes de performance les plus fréquents sur les sites WordPress ?"
     answer: "Les 5 problèmes les plus courants : images non compressées et sans format WebP/AVIF, trop de plugins actifs qui chargent du JavaScript inutile, absence de cache serveur, hébergement mutualisé sous-dimensionné, et chargement de polices Google Fonts bloquant le rendu. Ces 5 points représentent 80 % des gains de performance sur WordPress."
+  - question: "Quelle est la différence entre les données de labo et les données terrain (CrUX) ?"
+    answer: "Les données de labo proviennent de simulations contrôlées — PageSpeed Insights simule un téléphone d'entrée de gamme avec une connexion 4G lente. Les données terrain (CrUX) proviennent de vrais visiteurs ayant consulté votre site avec Chrome. Les deux sont utiles : les données terrain reflètent la réalité de vos visiteurs, les données labo aident à comprendre et corriger les problèmes. Un écart important entre les deux signale souvent que votre site performe mal sur les appareils anciens ou les connexions lentes, qui représentent une part réelle de votre trafic mobile québécois."
 ---
 
 Votre site web est peut-être en train de faire fuir vos clients — et vous ne le savez même pas.
@@ -32,7 +34,7 @@ C'est comme faire inspecter votre bâtiment avant de rénover — on identifie c
 
 **Pourquoi la performance influence votre classement Google ?**
 
-Depuis 2021, Google intègre la performance directement dans ses critères de classement via les [Core Web Vitals](/blog/core-web-vitals-guide-pme) — un ensemble de métriques qui mesurent l'expérience réelle de vos visiteurs. Concrètement, ça veut dire qu'un site lent est pénalisé dans les résultats de recherche. Et sachant que les 3 premiers résultats Google captent environ 54 % du trafic organique (Backlinko), perdre quelques positions peut avoir un effet direct sur votre chiffre d'affaires.
+Depuis 2021, Google intègre la performance directement dans ses critères de classement via les **Core Web Vitals** (LCP, INP, CLS) — un ensemble de métriques qui mesurent l'expérience réelle de vos visiteurs, que je détaille plus bas dans ce guide. Concrètement, ça veut dire qu'un site lent est pénalisé dans les résultats de recherche. Et sachant que les 3 premiers résultats Google captent environ 54 % du trafic organique (Backlinko), perdre quelques positions peut avoir un effet direct sur votre chiffre d'affaires.
 
 Pas besoin d'être développeur pour comprendre ça : un site lent = moins de visiteurs = moins de clients potentiels.
 
@@ -205,7 +207,7 @@ L'hébergement à 3 $ par mois vous coûte cher en performance — et potentiell
 
 La performance d'un site se dégrade avec le temps — chaque plugin ajouté, chaque mise à jour de thème, chaque nouvelle image non compressée fait baisser le score peu à peu.
 
-**La correction :** vérifiez votre score Google PageSpeed Insights une fois par mois. Cinq minutes, gratuit, et vous détectez les problèmes avant qu'ils affectent significativement vos visiteurs.
+**La correction :** vérifiez votre score Google PageSpeed Insights une fois par mois. Cinq minutes, gratuit, et vous détectez les problèmes avant qu'ils affectent significativement vos visiteurs. Pour structurer ce suivi dans la durée, un [plan de maintenance régulier de votre site](/blog/maintenance-site-web-pme-guide) intègre ces vérifications de performance mois après mois.
 
 ### 5. Des mises à jour WordPress et PHP retardées par peur de casser le site
 
@@ -221,8 +223,8 @@ Une fois votre site performant, l'étape naturelle suivante est souvent d'[autom
 
 ## Pour aller plus loin
 
-- [Guide Core Web Vitals pour PME](/blog/core-web-vitals-guide-pme) — comprendre LCP, INP, CLS et leur impact SEO
 - [Optimisation vitesse WordPress en 7 étapes](/blog/optimisation-vitesse-wordpress) — la suite logique : *comment* corriger ce que l'audit a révélé
 - [Combien coûte un site web au Québec ?](/blog/cout-site-web-quebec-prix) — repères de prix pour budgéter une refonte
+- [WordPress est-il le bon choix pour votre PME ?](/blog/wordpress-pme-quebec-2026) — comparatif WordPress, Shopify et Wix avant de lancer ou refondre
 
 Ce guide est conçu pour vous permettre de **réaliser vous-même** un audit de performance complet avec des outils gratuits. Si en cours de route vous préférez déléguer la partie diagnostic + correctifs, jetez un œil à ma page [audits techniques & Core Web Vitals](/services/audits-techniques-core-web-vitals) — sinon, tout est dans cet article.

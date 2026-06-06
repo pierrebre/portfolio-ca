@@ -38,7 +38,7 @@ const contactSchema = {
       name: "Pierre Barbé",
       url: `${SITE}/`,
       email: "contact@pierrebarbe.ca",
-      telephone: "+1-438-448-8408",
+      telephone: "+1-438-543-6986",
       jobTitle: "Développeur Web Freelance",
       address: {
         "@type": "PostalAddress",
@@ -57,7 +57,7 @@ const contactSchema = {
       "@id": `${SITE}/#business`,
       name: "Pierre Barbé",
       url: SITE,
-      telephone: "+1-438-448-8408",
+      telephone: "+1-438-543-6986",
       email: "contact@pierrebarbe.ca",
       priceRange: "$$",
       image: `${SITE}/images/pb-og-image.jpg`,
@@ -87,7 +87,7 @@ const contactSchema = {
       },
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+1-438-448-8408",
+        telephone: "+1-438-543-6986",
         email: "contact@pierrebarbe.ca",
         contactType: "Customer Service",
         areaServed: "CA",
@@ -201,11 +201,11 @@ export default function Contact() {
                   <dt className="text-lg font-medium">Téléphone</dt>
                   <dd className="text-base-content/80 mt-1">
                     <a
-                      href="tel:+14384488408"
+                      href="tel:+14385436986"
                       className="link link-hover"
-                      aria-label="Appeler le +1 438 448 8408"
+                      aria-label="Appeler le +1 438 543 6986"
                     >
-                      +1&nbsp;(438)&nbsp;448-8408
+                      +1&nbsp;(438)&nbsp;543-6986
                     </a>
                     <br />
                     <span className="text-sm">Réponse rapide (FR/EN)</span>

@@ -122,7 +122,7 @@ export function generateServicePageSchema({
       url: "https://pierrebarbe.ca",
       jobTitle: "Développeur Web Freelance",
       email: "contact@pierrebarbe.ca",
-      telephone: "+1-438-448-8408"
+      telephone: "+1-438-543-6986"
     },
     areaServed: areas.map((area) => ({
       "@type": area === "Canada" ? "Country" : area === "Québec" ? "State" : "City",
@@ -131,7 +131,7 @@ export function generateServicePageSchema({
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: "https://pierrebarbe.ca/contact",
-      servicePhone: "+1-438-448-8408",
+      servicePhone: "+1-438-543-6986",
       availableLanguage: ["fr-CA", "en"]
     }
   };

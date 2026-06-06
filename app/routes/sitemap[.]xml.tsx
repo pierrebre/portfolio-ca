@@ -19,7 +19,7 @@ const STATIC_URLS: { loc: string; lastmod: string }[] = [
   { loc: "/services/integration-outils-ia", lastmod: "2026-04-21" },
   // Blog index lastmod is dynamically set from newest post in loader
   { loc: "/blog", lastmod: "" },
-  { loc: "/contact", lastmod: "2026-02-20" },
+  { loc: "/contact", lastmod: "2026-06-06" },
 ];
 
 export async function loader(_: Route.LoaderArgs) {

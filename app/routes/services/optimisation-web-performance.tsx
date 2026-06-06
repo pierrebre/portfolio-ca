@@ -246,10 +246,10 @@ export default function OptimisationWebPerformance() {
               <p className="text-primary text-sm mt-1">→ Lire l'article</p>
             </Link>
             <Link
-              to="/blog/core-web-vitals-guide-pme"
+              to="/blog/optimisation-vitesse-wordpress"
               className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
             >
-              <p className="font-semibold text-sm">Guide Core Web Vitals pour PME québécoises</p>
+              <p className="font-semibold text-sm">Optimiser la vitesse de ton site WordPress</p>
               <p className="text-primary text-sm mt-1">→ Lire l'article</p>
             </Link>
           </div>
