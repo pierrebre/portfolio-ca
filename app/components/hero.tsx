@@ -87,12 +87,12 @@ export default function Hero() {
             <div className="relative overflow-hidden rounded-xl shadow-lg">
               <img
                 src="/images/me-800.avif"
-                srcSet="/images/me-800.avif 800w, /images/me.avif 2662w"
+                srcSet="/images/me-800.avif 800w, /images/me.avif 1122w"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 alt="Portrait de Pierre Barbé, développeur web freelance basé à Montréal spécialisé en performance web et automatisation."
                 className="h-auto max-h-[580px] w-full object-cover"
                 width={800}
-                height={962}
+                height={1000}
                 loading="eager"
                 fetchPriority="high"
               />
