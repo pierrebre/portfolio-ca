@@ -429,10 +429,10 @@ export default function About() {
           <ul className="mt-6 flex flex-wrap justify-center gap-3">
             <li>
               <Link
-                to="/blog/core-web-vitals-guide-pme"
+                to="/blog/audit-performance-site-web"
                 className="btn btn-sm btn-ghost rounded-full border border-base-content/20"
               >
-                Guide Core Web Vitals
+                Audit de performance web
               </Link>
             </li>
             <li>

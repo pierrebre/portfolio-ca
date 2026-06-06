@@ -1,5 +1,12 @@
 {
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blog/core-web-vitals-guide-pme",
+      "destination": "/blog/audit-performance-site-web",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

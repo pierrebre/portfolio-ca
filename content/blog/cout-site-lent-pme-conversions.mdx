@@ -1,7 +1,8 @@
 ---
 title: "Site web lent : combien ça te coûte vraiment en 2026 ?"
-description: "Un délai de 100 ms coûte 1 % des revenus d'Amazon. Pour ta PME, chaque seconde perdue vaut des clients réels. Calcule ta perte et découvre les 5 corrections prioritaires."
+description: "Un délai de 100 ms coûte 1 % des revenus d'Amazon. Pour ta PME, chaque seconde perdue vaut des clients réels. Calcule ce que ta lenteur te coûte chaque mois — et pourquoi la correction s'amortit en quelques semaines."
 date: "2026-03-26"
+updatedDate: "2026-06-06"
 category: "Web Performance"
 excerpt: "Amazon a calculé qu'un délai de 100 millisecondes lui coûte 1 % de ses revenus. Pour ta PME québécoise, la perte est proportionnelle — et probablement plus grave. Voici comment chiffrer ce que ton site lent te coûte vraiment."
 faq:
@@ -67,7 +68,7 @@ Le coût d'un site lent ne se limite pas aux visiteurs perdus. Google te pénali
 
 **Impact sur l'exploration.** Google alloue un « budget de crawl » à chaque site — un nombre limité de pages qu'il va explorer avant de passer à la suivante. Un site lent oblige Googlebot à passer plus de temps sur chaque page, ce qui signifie que certaines de tes pages seront explorées moins souvent, voire pas du tout. Des pages importantes peuvent disparaître de l'index ou être mises à jour moins fréquemment dans les résultats.
 
-Si tu n'as pas encore vérifié tes Core Web Vitals, mon [guide complet sur les métriques Google pour PME](/blog/core-web-vitals-guide-pme) t'explique comment les lire et les améliorer concrètement, avec les seuils et les outils gratuits.
+Si tu n'as pas encore vérifié tes Core Web Vitals, mon [guide d'audit de performance](/blog/audit-performance-site-web) t'explique comment les mesurer et les interpréter, avec les seuils et les outils gratuits.
 
 ## Le coût invisible : ta crédibilité professionnelle
 
@@ -91,42 +92,15 @@ Trois facteurs aggravent la situation pour les PME du Québec.
 
 Pour une lecture complète de la méthode d'audit, mon [guide d'audit de performance site web](/blog/audit-performance-site-web) détaille les outils et les étapes pour mesurer exactement où ton site perd du temps.
 
-## Les 5 causes les plus fréquentes — et ce que chaque correction vaut
+## Combien coûte la correction — et pourquoi le ROI est évident
 
-Après des dizaines d'audits pour des PME québécoises, voici les problèmes qui reviennent dans cet ordre de fréquence, avec leur impact et leur coût de correction.
+La vraie question à se poser : combien coûte la correction, comparé à ce que la lenteur te fait perdre chaque mois ?
 
-**1. Images non compressées (présent dans 90 % des sites)**
-Des photos uploadées directement depuis un iPhone pèsent 4 à 8 Mo chacune. Sur une page avec 8 photos : 32 à 64 Mo à charger. La correction : compression en WebP avec ShortPixel ou Imagify. Temps : 1 à 2 heures. Impact : souvent +15 à +20 points Lighthouse mobile, LCP divisé par 2.
+Pour la majorité des sites PME québécois, une optimisation complète — compression des images, mise en cache, hébergement canadien, nettoyage des plugins, mise à jour de PHP — se situe entre **500 $ et 1 500 $**, ou peut se faire en une journée de travail si tu es à l'aise techniquement. C'est un coût ponctuel.
 
-**2. Hébergement mutualisé bas de gamme (présent dans 70 % des sites)**
-Ton site partage un serveur avec des centaines d'autres sites. Quand les voisins ont un pic de trafic, tu subis les conséquences. Un temps de réponse serveur (TTFB) de plus de 800 ms plafonne tous tes autres efforts d'optimisation. La correction : migrer vers un hébergement avec serveurs canadiens et PHP 8.2. Coût : 25-50 $/mois au lieu de 5-10 $/mois. Impact : TTFB de 1,5 s → 250 ms, gain typique de +10 à +15 points.
+Reprends maintenant ta perte mensuelle estimée plus haut. Si ton site lent te coûte ne serait-ce que 1 500 $ à 2 000 $ de revenus par mois, la correction s'amortit en quelques semaines — puis chaque mois suivant est du gain net. C'est l'un des rares investissements web dont le retour est aussi rapide et aussi mesurable.
 
-**3. Absence de cache (présent dans 60 % des sites WordPress)**
-Sans cache, chaque visiteur force le serveur à reconstruire la page depuis le début — interroger la base de données, assembler le HTML. Avec un cache, le serveur sert une copie prête en moins de 100 ms. La correction : activer WP Rocket, LiteSpeed Cache ou W3 Total Cache. Temps : 30 minutes. Impact : réduction de 40 à 60 % du temps de chargement.
-
-**4. Trop de plugins JavaScript actifs (présent dans 80 % des sites)**
-Chaque plugin qui charge du JavaScript bloque l'affichage de ta page pendant qu'il s'exécute. 25 plugins actifs, c'est souvent 2 à 4 secondes de blocage JavaScript. La correction : audit des plugins avec Query Monitor, suppression des inutilisés. Temps : 2 heures. Impact : INP (réactivité) amélioré de 30 à 50 %.
-
-**5. PHP obsolète (présent dans 55 % des sites)**
-PHP 7.4, encore présent chez beaucoup d'hébergeurs, est 2 à 3 fois plus lent que PHP 8.2 pour les opérations courantes WordPress. La correction : changer la version PHP dans le panneau d'hébergement. Temps : 5 minutes (après avoir vérifié la compatibilité). Impact : réduction du temps de génération des pages de 30 à 40 %.
-
-Mon [guide d'optimisation WordPress étape par étape](/blog/optimisation-vitesse-wordpress) détaille comment appliquer chacune de ces corrections, avec les outils exacts et les gains typiques à chaque étape.
-
-## Par où commencer : les quick wins à fort ROI
-
-Si tu dois prioriser, voici l'ordre d'attaque que j'applique systématiquement.
-
-**Mesure d'abord, corrige ensuite.** Rends-toi sur pagespeed.web.dev et note tes scores LCP, INP et CLS sur mobile. Sans mesure initiale, tu ne sauras pas si tes corrections ont fonctionné. Ça prend 5 minutes.
-
-**Compresse toutes les images en WebP.** C'est la correction avec le meilleur rapport impact/temps pour 90 % des sites. ShortPixel (gratuit jusqu'à 100 images/mois) le fait automatiquement sur WordPress.
-
-**Active un plugin de cache.** Si tu es sur WordPress et qu'il n'y a pas de cache actif, c'est la correction qui donnera les résultats les plus spectaculaires et les plus immédiats.
-
-**Vérifie ta version PHP.** Si ton hébergeur tourne encore sur PHP 7.4, passe à PHP 8.2 après avoir vérifié la compatibilité de tes plugins. Cinq minutes, gain immédiat.
-
-**Parle à ton hébergeur.** Si ton site est hébergé sur des serveurs hors Canada, demande une migration. Pour une PME québécoise, c'est l'équivalent d'ouvrir un bureau à Montréal plutôt que de gérer tout depuis Dallas.
-
-Ces 5 actions représentent 80 % des gains de performance sur la majorité des sites PME. Elles peuvent toutes se faire en une journée de travail — ou être déléguées à un professionnel pour 500 à 1 500 $.
+Et le *comment* est entièrement documenté dans mes deux guides pratiques : [comment auditer la performance de ton site](/blog/audit-performance-site-web) pour identifier précisément où tu perds du temps, puis [l'optimisation WordPress en 7 étapes](/blog/optimisation-vitesse-wordpress) pour appliquer chaque correction, avec les outils exacts et les gains typiques. Cet article-ci répond à une autre question — *combien ça te coûte de ne rien faire* — et la réponse, chiffres à l'appui, est : bien plus cher que la correction.
 
 ---
 
