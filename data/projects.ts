@@ -30,7 +30,7 @@ export const projects: Project[] = [
     description:
       "Diagnostic et correction de dysfonctionnements sur un site WordPress avec intégration CRM Plannit pour une PME piscines. Formulaire cassé, mapping CRM erroné, soumissions en double.",
     challenge:
-      "Le site développé par une agence externe sans support présentait plusieurs dysfonctionnements dans la liaison formulaire–CRM : données mal mappées, champs manquants, logique conditionnelle cassée et doublons.",
+      "Le site présentait plusieurs dysfonctionnements dans la liaison formulaire–CRM, restés invisibles côté visiteur : données mal mappées, champs manquants, logique conditionnelle cassée et soumissions en double.",
     solution:
       "Diagnostic complet par logging custom et analyse du code PHP. Correction du mapping services, ajout des champs manquants, correction de la logique conditionnelle et suppression des déclenchements en double.",
     metrics: [
