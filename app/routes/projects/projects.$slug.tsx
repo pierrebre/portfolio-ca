@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowLeft, CheckCircle, Calendar, Wrench } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import FaqItem from "~/components/faq-item";
 import JsonLd from "~/components/json-ld";
 import type { Route } from "./+types/projects.$slug";
 
@@ -90,7 +91,7 @@ function PiscinesJolicoeur() {
         author: { "@id": "https://pierrebarbe.ca/#person" },
         publisher: { "@id": "https://pierrebarbe.ca/#organization" },
         datePublished: "2026-04-04T00:00:00-05:00",
-        dateModified: "2026-04-04T00:00:00-05:00",
+        dateModified: "2026-08-21T00:00:00-04:00",
         articleSection: "Études de cas",
         keywords: [
           "WordPress",
@@ -161,6 +162,84 @@ function PiscinesJolicoeur() {
     ],
   };
 
+  const faq = [
+    {
+      index: 0,
+      question: "Peux-tu intervenir sur un site WordPress que tu n'as pas développé ?",
+      answer:
+        "Oui, c'est même la majorité de mes interventions de correction. Je pars du code en place et des données réellement transmises, sans dépendre de la documentation d'origine. Un accès administrateur WordPress et un accès SFTP suffisent pour lancer le diagnostic.",
+    },
+    {
+      index: 1,
+      question: "Qu'est-ce qui casse une intégration formulaire → CRM ?",
+      answer:
+        "Les causes les plus fréquentes : un mapping de champs qui ne correspond plus aux identifiants attendus par le CRM, une mise à jour de plugin qui change le comportement d'un hook, une logique conditionnelle configurée avec le mauvais opérateur, ou un déclenchement en double après l'ajout d'une extension. Ce sont des pannes silencieuses : côté visiteur le formulaire semble fonctionner, mais les données arrivent fausses, incomplètes ou dupliquées.",
+    },
+    {
+      index: 2,
+      question: "Comment savoir si mon formulaire envoie les bonnes données à mon CRM ?",
+      answer:
+        "Le test le plus simple : remplissez vous-même une soumission complète, puis comparez ligne par ligne ce que vous avez saisi avec la fiche créée dans le CRM. Champ vide, service mal identifié, fiche en double : chacun de ces écarts est un signal. Si le formulaire comporte des conditions d'affichage, refaites le test pour chaque service proposé — c'est souvent là que les écarts se cachent.",
+    },
+  ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
+  const results = [
+    {
+      label: "Services transmis au CRM",
+      before: "Texte brut non reconnu",
+      after: "Identifiants Plannit corrects",
+    },
+    {
+      label: "Champs du formulaire remontés",
+      before: "Incomplets",
+      after: "Complets",
+    },
+    {
+      label: "Soumissions en double",
+      before: "À chaque envoi",
+      after: "0",
+    },
+    {
+      label: "Procédure conditionnelle",
+      before: "Jamais affichée",
+      after: "Affichée au bon service",
+    },
+  ];
+
+  const method = [
+    {
+      title: "Reproduire avant de corriger",
+      description:
+        "Série de soumissions de test sur le formulaire en ligne pour reproduire chaque comportement signalé et écarter les fausses pistes.",
+    },
+    {
+      title: "Observer les données réelles",
+      description:
+        "Logging temporaire sur les appels sortants vers l'API du CRM pour voir la charge utile exacte, champ par champ, telle qu'elle part du site.",
+    },
+    {
+      title: "Remonter à la cause",
+      description:
+        "Lecture du code PHP et des hooks WordPress pour relier chaque symptôme à son origine : mapping, condition d'affichage ou ordre de déclenchement.",
+    },
+    {
+      title: "Corriger puis revalider",
+      description:
+        "Correction ciblée, sans refonte, suivie d'une nouvelle série de tests pour confirmer que les données arrivent complètes et sans doublon.",
+    },
+  ];
+
   const corrections = [
     {
       title: "Mapping des services vers le CRM",
@@ -181,7 +260,7 @@ function PiscinesJolicoeur() {
     {
       title: "Procédure invisible pour un service",
       description:
-        "La logique conditionnelle du formulaire utilisait le mauvais opérateur, empêchant l'affichage d'une procédure importante. Correction de la condition + remplacement d'un Lorem ipsum oublié par le développeur précédent.",
+        "La logique conditionnelle du formulaire utilisait le mauvais opérateur, empêchant l'affichage d'une procédure importante. Correction de la condition + remplacement d'un texte de remplissage (Lorem ipsum) resté en ligne.",
     },
     {
       title: "Soumissions en double dans le CRM",
@@ -193,6 +272,7 @@ function PiscinesJolicoeur() {
   return (
     <div className="bg-base-100 font-urbanist min-h-screen">
       <JsonLd data={schema} />
+      <JsonLd data={faqSchema} />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumbs
@@ -229,6 +309,10 @@ function PiscinesJolicoeur() {
               <Calendar className="h-3 w-3" aria-hidden="true" />
               Mars 2026
             </div>
+            <span className="text-base-content/50 self-center text-sm">
+              Mis à jour le{" "}
+              <time dateTime="2026-08-21">21 août 2026</time>
+            </span>
           </div>
 
           <div className="mt-4 flex flex-wrap gap-2">
@@ -247,11 +331,17 @@ function PiscinesJolicoeur() {
         <section className="mt-10">
           <h2 className="text-2xl font-bold mb-4">Le défi</h2>
           <p className="text-base-content/80 leading-relaxed">
-            Le site WordPress du client, développé par une agence externe qui n'assurait plus le support,
-            présentait plusieurs dysfonctionnements dans la liaison entre son formulaire de soumission (Fluent Forms
-            Pro) et son CRM Plannit. Les données ne remontaient pas correctement : services mal mappés,
-            champs manquants, logique conditionnelle cassée, et soumissions en double causées par un hook
+            Le site WordPress du client présentait plusieurs dysfonctionnements dans la liaison entre
+            son formulaire de soumission (Fluent Forms Pro) et son CRM Plannit. En l'absence de suivi
+            technique, les données ne remontaient plus correctement : services mal mappés, champs
+            manquants, logique conditionnelle cassée, et soumissions en double causées par un hook
             WordPress qui se déclenchait deux fois.
+          </p>
+          <p className="text-base-content/80 leading-relaxed mt-3">
+            Concrètement, chaque demande arrivait incomplète ou dupliquée dans le CRM. À l'approche de
+            la saison, ça veut dire du temps perdu à rappeler des clients pour redemander des
+            informations qu'ils avaient déjà fournies — et un risque réel de laisser filer une
+            soumission.
           </p>
           <p className="text-base-content/70 text-sm mt-3">
             En savoir plus sur{" "}
@@ -260,6 +350,30 @@ function PiscinesJolicoeur() {
             </Link>
             .
           </p>
+        </section>
+
+        {/* La méthode */}
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-4">La méthode de diagnostic</h2>
+          <p className="text-base-content/80 leading-relaxed mb-6">
+            Ni documentation d'origine, ni historique des modifications : tout le diagnostic s'est
+            appuyé sur le code en place et sur les données réellement envoyées au CRM.
+          </p>
+          <ol className="space-y-4">
+            {method.map((step, idx) => (
+              <li key={step.title} className="flex items-start gap-4">
+                <span className="bg-primary/10 text-primary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold">
+                  {idx + 1}
+                </span>
+                <div>
+                  <h3 className="font-bold">{step.title}</h3>
+                  <p className="text-base-content/70 mt-1 text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* Les 5 corrections */}
@@ -302,8 +416,8 @@ function PiscinesJolicoeur() {
             données à votre CRM ?
           </p>
           <p className="text-base-content/70 leading-relaxed">
-            Je diagnostique et corrige les problèmes techniques que les agences laissent derrière
-            elles.{" "}
+            Je diagnostique et corrige ce type de panne, y compris sur un site que je n'ai pas
+            développé.{" "}
             <Link to="/contact" className="text-primary font-semibold hover:underline">
               Réservez votre audit gratuit →
             </Link>
@@ -313,9 +427,31 @@ function PiscinesJolicoeur() {
         {/* Résultats */}
         <section className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Résultats</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="overflow-x-auto rounded-2xl border border-base-content/10">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Point de contrôle</th>
+                  <th scope="col">Avant</th>
+                  <th scope="col">Après</th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row" className="font-semibold">
+                      {row.label}
+                    </th>
+                    <td className="text-base-content/60">{row.before}</td>
+                    <td className="text-success font-semibold">{row.after}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-base-200 rounded-xl p-5 text-center">
-              <div className="text-3xl font-black text-success">100 %</div>
+              <div className="text-3xl font-black text-success">5 / 5</div>
               <div className="text-base-content/60 text-sm mt-1">Problèmes résolus</div>
             </div>
             <div className="bg-base-200 rounded-xl p-5 text-center">
@@ -355,6 +491,23 @@ function PiscinesJolicoeur() {
             </blockquote>
           </section>
         */}
+
+        {/* FAQ */}
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-6">Questions fréquentes</h2>
+          <div className="flex flex-col space-y-2">
+            {faq.map((item) => (
+              <FaqItem
+                key={item.index}
+                index={item.index}
+                question={item.question}
+                answer={item.answer}
+                accordionName="jolicoeur-faq"
+                idPrefix="jolicoeur-faq"
+              />
+            ))}
+          </div>
+        </section>
 
         {/* Services mobilisés */}
         <section className="mt-12">
@@ -404,8 +557,8 @@ function PiscinesJolicoeur() {
         <div className="mt-16 p-8 bg-base-200 rounded-2xl text-center">
           <p className="font-bold text-lg mb-2">Un projet similaire ?</p>
           <p className="text-base-content/70 leading-relaxed max-w-xl mx-auto">
-            Formulaire cassé, intégration CRM défaillante ou site WordPress sans support — je peux
-            vous aider.
+            Formulaire cassé, intégration CRM défaillante ou site WordPress à reprendre en main —
+            je peux vous aider.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="btn btn-primary rounded-full px-8">
