@@ -9,7 +9,7 @@ export default function Footer() {
             <p>
               Pierre Barbé
               <br />
-              <span className="text-base-content/60 text-sm">
+              <span className="text-base-content/70 text-sm">
                 Basé à Montréal, Québec
               </span>
               <br />
@@ -27,6 +27,9 @@ export default function Footer() {
             <strong className="footer-title">Navigation</strong>
             <Link className="link link-hover" to="/services">
               Services
+            </Link>
+            <Link className="link link-hover" to="/projects">
+              Projets
             </Link>
             <Link className="link link-hover" to="/blog">
               Blog

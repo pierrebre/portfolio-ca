@@ -5,7 +5,7 @@ import type { Route } from "./+types/privacy-policy";
 
 const SITE = "https://pierrebarbe.ca";
 const URL = `${SITE}/politique-confidentialite`;
-const DATE_MODIFIED = "2026-04-16";
+const DATE_MODIFIED = "2026-09-24";
 const DATE_PUBLISHED = "2025-06-03";
 
 const privacySchema = {
@@ -89,7 +89,7 @@ export default function PrivacyPolicy() {
         <h1 className="text-3xl font-bold mb-6">Politique de confidentialité</h1>
         <p className="mb-2 text-sm text-base-content/60">
           Dernière mise à jour&nbsp;:{" "}
-          <time dateTime={DATE_MODIFIED}>16 avril 2026</time>
+          <time dateTime={DATE_MODIFIED}>24 septembre 2026</time>
         </p>
         <p className="mb-6 text-sm text-base-content/60">
           Date de prise d&apos;effet&nbsp;:{" "}
@@ -128,9 +128,26 @@ export default function PrivacyPolicy() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">Données collectées</h2>
         <p className="mb-4">
-          Les informations recueillies via le formulaire de contact sont&nbsp;:
-          prénom, nom de famille, adresse courriel et message. Aucune autre
-          donnée n&apos;est collectée sur ce site.
+          Le site recueille uniquement ce que tu saisis dans ses deux
+          formulaires&nbsp;:
+        </p>
+        <ul className="mb-4 list-disc pl-6 space-y-2">
+          <li>
+            <strong>Formulaire de contact</strong>&nbsp;: prénom, nom de
+            famille, adresse courriel et message.
+          </li>
+          <li>
+            <strong>Demande d&apos;audit gratuit</strong>&nbsp;: adresse (URL)
+            du site à auditer, adresse courriel et, si tu en ajoutes, des
+            informations complémentaires.
+          </li>
+        </ul>
+        <p className="mb-4">
+          À l&apos;envoi d&apos;un formulaire, ton adresse IP est aussi traitée
+          pour limiter les envois abusifs (pourriels)&nbsp;: elle est gardée en
+          mémoire une heure au plus, puis oubliée, et n&apos;est jamais
+          associée à ton message. Aucune autre donnée n&apos;est collectée sur
+          ce site, hormis les journaux techniques tenus par les hébergeurs.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">Cookies et traceurs</h2>
@@ -146,9 +163,16 @@ export default function PrivacyPolicy() {
           Utilisation des données
         </h2>
         <p className="mb-4">
-          Les données sont utilisées uniquement pour répondre à ta demande.
-          Elles ne sont ni revendues, ni partagées à des fins commerciales ou
-          publicitaires.
+          Les données sont utilisées uniquement pour répondre à ta demande
+          (et, pour l&apos;audit, pour analyser le site que tu m&apos;as
+          indiqué). Elles ne sont ni revendues, ni partagées à des fins
+          commerciales ou publicitaires.
+        </p>
+        <p className="mb-4">
+          Les formulaires sont envoyés à une API (un petit serveur
+          d&apos;envoi) qui transmet ton message par courriel via Resend. Elle
+          ne stocke aucun formulaire&nbsp;: ton message n&apos;est conservé que
+          dans ma boîte de réception.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">

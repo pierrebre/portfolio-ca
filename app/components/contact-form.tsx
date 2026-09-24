@@ -4,7 +4,7 @@ import { z } from "zod";
 import { postToApi } from "~/lib/api";
 import { useToast } from "~/context/toast-context";
 import FormField from "./form-field";
-import { HoneypotField, NoScriptNotice } from "./form-guard";
+import { HoneypotField, NoScriptNotice, PrivacyNotice } from "./form-guard";
 import { useHydrated } from "~/hooks/use-hydrated";
 
 const contactformSchema = z.object({
@@ -116,6 +116,7 @@ export default function ContactForm() {
       </FormField>
 
       <NoScriptNotice />
+      <PrivacyNotice />
       <button
         type="submit"
         className="btn btn-primary w-full"

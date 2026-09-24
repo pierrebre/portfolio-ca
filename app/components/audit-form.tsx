@@ -4,7 +4,7 @@ import { z } from "zod";
 import { postToApi } from "~/lib/api";
 import { useToast } from "~/context/toast-context";
 import FormField from "./form-field";
-import { HoneypotField, NoScriptNotice } from "./form-guard";
+import { HoneypotField, NoScriptNotice, PrivacyNotice } from "./form-guard";
 import { useHydrated } from "~/hooks/use-hydrated";
 import { FREE_AUDIT } from "data/pricing";
 
@@ -108,6 +108,7 @@ export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
       </FormField>
 
       <NoScriptNotice />
+      <PrivacyNotice onNavigate={onCancel} />
       <div className="modal-action flex justify-between">
         <button type="button" className="btn btn-outline" onClick={onCancel}>
           Annuler

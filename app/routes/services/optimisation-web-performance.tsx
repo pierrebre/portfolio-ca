@@ -110,7 +110,6 @@ export default function OptimisationWebPerformance() {
               "Google pénalise les sites lents depuis 2021 (Core Web Vitals dans le ranking)",
               "53 % des visiteurs mobile quittent si la page met plus de 3 secondes à charger",
               "Amazon a calculé que 100 ms de latence = 1 % de ventes en moins",
-              "Un score Lighthouse sous 50 signifie des positions perdues sur les pages de résultats",
             ].map((point) => (
               <li key={point} className="flex items-start gap-3">
                 <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />

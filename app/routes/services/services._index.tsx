@@ -118,7 +118,7 @@ export default function ServicesIndex() {
             </p>
             <p className="text-base-content/70 mx-auto max-w-3xl text-base mt-4 leading-relaxed">
               Que ton site soit lent, vieillissant ou qu'il traîne de la patte
-              côté SEO — ou que tu parts de zéro — je livre du concret avec des
+              côté SEO — ou que tu partes de zéro — je livre du concret avec des
               métriques avant/après. Premier échange gratuit (mail ou visio),
               devis sous 24 h, réponse en français ou en anglais.
             </p>
