@@ -1,6 +1,6 @@
 import { Server, Shield, Zap, CheckCircle, GitBranch } from "lucide-react";
-import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
@@ -131,24 +131,9 @@ export default function GestionServeurDeploiement() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Sécurise ton infrastructure</h2>
-          <p className="text-base-content/70 mt-4">
-            On fait un audit de ton infra actuelle et je te propose une solution adaptée
-            à tes besoins et à ton budget.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Discutons de ton infrastructure
-            </Link>
-            <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
-              Voir tous mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Sécurise ton infrastructure" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        On fait un audit de ton infra actuelle et je te propose une solution adaptée à tes besoins et à ton budget.
+      </CtaSection>
     </div>
   );
 }

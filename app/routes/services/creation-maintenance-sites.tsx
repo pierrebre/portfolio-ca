@@ -1,16 +1,17 @@
 import { Laptop, CheckCircle, Wrench, Shield } from "lucide-react";
-import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/creation-maintenance-sites";
+import { PRICING } from "data/pricing";
 
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
       title: "Création et maintenance de sites WordPress à Montréal",
-      description: "Sites WordPress et Shopify rapides et durables pour PME du Québec. Maintenance dès 150 $/mois, sans contrat annuel. Développeur freelance à Montréal.",
+      description: `Sites WordPress et Shopify rapides et durables pour PME du Québec. Maintenance dès ${PRICING.maintenanceEssentiel.label}/mois, sans contrat annuel. Développeur freelance à Montréal.`,
       url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
     }),
   ];
@@ -19,7 +20,7 @@ export function meta({}: Route.MetaArgs) {
 const maintenancePlans = [
   {
     name: "Essentiel",
-    price: "150 $/mois",
+    price: `${PRICING.maintenanceEssentiel.label}/mois`,
     features: [
       "Mises à jour WordPress/plugins",
       "Sauvegardes hebdomadaires",
@@ -31,7 +32,7 @@ const maintenancePlans = [
   },
   {
     name: "Pro",
-    price: "300 $/mois",
+    price: `${PRICING.maintenancePro.label}/mois`,
     features: [
       "Tout l'Essentiel",
       "Sauvegardes quotidiennes",
@@ -44,7 +45,7 @@ const maintenancePlans = [
   },
   {
     name: "Premium",
-    price: "500 $/mois",
+    price: `${PRICING.maintenancePremium.label}/mois`,
     features: [
       "Tout le Pro",
       "Support même jour",
@@ -60,14 +61,14 @@ const maintenancePlans = [
 export default function CreationMaintenanceSites() {
   const schema = generateServicePageSchema({
     name: "Création & Maintenance de Sites WordPress",
-    description: "Création de sites WordPress et Shopify rapides et durables pour PME du Québec. Forfaits maintenance sans contrat annuel à partir de 150 $/mois.",
+    description: `Création de sites WordPress et Shopify rapides et durables pour PME du Québec. Forfaits maintenance sans contrat annuel à partir de ${PRICING.maintenanceEssentiel.label}/mois.`,
     url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
     serviceType: "Web Development and Maintenance",
     areaServed: ["Montréal", "Québec"],
     offers: {
       name: "Forfait maintenance Essentiel",
       description: "Mises à jour, sauvegardes hebdomadaires, monitoring 24/7, support et 1 h de corrections par mois. Sans contrat annuel.",
-      price: "150",
+      price: String(PRICING.maintenanceEssentiel.price),
       priceCurrency: "CAD",
     },
     breadcrumbs: [
@@ -122,19 +123,19 @@ export default function CreationMaintenanceSites() {
                 icon: Wrench,
                 title: "WordPress",
                 desc: "WordPress propulse 43 % du web — et pour de bonnes raisons. Mais un WordPress mal construit, c'est un cauchemar de maintenance. Je développe des sites WordPress sans Elementor, sans page builder lourd, avec un thème sur mesure ou léger (Gutenberg natif). Résultat : un site 3x plus rapide et 10x plus facile à maintenir.",
-                price: "À partir de 2 500 $",
+                price: `À partir de ${PRICING.siteVitrine.label}`,
               },
               {
                 icon: Shield,
                 title: "Shopify",
                 desc: "Pour l'e-commerce, Shopify est souvent le meilleur choix pour les PME. Pas de gestion serveur, pas de mises à jour de sécurité, et un écosystème d'apps solide. Je configure, personnalise et optimise ta boutique Shopify pour qu'elle convertisse mieux dès le premier jour.",
-                price: "À partir de 3 000 $",
+                price: `À partir de ${PRICING.shopify.label}`,
               },
               {
                 icon: Laptop,
                 title: "Next.js / React",
                 desc: "Pour les projets qui ont besoin de plus de puissance — applications web, dashboards, sites avec des interactions complexes. C'est ce qui propulse pierrebarbe.ca.",
-                price: "À partir de 4 000 $",
+                price: `À partir de ${PRICING.siteSurMesure.label}`,
               },
             ].map((item) => (
               <div key={item.title} className="bg-base-100 rounded-2xl p-6 border border-base-content/10">
@@ -209,25 +210,9 @@ export default function CreationMaintenanceSites() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Discutons de ton projet</h2>
-          <p className="text-base-content/70 mt-4">
-            Chaque projet est différent. Un premier échange (mail ou visio)
-            suffit pour identifier la meilleure approche et te donner une
-            fourchette de prix réaliste. C'est gratuit.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Parle-moi de ton projet
-            </Link>
-            <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
-              Voir tous mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Discutons de ton projet" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        Chaque projet est différent. Un premier échange (mail ou visio) suffit pour identifier la meilleure approche et te donner une fourchette de prix réaliste. C'est gratuit.
+      </CtaSection>
     </div>
   );
 }

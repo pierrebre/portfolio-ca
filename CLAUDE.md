@@ -15,6 +15,11 @@ Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnp
 3. JSON-LD via `<JsonLd>`. Auteur et éditeur inlinés avec `AUTHOR_SCHEMA` / `PUBLISHER_SCHEMA` : Google ne résout pas un `@id` défini sur une autre page.
 4. Ajouter l'URL au sitemap (`app/routes/sitemap[.]xml.tsx`, `lastmod` manuel) et à `scripts/changed-urls.sh`.
 
+## Offre et prix
+
+- Tous les prix et délais viennent de `data/pricing.ts` (heures × taux horaire de 75 $/h) : jamais de montant en dur dans une page ou une FAQ. Les articles MDX citent quelques chiffres en dur (coût d'un site, maintenance) : les mettre à jour si la grille change.
+- Appel à l'action principal : `AuditButton` (libellé et offre dans `FREE_AUDIT`), qui ouvre la fenêtre d'audit rendue une seule fois dans `root.tsx` (côté client uniquement). Fin de page : un seul `CtaSection` (aucun sur les pages légales, la 404 et `/contact`).
+
 ## Code
 
 - Liens internes avec `<Link>`, jamais `<a href="/…">` (rechargement complet).

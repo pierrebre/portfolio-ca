@@ -1,6 +1,8 @@
 import { Link } from "react-router";
-import { Calendar, Clock, Tag, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Clock, Tag, ChevronLeft, ChevronRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
+import { FREE_AUDIT } from "data/pricing";
 import JsonLd from "~/components/json-ld";
 import { getPost, getAdjacentPosts } from "~/lib/content.server";
 import { categoryBadgeClass } from "~/utils/blog-categories";
@@ -261,20 +263,11 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           </div>
         </div>
 
-        {/* CTA retour + contact */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-base-200 rounded-2xl">
-          <Link
-            to="/blog"
-            className="btn btn-ghost btn-sm gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Tous les articles
-          </Link>
-          <Link to="/contact" className="btn btn-primary rounded-full">
-            Discutons de votre projet
-          </Link>
-        </div>
       </article>
+
+      <CtaSection title="Un site à faire avancer ?" secondary={{ to: "/blog", label: "Tous les articles" }}>
+        {FREE_AUDIT.summary}
+      </CtaSection>
     </div>
   );
 }

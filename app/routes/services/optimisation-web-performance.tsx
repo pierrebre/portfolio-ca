@@ -1,10 +1,11 @@
 import { Zap, CheckCircle, BarChart3, Image, Code2, Server, LineChart } from "lucide-react";
-import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/optimisation-web-performance";
+import { PRICING } from "data/pricing";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -196,8 +197,8 @@ export default function OptimisationWebPerformance() {
           <div className="space-y-4">
             {[
               { label: "Audit express (30 min)", price: "Gratuit", note: "Diagnostic + 3 recommandations prioritaires" },
-              { label: "Optimisation ponctuelle", price: "À partir de 1 500 $", note: "Site vitrine WordPress" },
-              { label: "Suivi mensuel performance", price: "À partir de 300 $/mois", note: "Monitoring + rapport mensuel" },
+              { label: "Optimisation ponctuelle", price: `À partir de ${PRICING.optimisation.label}`, note: "Site vitrine WordPress" },
+              { label: "Suivi mensuel performance", price: `À partir de ${PRICING.suiviPerformance.label}/mois`, note: "Monitoring + rapport mensuel" },
             ].map((item) => (
               <div
                 key={item.label}
@@ -233,24 +234,9 @@ export default function OptimisationWebPerformance() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Réserve ton audit de performance gratuit</h2>
-          <p className="text-base-content/70 mt-4">
-            30 minutes. Je regarde ton site en direct et je te dis ce qui te coûte le plus de trafic.
-            Sans engagement.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Réserver l'audit gratuit
-            </Link>
-            <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
-              Voir tous mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Réserve ton audit de performance gratuit" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        30 minutes. Je regarde ton site en direct et je te dis ce qui te coûte le plus de trafic. Sans engagement.
+      </CtaSection>
     </div>
   );
 }

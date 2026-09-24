@@ -6,9 +6,10 @@ import {
   Users,
   CheckCircle,
   ExternalLink,
-  Mail,
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import AuditButton from "~/components/audit-button";
+import CtaSection from "~/components/cta-section";
 import JsonLd from "~/components/json-ld";
 import { AUTHOR_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/about";
@@ -245,10 +246,7 @@ export default function About() {
                 exactement ce que je fais et pourquoi.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link to="/contact" className="btn btn-primary rounded-full px-8">
-                  <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
-                  Me contacter
-                </Link>
+                <AuditButton className="btn btn-primary rounded-full px-8" />
                 <a
                   href="https://www.linkedin.com/in/pierre-barb%C3%A9/"
                   target="_blank"
@@ -488,33 +486,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Travaillons ensemble</h2>
-          <p className="text-base-content/70 mt-4 text-lg leading-relaxed">
-            Vous avez un projet, un site à optimiser ou un processus à automatiser ?
-            Parlons-en — premier échange gratuit, par mail ou visio.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10 py-3">
-              Parle-moi de ton projet
-            </Link>
-            <Link
-              to="/blog"
-              className="btn btn-ghost rounded-full px-10 py-3 border border-base-content/20"
-            >
-              Lire le blog
-            </Link>
-            <Link
-              to="/services"
-              className="btn btn-ghost rounded-full px-10 py-3 border border-base-content/20"
-            >
-              Voir mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Travaillons ensemble" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        Vous avez un projet, un site à optimiser ou un processus à automatiser ? Parlons-en — premier échange gratuit, par mail ou visio.
+      </CtaSection>
     </div>
   );
 }

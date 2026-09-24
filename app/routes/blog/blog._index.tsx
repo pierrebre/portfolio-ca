@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
+import { FREE_AUDIT } from "data/pricing";
 import JsonLd from "~/components/json-ld";
 import { getAllPosts } from "~/lib/content.server";
 import { categoryBadgeClass, categoryButtonClass } from "~/utils/blog-categories";
@@ -242,18 +244,12 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
               ))}
             </div>
           )}
-
-          {/* CTA contact */}
-          <div className="mt-16 text-center">
-            <p className="text-base-content/70 mb-4">
-              Un sujet que vous aimeriez que j&apos;aborde ?
-            </p>
-            <Link to="/contact" className="btn btn-primary rounded-full px-8">
-              Suggérer un article
-            </Link>
-          </div>
         </div>
       </section>
+
+      <CtaSection title="Un site à faire avancer ?">
+        {FREE_AUDIT.summary}
+      </CtaSection>
     </div>
   );
 }

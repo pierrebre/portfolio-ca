@@ -1,6 +1,8 @@
 import { Link } from "react-router";
-import { ArrowLeft, CheckCircle, Calendar, Wrench } from "lucide-react";
+import { CheckCircle, Calendar, Wrench } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import AuditButton from "~/components/audit-button";
+import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import FaqItem from "~/components/faq-item";
 import JsonLd from "~/components/json-ld";
@@ -400,9 +402,7 @@ function PiscinesJolicoeur() {
           <p className="text-base-content/70 leading-relaxed">
             Je diagnostique et corrige ce type de panne, y compris sur un site que je n'ai pas
             développé.{" "}
-            <Link to="/contact" className="text-primary font-semibold underline underline-offset-2 hover:no-underline">
-              Réservez votre audit gratuit →
-            </Link>
+            <AuditButton className="text-primary font-semibold underline underline-offset-2 hover:no-underline" />
           </p>
         </div>
 
@@ -489,27 +489,12 @@ function PiscinesJolicoeur() {
           </div>
         </section>
 
-        {/* CTA final */}
-        <div className="mt-16 p-8 bg-base-200 rounded-2xl text-center">
-          <p className="font-bold text-lg mb-2">Un projet similaire ?</p>
-          <p className="text-base-content/70 leading-relaxed max-w-xl mx-auto">
-            Formulaire cassé, intégration CRM défaillante ou site WordPress à reprendre en main —
-            je peux vous aider.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-8">
-              Discutons de votre projet
-            </Link>
-            <Link
-              to="/projects"
-              className="btn btn-ghost rounded-full px-8 border border-base-content/20 gap-2"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              Tous les projets
-            </Link>
-          </div>
-        </div>
       </article>
+
+      <CtaSection title="Un projet similaire ?" secondary={{ to: "/projects", label: "Tous les projets" }}>
+        Formulaire cassé, intégration CRM défaillante ou site WordPress à
+        reprendre en main — je peux vous aider.
+      </CtaSection>
     </div>
   );
 }

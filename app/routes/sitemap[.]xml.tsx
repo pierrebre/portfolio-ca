@@ -6,17 +6,17 @@ const BASE_URL = "https://pierrebarbe.ca";
 // Pages statiques. Google ignore priority + changefreq — on les retire.
 // lastmod est mis à jour manuellement quand le contenu change réellement.
 const STATIC_URLS: { loc: string; lastmod: string }[] = [
-  { loc: "/", lastmod: "2026-04-27" },
-  { loc: "/about", lastmod: "2026-02-20" },
-  { loc: "/projects", lastmod: "2026-04-04" },
-  { loc: "/projects/piscines-jolicoeur", lastmod: "2026-08-21" },
-  { loc: "/services", lastmod: "2026-04-21" },
-  { loc: "/services/optimisation-web-performance", lastmod: "2026-04-21" },
-  { loc: "/services/creation-maintenance-sites", lastmod: "2026-04-21" },
-  { loc: "/services/automatisation-workflows", lastmod: "2026-04-21" },
-  { loc: "/services/audits-techniques-core-web-vitals", lastmod: "2026-04-27" },
-  { loc: "/services/gestion-serveur-deploiement", lastmod: "2026-04-21" },
-  { loc: "/services/integration-outils-ia", lastmod: "2026-04-21" },
+  { loc: "/", lastmod: "2026-09-24" },
+  { loc: "/about", lastmod: "2026-09-24" },
+  { loc: "/projects", lastmod: "2026-09-24" },
+  { loc: "/projects/piscines-jolicoeur", lastmod: "2026-09-24" },
+  { loc: "/services", lastmod: "2026-09-24" },
+  { loc: "/services/optimisation-web-performance", lastmod: "2026-09-24" },
+  { loc: "/services/creation-maintenance-sites", lastmod: "2026-09-24" },
+  { loc: "/services/automatisation-workflows", lastmod: "2026-09-24" },
+  { loc: "/services/audits-techniques-core-web-vitals", lastmod: "2026-09-24" },
+  { loc: "/services/gestion-serveur-deploiement", lastmod: "2026-09-24" },
+  { loc: "/services/integration-outils-ia", lastmod: "2026-09-24" },
   // Blog index lastmod is dynamically set from newest post in loader
   { loc: "/blog", lastmod: "" },
   { loc: "/contact", lastmod: "2026-06-06" },

@@ -6,14 +6,13 @@ import {
   redirect,
   Scripts,
   ScrollRestoration,
-  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
-import ContactCard from "./components/contact-card";
+import AuditModal from "./components/audit-modal";
 import { ToastProvider } from "./context/toast-context";
 import ErrorPage, { NOT_FOUND_MESSAGE } from "./components/error-page";
 
@@ -43,11 +42,6 @@ export function headers({ errorHeaders }: Route.HeadersArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
-
-  const hideContactCardOn = ["/contact"];
-  const shouldShowContactCard = !hideContactCardOn.includes(location.pathname);
-
   return (
     <html lang="fr-CA" suppressHydrationWarning>
       <head>
@@ -108,7 +102,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <NavBar />
           <main id="main-content">
             {children}
-            {shouldShowContactCard && <ContactCard />}
+            {/* Fenêtre de demande d'audit, ouverte par tous les AuditButton */}
+            <AuditModal />
           </main>
           <Footer />
         </ToastProvider>

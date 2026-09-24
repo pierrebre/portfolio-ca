@@ -6,6 +6,7 @@ import { useToast } from "~/context/toast-context";
 import FormField from "./form-field";
 import { HoneypotField, NoScriptNotice } from "./form-guard";
 import { useHydrated } from "~/hooks/use-hydrated";
+import { FREE_AUDIT } from "data/pricing";
 
 const auditFormSchema = z.object({
   websiteUrl: z
@@ -117,7 +118,7 @@ export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
           // Désactivé avant l'hydratation (voir ContactForm)
           disabled={!hydrated || isSubmitting}
         >
-          {isSubmitting ? "Envoi en cours..." : "Demander un audit"}
+          {isSubmitting ? "Envoi en cours..." : FREE_AUDIT.cta}
         </button>
       </div>
     </form>

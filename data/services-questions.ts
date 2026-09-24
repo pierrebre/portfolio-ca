@@ -1,3 +1,7 @@
+import { PRICING, HOURLY_RATE, formatPrice } from "./pricing";
+
+const RATE = `${formatPrice(HOURLY_RATE)}/h`;
+
 import type { Question } from "./questions";
 
 export const servicesQuestions: Question[] = [
@@ -5,13 +9,13 @@ export const servicesQuestions: Question[] = [
     index: 0,
     question: "Quel est le budget moyen d'un site web pour une PME au Québec ?",
     answer:
-      "Pour un site vitrine PME soigné (design sur mesure, perf Lighthouse 90+, SEO technique, conformité Loi 25) : 3 500 à 7 500 $ CAD. Un e-commerce WordPress/WooCommerce démarre autour de 6 000 $. Un projet d'automatisation n8n ou d'intégration IA : 1 500 à 5 000 $. Détail complet dans mon guide « coût d'un site web au Québec » sur le blog.",
+      `Je facture ${RATE}, ou au forfait calculé sur ce taux. Un site vitrine PME soigné (design sur mesure, perf Lighthouse 90+, SEO technique, conformité Loi 25) démarre à ${PRICING.siteVitrine.label} CAD, soit environ ${PRICING.siteVitrine.hours} h de travail. Une boutique en ligne démarre à ${PRICING.shopify.label} sur Shopify et à ${PRICING.woocommerce.label} sur WooCommerce. Automatisation n8n : à partir de ${PRICING.workflowSimple.label} ; intégration IA : à partir de ${PRICING.chatbot.label}. Détail complet dans mon guide « coût d'un site web au Québec » sur le blog.`,
   },
   {
     index: 1,
     question: "Quels délais pour un site livré ?",
     answer:
-      "Un site vitrine PME : 3 à 5 semaines du kick-off à la mise en ligne. Un e-commerce : 6 à 10 semaines. Un audit technique + plan d'action : 5 à 10 jours. Je fixe des jalons hebdo et je m'engage sur le délai dès le devis — pas de dérive.",
+      `Un site vitrine PME : ${PRICING.siteVitrine.delay} du kick-off à la mise en ligne. Un e-commerce : ${PRICING.woocommerce.delay}. Un audit technique + plan d'action : ${PRICING.auditComplet.delay}. Je fixe des jalons hebdo et je m'engage sur le délai dès le devis — pas de dérive.`,
   },
   {
     index: 2,

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import ThemeToggle from "./theme-toggle";
 import ServiceDropdown from "./service-dropdown";
+import AuditButton from "./audit-button";
 import { useDismiss } from "~/hooks/use-dismiss";
 
 const NAV_LINKS = [
@@ -70,13 +71,10 @@ export default function NavBar() {
                   </li>
                 ))}
                 <li className="mt-1">
-                  <Link
-                    to="/contact"
+                  <AuditButton
                     className="btn btn-primary btn-sm w-full"
                     onClick={() => setMenuOpen(false)}
-                  >
-                    Réserve ton audit gratuit
-                  </Link>
+                  />
                 </li>
               </ul>
             </nav>
@@ -106,12 +104,7 @@ export default function NavBar() {
         </div>
 
         <div className="navbar-end h-10 gap-2">
-          <Link
-            to="/contact"
-            className="btn btn-primary btn-sm rounded-full hidden lg:flex"
-          >
-            Réserve ton audit gratuit
-          </Link>
+          <AuditButton className="btn btn-primary btn-sm rounded-full hidden lg:flex" />
           <ThemeToggle />
         </div>
       </div>

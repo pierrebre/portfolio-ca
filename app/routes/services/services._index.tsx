@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import ServiceCard from "~/components/service-card";
 import JsonLd from "~/components/json-ld";
 import Faq from "~/components/faq";
@@ -6,6 +5,7 @@ import { services, serviceUrl } from "data/services";
 import { servicesQuestions } from "data/services-questions";
 import { generateSEOMeta } from "~/utils/seo";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
 import type { Route } from "./+types/services._index";
 
 export function meta({}: Route.MetaArgs) {
@@ -211,29 +211,9 @@ export default function ServicesIndex() {
         className="bg-base-200 py-20 md:py-24"
       />
 
-      {/* CTA */}
-      <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold md:text-3xl">Pas sûr de ce qu'il te faut ?</h2>
-          <p className="text-base-content/70 mt-4 leading-relaxed">
-            Parle-moi de ton projet — c'est gratuit et sans engagement (mail ou
-            visio, tu décides). On regarde ensemble ce qui freine ton site et ce
-            qui aurait le plus d'impact. Tu repars avec un diagnostic clair,
-            même si on ne travaille pas ensemble.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Parle-moi de ton projet
-            </Link>
-            <Link
-              to="/about"
-              className="btn btn-ghost rounded-full px-10 border border-base-content/20"
-            >
-              Qui suis-je ?
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Pas sûr de ce qu'il te faut ?" secondary={{ to: "/about", label: "Qui suis-je ?" }}>
+        Parle-moi de ton projet — c'est gratuit et sans engagement (mail ou visio, tu décides). On regarde ensemble ce qui freine ton site et ce qui aurait le plus d'impact. Tu repars avec un diagnostic clair, même si on ne travaille pas ensemble.
+      </CtaSection>
     </div>
   );
 }

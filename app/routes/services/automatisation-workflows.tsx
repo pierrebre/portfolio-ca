@@ -1,16 +1,17 @@
 import { Bot, Clock, CheckCircle, Zap } from "lucide-react";
-import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/automatisation-workflows";
+import { PRICING } from "data/pricing";
 
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
       title: "Automatisation de workflows n8n pour PME | Montréal",
-      description: "J'automatise tes tâches répétitives avec n8n : onboarding clients, rappels, rapports, intégrations API. À partir de 500 $. Développeur n8n freelance à Montréal.",
+      description: `J'automatise tes tâches répétitives avec n8n : onboarding clients, rappels, rapports, intégrations API. À partir de ${PRICING.workflowSimple.label}. Développeur n8n freelance à Montréal.`,
       url: "https://pierrebarbe.ca/services/automatisation-workflows",
     }),
   ];
@@ -27,14 +28,14 @@ const examples = [
 export default function AutomatisationWorkflows() {
   const schema = generateServicePageSchema({
     name: "Automatisation de Workflows avec n8n",
-    description: "Automatisation de tâches répétitives avec n8n pour PME du Québec. Économisez 5 à 20 h/semaine. Workflows à partir de 500 $.",
+    description: `Automatisation de tâches répétitives avec n8n pour PME du Québec. Économisez 5 à 20 h/semaine. Workflows à partir de ${PRICING.workflowSimple.label}.`,
     url: "https://pierrebarbe.ca/services/automatisation-workflows",
     serviceType: "Workflow Automation",
     areaServed: ["Montréal", "Québec", "Canada"],
     offers: {
       name: "Workflow simple n8n",
       description: "Conception, développement et déploiement d'un workflow n8n de 2 à 3 étapes (intégration API, déclencheur, action).",
-      price: "500",
+      price: String(PRICING.workflowSimple.price),
       priceCurrency: "CAD",
     },
     breadcrumbs: [
@@ -153,10 +154,10 @@ export default function AutomatisationWorkflows() {
           <h2 className="text-3xl font-bold mb-8">Tarification</h2>
           <div className="space-y-4">
             {[
-              { label: "Workflow simple (2-3 étapes)", price: "À partir de 500 $" },
-              { label: "Workflow moyen (5-10 étapes, API)", price: "À partir de 1 500 $" },
-              { label: "Système complet (multi-workflows)", price: "À partir de 3 000 $" },
-              { label: "Maintenance & support", price: "150 $/mois" },
+              { label: "Workflow simple (2-3 étapes)", price: `À partir de ${PRICING.workflowSimple.label}` },
+              { label: "Workflow moyen (5-10 étapes, API)", price: `À partir de ${PRICING.workflowMoyen.label}` },
+              { label: "Système complet (multi-workflows)", price: `À partir de ${PRICING.workflowSysteme.label}` },
+              { label: "Maintenance & support", price: `${PRICING.maintenanceWorkflows.label}/mois` },
             ].map((item) => (
               <div key={item.label} className="flex flex-col sm:flex-row sm:items-center justify-between bg-base-200 rounded-xl p-4 gap-2">
                 <span className="font-semibold">{item.label}</span>
@@ -183,24 +184,9 @@ export default function AutomatisationWorkflows() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Identifions tes automatisations prioritaires</h2>
-          <p className="text-base-content/70 mt-4">
-            Un premier échange gratuit (mail ou visio) pour cartographier tes
-            processus manuels et identifier ceux qui ont le plus d'impact.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Parle-moi de ton projet
-            </Link>
-            <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
-              Voir tous mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Identifions tes automatisations prioritaires" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        Un premier échange gratuit (mail ou visio) pour cartographier tes processus manuels et identifier ceux qui ont le plus d'impact.
+      </CtaSection>
     </div>
   );
 }

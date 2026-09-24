@@ -1,3 +1,7 @@
+import { PRICING, HOURLY_RATE, formatPrice } from "./pricing";
+
+const RATE = `${formatPrice(HOURLY_RATE)}/h`;
+
 export interface Question {
   index: number;
   question: string;
@@ -9,7 +13,7 @@ export const questions = [
     index: 0,
     question: "Combien ça coûte, un site web ?",
     answer:
-      "Ça dépend du projet, mais pour te donner une idée : un site vitrine commence autour de 3 000-5 000 $, une refonte plus complexe peut aller de 5 000 à 15 000 $. Je travaille avec un budget transparent — tu sais exactement ce que tu paies avant de t'engager. Le premier échange est gratuit (mail ou visio), justement pour qu'on puisse évaluer ton besoin ensemble.",
+      `Ça dépend du projet, mais pour te donner une idée : je facture ${RATE}, ou au forfait calculé sur ce taux. Un site vitrine démarre à ${PRICING.siteVitrine.label} (environ ${PRICING.siteVitrine.hours} h de travail), une refonte plus complexe va de ${PRICING.refonte.from.label} à ${PRICING.refonte.to.label}. Je travaille avec un budget transparent — tu sais exactement ce que tu paies avant de t'engager. Le premier échange est gratuit (mail ou visio), justement pour qu'on puisse évaluer ton besoin ensemble.`,
   },
   {
     index: 1,
@@ -27,7 +31,7 @@ export const questions = [
     index: 3,
     question: "Ça prend combien de temps ?",
     answer:
-      "Un site vitrine, c'est généralement 3 à 6 semaines. Une refonte ou un projet plus complexe, 6 à 12 semaines. Je te donne un calendrier précis dès le début, avec des jalons clairs. Et si ça change en cours de route, tu es le premier informé.",
+      `Un site vitrine, c'est généralement ${PRICING.siteVitrine.delay}. Une refonte ou un projet plus complexe, ${PRICING.refonte.delay}. Je te donne un calendrier précis dès le début, avec des jalons clairs. Et si ça change en cours de route, tu es le premier informé.`,
   },
   {
     index: 4,

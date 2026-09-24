@@ -1,4 +1,5 @@
 import { processSteps } from "data/process-steps";
+import AuditButton from "./audit-button";
 
 export default function Process() {
   return (
@@ -29,18 +30,7 @@ export default function Process() {
           ))}
         </ul>
         <div className="flex mt-16 flex-col items-center justify-center">
-
-          <button
-            className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-6.5"
-            onClick={() => {
-              const modal = document.getElementById("audit_modal");
-              if (modal instanceof HTMLDialogElement) {
-                modal.showModal();
-              }
-            }}
-          >
-            Réserve ton audit gratuit
-          </button>
+          <AuditButton className="btn btn-primary rounded-full px-8" />
         </div>
       </div>
     </section>

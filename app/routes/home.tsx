@@ -6,8 +6,8 @@ import CtaBand from "~/components/cta-band";
 import WhyMe from "~/components/why-me";
 import Process from "~/components/process";
 import Faq from "~/components/faq";
-import AuditModal from "~/components/audit-modal";
 import JsonLd from "~/components/json-ld";
+import CtaSection from "~/components/cta-section";
 
 import type { Route } from "./+types/home";
 
@@ -325,7 +325,11 @@ export default function Home() {
       <WhyMe />
       <Process />
       <Faq />
-      <AuditModal />
+      <CtaSection title="Parlons de tes objectifs">
+        Un projet en tête ? Un site à optimiser ? On en parle 30 minutes, par
+        courriel ou en visio, et tu repars avec un diagnostic clair — même si
+        on ne travaille pas ensemble.
+      </CtaSection>
     </>
   );
 }

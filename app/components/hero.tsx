@@ -1,4 +1,6 @@
 import { Link } from "react-router";
+import AuditButton from "./audit-button";
+import { FREE_AUDIT } from "data/pricing";
 
 export default function Hero() {
   return (
@@ -32,11 +34,8 @@ export default function Hero() {
             </p>
 
             <div className="mb-12 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
-                className="btn btn-primary rounded-full px-8 py-3"
-              >
-                Réserve ton audit gratuit
+              <AuditButton className="btn btn-primary rounded-full px-8 py-3">
+                {FREE_AUDIT.cta}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -52,7 +51,7 @@ export default function Hero() {
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
-              </Link>
+              </AuditButton>
 
               <Link
                 to="/services"

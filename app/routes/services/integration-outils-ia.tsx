@@ -1,10 +1,11 @@
 import { BrainCircuit, MessageSquare, Search, Zap } from "lucide-react";
-import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/integration-outils-ia";
+import { PRICING } from "data/pricing";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -116,10 +117,10 @@ export default function IntegrationOutilsIA() {
           <h2 className="text-3xl font-bold mb-8">Tarification</h2>
           <div className="space-y-4">
             {[
-              { label: "Chatbot FAQ simple", price: "À partir de 2 000 $" },
-              { label: "Recherche sémantique intégrée", price: "À partir de 2 500 $" },
-              { label: "Solution IA sur mesure", price: "À partir de 3 500 $" },
-              { label: "Maintenance & affinage", price: "200 $/mois" },
+              { label: "Chatbot FAQ simple", price: `À partir de ${PRICING.chatbot.label}` },
+              { label: "Recherche sémantique intégrée", price: `À partir de ${PRICING.rechercheSemantique.label}` },
+              { label: "Solution IA sur mesure", price: `À partir de ${PRICING.iaSurMesure.label}` },
+              { label: "Maintenance & affinage", price: `${PRICING.maintenanceIa.label}/mois` },
             ].map((item) => (
               <div key={item.label} className="flex flex-col sm:flex-row sm:items-center justify-between bg-base-100 rounded-xl p-4 gap-2">
                 <span className="font-semibold">{item.label}</span>
@@ -146,25 +147,9 @@ export default function IntegrationOutilsIA() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Parlons de ton cas d'usage IA</h2>
-          <p className="text-base-content/70 mt-4">
-            Un premier échange gratuit (mail ou visio) pour identifier si l'IA
-            peut vraiment t'aider — et comment. Si ce n'est pas le bon moment
-            pour toi, je te le dis honnêtement.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Parle-moi de ton projet
-            </Link>
-            <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
-              Voir tous mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Parlons de ton cas d'usage IA" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        Un premier échange gratuit (mail ou visio) pour identifier si l'IA peut vraiment t'aider — et comment. Si ce n'est pas le bon moment pour toi, je te le dis honnêtement.
+      </CtaSection>
     </div>
   );
 }

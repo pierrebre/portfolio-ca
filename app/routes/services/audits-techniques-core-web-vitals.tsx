@@ -1,16 +1,17 @@
 import { ClipboardCheck, CheckCircle, FileText, Search, Shield, Smartphone } from "lucide-react";
-import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/audits-techniques-core-web-vitals";
+import { PRICING } from "data/pricing";
 
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
       title: "Audit technique de site web & Core Web Vitals | Montréal",
-      description: "Audit technique complet : Core Web Vitals, SEO, accessibilité, sécurité. Rapport clair avec plan d'action. Audit express gratuit (30 min) ou complet dès 500 $.",
+      description: `Audit technique complet : Core Web Vitals, SEO, accessibilité, sécurité. Rapport clair avec plan d'action. Audit express gratuit (30 min) ou complet dès ${PRICING.auditComplet.label}.`,
       url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
     }),
   ];
@@ -28,7 +29,7 @@ const auditPoints = [
 export default function AuditsTechniquesCoreWebVitals() {
   const schema = generateServicePageSchema({
     name: "Audits Techniques & Core Web Vitals",
-    description: "Audit technique complet de site web : performance, SEO, accessibilité, sécurité. Audit express gratuit ou rapport complet à partir de 500 $.",
+    description: `Audit technique complet de site web : performance, SEO, accessibilité, sécurité. Audit express gratuit ou rapport complet à partir de ${PRICING.auditComplet.label}.`,
     url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
     serviceType: "Technical Website Audit",
     areaServed: ["Montréal", "Québec"],
@@ -113,7 +114,7 @@ export default function AuditsTechniquesCoreWebVitals() {
               </p>
             </div>
             <div className="bg-primary rounded-2xl p-8 text-primary-content">
-              <div className="badge badge-warning mb-4">À partir de 500 $</div>
+              <div className="badge badge-warning mb-4">À partir de {PRICING.auditComplet.label}</div>
               <h3 className="text-2xl font-bold mb-3">Audit Complet</h3>
               <p className="text-primary-content/90 leading-relaxed">
                 Rapport PDF de 15-25 pages. Chaque problème est expliqué en langage clair avec sa
@@ -141,23 +142,9 @@ export default function AuditsTechniquesCoreWebVitals() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Réserve ton audit express gratuit</h2>
-          <p className="text-base-content/70 mt-4">
-            30 minutes pour savoir exactement où en est ton site et quoi corriger en priorité.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Réserver l'audit express
-            </Link>
-            <Link to="/services" className="btn btn-ghost rounded-full px-10 border border-base-content/20">
-              Voir tous mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Réserve ton audit express gratuit" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        30 minutes pour savoir exactement où en est ton site et quoi corriger en priorité.
+      </CtaSection>
     </div>
   );
 }

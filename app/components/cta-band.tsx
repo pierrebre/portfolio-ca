@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import AuditButton from "./audit-button";
 
 export default function CtaBand() {
   return (
@@ -12,12 +12,7 @@ export default function CtaBand() {
           engagement, et tu repars avec un diagnostic clair même si on ne
           travaille pas ensemble.
         </p>
-        <Link
-          to="/contact"
-          className="btn btn-primary rounded-full px-8"
-        >
-          Parle-moi de ton projet →
-        </Link>
+        <AuditButton className="btn btn-primary rounded-full px-8" />
       </div>
     </section>
   );
