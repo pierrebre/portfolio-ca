@@ -26,7 +26,7 @@ export default function NavBar() {
               className="btn btn-circle btn-ghost lg:hidden"
               aria-label="Menu de navigation"
               aria-expanded={menuOpen}
-              aria-haspopup="menu"
+              aria-controls="mobile-menu"
               onClick={() => setMenuOpen((v) => !v)}
               onBlur={(e) => {
                 if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) {
@@ -52,39 +52,39 @@ export default function NavBar() {
             </div>
 
             <ul
+              id="mobile-menu"
               tabIndex={0}
+              aria-label="Navigation principale"
               className="menu dropdown-content menu-md rounded-box bg-base-100 z-1 mt-3 w-52 gap-2 p-2 shadow-sm"
-              role="menu"
             >
-              <li role="none">
-                <Link to="/services" role="menuitem" onClick={closeMenu}>
+              <li>
+                <Link to="/services" onClick={closeMenu}>
                   Services
                 </Link>
               </li>
-              <li role="none">
-                <Link to="/projects" role="menuitem" onClick={closeMenu}>
+              <li>
+                <Link to="/projects" onClick={closeMenu}>
                   Projets
                 </Link>
               </li>
-              <li role="none">
-                <Link to="/blog" role="menuitem" onClick={closeMenu}>
+              <li>
+                <Link to="/blog" onClick={closeMenu}>
                   Blog
                 </Link>
               </li>
-              <li role="none">
-                <Link to="/about" role="menuitem" onClick={closeMenu}>
+              <li>
+                <Link to="/about" onClick={closeMenu}>
                   À propos
                 </Link>
               </li>
-              <li role="none">
-                <Link to="/contact" role="menuitem" onClick={closeMenu}>
+              <li>
+                <Link to="/contact" onClick={closeMenu}>
                   Contact
                 </Link>
               </li>
-              <li role="none" className="mt-1">
+              <li className="mt-1">
                 <Link
                   to="/contact"
-                  role="menuitem"
                   className="btn btn-primary btn-sm w-full"
                   onClick={closeMenu}
                 >
@@ -96,7 +96,7 @@ export default function NavBar() {
 
           <Link
             to="/"
-            className="btn btn-ghost font-urbanist from-primary to-primary/70 ml-1 rounded-full bg-gradient-to-r bg-clip-text text-lg font-bold text-transparent"
+            className="btn btn-ghost from-primary to-primary/70 ml-1 rounded-full bg-gradient-to-r bg-clip-text text-lg font-bold text-transparent"
           >
             Pierre Barbé
           </Link>
@@ -106,25 +106,25 @@ export default function NavBar() {
           <nav className="flex items-center" aria-label="Navigation principale">
             <ServiceDropdown />
             <Link
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              className="btn btn-ghost hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               to="/projects"
             >
               Projets
             </Link>
             <Link
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              className="btn btn-ghost hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               to="/blog"
             >
               Blog
             </Link>
             <Link
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              className="btn btn-ghost hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               to="/about"
             >
               À propos
             </Link>
             <Link
-              className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
+              className="btn btn-ghost hover:bg-primary/10 hover:text-primary rounded-full text-sm font-semibold"
               to="/contact"
             >
               Contact
@@ -135,7 +135,7 @@ export default function NavBar() {
         <div className="navbar-end h-10 gap-2">
           <Link
             to="/contact"
-            className="btn btn-primary font-urbanist btn-sm rounded-full hidden lg:flex"
+            className="btn btn-primary btn-sm rounded-full hidden lg:flex"
           >
             Réserve ton audit gratuit
           </Link>

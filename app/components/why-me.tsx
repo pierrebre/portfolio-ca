@@ -27,7 +27,7 @@ export default function WhyMe() {
       <section className="bg-base-200 rounded-xl py-24">
         <div className="container mx-auto px-6 md:px-12">
           <div className="mx-auto max-w-5xl">
-            <div className="grid gap-16 md:grid-cols-1">
+            <div className="grid gap-16">
               <div className="space-y-8">
                 <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
                   Pourquoi les PME québécoises travaillent avec moi
@@ -38,7 +38,7 @@ export default function WhyMe() {
                 <div className="bg-primary h-px w-24" />
               </div>
 
-              <div className="grid grid-cols-1 gap-8 space-y-12 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-x-8 gap-y-20 md:grid-cols-2">
                 {features.map((item, index) => (
                   <div
                     key={index}

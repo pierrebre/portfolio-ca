@@ -1,80 +1,42 @@
-import { useState, useEffect } from "react";
 import { CheckCircle, XCircle, AlertCircle, AlertTriangle, X } from "lucide-react";
 
-export type ToastProps = {
+export type ToastType = "success" | "error" | "info" | "warning";
+
+type ToastProps = {
   message: string;
-  type?: "success" | "error" | "info" | "warning";
-  position?:
-    | "top"
-    | "top-start"
-    | "top-end"
-    | "bottom"
-    | "bottom-start"
-    | "bottom-end"
-    | "middle"
-    | "middle-start"
-    | "middle-end";
-  onClose?: () => void;
-  visible?: boolean;
-  duration?: number;
+  type: ToastType;
+  duration: number;
+  onClose: () => void;
 };
 
 // Classes écrites en entier : Tailwind ne génère pas les classes construites
 // dynamiquement (`alert-${type}`), qui seraient absentes du CSS final.
-const ALERT_CLASSES: Record<NonNullable<ToastProps["type"]>, string> = {
+const ALERT_CLASSES: Record<ToastType, string> = {
   success: "alert-success",
   error: "alert-error",
   warning: "alert-warning",
   info: "alert-info",
 };
 
-const POSITION_CLASSES: Record<NonNullable<ToastProps["position"]>, string> = {
-  top: "toast-top toast-center",
-  "top-start": "toast-top toast-start",
-  "top-end": "toast-top toast-end",
-  bottom: "toast-bottom toast-center",
-  "bottom-start": "toast-bottom toast-start",
-  "bottom-end": "toast-bottom toast-end",
-  middle: "toast-middle toast-center",
-  "middle-start": "toast-middle toast-start",
-  "middle-end": "toast-middle toast-end",
-};
-
-const ICONS: Record<NonNullable<ToastProps["type"]>, React.ReactNode> = {
+const ICONS: Record<ToastType, React.ReactNode> = {
   success: <CheckCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
   error: <XCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
   warning: <AlertTriangle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
   info: <AlertCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
 };
 
-export default function Toast({
-  message,
-  type = "info",
-  position = "bottom-end",
-  onClose,
-  visible = true,
-  duration = 5000,
-}: ToastProps) {
-  const [isVisible, setIsVisible] = useState(visible);
-
-  useEffect(() => {
-    setIsVisible(visible);
-  }, [visible]);
-
-  if (!message || !isVisible) return null;
-
-  const handleClose = () => {
-    setIsVisible(false);
-    onClose?.();
-  };
-
+export default function Toast({ message, type, duration, onClose }: ToastProps) {
   return (
-    <div className={`toast ${POSITION_CLASSES[position]} z-50`} role="alert" aria-live="polite">
+    // Une erreur est annoncée immédiatement (alert), le reste poliment (status).
+    <div
+      className="toast toast-bottom toast-end z-50"
+      role={type === "error" ? "alert" : "status"}
+    >
       <div className={`alert ${ALERT_CLASSES[type]} relative overflow-hidden pr-10 shadow-lg max-w-sm`}>
         {ICONS[type]}
         <span className="font-medium text-sm">{message}</span>
         <button
-          onClick={handleClose}
+          onClick={onClose}
           className="btn btn-xs btn-ghost absolute top-2 right-2"
           aria-label="Fermer la notification"
         >

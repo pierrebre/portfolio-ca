@@ -4,6 +4,7 @@ import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import { getAllPosts } from "~/lib/content.server";
+import { categoryBadgeClass, categoryButtonClass } from "~/utils/blog-categories";
 import { formatPostDate } from "~/utils/date";
 import { AUTHOR_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/blog._index";
@@ -50,20 +51,6 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: image },
   ];
 }
-
-const CATEGORY_COLORS: Record<string, string> = {
-  "Web Performance": "badge-primary",
-  Automatisation: "badge-secondary",
-  "Éco-conception": "badge-success",
-  Général: "badge-neutral",
-};
-
-const CATEGORY_BUTTON_COLORS: Record<string, string> = {
-  "Web Performance": "btn-primary",
-  Automatisation: "btn-secondary",
-  "Éco-conception": "btn-success",
-  Général: "btn-neutral",
-};
 
 export default function BlogIndex({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData;
@@ -116,7 +103,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
   };
 
   return (
-    <div className="bg-base-100 font-urbanist min-h-screen">
+    <div className="bg-base-100 min-h-screen">
       <JsonLd data={blogSchema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -169,7 +156,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                   onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
                   className={`btn btn-sm rounded-full transition-all ${
                     activeCategory === cat
-                      ? (CATEGORY_BUTTON_COLORS[cat] ?? "btn-primary")
+                      ? categoryButtonClass(cat)
                       : "btn-ghost border border-base-content/20 hover:border-primary/40"
                   }`}
                   aria-pressed={activeCategory === cat}
@@ -210,7 +197,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                     {/* Catégorie + date + lecture */}
                     <div className="flex flex-wrap items-center gap-3 mb-3">
                       <span
-                        className={`badge badge-sm font-medium ${CATEGORY_COLORS[post.category] ?? "badge-neutral"}`}
+                        className={`badge badge-sm font-medium ${categoryBadgeClass(post.category)}`}
                       >
                         <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
                         {post.category}

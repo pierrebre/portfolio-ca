@@ -39,19 +39,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Script anti-FOUC : applique le thème avant l'hydratation React */}
+        {/* Script anti-FOUC : applique le thème (choix enregistré, sinon préférence
+            système) avant l'hydratation React */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}`,
           }}
         />
         <Meta />
-        {/* Preload du seul subset normal latin-ext nécessaire au-dessus du pli;
-            les autres variantes (italique / latin de base) chargent via @font-face avec font-display: swap */}
+        {/* Preload du subset latin (normal) utilisé au-dessus du pli ; latin-ext
+            et italique ne chargent que si la page en contient (unicode-range). */}
         <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2" crossOrigin="anonymous" />
         {/* Pas de hreflang : site monolingue (lang="fr-CA" suffit). Une balise
             globale pointerait toutes les pages vers l'accueil. */}
-        {/* Hero image preload moved to home.tsx and about.tsx via links() export */}
         <link
           rel="icon"
           type="image/png"
@@ -126,7 +126,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    // Rendu à l'intérieur du <main> du Layout : pas de second <main>.
+    <div className="pt-16 p-4 container mx-auto">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
@@ -134,6 +135,6 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
           <code>{stack}</code>
         </pre>
       )}
-    </main>
+    </div>
   );
 }

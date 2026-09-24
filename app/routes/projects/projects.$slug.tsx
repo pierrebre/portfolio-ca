@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowLeft, CheckCircle, Calendar, Wrench } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import LinkCard from "~/components/link-card";
 import FaqItem from "~/components/faq-item";
 import JsonLd from "~/components/json-ld";
 import { AUTHOR_SCHEMA, PUBLISHER_SCHEMA } from "~/utils/seo";
@@ -9,13 +10,11 @@ import type { Route } from "./+types/projects.$slug";
 const CASE_STUDIES: Record<
   string,
   {
-    title: string;
     metaTitle: string;
     metaDescription: string;
   }
 > = {
   "piscines-jolicoeur": {
-    title: "Corrections WordPress & intégration CRM pour Service de Piscines Jolicoeur",
     metaTitle:
       "WordPress & CRM : Piscines Jolicoeur | Pierre Barbé",
     metaDescription:
@@ -142,25 +141,6 @@ function PiscinesJolicoeur() {
           },
         ],
       },
-      /*
-        ============================================
-        TÉMOIGNAGE CLIENT — À ACTIVER QUAND REÇU
-        ============================================
-
-        Instructions :
-        1. Décommenter le bloc JSON-LD ci-dessous
-        2. Décommenter le bloc JSX de témoignage plus bas dans le composant
-        3. Remplacer [NOM], [TEXTE], [DATE ISO]
-
-        {
-          "@type": "Review",
-          "itemReviewed": { "@id": "https://pierrebarbe.ca/#business" },
-          "author": { "@type": "Person", "name": "[NOM]" },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "reviewBody": "[TEXTE]",
-          "datePublished": "[DATE ISO]"
-        },
-      */
     ],
   };
 
@@ -272,7 +252,7 @@ function PiscinesJolicoeur() {
   ];
 
   return (
-    <div className="bg-base-100 font-urbanist min-h-screen">
+    <div className="bg-base-100 min-h-screen">
       <JsonLd data={schema} />
       <JsonLd data={faqSchema} />
 
@@ -470,29 +450,9 @@ function PiscinesJolicoeur() {
           </p>
         </section>
 
-        {/* Témoignage client — commenté */}
-        {/*
-          ============================================
-          TÉMOIGNAGE CLIENT — À ACTIVER QUAND REÇU
-          ============================================
-
-          Instructions :
-          1. Décommenter le bloc JSX ci-dessous
-          2. Décommenter le JSON-LD Review dans le @graph (voir schema plus haut)
-          3. Remplacer [NOM], [TEXTE], [DATE]
-
-          <section className="mt-12">
-            <blockquote className="bg-base-200 rounded-2xl p-8 border-l-4 border-primary">
-              <p className="text-lg leading-relaxed italic">"[TEXTE]"</p>
-              <footer className="mt-4 flex items-center gap-3">
-                <div>
-                  <cite className="font-bold not-italic">[NOM]</cite>
-                  <span className="text-base-content/60 text-sm block">Service de Piscines Jolicoeur</span>
-                </div>
-              </footer>
-            </blockquote>
-          </section>
-        */}
+        {/* TODO témoignage : ajouter la citation du client ici quand il l'aura
+            fournie. Pas de JSON-LD Review : Google ignore les avis sur sa propre
+            entreprise publiés sur son site. */}
 
         {/* FAQ */}
         <section className="mt-12">
@@ -515,20 +475,8 @@ function PiscinesJolicoeur() {
         <section className="mt-12">
           <h2 className="text-xl font-bold mb-4">Services mobilisés</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/services/creation-maintenance-sites"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Création & maintenance de sites</p>
-              <p className="text-primary text-sm mt-1">→ Voir le service</p>
-            </Link>
-            <Link
-              to="/services/automatisation-workflows"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Automatisation de workflows</p>
-              <p className="text-primary text-sm mt-1">→ Voir le service</p>
-            </Link>
+            <LinkCard to="/services/creation-maintenance-sites" title="Création & maintenance de sites" label="Voir le service" bg="bg-base-200" />
+            <LinkCard to="/services/automatisation-workflows" title="Automatisation de workflows" label="Voir le service" bg="bg-base-200" />
           </div>
         </section>
 
@@ -538,20 +486,8 @@ function PiscinesJolicoeur() {
             Lire aussi
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/blog/wordpress-pme-quebec-2026"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">WordPress pour les PME québécoises en 2026</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
-            <Link
-              to="/blog/automatiser-business-n8n-pme"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Automatiser son business avec n8n</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
+            <LinkCard to="/blog/wordpress-pme-quebec-2026" title="WordPress pour les PME québécoises en 2026" label="Lire l'article" bg="bg-base-200" />
+            <LinkCard to="/blog/automatiser-business-n8n-pme" title="Automatiser son business avec n8n" label="Lire l'article" bg="bg-base-200" />
           </div>
         </section>
 

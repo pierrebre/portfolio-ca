@@ -2,11 +2,10 @@ import { Link } from "react-router";
 import ServiceCard from "~/components/service-card";
 import JsonLd from "~/components/json-ld";
 import Faq from "~/components/faq";
-import { services } from "data/services";
+import { services, serviceUrl } from "data/services";
 import { servicesQuestions } from "data/services-questions";
 import { generateSEOMeta } from "~/utils/seo";
 import Breadcrumbs from "~/components/breadcrumbs";
-import { getServiceUrl } from "~/utils/service-links";
 import type { Route } from "./+types/services._index";
 
 export function meta({}: Route.MetaArgs) {
@@ -23,7 +22,7 @@ export default function ServicesIndex() {
   const servicesList = services.map(s => ({
     name: s.name,
     description: s.description,
-    url: `https://pierrebarbe.ca${getServiceUrl(s.key)}`
+    url: `https://pierrebarbe.ca${serviceUrl(s.key)}`
   }));
 
   const schema = {
@@ -108,7 +107,7 @@ export default function ServicesIndex() {
             <div className="mb-3 flex justify-center">
               <div className="via-primary h-px w-24 bg-linear-to-r from-transparent to-transparent" />
             </div>
-            <h1 className="font-urbanist content text-4xl font-bold md:text-5xl mb-6">
+            <h1 className="content text-4xl font-bold md:text-5xl mb-6">
               Services de développement web pour PME au Québec
             </h1>
             <p className="text-base-content/80 mx-auto max-w-3xl text-lg leading-relaxed">
@@ -138,13 +137,7 @@ export default function ServicesIndex() {
           </div>
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service) => (
-              <ServiceCard
-                key={service.key}
-                icon={service.icon}
-                name={service.name}
-                description={service.description}
-                linkTo={getServiceUrl(service.key)}
-              />
+              <ServiceCard key={service.key} service={service} />
             ))}
           </div>
         </div>

@@ -1,6 +1,5 @@
 import ContactForm from "~/components/contact-form";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { useToast } from "~/context/toast-context";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 
@@ -102,6 +101,53 @@ const contactSchema = {
   ],
 };
 
+const contactDetails = [
+  {
+    icon: Phone,
+    label: "Téléphone",
+    content: (
+      <>
+        <a
+          href="tel:+14385436986"
+          className="link link-hover"
+          aria-label="Appeler le +1 438 543 6986"
+        >
+          +1&nbsp;(438)&nbsp;543-6986
+        </a>
+        <br />
+        <span className="text-sm">Réponse rapide (FR/EN)</span>
+      </>
+    ),
+  },
+  {
+    icon: Mail,
+    label: "Courriel",
+    content: (
+      <a href="mailto:contact@pierrebarbe.ca" className="link link-hover">
+        contact@pierrebarbe.ca
+      </a>
+    ),
+  },
+  {
+    icon: Clock,
+    label: "Disponibilités",
+    content: <>Lundi – Vendredi : 9&nbsp;h – 18&nbsp;h (heure de Montréal)</>,
+  },
+  {
+    icon: MapPin,
+    label: "Zones servies",
+    content: (
+      <>
+        Montréal, Laval, Longueuil, Rive-Sud, Rive-Nord
+        <br />
+        <span className="text-sm">
+          Et partout au Québec en télétravail — FR/EN.
+        </span>
+      </>
+    ),
+  },
+];
+
 export function meta({}: Route.MetaArgs) {
   const url = `${SITE}/contact`;
   const image = `${SITE}/images/pb-og-image.jpg`;
@@ -143,20 +189,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Contact() {
-  const { showToast } = useToast();
-
-  const handleFormSubmitResult = (success: boolean, message?: string) => {
-    showToast(
-      message ??
-        (success
-          ? "Ton message a bien été envoyé ! Je te réponds sous 24 h."
-          : "Oups ! L'envoi a échoué. Réessaie dans un instant."),
-      success ? "success" : "error"
-    );
-  };
-
   return (
-    <div className="bg-base-100 font-urbanist mx-auto max-w-7xl">
+    <div className="bg-base-100 mx-auto max-w-7xl">
       <JsonLd data={contactSchema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -195,62 +229,15 @@ export default function Contact() {
             <h2 className="card-title text-2xl">Coordonnées</h2>
 
             <dl className="mt-6 space-y-6">
-              <div className="flex items-start gap-4">
-                <Phone className="text-primary mt-1 h-6 w-6 shrink-0" aria-hidden="true" />
-                <div>
-                  <dt className="text-lg font-medium">Téléphone</dt>
-                  <dd className="text-base-content/80 mt-1">
-                    <a
-                      href="tel:+14385436986"
-                      className="link link-hover"
-                      aria-label="Appeler le +1 438 543 6986"
-                    >
-                      +1&nbsp;(438)&nbsp;543-6986
-                    </a>
-                    <br />
-                    <span className="text-sm">Réponse rapide (FR/EN)</span>
-                  </dd>
+              {contactDetails.map(({ icon: Icon, label, content }) => (
+                <div key={label}>
+                  <dt className="flex items-center gap-4 text-lg font-medium">
+                    <Icon className="text-primary h-6 w-6 shrink-0" aria-hidden="true" />
+                    {label}
+                  </dt>
+                  <dd className="text-base-content/80 mt-1 pl-10">{content}</dd>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Mail className="text-primary mt-1 h-6 w-6 shrink-0" aria-hidden="true" />
-                <div>
-                  <dt className="text-lg font-medium">Courriel</dt>
-                  <dd className="text-base-content/80 mt-1">
-                    <a
-                      href="mailto:contact@pierrebarbe.ca"
-                      className="link link-hover"
-                    >
-                      contact@pierrebarbe.ca
-                    </a>
-                  </dd>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Clock className="text-primary mt-1 h-6 w-6 shrink-0" aria-hidden="true" />
-                <div>
-                  <dt className="text-lg font-medium">Disponibilités</dt>
-                  <dd className="text-base-content/80 mt-1">
-                    Lundi – Vendredi : 9&nbsp;h – 18&nbsp;h (heure de Montréal)
-                  </dd>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <MapPin className="text-primary mt-1 h-6 w-6 shrink-0" aria-hidden="true" />
-                <div>
-                  <dt className="text-lg font-medium">Zones servies</dt>
-                  <dd className="text-base-content/80 mt-1">
-                    Montréal, Laval, Longueuil, Rive-Sud, Rive-Nord
-                    <br />
-                    <span className="text-sm">
-                      Et partout au Québec en télétravail — FR/EN.
-                    </span>
-                  </dd>
-                </div>
-              </div>
+              ))}
             </dl>
           </div>
 
@@ -262,7 +249,7 @@ export default function Contact() {
                 les prochaines étapes et un devis clair.
               </p>
 
-              <ContactForm onSubmitResult={handleFormSubmitResult} />
+              <ContactForm />
             </div>
           </div>
         </div>

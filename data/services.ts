@@ -15,6 +15,11 @@ export type ServiceProps = {
   readonly description: string;
 };
 
+/** URL de la page d'un service : les routes suivent sa clé. */
+export function serviceUrl(key: string): string {
+  return `/services/${key}`;
+}
+
 export const services: ServiceProps[] = [
   {
     key: "creation-maintenance-sites",

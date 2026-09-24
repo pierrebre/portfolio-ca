@@ -2,6 +2,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { postToApi } from "~/lib/api";
+import { useToast } from "~/context/toast-context";
+import FormField from "./form-field";
 
 const contactformSchema = z.object({
   firstName: z.string().min(1, { message: "Le prénom est requis" }),
@@ -12,11 +14,8 @@ const contactformSchema = z.object({
 
 type FormSchemaType = z.infer<typeof contactformSchema>;
 
-type ContactFormProps = {
-  onSubmitResult?: (success: boolean, message?: string) => void;
-};
-
-export default function ContactForm({ onSubmitResult }: ContactFormProps) {
+export default function ContactForm() {
+  const { showToast } = useToast();
   const {
     register,
     handleSubmit,
@@ -35,88 +34,75 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     try {
       await postToApi("/send-email", data);
-      onSubmitResult?.(true, "Votre message a été envoyé avec succès !");
+      showToast("Votre message a été envoyé avec succès !", "success");
       reset();
     } catch (err: unknown) {
-      onSubmitResult?.(false, err instanceof Error ? err.message : undefined);
+      showToast((err as Error).message, "error");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
+    // noValidate : les messages de validation (zod, en français) remplacent
+    // les bulles natives du navigateur.
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-6 space-y-6">
       <div className="grid gap-6 md:grid-cols-2">
-        <div>
-          <label className="floating-label">
+        <FormField id="contact-first-name" label="Prénom" error={errors.firstName?.message}>
+          {(field) => (
             <input
+              {...field}
               type="text"
+              autoComplete="given-name"
               placeholder="Jean"
               className="input input-md w-full"
               {...register("firstName")}
             />
-            {errors.firstName && (
-              <span className="text-error text-sm">
-                {errors.firstName.message}
-              </span>
-            )}
-            <span className="">Prénom</span>
-          </label>
-        </div>
-        <div>
-          <label className="floating-label">
+          )}
+        </FormField>
+        <FormField id="contact-last-name" label="Nom de famille" error={errors.lastName?.message}>
+          {(field) => (
             <input
+              {...field}
               type="text"
+              autoComplete="family-name"
               placeholder="Dupont"
               className="input input-md w-full"
               {...register("lastName")}
             />
-            <span className="">Nom de famille</span>
-          </label>
-          {errors.lastName && (
-            <span className="text-error text-sm">
-              {errors.lastName.message}
-            </span>
           )}
-        </div>
+        </FormField>
       </div>
 
-      <div>
-        <label className="floating-label">
+      <FormField id="contact-email" label="Courriel" error={errors.email?.message}>
+        {(field) => (
           <input
+            {...field}
             type="email"
+            autoComplete="email"
             placeholder="jean.dupont@example.com"
             className="input input-md w-full"
             {...register("email")}
           />
-          <span className="">Courriel</span>
-        </label>
-        {errors.email && (
-          <span className="text-error text-sm">{errors.email.message}</span>
         )}
-      </div>
+      </FormField>
 
-      <div>
-        <label className="floating-label">
+      <FormField id="contact-message" label="Message" error={errors.message?.message}>
+        {(field) => (
           <textarea
+            {...field}
             placeholder="Votre message ici..."
             className="textarea textarea-md w-full"
             {...register("message")}
           />
-          <span className="">Message</span>
-        </label>
-        {errors.message && (
-          <span className="text-error text-sm">{errors.message.message}</span>
         )}
-      </div>
+      </FormField>
 
-      <div>
-        <button
-          type="submit"
-          className="btn btn-primary w-full"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Envoi…" : "Envoyer le message"}
-        </button>
-      </div>
+      <button
+        type="submit"
+        className="btn btn-primary w-full"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Envoi…" : "Envoyer le message"}
+      </button>
     </form>
   );
 }

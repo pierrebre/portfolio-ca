@@ -1,8 +1,9 @@
 import { Link } from "react-router";
-import { Calendar, Clock, Tag, ArrowLeft, ArrowRight, ChevronLeft } from "lucide-react";
+import { Calendar, Clock, Tag, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import { getPost, getAdjacentPosts } from "~/lib/content.server";
+import { categoryBadgeClass } from "~/utils/blog-categories";
 import { formatPostDate } from "~/utils/date";
 import { AUTHOR_SCHEMA, PUBLISHER_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/blog.$slug";
@@ -60,13 +61,6 @@ export function meta({ data }: Route.MetaArgs) {
   ];
 }
 
-const CATEGORY_COLORS: Record<string, string> = {
-  "Web Performance": "badge-primary",
-  Automatisation: "badge-secondary",
-  "Éco-conception": "badge-success",
-  Général: "badge-neutral",
-};
-
 export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const { post, adjacent } = loaderData;
   const url = `https://pierrebarbe.ca/blog/${post.slug}`;
@@ -123,7 +117,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
     : null;
 
   return (
-    <div className="bg-base-100 font-urbanist min-h-screen">
+    <div className="bg-base-100 min-h-screen">
       <JsonLd data={blogPostingSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
 
@@ -142,7 +136,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         <header className="pt-8 pb-10 border-b border-base-content/10">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span
-              className={`badge font-medium ${CATEGORY_COLORS[post.category] ?? "badge-neutral"}`}
+              className={`badge font-medium ${categoryBadgeClass(post.category)}`}
             >
               <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
               {post.category}
@@ -203,7 +197,6 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             [&_blockquote]:rounded-r-xl [&_blockquote]:bg-primary/5 [&_blockquote]:py-4
             prose-table:text-sm [&_thead_th]:bg-base-200"
           dangerouslySetInnerHTML={{ __html: post.html }}
-          aria-label={`Contenu de l'article : ${post.title}`}
         />
 
         {/* Navigation prev / next */}
@@ -236,7 +229,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
               >
                 <span className="text-base-content/50 text-xs flex items-center gap-1 justify-end">
                   Article suivant
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
                 <span className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">
                   {adjacent.next.title}

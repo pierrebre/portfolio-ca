@@ -4,7 +4,6 @@ import {
   TrendingUp,
   Clock,
   Tag,
-  ChevronRight,
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
@@ -94,7 +93,7 @@ export default function Projects() {
   const pageRef = useIntersectionObserver();
 
   return (
-    <div ref={pageRef} className="bg-base-100 font-urbanist min-h-screen">
+    <div ref={pageRef} className="bg-base-100 min-h-screen">
       <JsonLd data={projectsSchema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -205,32 +204,6 @@ export default function Projects() {
                             <p className="text-base-content/70 text-sm leading-relaxed">{project.solution}</p>
                           </div>
                         </div>
-
-                        {/* Métriques avant/après */}
-{/*                         <div className="grid grid-cols-2 gap-3 mb-6">
-                          {project.metrics.map((metric) => (
-                            <div
-                              key={metric.label}
-                              className="bg-base-200 rounded-xl p-3"
-                            >
-                              <div className="text-base-content/50 text-xs mb-2 font-medium">
-                                {metric.label}
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-error text-sm line-through opacity-70">
-                                  {metric.before}
-                                </span>
-                                <ChevronRight
-                                  className="h-3.5 w-3.5 text-base-content/40"
-                                  aria-hidden="true"
-                                />
-                                <span className="text-success font-bold text-sm">
-                                  {metric.after}
-                                </span>
-                              </div>
-                            </div>
-                          ))}
-                        </div> */}
                       </div>
 
                       <div className="flex flex-wrap gap-3">

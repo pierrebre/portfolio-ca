@@ -42,7 +42,16 @@ while IFS= read -r file; do
     app/routes/projects/projects._index.tsx)
       URLS="${URLS}${BASE_URL}/projects\n" ;;
     app/routes/projects/projects.\$slug.tsx)
+      URLS="${URLS}${BASE_URL}/projects/piscines-jolicoeur\n" ;;
+    data/projects.ts)
       URLS="${URLS}${BASE_URL}/projects\n" ;;
+    # Données partagées
+    data/services.ts)
+      URLS="${URLS}${BASE_URL}/services\n${BASE_URL}/\n" ;;
+    data/services-questions.ts)
+      URLS="${URLS}${BASE_URL}/services\n" ;;
+    data/questions.ts|data/process-steps.ts)
+      URLS="${URLS}${BASE_URL}/\n" ;;
     # Main pages
     app/routes/home.tsx|app/components/hero.tsx)
       URLS="${URLS}${BASE_URL}/\n" ;;

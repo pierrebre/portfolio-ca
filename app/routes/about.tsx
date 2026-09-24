@@ -210,7 +210,7 @@ const aboutSchema = {
 
 export default function About() {
   return (
-    <div className="bg-base-100 font-urbanist">
+    <div className="bg-base-100">
       <JsonLd data={aboutSchema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">

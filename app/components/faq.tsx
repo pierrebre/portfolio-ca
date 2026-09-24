@@ -43,7 +43,7 @@ export default function Faq({
           <div className="mb-3 flex justify-center">
             <div className="via-primary h-px w-24 bg-linear-to-r from-transparent to-transparent" />
           </div>
-          <h2 className="font-urbanist text-base-content text-4xl font-bold md:text-5xl">
+          <h2 className="text-base-content text-4xl font-bold md:text-5xl">
             {title}
           </h2>
         </div>

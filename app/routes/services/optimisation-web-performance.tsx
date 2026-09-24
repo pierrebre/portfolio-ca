@@ -1,6 +1,7 @@
 import { Zap, CheckCircle, BarChart3, Image, Code2, Server, LineChart } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/optimisation-web-performance";
@@ -63,7 +64,7 @@ export default function OptimisationWebPerformance() {
   });
 
   return (
-    <div className="bg-base-100 font-urbanist">
+    <div className="bg-base-100">
       <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -221,37 +222,13 @@ export default function OptimisationWebPerformance() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold mb-6">Services complémentaires</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/services/audits-techniques-core-web-vitals"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Tu veux d'abord un audit complet ?</p>
-              <p className="text-primary text-sm mt-1">→ Audits techniques & Core Web Vitals</p>
-            </Link>
-            <Link
-              to="/services/creation-maintenance-sites"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Ton WordPress a besoin d'une refonte ?</p>
-              <p className="text-primary text-sm mt-1">→ Création & maintenance de sites</p>
-            </Link>
+            <LinkCard to="/services/audits-techniques-core-web-vitals" title="Tu veux d'abord un audit complet ?" label="Audits techniques & Core Web Vitals" />
+            <LinkCard to="/services/creation-maintenance-sites" title="Ton WordPress a besoin d'une refonte ?" label="Création & maintenance de sites" />
           </div>
           <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/blog/audit-performance-site-web"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Comment auditer les performances de ton site web</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
-            <Link
-              to="/blog/optimisation-vitesse-wordpress"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Optimiser la vitesse de ton site WordPress</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
+            <LinkCard to="/blog/audit-performance-site-web" title="Comment auditer les performances de ton site web" label="Lire l'article" />
+            <LinkCard to="/blog/optimisation-vitesse-wordpress" title="Optimiser la vitesse de ton site WordPress" label="Lire l'article" />
           </div>
         </div>
       </section>

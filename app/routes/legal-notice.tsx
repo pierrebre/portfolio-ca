@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import type { Route } from "./+types/legal-notice";
@@ -187,12 +188,12 @@ export default function LegalNotice() {
         <p className="mb-4">
           Pour toute question relative à la collecte et à l&apos;utilisation
           des données personnelles, consulte la{" "}
-          <a
-            href="/politique-confidentialite"
+          <Link
+            to="/politique-confidentialite"
             className="text-primary underline"
           >
             politique de confidentialité
-          </a>
+          </Link>
           .
         </p>
       </section>

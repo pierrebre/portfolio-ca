@@ -1,40 +1,32 @@
 import { createContext, useContext, useState, useEffect, useRef } from "react";
-import Toast, { type ToastProps } from "~/components/toast";
+import Toast, { type ToastType } from "~/components/toast";
 
 const TOAST_DURATION = 5000;
 
-type ToastState = {
-  visible: boolean;
-  message: string;
-  type: ToastProps["type"];
-};
+type ToastState = { message: string; type: ToastType } | null;
 
 type ToastContextValue = {
-  showToast: (message: string, type?: ToastProps["type"]) => void;
+  showToast: (message: string, type?: ToastType) => void;
   closeToast: () => void;
 };
 
 const ToastContext = createContext<ToastContextValue | undefined>(undefined);
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
-  const [toast, setToast] = useState<ToastState>({
-    visible: false,
-    message: "",
-    type: "info",
-  });
+  const [toast, setToast] = useState<ToastState>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const closeToast = () => {
-    setToast((t) => ({ ...t, visible: false }));
+    setToast(null);
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
   };
 
-  const showToast = (message: string, type: ToastProps["type"] = "info") => {
+  const showToast = (message: string, type: ToastType = "info") => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    setToast({ visible: true, message, type });
+    setToast({ message, type });
     timerRef.current = setTimeout(closeToast, TOAST_DURATION);
   };
 
@@ -47,14 +39,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <ToastContext.Provider value={{ showToast, closeToast }}>
       {children}
-      {toast.visible && (
+      {toast && (
         <Toast
           message={toast.message}
           type={toast.type}
-          visible={toast.visible}
-          onClose={closeToast}
-          position="bottom-end"
           duration={TOAST_DURATION}
+          onClose={closeToast}
         />
       )}
     </ToastContext.Provider>
@@ -63,6 +53,6 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
 export function useToast() {
   const ctx = useContext(ToastContext);
-  if (!ctx) throw new Error("useToast must be used inside <ToastProvider/> ❗");
+  if (!ctx) throw new Error("useToast must be used inside <ToastProvider/>");
   return ctx;
 }

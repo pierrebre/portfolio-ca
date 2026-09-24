@@ -1,41 +1,8 @@
 # SEO — État courant et actions
 
 **Dernier audit complet :** 2026-04-21 (score 73/100, brut local dans `audit-2026-04-21/`, gitignoré)
+L'historique de ce qui a été fait est dans `git log` ; ce fichier ne liste que les actions ouvertes.
 **Dernière mise à jour de ce doc :** 2026-09-24
-
----
-
-## Fait depuis l'audit
-
-### Commit `00eda01` — schema graph, sitemap, cannibalisation (2026-04-26)
-- **Tier 1 #3** Redirects 308 sur variantes uppercase (`/SERVICES`, `/About`, `/Blog`, `/Contact`) — vérifié en prod
-- **Tier 1 #5** Cannibalisation `/blog/audit-performance-site-web` vs `/services/audits-techniques-core-web-vitals` — CTA commercial du blog remplacé par section informationnelle "Pour aller plus loin"
-- **Tier 2 #8** `updatedDate` ajouté en frontmatter sur 5 posts révisés (chatbot-ia, audit-performance, optimisation-vitesse-wordpress, automatiser-business-n8n-pme, developpeur-web-freelance-montreal)
-- **Tier 2 #12** Schema graph nettoyé :
-  - `FAQPage` `@id` partagé via `app/components/faq.tsx`, référencé depuis `WebPage.mainEntity` sur la home
-  - `LocalBusiness.name` standardisé à "Pierre Barbé" (home + contact)
-  - Geo coords passées de 4 → 5 décimales
-  - `areaServed` aligné (Montréal, Laval, Longueuil)
-  - `WebSite.potentialAction` (SearchAction) ajouté à la home
-  - `Person.worksFor` ajouté
-  - Projets : upgrade `WebPage` → `Article`
-  - `Offer` ajouté sur 3 pages services (maintenance, automatisation, audit)
-  - Auteurs/publishers blog : passage à `@id` refs (plus d'inline duplication)
-- **Tier 2 #13** Sitemap : `/projects` ajouté, `priority` et `changefreq` retirés, `lastmod` dynamique
-- **Tier 3 #27** Blog index H1 enrichi
-- **Tier 3 #28** Bio auteur déjà présente dans le template
-
-### Commit `ada1439` — quick wins contenu (2026-04-27)
-- Table snippet "vue d'ensemble" en haut de `cout-site-web-quebec-prix.mdx`
-- Table comparative tarifaire en haut de `n8n-vs-zapier-vs-make-pme-2026.mdx`
-- Date "Mis à jour le …" rendue visible dans `blog.$slug.tsx` quand `updatedDate ≠ date`
-- Taux horaire corrigé partout : **à partir de 75 $/h** (était écrit 95-110)
-
-### Avant l'audit (rappel)
-- IndexNow + GitHub Action post-deploy (`74975b1`)
-- Pages légales (Loi 25) (`e329fe8`)
-- Sitemap nettoyé des pages noindex (`7649e67`)
-- /about + /services + FAQ partagé (`23d63c6`)
 
 ---
 
@@ -52,9 +19,6 @@
 - [ ] **Tier 1 #6** Section témoignages sur home ou /projects (3-5 quotes réels), puis `AggregateRating` une fois 5+ reviews Google collectées
 
 ### Code — Tier 2 quick wins (≤ 30 min chacun)
-- [x] ~~**#7** Ajouter `<link rel="alternate" hrefLang="fr-CA">` + `x-default` dans `app/root.tsx`~~ — abandonné (2026-09-24) : la balise globale pointait toutes les pages vers l'accueil ; inutile sur un site monolingue, retirée
-- [ ] **#10** Créer `app/routes/feed[.]xml.tsx` (RSS) sur le modèle de `sitemap[.]xml.tsx`
-- [x] **#11** Réduire les font preloads de 4 à 1 dans `app/root.tsx` (déjà fait)
 - [ ] **#17** Ajouter `ga4_property_id` dans `~/.config/claude-seo/google-api.json` + accès Viewer au service account
 
 ---
@@ -68,13 +32,8 @@
 - [ ] **#9** Per-post OG images (3-5 cards manuelles ou générateur build-time)
 
 ### Technique
-- [x] **#18** `pb-og-image.jpg` ré-exporté en vrai 1200×630 (321 Ko → 42 Ko) ; logo schema en 512×512 (2026-09-24)
-- [ ] **#19** Re-encoder hero `me.avif` qualité 62, max 1600px (~100 KB)
-- [ ] **#20** `prefers-reduced-motion` dans `app/app.css`
 - [ ] **#21** Image sitemap pour projets + posts blog
-- [ ] **#22** `Cross-Origin-Opener-Policy: same-origin` dans `vercel.json`
 - [ ] **#23** Soumettre HSTS preload sur https://hstspreload.org
-- [x] **#26** Workflow post-deploy déclenché sur `master` (prod) au lieu de `develop`, avec attente du déploiement Vercel (2026-09-24)
 
 ### Autorité
 - [ ] **#24** Profil Clutch.co (gratuit), 2-3 reviews clients passés

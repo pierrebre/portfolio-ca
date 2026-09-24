@@ -1,6 +1,7 @@
 import { Bot, Clock, CheckCircle, Zap } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/automatisation-workflows";
@@ -44,7 +45,7 @@ export default function AutomatisationWorkflows() {
   });
 
   return (
-    <div className="bg-base-100 font-urbanist">
+    <div className="bg-base-100">
       <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -171,37 +172,13 @@ export default function AutomatisationWorkflows() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold mb-6">Services complémentaires</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/services/integration-outils-ia"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Combine automatisation + IA pour des workflows intelligents</p>
-              <p className="text-primary text-sm mt-1">→ Intégration d'outils IA</p>
-            </Link>
-            <Link
-              to="/services/gestion-serveur-deploiement"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Héberger n8n sur ton propre serveur ?</p>
-              <p className="text-primary text-sm mt-1">→ Gestion serveur & déploiement</p>
-            </Link>
+            <LinkCard to="/services/integration-outils-ia" title="Combine automatisation + IA pour des workflows intelligents" label="Intégration d'outils IA" />
+            <LinkCard to="/services/gestion-serveur-deploiement" title="Héberger n8n sur ton propre serveur ?" label="Gestion serveur & déploiement" />
           </div>
           <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/blog/automatiser-business-n8n-pme"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Comment automatiser son business avec n8n en 2026</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
-            <Link
-              to="/blog/cout-site-web-quebec-prix"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Combien coûte l'automatisation vs les coûts manuels ?</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
+            <LinkCard to="/blog/automatiser-business-n8n-pme" title="Comment automatiser son business avec n8n en 2026" label="Lire l'article" />
+            <LinkCard to="/blog/cout-site-web-quebec-prix" title="Combien coûte l'automatisation vs les coûts manuels ?" label="Lire l'article" />
           </div>
         </div>
       </section>

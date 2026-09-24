@@ -1,5 +1,9 @@
 import { useEffect, useRef } from "react";
 
+// Hors du composant : un objet littéral en valeur par défaut serait recréé à
+// chaque rendu et relancerait l'effet (dépendance [options]).
+const DEFAULT_OPTIONS: IntersectionObserverInit = { threshold: 0.15 };
+
 /**
  * Observes elements with the given selector inside the container and adds
  * `is-visible` once they enter the viewport.  Works with the CSS classes
@@ -10,7 +14,7 @@ import { useEffect, useRef } from "react";
  */
 export function useIntersectionObserver(
   selector = ".animate-on-scroll, .animate-on-scroll-fade",
-  options: IntersectionObserverInit = { threshold: 0.15 }
+  options: IntersectionObserverInit = DEFAULT_OPTIONS
 ) {
   const containerRef = useRef<HTMLDivElement>(null);
 

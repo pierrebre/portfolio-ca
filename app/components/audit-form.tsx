@@ -2,6 +2,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { postToApi } from "~/lib/api";
+import { useToast } from "~/context/toast-context";
+import FormField from "./form-field";
 
 const auditFormSchema = z.object({
   websiteUrl: z
@@ -14,14 +16,12 @@ const auditFormSchema = z.object({
 type AuditFormType = z.infer<typeof auditFormSchema>;
 
 type AuditFormProps = {
-  onSubmitResult?: (
-    success: boolean,
-    message: string,
-    closeModal?: boolean
-  ) => void;
+  onSuccess: () => void;
+  onCancel: () => void;
 };
 
-export default function AuditForm({ onSubmitResult }: AuditFormProps) {
+export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
+  const { showToast } = useToast();
   const {
     register,
     handleSubmit,
@@ -38,84 +38,58 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
 
   const onSubmit: SubmitHandler<AuditFormType> = async (data) => {
     try {
-      await postToApi("/request-audit", {
-        websiteUrl: data.websiteUrl,
-        email: data.email,
-        additionalInfo: data.additionalInfo,
-      });
-      onSubmitResult?.(
-        true,
-        "Votre demande d'audit a été soumise avec succès !",
-        true
-      );
+      await postToApi("/request-audit", data);
+      showToast("Votre demande d'audit a été soumise avec succès !", "success");
       reset();
+      onSuccess();
     } catch (err: unknown) {
-      onSubmitResult?.(
-        false,
-        err instanceof Error
-          ? err.message
-          : "Échec de la soumission de votre demande d'audit",
-        false
-      );
+      showToast((err as Error).message, "error");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
-      <div>
-        <label className="floating-label">
+    // noValidate : les messages de validation (zod, en français) remplacent
+    // les bulles natives du navigateur.
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-4 space-y-4">
+      <FormField id="audit-website-url" label="URL du site Web" error={errors.websiteUrl?.message}>
+        {(field) => (
           <input
+            {...field}
             type="url"
+            autoComplete="url"
             placeholder="https://exemple.com"
             className="input input-md w-full"
             {...register("websiteUrl")}
           />
-          <span className="">URL du site Web</span>
-        </label>
-        {errors.websiteUrl && (
-          <span className="text-error text-sm">
-            {errors.websiteUrl.message}
-          </span>
         )}
-      </div>
+      </FormField>
 
-      <div>
-        <label className="floating-label">
+      <FormField id="audit-email" label="Courriel" error={errors.email?.message}>
+        {(field) => (
           <input
+            {...field}
             type="email"
+            autoComplete="email"
             placeholder="courriel@exemple.com"
             className="input input-md w-full"
             {...register("email")}
           />
-          <span className="">Courriel</span>
-        </label>
-        {errors.email && (
-          <span className="text-error text-sm">{errors.email.message}</span>
         )}
-      </div>
+      </FormField>
 
-      <div>
-        <label className="floating-label">
+      <FormField id="audit-additional-info" label="Informations supplémentaires (optionnel)">
+        {(field) => (
           <textarea
+            {...field}
             placeholder="Informations supplémentaires..."
             className="textarea textarea-md w-full"
             {...register("additionalInfo")}
           />
-          <span className="">Informations supplémentaires (optionnel)</span>
-        </label>
-      </div>
+        )}
+      </FormField>
 
       <div className="modal-action flex justify-between">
-        <button
-          type="button"
-          className="btn btn-outline"
-          onClick={() => {
-            const modal = document.getElementById("audit_modal");
-            if (modal instanceof HTMLDialogElement) {
-              modal.close();
-            }
-          }}
-        >
+        <button type="button" className="btn btn-outline" onClick={onCancel}>
           Annuler
         </button>
         <button
