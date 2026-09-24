@@ -213,7 +213,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
                 <span className="text-base-content/70 text-xs flex items-center gap-1">
                   <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                   Article précédent
-                </span>
+                </span>{" "}
                 <span className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">
                   {adjacent.prev.title}
                 </span>
@@ -230,7 +230,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
                 <span className="text-base-content/70 text-xs flex items-center gap-1 justify-end">
                   Article suivant
                   <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </span>
+                </span>{" "}
                 <span className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">
                   {adjacent.next.title}
                 </span>

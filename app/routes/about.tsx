@@ -231,7 +231,7 @@ export default function About() {
                 </span>
               </div>
               <h1 className="text-4xl font-bold md:text-5xl">
-                Pierre Barbé
+                Pierre Barbé{" "}
                 <span className="text-primary block mt-1">développeur web freelance à Montréal</span>
               </h1>
               <p className="text-base-content/80 mt-6 text-lg leading-relaxed">

@@ -147,7 +147,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                 }`}
                 aria-pressed={activeCategory === null}
               >
-                Tous
+                Tous{" "}
                 <span className="badge badge-sm ml-1.5">{posts.length}</span>
               </button>
               {categories.map(([cat, count]) => (
@@ -161,7 +161,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                   }`}
                   aria-pressed={activeCategory === cat}
                 >
-                  {cat}
+                  {cat}{" "}
                   <span className="badge badge-sm ml-1.5">{count}</span>
                 </button>
               ))}
