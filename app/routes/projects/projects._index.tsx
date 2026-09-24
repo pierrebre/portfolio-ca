@@ -10,8 +10,12 @@ import AuditButton from "~/components/audit-button";
 import CtaSection from "~/components/cta-section";
 import JsonLd from "~/components/json-ld";
 import { useIntersectionObserver } from "~/hooks/use-intersection-observer";
-import { projects } from "data/projects";
+import { getAllProjects } from "~/lib/projects.server";
 import type { Route } from "./+types/projects._index";
+
+export async function loader() {
+  return { projects: await getAllProjects() };
+}
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/projects";
@@ -50,7 +54,7 @@ export function meta({}: Route.MetaArgs) {
 
 const CATEGORY_COLORS: Record<string, string> = {
   "Web Performance": "badge-primary",
-  "E-commerce": "badge-secondary",
+  "Maintenance & corrections": "badge-secondary",
   Automatisation: "badge-accent",
   "Création de site": "badge-success",
 };
@@ -89,7 +93,8 @@ const projectsSchema = {
   ],
 };
 
-export default function Projects() {
+export default function Projects({ loaderData }: Route.ComponentProps) {
+  const { projects } = loaderData;
   const featured = projects.filter((p) => p.featured);
   const others = projects.filter((p) => !p.featured);
   const pageRef = useIntersectionObserver();
@@ -201,11 +206,11 @@ export default function Projects() {
 
                         <div className="space-y-3 mb-6">
                           <div>
-                            <h3 className="text-sm font-semibold text-base-content/60 uppercase tracking-wide mb-1">Défi</h3>
+                            <h3 className="text-sm font-semibold text-base-content/70 uppercase tracking-wide mb-1">Défi</h3>
                             <p className="text-base-content/70 text-sm leading-relaxed">{project.challenge}</p>
                           </div>
                           <div>
-                            <h3 className="text-sm font-semibold text-base-content/60 uppercase tracking-wide mb-1">Solution</h3>
+                            <h3 className="text-sm font-semibold text-base-content/70 uppercase tracking-wide mb-1">Solution</h3>
                             <p className="text-base-content/70 text-sm leading-relaxed">{project.solution}</p>
                           </div>
                         </div>

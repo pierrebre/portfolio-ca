@@ -1,0 +1,46 @@
+{
+  "/": {
+    "lastmod": "2026-09-24",
+    "hash": "ccf4ae3da05f8ce8"
+  },
+  "/about": {
+    "lastmod": "2026-09-24",
+    "hash": "a59e894b5aa6526c"
+  },
+  "/projects": {
+    "lastmod": "2026-09-24",
+    "hash": "ce09a3c2b1071637"
+  },
+  "/services": {
+    "lastmod": "2026-09-24",
+    "hash": "9ab0a99484dcedc5"
+  },
+  "/services/optimisation-web-performance": {
+    "lastmod": "2026-09-24",
+    "hash": "d1a540989ed9d642"
+  },
+  "/services/creation-maintenance-sites": {
+    "lastmod": "2026-09-24",
+    "hash": "4b9e9bf60fc1a7c3"
+  },
+  "/services/automatisation-workflows": {
+    "lastmod": "2026-09-24",
+    "hash": "4d5303023ddcdf66"
+  },
+  "/services/audits-techniques-core-web-vitals": {
+    "lastmod": "2026-09-24",
+    "hash": "fd147b6171b14f0f"
+  },
+  "/services/gestion-serveur-deploiement": {
+    "lastmod": "2026-09-24",
+    "hash": "9763a6b796a82257"
+  },
+  "/services/integration-outils-ia": {
+    "lastmod": "2026-09-24",
+    "hash": "044baf932ddc9b23"
+  },
+  "/contact": {
+    "lastmod": "2026-09-24",
+    "hash": "153e0ae43681126b"
+  }
+}

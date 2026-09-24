@@ -1,11 +1,12 @@
 # Conventions du projet
 
-Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnpm build` avant de pousser. La CI (`.github/workflows/ci.yml`) refait ces vérifications sur chaque PR, plus `pnpm audit` et un rendu de toutes les URL du sitemap.
+Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnpm build` avant de pousser. Si le contenu d'une page fixe change, lancer `pnpm lastmod` et committer `data/lastmod.json`. La CI (`.github/workflows/ci.yml`) refait ces vérifications sur chaque PR, plus `pnpm audit`, `lastmod` et un rendu de toutes les URL du sitemap.
 
 ## Contenu
 
 - Site en français (fr-CA). Titres ≤ 60 caractères, meta descriptions ≤ 160.
 - Nouvel article : `content/blog/<slug>.mdx`, slug en `[a-z0-9-]`. Un article daté dans le futur est programmé (ni listé ni servi).
+- Projet : `content/projects/<slug>.mdx`. Le frontmatter fait la carte de `/projects` ; un corps non vide crée l'étude de cas `/projects/<slug>` (champs dans `app/lib/projects.server.ts`, exemple complet : `piscines-jolicoeur.mdx`).
 - Afficher une date d'article avec `formatPostDate` (`app/utils/date.ts`) : un formatage local décale d'un jour et casse l'hydratation.
 
 ## Nouvelle page
@@ -13,7 +14,7 @@ Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnp
 1. Route dans `app/routes.ts`.
 2. `meta()` complet : `og:type`, `og:site_name` et `og:locale` compris (root.tsx ne les définit pas). `generateSEOMeta` (`app/utils/seo.ts`) couvre le cas standard.
 3. JSON-LD via `<JsonLd>`. Auteur et éditeur inlinés avec `AUTHOR_SCHEMA` / `PUBLISHER_SCHEMA` : Google ne résout pas un `@id` défini sur une autre page.
-4. Ajouter l'URL au sitemap (`app/routes/sitemap[.]xml.tsx`, `lastmod` manuel) et à `scripts/changed-urls.sh`.
+4. Ajouter l'URL à `data/lastmod.json` (`"/ma-page": {}`) puis lancer `pnpm lastmod` : le sitemap et IndexNow (`scripts/changed-urls.sh`) en dépendent.
 
 ## Offre et prix
 

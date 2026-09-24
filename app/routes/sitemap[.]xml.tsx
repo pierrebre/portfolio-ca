@@ -1,51 +1,42 @@
 import { getAllPosts } from "~/lib/content.server";
+import { getAllProjects } from "~/lib/projects.server";
+import lastmodData from "data/lastmod.json";
 import type { Route } from "./+types/sitemap[.]xml";
 
 const BASE_URL = "https://pierrebarbe.ca";
+const pages: Record<string, { lastmod?: string }> = lastmodData;
 
-// Pages statiques. Google ignore priority + changefreq — on les retire.
-// lastmod est mis à jour manuellement quand le contenu change réellement.
-const STATIC_URLS: { loc: string; lastmod: string }[] = [
-  { loc: "/", lastmod: "2026-09-24" },
-  { loc: "/about", lastmod: "2026-09-24" },
-  { loc: "/projects", lastmod: "2026-09-24" },
-  { loc: "/projects/piscines-jolicoeur", lastmod: "2026-09-24" },
-  { loc: "/services", lastmod: "2026-09-24" },
-  { loc: "/services/optimisation-web-performance", lastmod: "2026-09-24" },
-  { loc: "/services/creation-maintenance-sites", lastmod: "2026-09-24" },
-  { loc: "/services/automatisation-workflows", lastmod: "2026-09-24" },
-  { loc: "/services/audits-techniques-core-web-vitals", lastmod: "2026-09-24" },
-  { loc: "/services/gestion-serveur-deploiement", lastmod: "2026-09-24" },
-  { loc: "/services/integration-outils-ia", lastmod: "2026-09-24" },
-  // Blog index lastmod is dynamically set from newest post in loader
-  { loc: "/blog", lastmod: "" },
-  { loc: "/contact", lastmod: "2026-06-06" },
-];
-
+// Google ignore priority et changefreq : seul lastmod est donné.
+// - Pages fixes : data/lastmod.json, tenu à jour par « pnpm lastmod » (la CI
+//   vérifie qu'il l'est).
+// - Articles et études de cas : updatedDate (ou date) du frontmatter.
+// - /blog : date du dernier article publié ou mis à jour.
 export async function loader(_: Route.LoaderArgs) {
-  const posts = await getAllPosts();
-  const newestPostDate = posts[0]?.updatedDate ?? posts[0]?.date ?? "2026-04-27";
+  const [posts, projects] = await Promise.all([getAllPosts(), getAllProjects()]);
 
-  const staticEntries = STATIC_URLS.map(
-    ({ loc, lastmod }) => `
-  <url>
-    <loc>${BASE_URL}${loc}</loc>
-    <lastmod>${loc === "/blog" ? newestPostDate : lastmod}</lastmod>
-  </url>`
-  ).join("");
+  const newestPost = posts
+    .map((p) => p.updatedDate ?? p.date)
+    .sort()
+    .at(-1);
 
-  const blogEntries = posts
+  const entries: { loc: string; lastmod: string }[] = [
+    ...Object.entries(pages).map(([loc, { lastmod }]) => ({ loc, lastmod: lastmod ?? "" })),
+    { loc: "/blog", lastmod: newestPost ?? "" },
+    ...projects.flatMap((p) => (p.href ? [{ loc: p.href, lastmod: p.lastmod ?? "" }] : [])),
+    ...posts.map((p) => ({ loc: `/blog/${p.slug}`, lastmod: p.updatedDate ?? p.date })),
+  ];
+
+  const urls = entries
     .map(
-      (post) => `
+      ({ loc, lastmod }) => `
   <url>
-    <loc>${BASE_URL}/blog/${post.slug}</loc>
-    <lastmod>${post.updatedDate ?? post.date}</lastmod>
+    <loc>${BASE_URL}${loc}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""}
   </url>`
     )
     .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${staticEntries}${blogEntries}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}
 </urlset>`;
 
   return new Response(xml, {

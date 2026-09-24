@@ -4,6 +4,7 @@ import Breadcrumbs from "~/components/breadcrumbs";
 import CtaSection from "~/components/cta-section";
 import { FREE_AUDIT } from "data/pricing";
 import JsonLd from "~/components/json-ld";
+import ProseHtml from "~/components/prose-html";
 import { getPost, getAdjacentPosts } from "~/lib/content.server";
 import { categoryBadgeClass } from "~/utils/blog-categories";
 import { formatPostDate } from "~/utils/date";
@@ -185,21 +186,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         </header>
 
         {/* Contenu MDX rendu côté serveur */}
-        <div
-          className="prose prose-base md:prose-lg max-w-none mt-10
-            prose-headings:font-bold
-            prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
-            prose-h2:mt-10 prose-h3:mt-6 prose-h3:mb-2
-            prose-p:leading-relaxed
-            prose-a:underline-offset-2 hover:prose-a:no-underline
-            prose-code:text-sm prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-            prose-code:before:content-none prose-code:after:content-none
-            [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-base-content/10
-            prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-l-4
-            [&_blockquote]:rounded-r-xl [&_blockquote]:bg-primary/5 [&_blockquote]:py-4
-            prose-table:text-sm [&_thead_th]:bg-base-200"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
+        <ProseHtml html={post.html} className="mt-10" />
 
         {/* Navigation prev / next */}
         {(adjacent.prev ?? adjacent.next) && (

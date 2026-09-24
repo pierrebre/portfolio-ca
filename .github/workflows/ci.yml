@@ -36,6 +36,11 @@ jobs:
       - run: pnpm build
       - run: pnpm audit
 
+      # Une page dont le contenu rendu a changé doit avoir une date à jour
+      # dans data/lastmod.json (sitemap et IndexNow en dépendent).
+      - name: lastmod à jour
+        run: node scripts/lastmod.mjs --check
+
       # Le serveur de production doit rendre les pages sans erreur (erreur de
       # rendu, contenu MDX invalide, route cassée).
       - name: Smoke test

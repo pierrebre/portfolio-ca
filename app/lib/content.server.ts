@@ -7,17 +7,9 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
 import matter from "gray-matter";
-import { evaluate, type EvaluateOptions } from "@mdx-js/mdx";
-import remarkGfm from "remark-gfm";
-import { createElement } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-import { jsx, jsxs, Fragment } from "react/jsx-runtime";
+import { compileMdx, SLUG_PATTERN } from "./mdx.server";
 
 const CONTENT_DIR = join(process.cwd(), "content", "blog");
-
-// Un slug est un nom de fichier : minuscules, chiffres et tirets. Tout le
-// reste (« ../ », « %2f »…) est refusé avant de toucher au disque.
-const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export interface FaqItem {
   question: string;
@@ -69,77 +61,6 @@ function isPublished(post: PostMeta): boolean {
   const endOfToday = new Date();
   endOfToday.setHours(23, 59, 59, 999);
   return new Date(post.date) <= endOfToday;
-}
-
-type HastNode = {
-  type: string;
-  tagName?: string;
-  value?: string;
-  properties?: Record<string, unknown>;
-  children?: HastNode[];
-};
-
-const textOf = (node: HastNode): string =>
-  node.value ?? node.children?.map(textOf).join("") ?? "";
-
-const isElement = (node: HastNode, tagName: string) =>
-  node.type === "element" && node.tagName === tagName;
-
-/**
- * Plugin rehype : accessibilité du HTML des articles.
- * - Tableau : enveloppé dans une zone défilante focalisable (sur mobile, le
- *   défilement horizontal doit être possible au clavier), nommée d'après le
- *   titre de section qui la précède pour distinguer les tableaux entre eux.
- * - Liste de tâches (remark-gfm) : la case et son texte dans un <label>,
- *   sinon la case n'a pas de nom accessible.
- */
-function rehypeAccessibleContent() {
-  let lastHeading = "";
-  let tableCount = 0;
-
-  const transform = (node: HastNode): HastNode => {
-    node.children = node.children?.map(transform);
-
-    if (["h2", "h3", "h4"].some((tag) => isElement(node, tag))) {
-      lastHeading = textOf(node).trim();
-    }
-
-    if (isElement(node, "table")) {
-      tableCount += 1;
-      return {
-        type: "element",
-        tagName: "div",
-        properties: {
-          className: ["table-scroll"],
-          tabIndex: 0,
-          role: "region",
-          ariaLabel: lastHeading
-            ? `Tableau ${tableCount} : ${lastHeading}`
-            : `Tableau ${tableCount}`,
-        },
-        children: [node],
-      };
-    }
-
-    const classes = node.properties?.className;
-    if (
-      isElement(node, "li") &&
-      Array.isArray(classes) &&
-      classes.includes("task-list-item")
-    ) {
-      node.children = [
-        { type: "element", tagName: "label", properties: {}, children: node.children },
-      ];
-    }
-
-    return node;
-  };
-
-  return (tree: HastNode) => {
-    lastHeading = "";
-    tableCount = 0;
-    transform(tree);
-  };
 }
 
 // Module-level cache: slug → { mtime, post }
@@ -207,20 +128,7 @@ export async function getPost(slug: string): Promise<PostContent | null> {
       const raw = await readFile(filePath, "utf-8");
       const { data, content } = matter(raw);
 
-      const evaluateOptions: EvaluateOptions = {
-        jsx,
-        jsxs,
-        Fragment,
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeAccessibleContent],
-      };
-      const { default: Content } = await evaluate(content, evaluateOptions);
-
-      // Rendu côté serveur → HTML statique (blog content = no interactivity needed)
-      const html = renderToStaticMarkup(
-        createElement(Content as React.ComponentType)
-      );
-
+      const html = await compileMdx(content);
       post = { ...toPostMeta(slug, data, content), html };
       postCache.set(slug, { mtime, post });
     } catch (err) {

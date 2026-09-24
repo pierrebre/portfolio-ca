@@ -151,7 +151,6 @@ export function generateServicePageSchema({
       price: offers.price,
       priceCurrency: offers.priceCurrency,
       availability: "https://schema.org/InStock",
-      validFrom: new Date().toISOString().split('T')[0]
     };
   }
 
