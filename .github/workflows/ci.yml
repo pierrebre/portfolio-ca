@@ -1,0 +1,54 @@
+name: CI
+
+# Mêmes vérifications que Vercel (lockfile figé, build), plus le typecheck,
+# pnpm audit et un rendu réel des pages clés.
+on:
+  pull_request:
+  push:
+    branches: [develop, master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm build
+      - run: pnpm audit
+
+      # Le serveur de production doit rendre les pages sans erreur (erreur de
+      # rendu, contenu MDX invalide, route cassée).
+      - name: Smoke test
+        run: |
+          PORT=3000 pnpm start > server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fs -o /dev/null http://localhost:3000/ && break; sleep 1; done
+          # Toutes les URL du sitemap (les articles programmés n'y sont pas).
+          paths=$(curl -fs http://localhost:3000/sitemap.xml | grep -o '<loc>[^<]*' | sed 's|<loc>https://pierrebarbe.ca||')
+          [ -n "$paths" ] || { echo "sitemap vide"; cat server.log; exit 1; }
+          fail=0
+          for path in $paths /blog/feed.xml; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:3000$path")
+            echo "$code $path"
+            [ "$code" = "200" ] || fail=1
+          done
+          [ "$fail" = 0 ] || { cat server.log; exit 1; }

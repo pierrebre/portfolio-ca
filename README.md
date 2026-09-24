@@ -34,4 +34,4 @@ pnpm indexnow    # soumet toutes les URLs du sitemap à IndexNow
 
 ## Déploiement
 
-Vercel déploie `master`. Le HTML est servi depuis le cache du CDN (1 h, purgé à chaque déploiement) ; les en-têtes de sécurité (CSP, HSTS…) sont dans `vercel.json`. À chaque push sur `master`, `.github/workflows/post-deploy.yml` soumet les URLs modifiées à IndexNow (correspondance fichier → URL dans `scripts/changed-urls.sh`) et lance PageSpeed Insights (secret `PSI_API_KEY`).
+Vercel déploie `master`. Le HTML est servi depuis le cache du CDN (1 h, purgé à chaque déploiement) ; les en-têtes de sécurité (CSP, HSTS…) sont dans `vercel.json`. À chaque push sur `master`, `.github/workflows/post-deploy.yml` soumet les URLs modifiées à IndexNow (correspondance fichier → URL dans `scripts/changed-urls.sh`) et lance PageSpeed Insights (secret `PSI_API_KEY`). Sur chaque pull request, `.github/workflows/ci.yml` vérifie le lockfile, les types, le build, `pnpm audit` et le rendu de toutes les URL du sitemap.

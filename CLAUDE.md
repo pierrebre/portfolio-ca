@@ -1,6 +1,6 @@
 # Conventions du projet
 
-Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnpm build` avant de pousser (pas de tests automatisés).
+Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnpm build` avant de pousser. La CI (`.github/workflows/ci.yml`) refait ces vérifications sur chaque PR, plus `pnpm audit` et un rendu de toutes les URL du sitemap.
 
 ## Contenu
 
