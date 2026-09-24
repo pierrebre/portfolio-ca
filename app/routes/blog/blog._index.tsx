@@ -172,13 +172,13 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
 
           {posts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-base-content/60 text-lg">
+              <p className="text-base-content/70 text-lg">
                 Aucun article pour le moment. Reviens bientôt !
               </p>
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-base-content/60 text-lg">
+              <p className="text-base-content/70 text-lg">
                 Aucun article dans cette catégorie pour le moment.
               </p>
               <button

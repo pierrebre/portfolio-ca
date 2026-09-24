@@ -7,7 +7,12 @@ Pierre Barbé — Développeur web freelance à Montréal spécialisé en sites 
 - Site web — création, refonte et maintenance de sites WordPress, boutiques Shopify/WooCommerce, hébergement et sécurité : https://pierrebarbe.ca/services/creation-maintenance-sites
 - Performance — audit complet (vitesse, SEO technique, accessibilité, sécurité) et optimisation : https://pierrebarbe.ca/services/optimisation-web-performance
 - Automatisation & IA — workflows n8n et assistant IA : https://pierrebarbe.ca/services/automatisation-workflows
-- Tarifs : taux horaire de 75 $/h, site vitrine à partir de 3 000 $, forfaits de suivi de 150 $ à 600 $/mois : https://pierrebarbe.ca/services
+- Tarifs : taux horaire de 75 $/h, site vitrine à partir de 3 000 $, audit complet 600 $, workflow n8n à partir de 450 $, forfaits de suivi de 150 $ à 600 $/mois sans engagement annuel : https://pierrebarbe.ca/services
+- Pour commencer : audit gratuit de 30 minutes (par courriel ou en visioconférence), diagnostic et 3 recommandations prioritaires, sans engagement.
+
+## Études de cas
+- Tous les projets (corrections WordPress, performance, automatisation n8n, création de site) : https://pierrebarbe.ca/projects
+- Corrections WordPress et intégration CRM — Service de Piscines Jolicoeur : https://pierrebarbe.ca/projects/piscines-jolicoeur
 
 ## Blog
 - Optimisation vitesse WordPress : https://pierrebarbe.ca/blog/optimisation-vitesse-wordpress
@@ -27,4 +32,4 @@ Pierre Barbé — Développeur web freelance à Montréal spécialisé en sites 
 https://pierrebarbe.ca/about
 
 ## Contact
-https://pierrebarbe.ca/contact
+https://pierrebarbe.ca/contact — contact@pierrebarbe.ca, lundi au vendredi, 9 h à 18 h (heure de Montréal), en français ou en anglais.

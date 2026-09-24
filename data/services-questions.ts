@@ -15,13 +15,13 @@ export const servicesQuestions: Question[] = [
     index: 1,
     question: "Quels délais pour un site livré ?",
     answer:
-      `Un site vitrine PME : ${PRICING.siteVitrine.delay} du lancement à la mise en ligne, dès réception de tes contenus (textes, photos). Un e-commerce : ${PRICING.woocommerce.delay}. Un audit technique + plan d'action : ${PRICING.auditComplet.delay}. Je fixe des jalons clairs et je m'engage sur le délai dès le devis — pas de dérive.`,
+      `Un site vitrine PME : ${PRICING.siteVitrine.delay} du lancement à la mise en ligne, dès réception de tes contenus (textes, photos). Une boutique WooCommerce : ${PRICING.woocommerce.delay}. Un audit complet (rapport écrit avec plan d'action) : ${PRICING.auditComplet.delay}. Je fixe des jalons clairs et je m'engage sur le délai dès la soumission — pas de dérive.`,
   },
   {
     index: 2,
     question: "Tu travailles avec quelles technologies ?",
     answer:
-      "Sites : WordPress + WooCommerce (pour les PME qui veulent gérer leur contenu elles-mêmes) ou Shopify pour l'e-commerce. Je développe aussi en React et TypeScript quand un projet le demande (ce site en est un exemple). Automatisation : n8n, Make, API d'IA (OpenAI, Anthropic). Hébergement : VPS Linux, Docker, Vercel. Stack détaillée sur la page « à propos ».",
+      "Sites : WordPress + WooCommerce (pour les PME qui veulent gérer leur contenu elles-mêmes) ou Shopify pour l'e-commerce. Ce site-ci est codé en React et TypeScript, mais pour un site de PME je travaille avec WordPress ou Shopify : tu restes autonome pour le modifier. Automatisation : n8n, Make, API d'IA (OpenAI, Anthropic). Hébergement : un hébergeur avec serveurs au Canada, ouvert à ton nom ; n8n sur un serveur privé si tu veux garder tes données chez toi. Outils détaillés sur la page « à propos ».",
   },
   {
     index: 3,
@@ -34,12 +34,12 @@ export const servicesQuestions: Question[] = [
     question:
       "Tu peux reprendre un site qu'un autre développeur a laissé tomber ?",
     answer:
-      "Oui — c'est même une part importante de mes projets. Je commence toujours par un audit technique pour évaluer l'état du code, des performances et de la sécurité. Ensuite, on décide : on nettoie, on refait partiellement, ou on repart d'une base saine.",
+      "Oui — c'est même une part importante de mes projets. Je commence toujours par un audit pour évaluer l'état du code, de la vitesse et de la sécurité. Ensuite, on décide : on nettoie, on refait partiellement, ou on repart d'une base saine.",
   },
   {
     index: 5,
     question: "Le site sera conforme à la Loi 25 ?",
     answer:
-      "Oui, systématiquement. Tout site livré inclut politique de confidentialité, mentions légales, consentement cookies (si applicable) et respect des droits d'accès/rectification/retrait. Détail dans mon guide Loi 25 pour PME sur le blog.",
+      "Le site, oui : tout site livré inclut politique de confidentialité, mentions légales, consentement aux témoins (cookies) si le site en utilise, et un moyen d'exercer les droits d'accès, de rectification et de retrait. La conformité de ton entreprise va au-delà du site (responsable désigné, registre des incidents…) : je te dis quoi prévoir, sans remplacer un avis juridique. Détail dans mon guide Loi 25 pour PME sur le blog.",
   },
 ];

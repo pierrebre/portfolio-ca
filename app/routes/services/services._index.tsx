@@ -13,7 +13,7 @@ export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
       title: "Services de développement web pour PME | Pierre Barbé",
-      description: "3 offres claires pour PME au Québec : site web WordPress, audit et optimisation de la performance, automatisation n8n et IA. Prix affichés, devis sous 24-48 h.",
+      description: "3 offres claires pour PME au Québec : site WordPress, audit et optimisation de la performance, automatisation n8n et IA. Prix affichés, soumission sous 24-48 h.",
       url: "https://pierrebarbe.ca/services",
     }),
   ];
@@ -49,8 +49,8 @@ export default function ServicesIndex() {
       {
         "@type": "ItemList",
         "@id": "https://pierrebarbe.ca/services#itemlist",
-        "name": "Services de Développement Web - Pierre Barbé",
-        "description": "Liste complète des services de développement web, optimisation performance et automatisation proposés à Montréal et au Québec",
+        "name": "Services de développement web — Pierre Barbé",
+        "description": "Les 3 offres proposées aux PME de Montréal et du Québec : site web WordPress, audit et optimisation de la performance, automatisation n8n et IA.",
         "numberOfItems": servicesList.length,
         "itemListElement": servicesList.map((service, index) => ({
           "@type": "ListItem",
@@ -113,9 +113,9 @@ export default function ServicesIndex() {
               Prix affichés, livrables mesurables.
             </p>
             <p className="text-base-content/70 mx-auto max-w-3xl text-base mt-4 leading-relaxed">
-              Tu ne sais pas par où commencer ? Le premier diagnostic est gratuit
-              (courriel ou visio), et le devis arrive sous 24-48 h. Réponse en
-              français ou en anglais.
+              Tu ne sais pas par où commencer ? L'audit gratuit (30 min, par
+              courriel ou en visioconférence) sert à ça, et la soumission arrive sous 24-48 h.
+              Réponse en français ou en anglais.
             </p>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function ServicesIndex() {
               </div>
               <h3 className="font-bold text-lg mb-2">Premier échange</h3>
               <p className="text-base-content/70 text-sm leading-relaxed">
-                Échange gratuit (mail ou visio, tu choisis) pour cadrer le
+                Échange gratuit (courriel ou visioconférence, tu choisis) pour cadrer le
                 besoin, les contraintes et le budget. Je te dis franchement si
                 je suis le bon choix — sinon je redirige.
               </p>
@@ -166,10 +166,10 @@ export default function ServicesIndex() {
               <div className="text-primary text-sm font-bold tracking-widest mb-2">
                 ÉTAPE 2
               </div>
-              <h3 className="font-bold text-lg mb-2">Devis détaillé</h3>
+              <h3 className="font-bold text-lg mb-2">Soumission détaillée</h3>
               <p className="text-base-content/70 text-sm leading-relaxed">
-                Sous 24-48 h, un devis clair avec périmètre, livrables, délai et
-                prix fixe (pas de régie ouverte). Tu valides, on démarre.
+                Sous 24-48 h, une soumission claire avec périmètre, livrables, délai et
+                prix fixe (pas de facture à l'heure qui s'allonge). Tu valides, on démarre.
               </p>
             </li>
             <li className="bg-base-200 rounded-2xl p-6">
@@ -207,7 +207,7 @@ export default function ServicesIndex() {
       />
 
       <CtaSection title="Pas sûr de ce qu'il te faut ?" secondary={{ to: "/about", label: "Qui suis-je ?" }}>
-        Parle-moi de ton projet — c'est gratuit et sans engagement (mail ou visio, tu décides). On regarde ensemble ce qui freine ton site et ce qui aurait le plus d'impact. Tu repars avec un diagnostic clair, même si on ne travaille pas ensemble.
+        Parle-moi de ton projet — c'est gratuit et sans engagement (courriel ou visioconférence, tu décides). On regarde ensemble ce qui freine ton site et ce qui aurait le plus d'impact. Tu repars avec un diagnostic clair, même si on ne travaille pas ensemble.
       </CtaSection>
     </div>
   );

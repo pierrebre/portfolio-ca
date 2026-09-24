@@ -21,6 +21,22 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+// Chiffres cités avec leur source (mêmes sources que le guide d'audit du blog).
+const speedFacts = [
+  {
+    text: "53 % des visiteurs mobiles quittent une page qui met plus de 3 secondes à charger",
+    source: {
+      label: "Google",
+      href: "https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/",
+    },
+  },
+  { text: "Google tient compte des Core Web Vitals dans son classement depuis 2021" },
+  {
+    text: "Seuls 48 % des sites offrent de bons Core Web Vitals sur mobile",
+    source: { label: "HTTP Archive, 2025", href: "https://almanac.httparchive.org/en/2025/performance" },
+  },
+];
+
 const auditScope = [
   { icon: BarChart3, title: "Vitesse et Core Web Vitals", description: "Temps de chargement, LCP, INP, CLS : les données réelles de tes visiteurs (Chrome), pas seulement des tests en labo." },
   { icon: Search, title: "Référencement technique", description: "Indexation, structure des pages, balises, sitemap, données structurées : ce que Google voit vraiment de ton site." },
@@ -39,8 +55,8 @@ const optimPoints = [
 
 const steps = [
   {
-    title: "Premier diagnostic (gratuit)",
-    price: "Gratuit",
+    title: "Audit gratuit",
+    price: "30 min",
     desc: `${FREE_AUDIT.summary} C'est souvent suffisant pour savoir si un audit complet vaut la peine.`,
   },
   {
@@ -117,14 +133,21 @@ export default function OptimisationWebPerformance() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-6">Pourquoi la vitesse compte</h2>
           <ul className="space-y-3 mb-6">
-            {[
-              "53 % des visiteurs mobiles quittent une page qui met plus de 3 secondes à charger (Google)",
-              "Google tient compte des Core Web Vitals dans son classement depuis 2021",
-              "Seuls 48 % des sites offrent de bons Core Web Vitals sur mobile (HTTP Archive, 2025)",
-            ].map((point) => (
-              <li key={point} className="flex items-start gap-3">
+            {speedFacts.map((fact) => (
+              <li key={fact.text} className="flex items-start gap-3">
                 <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-base-content/80">{point}</span>
+                <span className="text-base-content/80">
+                  {fact.text}
+                  {fact.source && (
+                    <>
+                      {" "}(
+                      <a href={fact.source.href} target="_blank" rel="noopener noreferrer" className="underline">
+                        {fact.source.label}
+                      </a>
+                      )
+                    </>
+                  )}
+                </span>
               </li>
             ))}
           </ul>
@@ -217,8 +240,8 @@ export default function OptimisationWebPerformance() {
         </div>
       </section>
 
-      <CtaSection title="Commence par le diagnostic gratuit" secondary={{ to: "/services", label: "Voir les 3 offres" }}>
-        30 minutes, par courriel ou en visio : je regarde ton site et je te dis ce qui te coûte
+      <CtaSection title="Commence par l'audit gratuit" secondary={{ to: "/services", label: "Voir les 3 offres" }}>
+        30 minutes, par courriel ou en visioconférence : je regarde ton site et je te dis ce qui te coûte
         le plus de visiteurs. Sans engagement.
       </CtaSection>
     </div>

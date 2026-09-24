@@ -26,7 +26,7 @@ La bonne nouvelle : mettre en place une maintenance efficace n'est pas compliqu�
 
 ### Sécurité
 
-WordPress est la cible numéro 1 des cyberattaques web — parce que, comme je le détaille dans mon [guide sur l'optimisation WordPress](/blog/optimisation-vitesse-wordpress), il propulse 42,6 % du web mondial (<a href="https://w3techs.com/technologies/details/cm-wordpress" target="_blank" rel="noopener noreferrer">W3Techs, mars 2026</a>), ce qui en fait une cible rentable pour les pirates. La grande majorité des failles de sécurité WordPress se trouvent dans des plugins et des thèmes, pas dans WordPress lui-même (<a href="https://patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" target="_blank" rel="noopener noreferrer">Patchstack</a>).
+WordPress est une cible de choix pour les pirates — parce que, comme je le détaille dans mon [guide sur l'optimisation WordPress](/blog/optimisation-vitesse-wordpress), il propulse 42,6 % du web mondial (<a href="https://w3techs.com/technologies/details/cm-wordpress" target="_blank" rel="noopener noreferrer">W3Techs, mars 2026</a>), ce qui en fait une cible rentable pour les pirates. La grande majorité des failles de sécurité WordPress se trouvent dans des plugins et des thèmes, pas dans WordPress lui-même (<a href="https://patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" target="_blank" rel="noopener noreferrer">Patchstack</a>).
 
 Un plugin non mis à jour depuis 6 mois contient probablement des vulnérabilités connues. Connues des pirates, aussi.
 
@@ -34,7 +34,7 @@ Si ton site collecte des données personnelles — ne serait-ce qu'un formulaire
 
 ### Performance
 
-Un site non maintenu ralentit progressivement. Chaque plugin ajouté, chaque image uploadée sans compression, chaque version de PHP vieillissante dégrade les performances. Un site qui mettait 2 secondes à charger peut atteindre 5 secondes en 18 mois sans maintenance.
+Un site non maintenu ralentit progressivement. Chaque plugin ajouté, chaque image uploadée sans compression, chaque version de PHP vieillissante dégrade les performances. Sans maintenance, un site rapide à sa mise en ligne peut devenir nettement plus lent en un an ou deux.
 
 Google tient compte de la vitesse réelle de tes pages via les [Core Web Vitals](/blog/audit-performance-site-web). Une performance qui se dégrade silencieusement, c'est un avantage que tu perds face à tes concurrents — et des visiteurs qui repartent.
 
@@ -48,7 +48,7 @@ Sans surveillance proactive, tu apprendras ces problèmes de la bouche d'un clie
 
 Réparer un site piraté coûte entre 500 $ et 3 500 $ selon la gravité. Restaurer un site après une mise à jour ratée : 1 à 5 heures de travail. Récupérer un site sans sauvegarde propre : parfois impossible.
 
-Un forfait de maintenance à partir de 150 $/mois est toujours moins cher qu'une urgence à 1 500 $. Mon [intervention chez Service de Piscines Jolicoeur](/projects/piscines-jolicoeur) illustre exactement ce scénario : un site laissé sans suivi technique, des problèmes accumulés sur un formulaire WordPress, et un CRM qui recevait des données erronées depuis des mois.
+Un forfait de maintenance à 150 $/mois revient à 1 800 $ par an : à peu près le prix d'une seule intervention d'urgence, mais il couvre aussi les mises à jour, les sauvegardes et la surveillance qui rendent ces urgences beaucoup plus rares. Mon [intervention chez Service de Piscines Jolicoeur](/projects/piscines-jolicoeur) illustre ce scénario : un site laissé sans suivi technique, des problèmes accumulés sur un formulaire WordPress, et un CRM qui recevait des demandes incomplètes ou en double.
 
 ## Les 6 piliers de la maintenance d'un site web
 
@@ -70,9 +70,9 @@ Pour PHP : rester sur une version supportée est important pour la sécurité ET
 
 Les sauvegardes sont ton assurance vie. Sans elles, un problème sérieux peut signifier la perte totale du site.
 
-**La stratégie que j'applique :**
+**La stratégie que je recommande :**
 
-- Sauvegarde complète quotidienne (fichiers + base de données)
+- Sauvegarde complète quotidienne (fichiers + base de données) pour un site qui change souvent ; une sauvegarde hebdomadaire peut suffire pour un site vitrine peu modifié
 - Stockage hors serveur (Google Drive, Amazon S3, ou Dropbox) — ne jamais garder les sauvegardes uniquement sur le même serveur que le site
 - Conservation de 30 jours d'historique minimum
 - Test de restauration complet chaque trimestre
@@ -100,7 +100,7 @@ La sécurité est le **cœur de toute maintenance proactive** : aucune routine d
 
 Les [Core Web Vitals](/blog/audit-performance-site-web) se dégradent avec le temps — chaque nouveau plugin, chaque image ajoutée peut avoir un impact cumulatif.
 
-**Ce que je vérifie chaque mois :**
+**Ce que je vérifie chaque mois (forfaits Pro et Premium) :**
 
 - Score Google PageSpeed Insights mobile
 - LCP, INP et CLS (Core Web Vitals)
@@ -141,6 +141,8 @@ La conformité ne se fait pas une fois pour toutes. Les outils changent, les pra
 - Les mentions légales sont-elles à jour ? (annuel)
 
 ## Combien coûte la maintenance d'un site web au Québec ?
+
+Voici les fourchettes que j'observe sur le marché québécois (mes propres forfaits sont présentés juste après).
 
 ### Forfait maintenance basique (site vitrine)
 
@@ -183,13 +185,17 @@ Inclut tout ce qui précède, plus :
 
 Idéal pour : boutique en ligne, site avec réservations ou paiements, fort volume de trafic.
 
+### Mes forfaits de suivi mensuel
+
+Trois forfaits, sans engagement annuel et résiliables avec 30 jours de préavis : **Essentiel** à 150 $/mois (2 h de travail comprises), **Pro** à 300 $/mois (4 h) et **Premium** à 600 $/mois (8 h). Le contenu de chacun (fréquence des sauvegardes, délai de réponse, suivi de la vitesse) est détaillé sur ma page [Site web](/services/creation-maintenance-sites).
+
 ### Facturation à l'heure (alternative)
 
 Certaines PME préfèrent payer uniquement pour les interventions ponctuelles, à l'heure (75 $/h chez moi). C'est moins cher à court terme si les besoins sont rares. Le risque : sans surveillance proactive, les problèmes s'accumulent et les interventions d'urgence coûtent bien plus cher.
 
 ## La checklist de maintenance mensuelle
 
-Voici exactement ce que je fais pour mes clients chaque mois.
+Voici la checklist mensuelle complète que je recommande (ce que je prends en charge dépend du forfait choisi).
 
 **Semaine 1 — Mises à jour**
 
@@ -259,7 +265,7 @@ Pour comprendre les vrais coûts d'un projet web, maintenance incluse dans ton b
 
 > 💡 **Ton site web est-il bien entretenu ?**
 >
-> Je propose des forfaits de maintenance adaptés aux PME québécoises — mises à jour, sécurité, performance et conformité Loi 25 inclus. Un site bien maintenu, c'est un site qui travaille pour toi.
+> Je propose trois forfaits de suivi mensuel, de 150 $ à 600 $ par mois, sans engagement annuel : mises à jour, sauvegardes, surveillance et heures de corrections comprises. Un site bien maintenu, c'est un site qui travaille pour toi.
 >
 > [→ Discutons de ta maintenance](/contact)
 

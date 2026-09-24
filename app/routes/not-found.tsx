@@ -13,6 +13,9 @@ export function meta({}: Route.MetaArgs) {
     { name: "description", content: "Cette page n'existe pas ou a été déplacée. Retourne à l'accueil pour trouver ce que tu cherches." },
     { property: "og:title", content: "Page non trouvée | Pierre Barbé" },
     { property: "og:description", content: "Cette page n'existe pas. Retourne à l'accueil." },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "Pierre Barbé" },
+    { property: "og:locale", content: "fr_CA" },
   ];
 }
 

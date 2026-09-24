@@ -6,9 +6,9 @@ category: "Maintenance & corrections"
 tags: ["WordPress", "Fluent Forms", "Plannit CRM", "API REST", "PHP"]
 description: "Diagnostic et correction de dysfonctionnements sur un site WordPress avec intégration CRM Plannit pour une PME piscines. Formulaire cassé, mapping CRM erroné, soumissions en double."
 challenge: "Le site présentait plusieurs dysfonctionnements dans la liaison formulaire–CRM, restés invisibles côté visiteur : données mal mappées, champs manquants, logique conditionnelle cassée et soumissions en double."
-solution: "Diagnostic complet par logging custom et analyse du code PHP. Correction du mapping services, ajout des champs manquants, correction de la logique conditionnelle et suppression des déclenchements en double."
+solution: "Diagnostic complet par journalisation des envois et analyse du code PHP. Correction du mapping services, ajout des champs manquants, correction de la logique conditionnelle et suppression des déclenchements en double."
 metrics:
-  - { label: "Problèmes identifiés", before: "Multiples", after: "0" }
+  - { label: "Problèmes non résolus", before: "5", after: "0" }
 duration: "Mars 2026"
 year: 2026
 featured: true
@@ -35,8 +35,8 @@ faq:
   - question: "Comment savoir si mon formulaire envoie les bonnes données à mon CRM ?"
     answer: "Le test le plus simple : remplis toi-même une soumission complète, puis compare ligne par ligne ce que tu as saisi avec la fiche créée dans le CRM. Champ vide, service mal identifié, fiche en double : chacun de ces écarts est un signal. Si le formulaire comporte des conditions d'affichage, refais le test pour chaque service proposé — c'est souvent là que les écarts se cachent."
 services:
-  - { to: "/services/creation-maintenance-sites", title: "Création & maintenance de sites" }
-  - { to: "/services/automatisation-workflows", title: "Automatisation de workflows" }
+  - { to: "/services/creation-maintenance-sites", title: "Site web : création et maintenance" }
+  - { to: "/services/automatisation-workflows", title: "Automatisation & IA" }
 related:
   - { to: "/blog/wordpress-pme-quebec-2026", title: "WordPress pour les PME québécoises en 2026" }
   - { to: "/blog/automatiser-business-n8n-pme", title: "Automatiser son business avec n8n" }
@@ -70,11 +70,11 @@ Les services sélectionnés par les visiteurs arrivaient en texte brut au lieu d
 
 ### Champ « Déjà client ? » non transmis
 
-Un champ du formulaire n'était pas inclus dans les données envoyées au CRM. Ajout du mapping vers les custom fields Plannit.
+Un champ du formulaire n'était pas inclus dans les données envoyées au CRM. Ajout du mapping vers les champs personnalisés de Plannit.
 
 ### Page « Vie privée » mal positionnée
 
-Retrait du menu principal, proposition de placement en footer. Conseil sur la conformité Loi 25 : [voir mon guide Loi 25 pour PME](/blog/loi-25-site-web-conformite-pme).
+Retrait du menu principal, proposition de placement dans le pied de page. Conseil sur la conformité Loi 25 : [voir mon guide Loi 25 pour PME](/blog/loi-25-site-web-conformite-pme).
 
 ### Procédure invisible pour un service
 
@@ -82,7 +82,7 @@ La logique conditionnelle du formulaire utilisait le mauvais opérateur, empêch
 
 ### Soumissions en double dans le CRM
 
-Un hook WordPress se déclenchait deux fois par soumission, créant des doublons dans Plannit. Diagnostic par logging custom et analyse des timestamps, puis correction du déclenchement.
+Un hook WordPress se déclenchait deux fois par soumission, créant des doublons dans Plannit. Diagnostic par journalisation des envois et analyse de leurs horodatages, puis correction du déclenchement.
 
 ## Résultats
 

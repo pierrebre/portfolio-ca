@@ -98,6 +98,8 @@ interface ServicePageSchemaProps {
     description: string;
     price: string;
     priceCurrency: string;
+    /** Prix « à partir de » : exposé aussi comme prix minimum. */
+    isMinimumPrice?: boolean;
   };
   breadcrumbs: BreadcrumbItem[];
 }
@@ -125,7 +127,7 @@ export function generateServicePageSchema({
       "@type": "Person",
       "@id": "https://pierrebarbe.ca/#person",
       name: "Pierre Barbé",
-      url: "https://pierrebarbe.ca",
+      url: "https://pierrebarbe.ca/",
       jobTitle: "Développeur Web Freelance",
       email: "contact@pierrebarbe.ca",
       telephone: "+1-438-543-6986"
@@ -150,6 +152,15 @@ export function generateServicePageSchema({
       description: offers.description,
       price: offers.price,
       priceCurrency: offers.priceCurrency,
+      // Sans prix minimum, « price » laisse croire à un prix fixe alors que la
+      // page affiche « à partir de ».
+      ...(offers.isMinimumPrice && {
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: offers.price,
+          priceCurrency: offers.priceCurrency,
+        },
+      }),
       availability: "https://schema.org/InStock",
     };
   }

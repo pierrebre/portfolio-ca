@@ -298,7 +298,7 @@ export default function Projects({ loaderData }: Route.ComponentProps) {
       )}
 
       <CtaSection title="Ton projet, les prochains chiffres" secondary={{ to: "/services", label: "Voir tous mes services" }}>
-        Chaque site est différent. Commençons par un premier échange gratuit (mail ou visio) pour identifier où se trouvent tes gains les plus rapides.
+        Chaque site est différent. Commençons par un premier échange gratuit (courriel ou visioconférence) pour identifier où se trouvent tes gains les plus rapides.
       </CtaSection>
     </div>
   );

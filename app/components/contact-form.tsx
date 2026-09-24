@@ -10,7 +10,7 @@ import { useHydrated } from "~/hooks/use-hydrated";
 const contactformSchema = z.object({
   firstName: z.string().min(1, { message: "Le prénom est requis" }),
   lastName: z.string().min(1, { message: "Le nom de famille est requis" }),
-  email: z.string().email({ message: "Adresse e-mail invalide" }),
+  email: z.string().email({ message: "Adresse courriel invalide" }),
   message: z.string().min(1, { message: "Le message est requis" }),
   company: z.string().optional(), // champ piège
 });

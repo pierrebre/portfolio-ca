@@ -23,9 +23,9 @@ export function meta({}: Route.MetaArgs) {
 const examples = [
   { context: "Clinique / service", workflow: "Rendez-vous confirmé → rappel 24 h avant → suivi après la visite" },
   { context: "Prestataire", workflow: "Formulaire rempli → contact créé dans le CRM → courriel de bienvenue → alerte à l'équipe" },
-  { context: "Devis", workflow: "Devis envoyé → relance à J+3 puis J+7 → alerte si toujours sans réponse" },
+  { context: "Soumissions", workflow: "Soumission envoyée → relance à J+3 puis J+7 → alerte si toujours sans réponse" },
   { context: "E-commerce", workflow: "Nouvelle commande → client ajouté au CRM → facture générée → suivi de livraison" },
-  { context: "Direction", workflow: "Chaque lundi, un rapport par courriel : nouveaux leads, devis envoyés, contrats signés" },
+  { context: "Direction", workflow: "Chaque lundi, un rapport par courriel : nouveaux leads, soumissions envoyées, contrats signés" },
 ];
 
 const aiUses = [
@@ -39,13 +39,13 @@ const aiUses = [
     icon: Inbox,
     title: "Tri et résumé des demandes",
     description: "Les courriels et formulaires entrants sont classés, résumés et envoyés à la bonne personne, avec un brouillon de réponse à valider.",
-    price: "Dans un workflow",
+    price: "Compris dans le prix du workflow",
   },
   {
     icon: FileText,
     title: "Extraction de données",
     description: "Les informations utiles d'une facture, d'un bon de commande ou d'un formulaire sont extraites et saisies à ta place dans tes outils.",
-    price: "Dans un workflow",
+    price: "Compris dans le prix du workflow",
   },
 ];
 
@@ -61,6 +61,7 @@ export default function AutomatisationWorkflows() {
       description: "Conception, développement, tests et mise en production d'un workflow n8n de 2 à 3 étapes.",
       price: String(PRICING.workflowSimple.price),
       priceCurrency: "CAD",
+      isMinimumPrice: true,
     },
     breadcrumbs: [
       { name: "Accueil", url: "https://pierrebarbe.ca/" },
@@ -157,8 +158,8 @@ export default function AutomatisationWorkflows() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-6">Pourquoi n8n plutôt que Zapier ou Make ?</h2>
           <p className="text-base-content/80 leading-relaxed mb-4">
-            n8n est open source et peut être hébergé sur un serveur canadien : tes données restent
-            au Canada, et la facture ne grimpe pas avec le nombre de tâches exécutées.
+            n8n peut être installé sur ton propre serveur, au Canada : tes données y restent, et
+            la version auto-hébergée ne facture pas au nombre de tâches exécutées.
           </p>
           <p className="text-base-content/80 leading-relaxed mb-8">
             Si Make ou Zapier convient mieux à ta situation, je te le dis honnêtement. L'objectif,
@@ -167,7 +168,7 @@ export default function AutomatisationWorkflows() {
           <div className="grid sm:grid-cols-3 gap-4">
             {[
               { icon: Clock, label: "Auto-hébergeable", desc: "Tes données restent sur ton serveur" },
-              { icon: Zap, label: "Open source", desc: "Pas de frais qui explosent avec le volume" },
+              { icon: Zap, label: "Coût prévisible", desc: "Pas de frais qui explosent avec le volume" },
               { icon: CheckCircle, label: "Puissant", desc: "Conditions, boucles, API : sans limite d'étapes" },
             ].map((item) => (
               <div key={item.label} className="bg-base-100 rounded-xl p-4 text-center">

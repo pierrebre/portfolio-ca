@@ -72,6 +72,7 @@ export default function CreationMaintenanceSites() {
       description: `Site vitrine de 5 à 10 pages, livré en ${PRICING.siteVitrine.delay} : design, SEO technique, conformité Loi 25, formation et 30 jours de support.`,
       price: String(PRICING.siteVitrine.price),
       priceCurrency: "CAD",
+      isMinimumPrice: true,
     },
     breadcrumbs: [
       { name: "Accueil", url: "https://pierrebarbe.ca/" },

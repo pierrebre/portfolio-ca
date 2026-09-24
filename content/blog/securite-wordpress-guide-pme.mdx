@@ -11,14 +11,14 @@ faq:
   - question: "Est-ce que WordPress est plus vulnérable que les autres CMS ?"
     answer: "Non — WordPress est davantage ciblé parce qu'il propulse une part énorme du web mondial (42,6 % des sites selon W3Techs, mars 2026), ce qui en fait une cible rentable — pas parce qu'il est intrinsèquement moins sûr. Les piratages réussis exploitent presque toujours des failles connues dans des plugins non mis à jour, des mots de passe faibles, ou des thèmes abandonnés. Un WordPress bien maintenu et configuré est aussi sûr que n'importe quelle autre plateforme."
   - question: "Combien coûte la récupération d'un site WordPress piraté ?"
-    answer: "Entre 500 $ et 3 500 $ selon la gravité du piratage, le nombre de fichiers infectés et l'existence d'une sauvegarde récente utilisable. Sans sauvegarde, le coût peut être beaucoup plus élevé — voire mener à la perte totale du site. Un forfait de maintenance pour un site vitrine coûte typiquement entre 1 200 $ et 3 600 $ par an. Le calcul est vite fait."
+    answer: "Entre 500 $ et 3 500 $ selon la gravité du piratage, le nombre de fichiers infectés et l'existence d'une sauvegarde récente utilisable. Sans sauvegarde, le coût peut être beaucoup plus élevé — voire mener à la perte totale du site. Un forfait de maintenance pour un site vitrine coûte typiquement entre 1 200 $ et 3 600 $ par an : à peu près le prix d'un seul nettoyage, mais il couvre aussi les mises à jour, les sauvegardes et la surveillance qui rendent ce genre d'incident beaucoup plus rare."
   - question: "Mon hébergeur gère-t-il la sécurité de mon site WordPress ?"
     answer: "Ton hébergeur sécurise l'infrastructure (serveur, réseau), mais pas ton application WordPress. La sécurité de ton installation WordPress — plugins, thèmes, mots de passe, configuration — est entièrement ta responsabilité. Même avec le meilleur hébergeur du monde, un plugin WordPress non mis à jour depuis 2 ans reste une porte d'entrée pour les pirates."
 ---
 
 Je reçois régulièrement des appels de panique de PME québécoises : « Mon site affiche des publicités bizarres » ou « Google dit que mon site est dangereux ». Ce n'est pas de la malchance — c'est le résultat prévisible de mises à jour ignorées, de mots de passe faibles et de plugins non maintenus.
 
-Comme je l'explique dans mon [guide complet sur l'optimisation WordPress](/blog/optimisation-vitesse-wordpress), WordPress propulse 42,6 % du web mondial (<a href="https://w3techs.com/technologies/details/cm-wordpress" target="_blank" rel="noopener noreferrer">W3Techs, mars 2026</a>). C'est une qualité — communauté massive, flexibilité, écosystème riche. C'est aussi un risque : c'est la cible numéro 1 des pirates informatiques. Pas parce que WordPress est mal conçu, mais parce que représenter plus de quatre sites sur dix dans le monde, c'est être une cible rentable.
+Comme je l'explique dans mon [guide complet sur l'optimisation WordPress](/blog/optimisation-vitesse-wordpress), WordPress propulse 42,6 % du web mondial (<a href="https://w3techs.com/technologies/details/cm-wordpress" target="_blank" rel="noopener noreferrer">W3Techs, mars 2026</a>). C'est une qualité — communauté massive, flexibilité, écosystème riche. C'est aussi un risque : c'est une cible de choix pour les pirates informatiques. Pas parce que WordPress est mal conçu, mais parce que représenter plus de quatre sites sur dix dans le monde, c'est être une cible rentable.
 
 Selon la <a href="https://www.bdc.ca/fr/articles-outils/blogue/cyberattaque-encore-trop-deni-parmi-pme" target="_blank" rel="noopener noreferrer">BDC</a>, 73 % des PME canadiennes ont déjà subi au moins un incident de cybersécurité. Beaucoup auraient pu être évités avec quelques mesures de base.
 
@@ -146,7 +146,7 @@ Ton hébergeur est la fondation de tout. Un hébergement bas de gamme sur des se
 - **Isolation des comptes** : ton site est isolé des autres, une infection d'un voisin ne peut pas se propager
 - **PHP 8.3 ou plus récent** : une version encore supportée reçoit les correctifs de sécurité
 - **WAF intégré** : certains hébergeurs (SiteGround, WP Engine, Kinsta) incluent un WAF au niveau serveur
-- **Serveurs au Québec ou au Canada** : pour la performance, et pour simplifier la conformité Loi 25 (un hébergement à Montréal évite tout transfert de données hors Québec)
+- **Serveurs au Québec ou au Canada** : pour la performance, et pour simplifier la conformité Loi 25 (un hébergement au Québec évite le transfert hors Québec des données stockées sur ton site)
 - **Support réactif** : si ton site est compromis un vendredi soir, tu as besoin d'aide
 
 Je vais être direct : un hébergement à 3 $ par mois, ce n'est probablement pas assez. Pour un site qui génère des revenus, un hébergement WordPress géré entre 25 $ et 50 $/mois est le bon investissement.
@@ -181,7 +181,7 @@ Administration WordPress, FTP, panneau d'hébergement, base de données — chan
 
 **7. Faire appel à un professionnel si nécessaire**
 
-Si le piratage est complexe — injection de code dans plusieurs fichiers, portes dérobées cachées, réinfection répétée — fais appel à un professionnel. Un nettoyage après piratage coûte entre 500 $ et 3 500 $ selon la gravité. Sachant qu'un forfait de maintenance annuel pour un site vitrine coûte entre 1 200 $ et 3 600 $, la prévention est toujours moins coûteuse.
+Si le piratage est complexe — injection de code dans plusieurs fichiers, portes dérobées cachées, réinfection répétée — fais appel à un professionnel. Un nettoyage après piratage coûte entre 500 $ et 3 500 $ selon la gravité. Sachant qu'un forfait de maintenance annuel pour un site vitrine coûte entre 1 200 $ et 3 600 $, la prévention revient à peu près au prix d'un seul incident — et elle réduit fortement le risque d'en subir d'autres.
 
 ## Checklist sécurité WordPress — à faire maintenant
 
@@ -197,7 +197,7 @@ Si le piratage est complexe — injection de code dans plusieurs fichiers, porte
 - ✅ Plugins et thèmes inutilisés supprimés
 - ✅ Hébergement sécurisé avec isolation des comptes
 
-Si tu as coché tous ces points, ton site est mieux protégé que la grande majorité des sites WordPress.
+Si tu as coché tous ces points, tu as fermé les portes d'entrée que je vois le plus souvent exploitées sur les sites WordPress piratés.
 
 ---
 
@@ -209,10 +209,10 @@ Et si ton site traite des données personnelles (formulaires, commandes, inscrip
 
 > 💡 **Inquiet pour la sécurité de ton site WordPress ?**
 >
-> Je réalise des audits de sécurité complets pour les PME québécoises et j'installe les protections adaptées à ta situation. Mieux vaut prévenir que payer pour réparer.
+> Mon [audit complet](/services/optimisation-web-performance) vérifie aussi la sécurité de ton site (HTTPS, plugins vulnérables ou abandonnés, versions en fin de vie). J'installe ensuite les protections adaptées à ta situation et je les tiens à jour dans le cadre du suivi mensuel. Mieux vaut prévenir que payer pour réparer.
 >
-> [→ Demander un audit de sécurité](/contact)
+> [→ Parlons de la sécurité de ton site](/contact)
 
 ---
 
-*Besoin de sécuriser et de maintenir ton site WordPress ? Découvre mes [services de création et maintenance de sites](/services/creation-maintenance-sites) ou [écris-moi](/contact) pour un audit de sécurité adapté à ta situation.*
+*Besoin de sécuriser et de maintenir ton site WordPress ? Découvre mes [services de création et maintenance de sites](/services/creation-maintenance-sites) ou [écris-moi](/contact) pour faire le point sur la sécurité de ton site.*

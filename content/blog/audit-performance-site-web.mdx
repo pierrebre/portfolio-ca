@@ -4,10 +4,10 @@ description: "Seuls 48 % des sites passent les Core Web Vitals sur mobile en 202
 date: "2026-02-26"
 updatedDate: "2026-09-24"
 category: "Web Performance"
-excerpt: "53 % des visiteurs mobiles quittent une page qui met plus de 3 secondes à charger. Un site qui charge en 1 seconde convertit 2,5 à 3x plus qu'un site en 5 secondes. Voici la méthode exacte que j'utilise pour auditer la performance des sites de mes clients au Québec — outils, métriques et cas concret."
+excerpt: "53 % des visiteurs mobiles quittent une page qui met plus de 3 secondes à charger. Un site qui charge en 1 seconde convertit 2,5 à 3 fois plus qu'un site en 5 secondes. Voici la méthode exacte que j'utilise pour auditer la performance des sites de mes clients au Québec — outils, métriques et cas concret."
 faq:
   - question: "Combien de temps prend un audit de performance complet ?"
-    answer: "Un audit manuel complet avec PageSpeed Insights, GTmetrix et WebPageTest prend entre 2 et 4 heures pour un site standard. L'analyse inclut le diagnostic des causes, la priorisation des corrections et la rédaction d'un rapport avec recommandations chiffrées."
+    answer: "Pour un site standard, compte environ une journée de travail (8 heures) : mesures avec PageSpeed Insights, GTmetrix et WebPageTest, diagnostic des causes, priorisation des corrections et rédaction d'un rapport avec recommandations chiffrées. C'est le format de mon audit complet, livré en 2 à 5 jours ouvrables."
   - question: "Quel score Lighthouse faut-il viser pour un site professionnel ?"
     answer: "Pour un site d'entreprise, vise 90+ en Performance sur mobile. Entre 70 et 89, c'est acceptable mais il reste de la marge. Attention : le score Lighthouse est un outil de diagnostic, pas un critère de classement. Google classe avec les données réelles de tes visiteurs (Core Web Vitals mesurés par Chrome), mais un bon score Lighthouse va généralement de pair avec de bonnes données réelles."
   - question: "Est-ce qu'un mauvais score PageSpeed affecte le référencement Google ?"
@@ -175,7 +175,7 @@ Voici un exemple réel, sans nommer le client. Un e-commerce québécois m'a con
 - Score Lighthouse mobile : **83 / 100** (+38 points)
 - Temps de chargement : **moins de 2,5 secondes**
 
-Pour donner une idée de l'enjeu : quand le temps de chargement passe de 1 à 3 secondes, <a href="https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/" target="_blank" rel="noopener noreferrer">la probabilité de rebond augmente de 32 %</a> (Google). Et selon une <a href="https://www.shopify.com/blog/website-load-time-statistics" target="_blank" rel="noopener noreferrer">analyse Shopify portant sur 100 millions de pages vues</a>, un site qui charge en 1 seconde convertit **2,5 à 3 fois plus** qu'un site qui charge en 5 secondes — l'impact sur le chiffre d'affaires est direct et mesurable.
+Pour donner une idée de l'enjeu : quand le temps de chargement passe de 1 à 3 secondes, <a href="https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/" target="_blank" rel="noopener noreferrer">la probabilité de rebond augmente de 32 %</a> (Google). Et selon une <a href="https://portent.com/blog/analytics/research-site-speed-hurting-everyones-revenue.htm" target="_blank" rel="noopener noreferrer">analyse de Portent portant sur plus de 100 millions de pages vues</a>, un site qui charge en 1 seconde convertit **2,5 fois (e-commerce) à 3 fois (B2B) plus** qu'un site qui charge en 5 secondes — l'impact sur le chiffre d'affaires est direct et mesurable.
 
 Pour le volet WordPress de ce projet — compression des images, nettoyage des plugins, activation du cache — j'ai documenté l'approche complète dans mon [guide complet sur l'optimisation de la vitesse WordPress](/blog/optimisation-vitesse-wordpress).
 
@@ -185,7 +185,7 @@ Pour le volet WordPress de ce projet — compression des images, nettoyage des p
 
 ## Les erreurs les plus courantes que je vois chez mes clients
 
-Après des dizaines d'audits au Québec, voici les problèmes qui reviennent systématiquement. Si tu te reconnais dans l'une de ces situations, bonne nouvelle : ce sont aussi les plus faciles à corriger.
+Audit après audit, voici les problèmes qui reviennent systématiquement. Si tu te reconnais dans l'une de ces situations, bonne nouvelle : ce sont aussi les plus faciles à corriger.
 
 ### 1. Des images uploadées directement depuis l'appareil photo
 
@@ -195,7 +195,7 @@ Une photo prise avec un téléphone récent pèse facilement 4 à 8 Mo. Uploadé
 
 ### 2. Une accumulation de plugins jamais désactivés
 
-Chaque plugin WordPress que tu n'utilises plus continue souvent de charger des scripts et des feuilles de style sur toutes tes pages. Dix plugins inactifs peuvent représenter plusieurs secondes de chargement supplémentaire.
+Chaque plugin WordPress que tu n'utilises plus continue souvent de charger des scripts et des feuilles de style sur toutes tes pages. Dix plugins encore activés mais qui ne servent plus peuvent représenter plusieurs secondes de chargement supplémentaire.
 
 **La correction :** fais l'inventaire de tes plugins une fois par trimestre. Si tu n'utilises pas un plugin, désactive-le et supprime-le complètement.
 
@@ -203,7 +203,7 @@ Chaque plugin WordPress que tu n'utilises plus continue souvent de charger des s
 
 L'hébergement à 3 $ par mois te coûte cher en performance — et potentiellement en clients perdus. Les hébergeurs bas de gamme placent des centaines de sites sur le même serveur, ce qui dégrade les temps de réponse pour tout le monde.
 
-**La correction :** choisis un hébergeur avec des serveurs au Canada. Pour une PME québécoise, un hébergement géré à 30-50 $ par mois offre un rapport qualité-vitesse incomparable par rapport à l'hébergement partagé bas de gamme.
+**La correction :** choisis un hébergeur avec des serveurs au Canada. Pour une PME québécoise, un hébergement géré à 25-50 $ par mois offre un rapport qualité-vitesse incomparable par rapport à l'hébergement partagé bas de gamme.
 
 ### 4. Aucune mesure régulière de la performance
 
@@ -213,7 +213,7 @@ La performance d'un site se dégrade avec le temps — chaque plugin ajouté, ch
 
 ### 5. Des mises à jour WordPress et PHP retardées par peur de casser le site
 
-PHP 7.4 est en fin de vie et PHP 8.2 est significativement plus rapide pour de nombreuses opérations courantes. Pourtant, beaucoup de propriétaires de sites hésitent à mettre à jour par crainte de provoquer des bris.
+PHP 7.4 ne reçoit plus de correctifs depuis fin 2022, et les versions 8.x sont nettement plus rapides. Vise PHP 8.3 ou plus récent : PHP 8.2 ne reçoit plus que des correctifs de sécurité, jusqu'à fin 2026 (<a href="https://www.php.net/supported-versions.php" target="_blank" rel="noopener noreferrer">calendrier officiel de PHP</a>). Pourtant, beaucoup de propriétaires de sites hésitent à mettre à jour par crainte de provoquer des bris.
 
 **La correction :** fais une sauvegarde complète de ton site, puis effectue les mises à jour dans un environnement de test avant de les appliquer en production. Si cette procédure te semble compliquée, c'est exactement le genre d'accompagnement que je propose.
 
@@ -229,4 +229,4 @@ Une fois ton site performant, l'étape naturelle suivante est souvent d'[automat
 - [Combien coûte un site web au Québec ?](/blog/cout-site-web-quebec-prix) — repères de prix pour budgéter une refonte
 - [WordPress est-il le bon choix pour ta PME ?](/blog/wordpress-pme-quebec-2026) — comparatif WordPress, Shopify et Wix avant de lancer ou refondre
 
-Ce guide est conçu pour te permettre de **réaliser toi-même** un audit de performance complet avec des outils gratuits. Si en cours de route tu préfères déléguer la partie diagnostic + correctifs, jette un œil à mon offre [audit et optimisation](/services/optimisation-web-performance) — sinon, tout est dans cet article.
+Ce guide est conçu pour te permettre de **réaliser toi-même** un audit de performance complet avec des outils gratuits. Si en cours de route tu préfères déléguer la partie diagnostic + correctifs, jette un œil à mon offre [Performance](/services/optimisation-web-performance) (audit complet, puis optimisation) — sinon, tout est dans cet article.
