@@ -26,17 +26,17 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
+        "Articles pratiques sur la web-performance, WordPress, l'automatisation n8n, l'IA et la Loi 25 pour les PME québécoises.",
     },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
     {
       property: "og:title",
-      content: "Blog — Web performance, automatisation & éco-conception",
+      content: "Blog — Web performance, WordPress & automatisation",
     },
     {
       property: "og:description",
       content:
-        "Articles pratiques sur la web-performance, l'automatisation n8n et l'éco-conception pour PME du Québec.",
+        "Articles pratiques sur la web-performance, WordPress et l'automatisation pour les PME du Québec.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -48,7 +48,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:title", content: "Blog — Web performance & automatisation | Pierre Barbé" },
     {
       name: "twitter:description",
-      content: "Articles pratiques sur la web-performance, n8n et l'éco-conception.",
+      content: "Articles pratiques sur la web-performance, WordPress et n8n.",
     },
     { name: "twitter:image", content: image },
   ];
@@ -78,7 +78,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
         "@id": "https://pierrebarbe.ca/blog#blog",
         name: "Blog — Pierre Barbé",
         description:
-          "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
+          "Articles pratiques sur la web-performance, WordPress, l'automatisation n8n, l'IA et la Loi 25 pour les PME québécoises.",
         url: "https://pierrebarbe.ca/blog",
         inLanguage: "fr-CA",
         author: AUTHOR_SCHEMA,
@@ -173,7 +173,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           {posts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-base-content/60 text-lg">
-                Aucun article pour le moment. Revenez bientôt !
+                Aucun article pour le moment. Reviens bientôt !
               </p>
             </div>
           ) : filteredPosts.length === 0 ? (

@@ -134,7 +134,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       title={isRouteErrorResponse(error) ? `Erreur ${error.status}` : "Erreur"}
       message={
         devError?.message ??
-        "Une erreur inattendue s'est produite. Réessayez dans un instant."
+        "Une erreur inattendue s'est produite. Réessaie dans un instant."
       }
       stack={devError?.stack}
     />

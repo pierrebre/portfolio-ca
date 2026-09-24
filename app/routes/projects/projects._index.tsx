@@ -34,7 +34,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "Résultats mesurables sur de vrais projets québécois : performance, e-commerce, automatisation et éco-conception.",
+        "Résultats mesurables sur de vrais projets québécois : corrections WordPress, performance, automatisation et création de sites.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -68,7 +68,7 @@ const projectsSchema = {
       url: "https://pierrebarbe.ca/projects",
       name: "Projets — Études de cas | Pierre Barbé",
       description:
-        "Études de cas concrets : web performance, e-commerce, automatisation et éco-conception pour PME québécoises.",
+        "Études de cas concrets : corrections WordPress, web performance, automatisation et création de sites pour PME québécoises.",
       inLanguage: "fr-CA",
       isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
     },

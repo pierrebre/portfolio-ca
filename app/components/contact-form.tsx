@@ -37,7 +37,7 @@ export default function ContactForm() {
   });
 
   const onSubmit: SubmitHandler<FormSchemaType> = async ({ company, ...data }) => {
-    const success = "Votre message a été envoyé avec succès !";
+    const success = "Ton message a bien été envoyé !";
     // Robot : on simule un succès sans rien envoyer
     if (company) {
       showToast(success, "success");
@@ -108,7 +108,7 @@ export default function ContactForm() {
         {(field) => (
           <textarea
             {...field}
-            placeholder="Votre message ici..."
+            placeholder="Ton message ici…"
             className="textarea textarea-md w-full"
             {...register("message")}
           />

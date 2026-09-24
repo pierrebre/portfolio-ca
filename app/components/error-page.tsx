@@ -26,4 +26,4 @@ export default function ErrorPage({ title, message, stack }: ErrorPageProps) {
 }
 
 export const NOT_FOUND_MESSAGE =
-  "Oups ! La page que vous recherchez est introuvable.";
+  "Oups ! La page que tu cherches est introuvable.";

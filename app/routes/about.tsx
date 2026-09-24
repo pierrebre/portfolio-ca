@@ -39,7 +39,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Développeur web freelance à Montréal, spécialisé en web-performance, automatisation n8n et éco-conception. Découvrez mon parcours, ma stack et mes valeurs.",
+        "Développeur web freelance à Montréal, spécialisé en web-performance, automatisation n8n et éco-conception. Découvre mon parcours, ma stack et mes valeurs.",
     },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
     {
@@ -128,7 +128,7 @@ const values = [
     icon: Zap,
     title: "Performance avant tout",
     description:
-      "Un site lent perd des clients. Je mesure, j'optimise, je mesure encore. Chaque milliseconde compte — pour vos utilisateurs et pour Google.",
+      "Un site lent perd des clients. Je mesure, j'optimise, je mesure encore. Chaque milliseconde compte — pour tes visiteurs et pour Google.",
   },
   {
     icon: Leaf,
@@ -242,7 +242,7 @@ export default function About() {
               </p>
               <p className="text-base-content/80 mt-4 text-lg leading-relaxed">
                 Mon approche : du concret, de la transparence, et pas de promesses
-                creuses. Je mesure, j'optimise, je documente. Vous savez toujours
+                creuses. Je mesure, j'optimise, je documente. Tu sais toujours
                 exactement ce que je fais et pourquoi.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
@@ -402,9 +402,9 @@ export default function About() {
             <div className="bg-base-200 rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-3 text-primary">Pas d'intermédiaire</h3>
               <p className="text-base-content/80 text-sm leading-relaxed">
-                Vous parlez directement à la personne qui code. Pas de chef de
+                Tu parles directement à la personne qui code. Pas de chef de
                 projet qui traduit, pas de briefs mal transmis, pas de délais qui
-                s'étirent entre les équipes. La boucle entre vos retours et le
+                s'étirent entre les équipes. La boucle entre tes retours et le
                 déploiement prend des heures, pas des semaines.
               </p>
             </div>
@@ -420,10 +420,10 @@ export default function About() {
             <div className="bg-base-200 rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-3 text-primary">Code transparent</h3>
               <p className="text-base-content/80 text-sm leading-relaxed">
-                Vous recevez un repo Git propre, une documentation claire et un
+                Tu reçois un repo Git propre, une documentation claire et un
                 code que n'importe quel autre développeur peut reprendre. Pas de
-                lock-in technologique, pas de dépendance à mes outils. Votre
-                projet reste le vôtre.
+                lock-in technologique, pas de dépendance à mes outils. Ton
+                projet reste le tien.
               </p>
             </div>
           </div>
@@ -434,7 +434,7 @@ export default function About() {
               multi-disciplinaires (branding + vidéo + pub + web + 10 profils
               coordonnés). Pour un site performant, un audit technique ou une
               automatisation ciblée, un freelance spécialisé livre plus vite, à
-              meilleur coût. Si votre besoin dépasse mon périmètre, je vous
+              meilleur coût. Si ton besoin dépasse mon périmètre, je te
               redirige — je préfère ne pas prendre un projet plutôt que le bâcler.
             </p>
           </div>
@@ -487,7 +487,7 @@ export default function About() {
       </section>
 
       <CtaSection title="Travaillons ensemble" secondary={{ to: "/services", label: "Voir tous mes services" }}>
-        Vous avez un projet, un site à optimiser ou un processus à automatiser ? Parlons-en — premier échange gratuit, par mail ou visio.
+        Tu as un projet, un site à optimiser ou un processus à automatiser ? Parlons-en — premier échange gratuit, par mail ou visio.
       </CtaSection>
     </div>
   );

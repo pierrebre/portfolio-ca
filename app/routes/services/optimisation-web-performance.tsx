@@ -90,9 +90,9 @@ export default function OptimisationWebPerformance() {
               Optimisation de la performance web & Core Web Vitals
             </h1>
             <p className="text-base-content/80 mx-auto max-w-3xl text-lg md:text-xl">
-              Ton site met plus de 3 secondes à charger ? Chaque seconde de plus, c'est 7 % de
-              conversions en moins. J'audite, j'optimise et je mesure — jusqu'à ce que ton site soit
-              dans le top 10 % des sites les plus rapides de ton industrie.
+              Ton site met plus de 3 secondes à charger ? Plus de la moitié des visiteurs mobiles
+              repartent avant de le voir. J'audite, j'optimise et je mesure — jusqu'à ce que tes
+              Core Web Vitals soient dans le vert.
             </p>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function OptimisationWebPerformance() {
           </p>
           <ul className="space-y-3 mb-8">
             {[
-              "Google pénalise les sites lents depuis 2021 (Core Web Vitals dans le ranking)",
+              "Google tient compte des Core Web Vitals dans son classement depuis 2021",
               "53 % des visiteurs mobile quittent si la page met plus de 3 secondes à charger",
               "Amazon a calculé que 100 ms de latence = 1 % de ventes en moins",
             ].map((point) => (

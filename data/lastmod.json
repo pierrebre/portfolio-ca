@@ -5,11 +5,11 @@
   },
   "/about": {
     "lastmod": "2026-09-24",
-    "hash": "a59e894b5aa6526c"
+    "hash": "c5074de72323b649"
   },
   "/projects": {
     "lastmod": "2026-09-24",
-    "hash": "ce09a3c2b1071637"
+    "hash": "83d6b2dfc5c76464"
   },
   "/services": {
     "lastmod": "2026-09-24",
@@ -17,7 +17,7 @@
   },
   "/services/optimisation-web-performance": {
     "lastmod": "2026-09-24",
-    "hash": "d1a540989ed9d642"
+    "hash": "7f3ee68400d99f66"
   },
   "/services/creation-maintenance-sites": {
     "lastmod": "2026-09-24",
@@ -25,7 +25,7 @@
   },
   "/services/automatisation-workflows": {
     "lastmod": "2026-09-24",
-    "hash": "4d5303023ddcdf66"
+    "hash": "bf6712a17e33f444"
   },
   "/services/audits-techniques-core-web-vitals": {
     "lastmod": "2026-09-24",
@@ -41,6 +41,6 @@
   },
   "/contact": {
     "lastmod": "2026-09-24",
-    "hash": "153e0ae43681126b"
+    "hash": "23efa1c00735fecb"
   }
 }

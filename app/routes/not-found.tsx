@@ -10,9 +10,9 @@ export function meta({}: Route.MetaArgs) {
   return [
     { title: "Page non trouvée (404) | Pierre Barbé" },
     { name: "robots", content: "noindex, nofollow" },
-    { name: "description", content: "Cette page n'existe pas ou a été déplacée. Retournez à l'accueil pour trouver ce que vous cherchez." },
+    { name: "description", content: "Cette page n'existe pas ou a été déplacée. Retourne à l'accueil pour trouver ce que tu cherches." },
     { property: "og:title", content: "Page non trouvée | Pierre Barbé" },
-    { property: "og:description", content: "Cette page n'existe pas. Retournez à l'accueil." },
+    { property: "og:description", content: "Cette page n'existe pas. Retourne à l'accueil." },
   ];
 }
 

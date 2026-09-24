@@ -28,7 +28,7 @@ const examples = [
 export default function AutomatisationWorkflows() {
   const schema = generateServicePageSchema({
     name: "Automatisation de Workflows avec n8n",
-    description: `Automatisation de tâches répétitives avec n8n pour PME du Québec. Économisez 5 à 20 h/semaine. Workflows à partir de ${PRICING.workflowSimple.label}.`,
+    description: `Automatisation de tâches répétitives avec n8n pour PME du Québec. Économise 5 à 20 h/semaine. Workflows à partir de ${PRICING.workflowSimple.label}.`,
     url: "https://pierrebarbe.ca/services/automatisation-workflows",
     serviceType: "Workflow Automation",
     areaServed: ["Montréal", "Québec", "Canada"],

@@ -43,7 +43,7 @@ export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
   });
 
   const onSubmit: SubmitHandler<AuditFormType> = async ({ company, ...data }) => {
-    const success = "Votre demande d'audit a été soumise avec succès !";
+    const success = "Ta demande d'audit a bien été envoyée !";
     // Robot : on simule un succès sans rien envoyer
     if (company) {
       showToast(success, "success");

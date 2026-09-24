@@ -4,7 +4,8 @@ Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnp
 
 ## Contenu
 
-- Site en français (fr-CA). Titres ≤ 60 caractères, meta descriptions ≤ 160.
+- Site en français (fr-CA), au tutoiement partout (pages, formulaires, articles). Titres ≤ 60 caractères, meta descriptions ≤ 160.
+- Chiffre ou statistique dans un article : lien vers la source (ou présenté comme une observation personnelle). Catégories du blog : Web Performance, Automatisation & IA, WordPress, Projet web (couleurs dans `app/utils/blog-categories.ts`). Article modifié en profondeur : mettre à jour `updatedDate`.
 - Nouvel article : `content/blog/<slug>.mdx`, slug en `[a-z0-9-]`. Un article daté dans le futur est programmé (ni listé ni servi).
 - Projet : `content/projects/<slug>.mdx`. Le frontmatter fait la carte de `/projects` ; un corps non vide crée l'étude de cas `/projects/<slug>` (champs dans `app/lib/projects.server.ts`, exemple complet : `piscines-jolicoeur.mdx`).
 - Afficher une date d'article avec `formatPostDate` (`app/utils/date.ts`) : un formatage local décale d'un jour et casse l'hydratation.
