@@ -18,7 +18,7 @@ export default function ServiceCard({
         <div className="bg-primary/10 mb-6 flex h-14 w-14 items-center justify-center rounded-2xl p-3.5">
           <Icon className="text-primary h-full w-full" aria-hidden="true" />
         </div>
-        <p className="text-base-content/70 text-sm font-medium italic mb-2">« {problem} »</p>
+        <p className="text-base-content/70 text-sm font-medium mb-2">« {problem} »</p>
         <h3 id={`service-card-${key}`} className="text-base-content text-2xl font-bold mb-3">
           {name}
         </h3>
