@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import ServiceCard from "./service-card";
 import { services } from "data/services";
-import { getServiceUrl } from "~/utils/service-links";
 
 export default function Services() {
   const featuredServices = services.slice(0, 3);
@@ -13,22 +12,16 @@ export default function Services() {
           <div className="mb-3 flex justify-center">
             <div className="via-primary h-px w-24 bg-linear-to-r from-transparent to-transparent" />
           </div>
-          <h2 className="font-urbanist content text-4xl font-bold md:text-5xl">
+          <h2 className="content text-4xl font-bold md:text-5xl">
             Ce que je fais concrètement
           </h2>
         </div>
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {featuredServices.map((service) => (
-            <ServiceCard
-              key={service.key}
-              icon={service.icon}
-              name={service.name}
-              description={service.description}
-              linkTo={getServiceUrl(service.key)}
-            />
+            <ServiceCard key={service.key} service={service} />
           ))}
         </div>
-        <p className="text-base-content/60 font-urbanist mt-10 text-center text-sm">
+        <p className="text-base-content/60 mt-10 text-center text-sm">
           Je fais aussi des audits techniques, de la gestion serveur et du
           déploiement.{" "}
           <Link to="/services" className="link link-primary font-medium">

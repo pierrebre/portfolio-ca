@@ -1,8 +1,11 @@
 import { Link } from "react-router";
-import { Calendar, Clock, Tag, ArrowLeft, ArrowRight, ChevronLeft } from "lucide-react";
+import { Calendar, Clock, Tag, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import { getPost, getAdjacentPosts } from "~/lib/content.server";
+import { categoryBadgeClass } from "~/utils/blog-categories";
+import { formatPostDate } from "~/utils/date";
+import { AUTHOR_SCHEMA, PUBLISHER_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/blog.$slug";
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -27,9 +30,13 @@ export function meta({ data }: Route.MetaArgs) {
   const { post } = data;
   const url = `https://pierrebarbe.ca/blog/${post.slug}`;
   const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.jpg";
+  // Google tronque les titres vers 60 caractères : la marque n'est ajoutée
+  // que si elle tient, pour ne pas couper le titre de l'article.
+  const brandedTitle = `${post.title} | Pierre Barbé`;
+  const title = brandedTitle.length <= 60 ? brandedTitle : post.title;
 
   return [
-    { title: `${post.title} | Pierre Barbé` },
+    { title },
     { tagName: "link", rel: "canonical", href: url },
     { name: "description", content: post.description },
     { property: "og:title", content: post.title },
@@ -40,6 +47,7 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:image:height", content: "630" },
     { property: "og:image:alt", content: post.title },
     { property: "og:type", content: "article" },
+    { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
     { property: "article:published_time", content: `${post.date}T00:00:00-05:00` },
     { property: "article:modified_time", content: `${post.updatedDate ?? post.date}T00:00:00-05:00` },
@@ -52,13 +60,6 @@ export function meta({ data }: Route.MetaArgs) {
     { name: "twitter:image:alt", content: post.title },
   ];
 }
-
-const CATEGORY_COLORS: Record<string, string> = {
-  "Web Performance": "badge-primary",
-  Automatisation: "badge-secondary",
-  "Éco-conception": "badge-success",
-  Général: "badge-neutral",
-};
 
 export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const { post, adjacent } = loaderData;
@@ -81,8 +82,8 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         },
         datePublished: `${post.date}T00:00:00-05:00`,
         dateModified: `${post.updatedDate ?? post.date}T00:00:00-05:00`,
-        author: { "@id": "https://pierrebarbe.ca/#person" },
-        publisher: { "@id": "https://pierrebarbe.ca/#organization" },
+        author: AUTHOR_SCHEMA,
+        publisher: PUBLISHER_SCHEMA,
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id": url,
@@ -116,7 +117,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
     : null;
 
   return (
-    <div className="bg-base-100 font-urbanist min-h-screen">
+    <div className="bg-base-100 min-h-screen">
       <JsonLd data={blogPostingSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
 
@@ -135,34 +136,24 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         <header className="pt-8 pb-10 border-b border-base-content/10">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span
-              className={`badge font-medium ${CATEGORY_COLORS[post.category] ?? "badge-neutral"}`}
+              className={`badge font-medium ${categoryBadgeClass(post.category)}`}
             >
               <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
               {post.category}
             </span>
-            <span className="text-base-content/50 flex items-center gap-1 text-sm">
+            <span className="text-base-content/70 flex items-center gap-1 text-sm">
               <Calendar className="h-4 w-4" aria-hidden="true" />
-              <time dateTime={post.date}>
-                {new Date(post.date).toLocaleDateString("fr-CA", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
+              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             </span>
             {post.updatedDate && post.updatedDate !== post.date && (
-              <span className="text-primary/70 flex items-center gap-1 text-sm font-medium">
+              <span className="text-primary flex items-center gap-1 text-sm font-medium">
                 · Mis à jour le{" "}
                 <time dateTime={post.updatedDate}>
-                  {new Date(post.updatedDate).toLocaleDateString("fr-CA", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {formatPostDate(post.updatedDate)}
                 </time>
               </span>
             )}
-            <span className="text-base-content/50 flex items-center gap-1 text-sm">
+            <span className="text-base-content/70 flex items-center gap-1 text-sm">
               <Clock className="h-4 w-4" aria-hidden="true" />
               {post.readingTime} min de lecture
             </span>
@@ -184,7 +175,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
               <Link to="/about" className="font-semibold text-sm hover:text-primary transition-colors">
                 Pierre Barbé
               </Link>
-              <p className="text-base-content/50 text-xs">
+              <p className="text-base-content/70 text-xs">
                 Développeur web freelance · Montréal
               </p>
             </div>
@@ -198,7 +189,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
             prose-h2:mt-10 prose-h3:mt-6 prose-h3:mb-2
             prose-p:leading-relaxed
-            prose-a:no-underline hover:prose-a:underline
+            prose-a:underline-offset-2 hover:prose-a:no-underline
             prose-code:text-sm prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
             prose-code:before:content-none prose-code:after:content-none
             [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-base-content/10
@@ -206,7 +197,6 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             [&_blockquote]:rounded-r-xl [&_blockquote]:bg-primary/5 [&_blockquote]:py-4
             prose-table:text-sm [&_thead_th]:bg-base-200"
           dangerouslySetInnerHTML={{ __html: post.html }}
-          aria-label={`Contenu de l'article : ${post.title}`}
         />
 
         {/* Navigation prev / next */}
@@ -220,10 +210,10 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
                 to={`/blog/${adjacent.prev.slug}`}
                 className="group flex flex-col gap-1 p-4 rounded-xl border border-base-content/10 hover:border-primary/30 hover:bg-primary/5 transition-all"
               >
-                <span className="text-base-content/50 text-xs flex items-center gap-1">
+                <span className="text-base-content/70 text-xs flex items-center gap-1">
                   <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                   Article précédent
-                </span>
+                </span>{" "}
                 <span className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">
                   {adjacent.prev.title}
                 </span>
@@ -237,10 +227,10 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
                 to={`/blog/${adjacent.next.slug}`}
                 className="group flex flex-col gap-1 p-4 rounded-xl border border-base-content/10 hover:border-primary/30 hover:bg-primary/5 transition-all text-right sm:col-start-2"
               >
-                <span className="text-base-content/50 text-xs flex items-center gap-1 justify-end">
+                <span className="text-base-content/70 text-xs flex items-center gap-1 justify-end">
                   Article suivant
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </span>
+                  <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>{" "}
                 <span className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">
                   {adjacent.next.title}
                 </span>
@@ -257,14 +247,14 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           <div>
             <p className="font-bold text-base">
               Écrit par{" "}
-              <Link to="/about" className="text-primary hover:underline">
+              <Link to="/about" className="text-primary underline underline-offset-2 hover:no-underline">
                 Pierre Barbé
               </Link>
             </p>
             <p className="text-base-content/70 text-sm mt-1 leading-relaxed">
               Développeur web freelance à Montréal, spécialisé en performance WordPress,
               automatisation n8n et intégration IA pour PME québécoises.{" "}
-              <Link to="/about" className="text-primary hover:underline">
+              <Link to="/about" className="text-primary underline underline-offset-2 hover:no-underline">
                 En savoir plus →
               </Link>
             </p>

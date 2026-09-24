@@ -1,6 +1,7 @@
-import { BrainCircuit, MessageSquare, Search, CheckCircle, Zap } from "lucide-react";
+import { BrainCircuit, MessageSquare, Search, Zap } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/integration-outils-ia";
@@ -8,8 +9,8 @@ import type { Route } from "./+types/integration-outils-ia";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Intégration d'outils IA pour ton site web | Chatbots & IA | Montréal",
-      description: "Intègre l'IA sur ton site : chatbot GPT entraîné sur ton contenu, recherche sémantique, recommandations. Développeur IA freelance à Montréal. Données hébergées chez toi.",
+      title: "Intégration IA et chatbots pour ton site web | Montréal",
+      description: "Intègre l'IA sur ton site : chatbot GPT entraîné sur ton contenu, recherche sémantique, recommandations. Données hébergées chez toi. Développeur IA à Montréal.",
       url: "https://pierrebarbe.ca/services/integration-outils-ia",
     }),
   ];
@@ -37,7 +38,7 @@ export default function IntegrationOutilsIA() {
   });
 
   return (
-    <div className="bg-base-100 font-urbanist">
+    <div className="bg-base-100">
       <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -134,37 +135,13 @@ export default function IntegrationOutilsIA() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold mb-6">Services complémentaires</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/services/automatisation-workflows"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">L'IA seule ne suffit pas — combine-la avec de l'automatisation</p>
-              <p className="text-primary text-sm mt-1">→ Automatisation de workflows n8n</p>
-            </Link>
-            <Link
-              to="/services/creation-maintenance-sites"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Besoin d'un site pour héberger ton chatbot ?</p>
-              <p className="text-primary text-sm mt-1">→ Création & maintenance de sites</p>
-            </Link>
+            <LinkCard to="/services/automatisation-workflows" title="L'IA seule ne suffit pas — combine-la avec de l'automatisation" label="Automatisation de workflows n8n" bg="bg-base-200" />
+            <LinkCard to="/services/creation-maintenance-sites" title="Besoin d'un site pour héberger ton chatbot ?" label="Création & maintenance de sites" bg="bg-base-200" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/blog/chatbot-ia-site-web-pme"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Chatbot IA pour site web : guide complet pour PME</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
-            <Link
-              to="/blog/automatiser-business-n8n-pme"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Automatisation + IA : comment les combiner avec n8n</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
+            <LinkCard to="/blog/chatbot-ia-site-web-pme" title="Chatbot IA pour site web : guide complet pour PME" label="Lire l'article" bg="bg-base-200" />
+            <LinkCard to="/blog/automatiser-business-n8n-pme" title="Automatisation + IA : comment les combiner avec n8n" label="Lire l'article" bg="bg-base-200" />
           </div>
         </div>
       </section>

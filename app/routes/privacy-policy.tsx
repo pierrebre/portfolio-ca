@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import type { Route } from "./+types/privacy-policy";
@@ -284,9 +285,9 @@ export default function PrivacyPolicy() {
           Cette politique peut être mise à jour pour refléter des changements
           légaux ou techniques. La date de dernière mise à jour est indiquée en
           haut de la page. Pour les autres informations légales, consulte les{" "}
-          <a href="/mentions-legales" className="text-primary underline">
+          <Link to="/mentions-legales" className="text-primary underline">
             mentions légales
-          </a>
+          </Link>
           .
         </p>
       </section>

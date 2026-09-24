@@ -16,25 +16,25 @@ export default function Hero() {
           <div className="relative z-10 lg:w-1/2">
             <div className="mb-6 flex items-center gap-3">
               <div className="bg-base-content/40 h-px w-8" />
-              <span className="font-urbanist text-base-content/80 text-sm font-medium tracking-widest uppercase">
+              <span className="text-base-content/80 text-sm font-medium tracking-widest uppercase">
                 Je fais travailler ton site pour toi
               </span>
             </div>
 
-            <h1 className="font-urbanist text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[3rem]">
-              Développeur web freelance à Montréal{" "}
+            <h1 className="text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[3rem]">
+              Développeur web freelance à Montréal
             </h1>
 
-            <p className="font-urbanist text-base-content/80 mb-8 max-w-xl text-lg">
+            <p className="text-base-content/80 mb-8 max-w-xl text-lg">
               J'aide les PME québécoises à avoir des sites rapides, bien
               référencés et faciles à maintenir. Performance, automatisation,
               résultats mesurables.
             </p>
 
-            <div className="font-urbanist mb-12 flex flex-wrap gap-4">
+            <div className="mb-12 flex flex-wrap gap-4">
               <Link
                 to="/contact"
-                className="btn btn-primary text-base-100 rounded-full px-8 py-3"
+                className="btn btn-primary rounded-full px-8 py-3"
               >
                 Réserve ton audit gratuit
                 <svg
@@ -62,7 +62,7 @@ export default function Hero() {
               </Link>
             </div>
 
-            <div className="border-base-content/10 font-urbanist grid max-w-lg grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4">
+            <div className="border-base-content/10 grid max-w-lg grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-3">
               {[
                 { value: "100%", label: "Livraisons" },
                 { value: "3+", label: "Ans" },

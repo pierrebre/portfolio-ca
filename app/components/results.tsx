@@ -27,7 +27,7 @@ export default function Results() {
           <div className="mb-3 flex justify-center">
             <div className="via-primary h-px w-24 bg-linear-to-r from-transparent to-transparent" />
           </div>
-          <h2 className="font-urbanist text-base-content text-4xl font-bold md:text-5xl">
+          <h2 className="text-base-content text-4xl font-bold md:text-5xl">
             Des résultats, pas des promesses
           </h2>
         </div>
@@ -37,7 +37,7 @@ export default function Results() {
               key={index}
               className="border-base-content/10 rounded-xl border p-8 text-center"
             >
-              <div className="text-primary font-urbanist mb-3 text-5xl font-bold">
+              <div className="text-primary mb-3 text-5xl font-bold">
                 {result.value}
               </div>
               <p className="text-base-content/70 mb-4 leading-relaxed">

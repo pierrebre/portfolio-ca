@@ -8,7 +8,7 @@ export default function Process() {
           <div className="mb-3 flex justify-center">
             <div className="via-primary h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
           </div>
-          <h2 className="font-urbanist text-base-content text-4xl font-bold md:text-5xl">
+          <h2 className="text-base-content text-4xl font-bold md:text-5xl">
             Comment ça se passe, concrètement
           </h2>
           <p className="text-base-content/70 mt-6">

@@ -10,11 +10,21 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
+import { AUTHOR_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/about";
 
 export function links() {
   return [
-    { rel: "preload", as: "image", type: "image/avif", href: "/images/me-800.avif" },
+    // imageSrcSet/imageSizes identiques à l'<img> : sans eux, un écran haute
+    // densité précharge me-800 puis télécharge aussi me.avif choisi par srcset.
+    {
+      rel: "preload",
+      as: "image",
+      type: "image/avif",
+      href: "/images/me-800.avif",
+      imageSrcSet: "/images/me-800.avif 800w, /images/me.avif 1122w",
+      imageSizes: "(max-width: 1024px) 100vw, 50vw",
+    },
   ];
 }
 
@@ -45,6 +55,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:type", content: "profile" },
+    { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
     { name: "twitter:title", content: "À propos — Pierre Barbé" },
     {
@@ -160,7 +171,21 @@ const aboutSchema = {
       name: "À propos — Pierre Barbé",
       dateCreated: "2025-01-01T00:00:00-05:00",
       dateModified: "2026-04-21T00:00:00-04:00",
-      mainEntity: { "@id": "https://pierrebarbe.ca/#person" },
+      // Person complète : ProfilePage exige un mainEntity avec au moins un
+      // nom, et Google ne va pas chercher la définition sur l'accueil.
+      mainEntity: {
+        ...AUTHOR_SCHEMA,
+        alternateName: "Pierre Barbe",
+        jobTitle: "Développeur Web Freelance",
+        description:
+          "Développeur web freelance à Montréal, spécialisé en web-performance, WordPress, automatisation n8n et intégration IA pour PME québécoises.",
+        image: "https://pierrebarbe.ca/images/me.avif",
+        sameAs: [
+          "https://www.linkedin.com/in/pierre-barb%C3%A9/",
+          "https://github.com/pierrebre",
+          "https://twitter.com/PierreBarbe",
+        ],
+      },
     },
     {
       "@type": "BreadcrumbList",
@@ -185,7 +210,7 @@ const aboutSchema = {
 
 export default function About() {
   return (
-    <div className="bg-base-100 font-urbanist">
+    <div className="bg-base-100">
       <JsonLd data={aboutSchema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -206,7 +231,7 @@ export default function About() {
                 </span>
               </div>
               <h1 className="text-4xl font-bold md:text-5xl">
-                Pierre Barbé
+                Pierre Barbé{" "}
                 <span className="text-primary block mt-1">développeur web freelance à Montréal</span>
               </h1>
               <p className="text-base-content/80 mt-6 text-lg leading-relaxed">

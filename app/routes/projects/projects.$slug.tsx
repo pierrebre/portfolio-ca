@@ -1,24 +1,24 @@
 import { Link } from "react-router";
 import { ArrowLeft, CheckCircle, Calendar, Wrench } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import LinkCard from "~/components/link-card";
 import FaqItem from "~/components/faq-item";
 import JsonLd from "~/components/json-ld";
+import { AUTHOR_SCHEMA, PUBLISHER_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/projects.$slug";
 
 const CASE_STUDIES: Record<
   string,
   {
-    title: string;
     metaTitle: string;
     metaDescription: string;
   }
 > = {
   "piscines-jolicoeur": {
-    title: "Corrections WordPress & intégration CRM pour Service de Piscines Jolicoeur",
     metaTitle:
-      "Service de Piscines Jolicoeur — Corrections WordPress & intégration CRM | Pierre Barbé",
+      "WordPress & CRM : Piscines Jolicoeur | Pierre Barbé",
     metaDescription:
-      "Diagnostic et correction de dysfonctionnements sur un site WordPress avec intégration CRM Plannit pour une PME piscines sur la Rive-Nord de Montréal. Tous les problèmes résolus.",
+      "Diagnostic et correction d'un site WordPress relié au CRM Plannit pour une PME de piscines de la Rive-Nord de Montréal. Tous les problèmes résolus.",
   },
 };
 
@@ -53,6 +53,7 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:type", content: "article" },
+    { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
     { name: "twitter:title", content: study.metaTitle },
     { name: "twitter:description", content: study.metaDescription },
@@ -88,8 +89,8 @@ function PiscinesJolicoeur() {
         inLanguage: "fr-CA",
         isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
         mainEntityOfPage: { "@id": `${url}#webpage` },
-        author: { "@id": "https://pierrebarbe.ca/#person" },
-        publisher: { "@id": "https://pierrebarbe.ca/#organization" },
+        author: AUTHOR_SCHEMA,
+        publisher: PUBLISHER_SCHEMA,
         datePublished: "2026-04-04T00:00:00-05:00",
         dateModified: "2026-08-21T00:00:00-04:00",
         articleSection: "Études de cas",
@@ -140,25 +141,6 @@ function PiscinesJolicoeur() {
           },
         ],
       },
-      /*
-        ============================================
-        TÉMOIGNAGE CLIENT — À ACTIVER QUAND REÇU
-        ============================================
-
-        Instructions :
-        1. Décommenter le bloc JSON-LD ci-dessous
-        2. Décommenter le bloc JSX de témoignage plus bas dans le composant
-        3. Remplacer [NOM], [TEXTE], [DATE ISO]
-
-        {
-          "@type": "Review",
-          "itemReviewed": { "@id": "https://pierrebarbe.ca/#business" },
-          "author": { "@type": "Person", "name": "[NOM]" },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "reviewBody": "[TEXTE]",
-          "datePublished": "[DATE ISO]"
-        },
-      */
     ],
   };
 
@@ -270,7 +252,7 @@ function PiscinesJolicoeur() {
   ];
 
   return (
-    <div className="bg-base-100 font-urbanist min-h-screen">
+    <div className="bg-base-100 min-h-screen">
       <JsonLd data={schema} />
       <JsonLd data={faqSchema} />
 
@@ -309,7 +291,7 @@ function PiscinesJolicoeur() {
               <Calendar className="h-3 w-3" aria-hidden="true" />
               Mars 2026
             </div>
-            <span className="text-base-content/50 self-center text-sm">
+            <span className="text-base-content/70 self-center text-sm">
               Mis à jour le{" "}
               <time dateTime="2026-08-21">21 août 2026</time>
             </span>
@@ -345,7 +327,7 @@ function PiscinesJolicoeur() {
           </p>
           <p className="text-base-content/70 text-sm mt-3">
             En savoir plus sur{" "}
-            <Link to="/blog/wordpress-pme-quebec-2026" className="text-primary hover:underline">
+            <Link to="/blog/wordpress-pme-quebec-2026" className="text-primary underline underline-offset-2 hover:no-underline">
               WordPress pour les PME québécoises en 2026
             </Link>
             .
@@ -397,7 +379,7 @@ function PiscinesJolicoeur() {
                     {correction.link && (
                       <Link
                         to={correction.link.href}
-                        className="text-primary text-sm hover:underline mt-2 inline-block"
+                        className="text-primary text-sm underline underline-offset-2 hover:no-underline mt-2 inline-block"
                       >
                         {correction.link.label}
                       </Link>
@@ -418,7 +400,7 @@ function PiscinesJolicoeur() {
           <p className="text-base-content/70 leading-relaxed">
             Je diagnostique et corrige ce type de panne, y compris sur un site que je n'ai pas
             développé.{" "}
-            <Link to="/contact" className="text-primary font-semibold hover:underline">
+            <Link to="/contact" className="text-primary font-semibold underline underline-offset-2 hover:no-underline">
               Réservez votre audit gratuit →
             </Link>
           </p>
@@ -443,7 +425,7 @@ function PiscinesJolicoeur() {
                       {row.label}
                     </th>
                     <td className="text-base-content/60">{row.before}</td>
-                    <td className="text-success font-semibold">{row.after}</td>
+                    <td className="text-green-700 dark:text-green-400 font-semibold">{row.after}</td>
                   </tr>
                 ))}
               </tbody>
@@ -451,7 +433,7 @@ function PiscinesJolicoeur() {
           </div>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-base-200 rounded-xl p-5 text-center">
-              <div className="text-3xl font-black text-success">5 / 5</div>
+              <div className="text-3xl font-black text-green-700 dark:text-green-400">5 / 5</div>
               <div className="text-base-content/60 text-sm mt-1">Problèmes résolus</div>
             </div>
             <div className="bg-base-200 rounded-xl p-5 text-center">
@@ -461,36 +443,16 @@ function PiscinesJolicoeur() {
           </div>
           <p className="text-base-content/70 mt-4 leading-relaxed">
             Client satisfait, collaboration en cours pour de nouvelles tâches. Un{" "}
-            <Link to="/blog/maintenance-site-web-pme-guide" className="text-primary hover:underline">
+            <Link to="/blog/maintenance-site-web-pme-guide" className="text-primary underline underline-offset-2 hover:no-underline">
               plan de maintenance régulier
             </Link>{" "}
             a été recommandé pour éviter que ces problèmes ne se reproduisent.
           </p>
         </section>
 
-        {/* Témoignage client — commenté */}
-        {/*
-          ============================================
-          TÉMOIGNAGE CLIENT — À ACTIVER QUAND REÇU
-          ============================================
-
-          Instructions :
-          1. Décommenter le bloc JSX ci-dessous
-          2. Décommenter le JSON-LD Review dans le @graph (voir schema plus haut)
-          3. Remplacer [NOM], [TEXTE], [DATE]
-
-          <section className="mt-12">
-            <blockquote className="bg-base-200 rounded-2xl p-8 border-l-4 border-primary">
-              <p className="text-lg leading-relaxed italic">"[TEXTE]"</p>
-              <footer className="mt-4 flex items-center gap-3">
-                <div>
-                  <cite className="font-bold not-italic">[NOM]</cite>
-                  <span className="text-base-content/60 text-sm block">Service de Piscines Jolicoeur</span>
-                </div>
-              </footer>
-            </blockquote>
-          </section>
-        */}
+        {/* TODO témoignage : ajouter la citation du client ici quand il l'aura
+            fournie. Pas de JSON-LD Review : Google ignore les avis sur sa propre
+            entreprise publiés sur son site. */}
 
         {/* FAQ */}
         <section className="mt-12">
@@ -499,11 +461,9 @@ function PiscinesJolicoeur() {
             {faq.map((item) => (
               <FaqItem
                 key={item.index}
-                index={item.index}
                 question={item.question}
                 answer={item.answer}
                 accordionName="jolicoeur-faq"
-                idPrefix="jolicoeur-faq"
               />
             ))}
           </div>
@@ -513,43 +473,19 @@ function PiscinesJolicoeur() {
         <section className="mt-12">
           <h2 className="text-xl font-bold mb-4">Services mobilisés</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/services/creation-maintenance-sites"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Création & maintenance de sites</p>
-              <p className="text-primary text-sm mt-1">→ Voir le service</p>
-            </Link>
-            <Link
-              to="/services/automatisation-workflows"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Automatisation de workflows</p>
-              <p className="text-primary text-sm mt-1">→ Voir le service</p>
-            </Link>
+            <LinkCard to="/services/creation-maintenance-sites" title="Création & maintenance de sites" label="Voir le service" bg="bg-base-200" />
+            <LinkCard to="/services/automatisation-workflows" title="Automatisation de workflows" label="Voir le service" bg="bg-base-200" />
           </div>
         </section>
 
         {/* Lire aussi */}
         <section className="mt-8">
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mb-3">
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mb-3">
             Lire aussi
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/blog/wordpress-pme-quebec-2026"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">WordPress pour les PME québécoises en 2026</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
-            <Link
-              to="/blog/automatiser-business-n8n-pme"
-              className="bg-base-200 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Automatiser son business avec n8n</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
+            <LinkCard to="/blog/wordpress-pme-quebec-2026" title="WordPress pour les PME québécoises en 2026" label="Lire l'article" bg="bg-base-200" />
+            <LinkCard to="/blog/automatiser-business-n8n-pme" title="Automatiser son business avec n8n" label="Lire l'article" bg="bg-base-200" />
           </div>
         </section>
 

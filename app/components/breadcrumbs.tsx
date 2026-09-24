@@ -12,55 +12,36 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <>
-      {/* Navigation visible avec microdata — JSON-LD is handled in each route's @graph */}
-      <nav aria-label="Fil d'Ariane" className="mb-8">
-        <ol
-          className="flex flex-wrap items-center gap-2 text-sm"
-          itemScope
-          itemType="https://schema.org/BreadcrumbList"
-        >
-          {items.map((item, index) => (
-            <li
-              key={index}
-              itemProp="itemListElement"
-              itemScope
-              itemType="https://schema.org/ListItem"
-              className="flex items-center gap-2"
-            >
-              {item.href ? (
-                <>
-                  <Link
-                    to={item.href}
-                    itemProp="item"
-                    className="text-base-content/60 hover:text-primary transition-colors"
-                  >
-                    <span itemProp="name">{item.label}</span>
-                  </Link>
-                  <meta itemProp="position" content={String(index + 1)} />
-                </>
-              ) : (
-                <>
-                  <span
-                    itemProp="name"
-                    className="text-base-content font-medium"
-                    aria-current="page"
-                  >
-                    {item.label}
-                  </span>
-                  <meta itemProp="position" content={String(index + 1)} />
-                </>
-              )}
-              {index < items.length - 1 && (
-                <ChevronRight
-                  className="h-4 w-4 text-base-content/40"
-                  aria-hidden="true"
-                />
-              )}
-            </li>
-          ))}
-        </ol>
-      </nav>
-    </>
+    // Navigation visible uniquement : le BreadcrumbList est déclaré en JSON-LD
+    // dans le @graph de chaque route (pas de microdata, pour éviter le doublon).
+    <nav aria-label="Fil d'Ariane" className="mb-8">
+      <ol className="flex flex-wrap items-center gap-2 text-sm">
+        {items.map((item, index) => (
+          <li key={index} className="flex items-center gap-2">
+            {item.href ? (
+              <Link
+                to={item.href}
+                className="text-base-content/60 hover:text-primary transition-colors"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span
+                className="text-base-content font-medium"
+                aria-current="page"
+              >
+                {item.label}
+              </span>
+            )}
+            {index < items.length - 1 && (
+              <ChevronRight
+                className="h-4 w-4 text-base-content/40"
+                aria-hidden="true"
+              />
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 }

@@ -1,30 +1,9 @@
 import { useRef } from "react";
-import { useToast } from "~/context/toast-context";
 import AuditForm from "./audit-form";
 
 export default function AuditModal() {
-  const { showToast } = useToast();
   const dialogRef = useRef<HTMLDialogElement>(null);
-
-  const handleFormSubmitResult = (
-    success: boolean,
-    message: string,
-    closeModal: boolean = true
-  ) => {
-    showToast(
-      message ??
-        (success
-          ? "Votre message a été envoyé avec succès !"
-          : "Échec de l'envoi de votre message. Veuillez réessayer."),
-      success ? "success" : "error"
-    );
-
-    if (success && closeModal) {
-      setTimeout(() => {
-        dialogRef.current?.close();
-      }, 1000);
-    }
-  };
+  const close = () => dialogRef.current?.close();
 
   return (
     <dialog
@@ -35,14 +14,15 @@ export default function AuditModal() {
       aria-describedby="audit-modal-desc"
     >
       <div className="modal-box relative">
-        <h3 id="audit-modal-title" className="font-bold text-lg">
+        <h2 id="audit-modal-title" className="font-bold text-lg">
           Demander un audit gratuit
-        </h3>
+        </h2>
         <p id="audit-modal-desc" className="py-2">
           Remplissez le formulaire ci-dessous pour demander un audit gratuit de
           votre site Web.
         </p>
-        <AuditForm onSubmitResult={handleFormSubmitResult} />
+        {/* Laisse le temps de voir la confirmation avant de fermer */}
+        <AuditForm onSuccess={() => setTimeout(close, 1000)} onCancel={close} />
       </div>
       <form method="dialog" className="modal-backdrop">
         <button>fermer</button>

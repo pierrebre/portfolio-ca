@@ -15,6 +15,7 @@ import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import ContactCard from "./components/contact-card";
 import { ToastProvider } from "./context/toast-context";
+import ErrorPage, { NOT_FOUND_MESSAGE } from "./components/error-page";
 
 // Force le pathname en minuscules pour éliminer la duplication de contenu
 // (ex. /SERVICES, /About, /Blog renvoyaient HTTP 200 avec le même contenu).
@@ -28,6 +29,19 @@ export function loader({ request }: Route.LoaderArgs) {
   return null;
 }
 
+// Le HTML ne dépend ni du visiteur ni de cookies (thème et formulaires sont
+// gérés côté client) : le CDN de Vercel peut le servir depuis son cache.
+// s-maxage ne vise que le CDN, purgé à chaque déploiement ; le navigateur
+// revalide toujours (max-age=0). Une page d'erreur n'est jamais mise en cache.
+// S'applique à toutes les routes qui n'exportent pas leur propre headers().
+export function headers({ errorHeaders }: Route.HeadersArgs) {
+  if (errorHeaders) return { "Cache-Control": "no-store" };
+  return {
+    "Cache-Control":
+      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+  };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
@@ -39,20 +53,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Script anti-FOUC : applique le thème avant l'hydratation React */}
+        {/* Script anti-FOUC : applique le thème (choix enregistré, sinon préférence
+            système) avant l'hydratation React */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}`,
           }}
         />
         <Meta />
-        {/* Preload du seul subset normal latin-ext nécessaire au-dessus du pli;
-            les autres variantes (italique / latin de base) chargent via @font-face avec font-display: swap */}
+        {/* Preload du subset latin (normal) utilisé au-dessus du pli ; latin-ext
+            et italique ne chargent que si la page en contient (unicode-range). */}
         <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2" crossOrigin="anonymous" />
-        {/* Hreflang — site monolingue FR-CA */}
-        <link rel="alternate" hrefLang="fr-CA" href="https://pierrebarbe.ca/" />
-        <link rel="alternate" hrefLang="x-default" href="https://pierrebarbe.ca/" />
-        {/* Hero image preload moved to home.tsx and about.tsx via links() export */}
+        {/* Pas de hreflang : site monolingue (lang="fr-CA" suffit). Une balise
+            globale pointerait toutes les pages vers l'accueil. */}
         <link
           rel="icon"
           type="image/png"
@@ -76,10 +89,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           href="/blog/feed.xml"
         />
 
-<meta property="og:site_name" content="Pierre Barbé" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="fr_CA" />
-
+        {/* og:type / og:site_name / og:locale sont définis par le meta() de
+            chaque route — les répéter ici créait des doublons contradictoires. */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@PierreBarbe" />
         <meta name="twitter:site" content="@PierreBarbe" />
@@ -97,8 +108,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <NavBar />
           <main id="main-content">
             {children}
+            {shouldShowContactCard && <ContactCard />}
           </main>
-          {shouldShowContactCard && <ContactCard />}
           <Footer />
         </ToastProvider>
         <ScrollRestoration />
@@ -112,31 +123,23 @@ export default function App() {
   return <Outlet />;
 }
 
+// Rendu à l'intérieur du Layout (en-tête, <main>, pied de page).
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "Une erreur inattendue s'est produite.";
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Erreur";
-    details =
-      error.status === 404
-        ? "La page demandée est introuvable."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return <ErrorPage title="404" message={NOT_FOUND_MESSAGE} />;
   }
 
+  // En production, aucun détail technique n'est montré au visiteur.
+  const devError = import.meta.env.DEV && error instanceof Error ? error : null;
+
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <ErrorPage
+      title={isRouteErrorResponse(error) ? `Erreur ${error.status}` : "Erreur"}
+      message={
+        devError?.message ??
+        "Une erreur inattendue s'est produite. Réessayez dans un instant."
+      }
+      stack={devError?.stack}
+    />
   );
 }

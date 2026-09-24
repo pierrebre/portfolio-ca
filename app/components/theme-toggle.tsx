@@ -1,32 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-  // Lazy initializer: reads data-theme already set by the anti-FOUC script.
-  // Safe for SSR because the function only runs on the client after mount.
-  const [theme, setTheme] = useState<string>(() => {
-    if (typeof document === "undefined") return "light";
-    return document.documentElement.getAttribute("data-theme") ?? "light";
-  });
+  // Le thème réel n'est connu que côté client (localStorage, appliqué avant
+  // l'hydratation par le script anti-FOUC de root.tsx). Le serveur rend "light" :
+  // l'état part donc de "light" pour que l'hydratation corresponde, puis se
+  // synchronise au montage. Les icônes suivent directement data-theme en CSS
+  // (variante `dark:` dans app.css) : pas de mauvaise icône après rechargement.
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    setTheme(document.documentElement.getAttribute("data-theme") ?? "light");
+  }, []);
 
   const toggleTheme = () => {
-    const next = theme === "light" ? "dark" : "light";
+    const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      // Stockage indisponible (navigation privée) : le thème reste pour la session.
+    }
   };
 
   return (
     <button
-      className="btn btn-ghost btn-circle swap swap-rotate"
+      type="button"
+      className="btn btn-ghost btn-circle"
       aria-label={theme === "dark" ? "Passer au mode clair" : "Passer au mode sombre"}
       onClick={toggleTheme}
-      suppressHydrationWarning
     >
       {/* Icône lune (mode clair actif → affiche la lune pour basculer en sombre) */}
       <svg
-        className={`size-5 fill-current ${
-          theme === "light" ? "swap-off" : "swap-on"
-        }`}
+        className="size-5 fill-current dark:hidden"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         aria-hidden="true"
@@ -36,9 +42,7 @@ export default function ThemeToggle() {
 
       {/* Icône soleil (mode sombre actif → affiche le soleil pour basculer en clair) */}
       <svg
-        className={`size-5 fill-current ${
-          theme === "dark" ? "swap-off" : "swap-on"
-        }`}
+        className="hidden size-5 fill-current dark:block"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         aria-hidden="true"

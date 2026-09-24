@@ -1,35 +1,20 @@
-import type { Question } from "data/questions";
-
-interface FaqItemProps extends Question {
-  accordionName?: string;
-  idPrefix?: string;
+interface FaqItemProps {
+  question: string;
+  answer: string;
+  /** Même nom pour tout un groupe : une seule question ouverte à la fois. */
+  accordionName: string;
 }
 
-export default function FaqItem({
-  question,
-  answer,
-  index,
-  accordionName = "my-accordion-2",
-  idPrefix = "faq-item",
-}: FaqItemProps) {
-  const itemId = `${idPrefix}-${index}`;
-
+// <details>/<summary> natif : clavier (Entrée/Espace), refermable, annoncé
+// comme dépliable par les lecteurs d'écran.
+export default function FaqItem({ question, answer, accordionName }: FaqItemProps) {
   return (
-    <div className="collapse collapse-arrow bg-base-100 border border-base-300">
-      <input
-        type="radio"
-        name={accordionName}
-        id={itemId}
-        aria-labelledby={`${itemId}-header`}
-      />
-      <label
-        htmlFor={itemId}
-        id={`${itemId}-header`}
-        className="collapse-title font-semibold"
-      >
-        {question}
-      </label>
+    <details
+      name={accordionName}
+      className="collapse collapse-arrow bg-base-100 border border-base-300"
+    >
+      <summary className="collapse-title font-semibold">{question}</summary>
       <div className="collapse-content text-sm">{answer}</div>
-    </div>
+    </details>
   );
 }

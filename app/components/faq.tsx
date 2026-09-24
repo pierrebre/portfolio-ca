@@ -6,7 +6,6 @@ interface FaqProps {
   questions?: Question[];
   title?: string;
   accordionName?: string;
-  idPrefix?: string;
   className?: string;
   // Stable ID for the FAQPage node — lets parent WebPage @graph reference it
   // via mainEntity. Defaults to home page #faq.
@@ -16,8 +15,7 @@ interface FaqProps {
 export default function Faq({
   questions = defaultQuestions,
   title = "FAQ",
-  accordionName = "my-accordion-2",
-  idPrefix = "faq-item",
+  accordionName = "home-faq",
   className = "bg-base-100 py-20 md:py-28",
   schemaId = "https://pierrebarbe.ca/#faq",
 }: FaqProps) {
@@ -43,7 +41,7 @@ export default function Faq({
           <div className="mb-3 flex justify-center">
             <div className="via-primary h-px w-24 bg-linear-to-r from-transparent to-transparent" />
           </div>
-          <h2 className="font-urbanist text-base-content text-4xl font-bold md:text-5xl">
+          <h2 className="text-base-content text-4xl font-bold md:text-5xl">
             {title}
           </h2>
         </div>
@@ -51,11 +49,9 @@ export default function Faq({
           {questions.map((item) => (
             <FaqItem
               key={item.index}
-              index={item.index}
               question={item.question}
               answer={item.answer}
               accordionName={accordionName}
-              idPrefix={idPrefix}
             />
           ))}
         </div>

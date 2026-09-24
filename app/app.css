@@ -1,6 +1,39 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: all
+  /* Seuls les thèmes du ThemeToggle : `all` embarquait 35 thèmes dans le CSS. */
+  themes: light --default, dark --prefersdark;
+  /* daisyUI n'embarque que les composants dont le nom apparaît dans le code,
+     mais il repère des mots : `timeline`, `.filter(`, `.join(`, `<Hero>`,
+     `ThemeToggle`… ajoutaient ces composants alors qu'aucun n'est utilisé. */
+  exclude: timeline, diff, filter, join, drawer, list, stat, status, loading, radio, select, tab, toggle, hero, stack, label, radialprogress, countdown, validator;
+}
+
+/* `dark:` suit le thème choisi (data-theme posé par le script anti-FOUC et le
+   ThemeToggle) plutôt que prefers-color-scheme. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Contraste AA du violet (primary). Hors @layer pour primer sur les thèmes
+   daisyUI, déclarés dans @layer base.
+   - Clair : texte blanc pur sur primary (8,3:1).
+   - Sombre : le primary de daisyUI (#605dff) sert aussi de couleur de texte et
+     n'offre que 3,4:1 sur le fond sombre ; aucune teinte ne passe à la fois
+     comme texte et sous du texte blanc. On l'éclaircit (texte : 5,9:1) et le
+     texte posé dessus devient sombre (5,9:1, 4,9:1 au survol). */
+:root {
+  --color-primary-content: oklch(100% 0 0);
+}
+
+[data-theme="dark"] {
+  --color-primary: oklch(72% 0.18 277.117);
+  --color-primary-content: oklch(25.33% 0.016 252.42);
+}
+
+/* Sans data-theme (stockage bloqué, pas de JS), daisyUI suit le système. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-primary: oklch(72% 0.18 277.117);
+    --color-primary-content: oklch(25.33% 0.016 252.42);
+  }
 }
 
 /* ============================================================
@@ -46,7 +79,9 @@
   animation: fade-in 0.6s ease-out forwards;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* Sans animation (préférence utilisateur) ou sans JavaScript (l'observer
+   n'ajoutera jamais .is-visible) : le contenu reste visible. */
+@media (prefers-reduced-motion: reduce), (scripting: none) {
   .animate-on-scroll,
   .animate-on-scroll-fade {
     opacity: 1 !important;
@@ -54,8 +89,23 @@
   }
 }
 
+/* Urbanist est la police de tout le site (texte courant compris). */
 @theme {
-  --font-urbanist: "Urbanist", sans-serif;
+  --font-sans: "Urbanist", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Subsets Google Fonts : unicode-range évite de télécharger latin-ext (et
+   l'italique) tant qu'aucun caractère de la page n'en a besoin. */
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -63,17 +113,10 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url("/fonts/L0x4DF02iFML4hGCyMqgXSFsjkK3.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-family: "Urbanist";
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2") 
-    format("woff2");
+  src: url("/fonts/L0x4DF02iFML4hGCyMqgXS9sjg.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -81,8 +124,10 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2")
-    format("woff2");
+  src: url("/fonts/L0x-DF02iFML4hGCyMqrbS10ig.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -90,8 +135,10 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2")
-    format("woff2");
+  src: url("/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 /* ============================================================
@@ -134,12 +181,15 @@
   --tw-prose-captions: color-mix(in oklab, var(--color-base-content) 50%, transparent);
 }
 
-/* Tables : défilement horizontal sur mobile */
-.prose table {
-  display: block;
-  width: 100%;
+/* Tables : défilement horizontal sur mobile, dans le conteneur focalisable
+   ajouté par rehypeAccessibleContent (content.server.ts) */
+.prose .table-scroll {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+}
+
+.prose .table-scroll:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Task list items générés par remark-gfm (- [ ] / - [x]) */

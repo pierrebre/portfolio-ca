@@ -1,71 +1,35 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
+import { Link } from "react-router";
 import { ChevronDown } from "lucide-react";
-import { getAllServices } from "~/utils/service-links";
+import { services, serviceUrl } from "data/services";
+import { useDismiss } from "~/hooks/use-dismiss";
 
-interface ServiceDropdownProps {
-  className?: string;
-}
-
-export default function ServiceDropdown({
-  className = "",
-}: ServiceDropdownProps) {
+// Bouton de divulgation (aria-expanded + aria-controls) et simple liste de
+// liens : le rôle ARIA "menu" impose une navigation aux flèches qu'on n'offre pas.
+export default function ServiceDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const services = getAllServices();
 
-  // Ferme le dropdown avec ESC
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
-        buttonRef.current?.focus();
-      }
-    };
-
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen]);
-
-  // Ferme le dropdown au clic extérieur
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  useDismiss(isOpen, setIsOpen, dropdownRef, buttonRef);
 
   return (
-    <div className={`relative ${className}`} ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
       {/* Trigger : lien Services + bouton chevron */}
       <div className="inline-flex items-center">
-        <a
-          href="/services"
-          className="btn btn-ghost font-urbanist hover:bg-primary/10 hover:text-primary rounded-full rounded-r-none pr-1 text-sm font-semibold"
+        <Link
+          to="/services"
+          className="btn btn-ghost hover:bg-primary/10 hover:text-primary rounded-full rounded-r-none pr-1 text-sm font-semibold"
         >
           Services
-        </a>
+        </Link>
         <button
           ref={buttonRef}
           type="button"
-          onClick={toggleDropdown}
+          onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
-          aria-haspopup="menu"
-          aria-label="Ouvrir le menu des services"
+          aria-controls="services-dropdown"
+          aria-label="Afficher la liste des services"
           className="btn btn-ghost hover:bg-primary/10 hover:text-primary rounded-full rounded-l-none pl-1 min-w-0 min-h-[44px] w-[44px]"
         >
           <ChevronDown
@@ -77,27 +41,23 @@ export default function ServiceDropdown({
         </button>
       </div>
 
-      {/* Dropdown menu */}
       {isOpen && (
-        <div
-          role="menu"
-          aria-label="Menu des services"
-          className="absolute top-full left-0 mt-2 w-72 bg-base-100 rounded-2xl shadow-xl border border-base-content/10 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+        <ul
+          id="services-dropdown"
+          className="absolute top-full left-0 mt-2 w-72 bg-base-100 rounded-2xl shadow-xl border border-base-content/10 py-2 z-50"
         >
           {services.map((service) => (
-            <a
-              key={service.name}
-              href={service.url}
-              role="menuitem"
-              className="block px-4 py-3 hover:bg-primary/5 transition-colors group"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="font-urbanist text-sm font-semibold text-base-content group-hover:text-primary transition-colors">
+            <li key={service.key}>
+              <Link
+                to={serviceUrl(service.key)}
+                className="block px-4 py-3 text-sm font-semibold text-base-content hover:bg-primary/5 hover:text-primary transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
                 {service.name}
-              </div>
-            </a>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );

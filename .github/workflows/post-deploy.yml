@@ -1,8 +1,10 @@
 name: Post-Deploy (IndexNow + PageSpeed)
 
+# master = production (Vercel). Sur develop, IndexNow et PageSpeed visaient
+# des pages pas encore en ligne.
 on:
   push:
-    branches: [develop]
+    branches: [master]
 
 jobs:
   post-deploy:
@@ -32,6 +34,12 @@ jobs:
             } >> "$GITHUB_OUTPUT"
             echo "has_urls=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # Le push déclenche le déploiement Vercel en parallèle : on lui laisse le
+      # temps de passer en production avant de notifier et de mesurer.
+      - name: Wait for Vercel production deploy
+        if: steps.urls.outputs.has_urls == 'true'
+        run: sleep 180
 
       # --- IndexNow: submit only changed URLs ---
       - name: Submit to IndexNow

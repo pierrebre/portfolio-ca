@@ -1,6 +1,7 @@
 import { Laptop, CheckCircle, Wrench, Shield } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/creation-maintenance-sites";
@@ -8,8 +9,8 @@ import type { Route } from "./+types/creation-maintenance-sites";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Création & Maintenance de Sites WordPress & Shopify | Montréal | Pierre Barbé",
-      description: "Création de sites WordPress et Shopify rapides et durables pour PME du Québec. Forfaits maintenance à partir de 150 $/mois. Développeur freelance Montréal sans contrat annuel.",
+      title: "Création et maintenance de sites WordPress à Montréal",
+      description: "Sites WordPress et Shopify rapides et durables pour PME du Québec. Maintenance dès 150 $/mois, sans contrat annuel. Développeur freelance à Montréal.",
       url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
     }),
   ];
@@ -77,7 +78,7 @@ export default function CreationMaintenanceSites() {
   });
 
   return (
-    <div className="bg-base-100 font-urbanist">
+    <div className="bg-base-100">
       <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -197,37 +198,13 @@ export default function CreationMaintenanceSites() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold mb-6">Services complémentaires</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/services/optimisation-web-performance"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Ton site actuel est lent ?</p>
-              <p className="text-primary text-sm mt-1">→ Optimisation web-performance</p>
-            </Link>
-            <Link
-              to="/services/automatisation-workflows"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Tu veux automatiser la gestion de ton site ?</p>
-              <p className="text-primary text-sm mt-1">→ Automatisation de workflows</p>
-            </Link>
+            <LinkCard to="/services/optimisation-web-performance" title="Ton site actuel est lent ?" label="Optimisation web-performance" />
+            <LinkCard to="/services/automatisation-workflows" title="Tu veux automatiser la gestion de ton site ?" label="Automatisation de workflows" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/blog/securite-wordpress-guide-pme"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Guide sécurité WordPress pour PME</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
-            <Link
-              to="/blog/maintenance-site-web-pme-guide"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Guide complet : maintenance de site web pour PME</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
+            <LinkCard to="/blog/securite-wordpress-guide-pme" title="Guide sécurité WordPress pour PME" label="Lire l'article" />
+            <LinkCard to="/blog/maintenance-site-web-pme-guide" title="Guide complet : maintenance de site web pour PME" label="Lire l'article" />
           </div>
         </div>
       </section>

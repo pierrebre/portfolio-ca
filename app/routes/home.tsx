@@ -13,7 +13,16 @@ import type { Route } from "./+types/home";
 
 export function links() {
   return [
-    { rel: "preload", as: "image", type: "image/avif", href: "/images/me-800.avif" },
+    // imageSrcSet/imageSizes identiques à l'<img> : sans eux, un écran haute
+    // densité précharge me-800 puis télécharge aussi me.avif choisi par srcset.
+    {
+      rel: "preload",
+      as: "image",
+      type: "image/avif",
+      href: "/images/me-800.avif",
+      imageSrcSet: "/images/me-800.avif 800w, /images/me.avif 1122w",
+      imageSizes: "(max-width: 1024px) 100vw, 50vw",
+    },
   ];
 }
 
@@ -72,7 +81,6 @@ export function meta({}: Route.MetaArgs) {
       name: "twitter:image:alt",
       content: "Pierre Barbé — Développeur web freelance Montréal",
     },
-    { name: "twitter:url", content: url },
   ];
 }
 
@@ -203,14 +211,6 @@ export default function Home() {
           "Développeur web freelance à Montréal. Sites rapides, bien référencés et faciles à maintenir pour PME québécoises.",
         inLanguage: "fr-CA",
         publisher: { "@id": `${url}#organization` },
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: "https://pierrebarbe.ca/blog?q={search_term_string}",
-          },
-          "query-input": "required name=search_term_string",
-        },
         hasPart: [
           { "@id": "https://pierrebarbe.ca/services#webpage" },
           { "@id": "https://pierrebarbe.ca/contact#webpage" },

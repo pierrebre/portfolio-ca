@@ -1,6 +1,7 @@
 import { ClipboardCheck, CheckCircle, FileText, Search, Shield, Smartphone } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "~/components/breadcrumbs";
+import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/audits-techniques-core-web-vitals";
@@ -8,8 +9,8 @@ import type { Route } from "./+types/audits-techniques-core-web-vitals";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Audit technique de site web & Core Web Vitals | Montréal | Pierre Barbé",
-      description: "Audit technique complet : Core Web Vitals, SEO, accessibilité, sécurité. Rapport clair avec plan d'action. Audit express gratuit (30 min) ou audit complet à partir de 500 $.",
+      title: "Audit technique de site web & Core Web Vitals | Montréal",
+      description: "Audit technique complet : Core Web Vitals, SEO, accessibilité, sécurité. Rapport clair avec plan d'action. Audit express gratuit (30 min) ou complet dès 500 $.",
       url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
     }),
   ];
@@ -45,7 +46,7 @@ export default function AuditsTechniquesCoreWebVitals() {
   });
 
   return (
-    <div className="bg-base-100 font-urbanist">
+    <div className="bg-base-100">
       <JsonLd data={schema} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
@@ -129,37 +130,13 @@ export default function AuditsTechniquesCoreWebVitals() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold mb-6">Services complémentaires</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/services/optimisation-web-performance"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Ton audit révèle des problèmes de vitesse ?</p>
-              <p className="text-primary text-sm mt-1">→ Optimisation web-performance</p>
-            </Link>
-            <Link
-              to="/services/creation-maintenance-sites"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">L'audit montre qu'une refonte serait plus rentable ?</p>
-              <p className="text-primary text-sm mt-1">→ Création & maintenance de sites</p>
-            </Link>
+            <LinkCard to="/services/optimisation-web-performance" title="Ton audit révèle des problèmes de vitesse ?" label="Optimisation web-performance" />
+            <LinkCard to="/services/creation-maintenance-sites" title="L'audit montre qu'une refonte serait plus rentable ?" label="Création & maintenance de sites" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              to="/blog/audit-performance-site-web"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Comment auditer les performances de ton site web</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
-            <Link
-              to="/blog/optimisation-vitesse-wordpress"
-              className="bg-base-100 border border-base-content/10 rounded-xl p-4 hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
-              <p className="font-semibold text-sm">Optimiser la vitesse de ton site WordPress</p>
-              <p className="text-primary text-sm mt-1">→ Lire l'article</p>
-            </Link>
+            <LinkCard to="/blog/audit-performance-site-web" title="Comment auditer les performances de ton site web" label="Lire l'article" />
+            <LinkCard to="/blog/optimisation-vitesse-wordpress" title="Optimiser la vitesse de ton site WordPress" label="Lire l'article" />
           </div>
         </div>
       </section>
