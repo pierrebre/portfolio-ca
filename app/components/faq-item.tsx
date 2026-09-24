@@ -14,7 +14,7 @@ export default function FaqItem({ question, answer, accordionName }: FaqItemProp
       className="collapse collapse-arrow bg-base-100 border border-base-300"
     >
       <summary className="collapse-title font-semibold">{question}</summary>
-      <div className="collapse-content text-sm">{answer}</div>
+      <div className="collapse-content text-base-content/80 leading-relaxed">{answer}</div>
     </details>
   );
 }

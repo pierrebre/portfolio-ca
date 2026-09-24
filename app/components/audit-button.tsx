@@ -9,6 +9,8 @@ interface AuditButtonProps {
   children?: ReactNode;
   /** Appelé avant l'ouverture (ex. fermer le menu mobile). */
   onClick?: () => void;
+  /** Emplacement du bouton, transmis avec la demande (ex. « accueil-haut »). */
+  source?: string;
 }
 
 /**
@@ -20,6 +22,7 @@ export default function AuditButton({
   className,
   children = FREE_AUDIT.cta,
   onClick,
+  source,
 }: AuditButtonProps) {
   const openDialog = (e: MouseEvent<HTMLAnchorElement>) => {
     onClick?.();
@@ -27,6 +30,7 @@ export default function AuditButton({
     const dialog = document.getElementById(AUDIT_DIALOG_ID);
     if (dialog instanceof HTMLDialogElement) {
       e.preventDefault();
+      dialog.dataset.source = [window.location.pathname, source].filter(Boolean).join(" · ");
       dialog.showModal();
     }
   };

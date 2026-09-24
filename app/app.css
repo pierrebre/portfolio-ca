@@ -5,7 +5,7 @@
   /* daisyUI n'embarque que les composants dont le nom apparaît dans le code,
      mais il repère des mots : `timeline`, `.filter(`, `.join(`, `<Hero>`,
      `ThemeToggle`… ajoutaient ces composants alors qu'aucun n'est utilisé. */
-  exclude: timeline, diff, filter, join, drawer, list, stat, status, loading, radio, select, tab, toggle, hero, stack, label, radialprogress, countdown, validator;
+  exclude: timeline, diff, filter, join, drawer, list, stat, status, loading, radio, tab, toggle, hero, stack, label, radialprogress, countdown, validator;
 }
 
 /* `dark:` suit le thème choisi (data-theme posé par le script anti-FOUC et le
@@ -28,11 +28,26 @@
   --color-primary-content: oklch(25.33% 0.016 252.42);
 }
 
+/* Fonds alternés : les base-200/300 de daisyUI sont presque identiques au
+   base-100 (1,06:1). Clair : papier chaud ; sombre : un cran plus profond.
+   Contrastes vérifiés (texte /70 sur base-200 : 6,3:1 clair, 8,5:1 sombre). */
+:root:not([data-theme="dark"]) {
+  --color-base-200: oklch(97% 0.006 85);
+  --color-base-300: oklch(93% 0.008 85);
+}
+
+[data-theme="dark"] {
+  --color-base-200: oklch(21.5% 0.014 253);
+  --color-base-300: oklch(18.5% 0.012 254);
+}
+
 /* Sans data-theme (stockage bloqué, pas de JS), daisyUI suit le système. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --color-primary: oklch(72% 0.18 277.117);
     --color-primary-content: oklch(25.33% 0.016 252.42);
+    --color-base-200: oklch(21.5% 0.014 253);
+    --color-base-300: oklch(18.5% 0.012 254);
   }
 }
 

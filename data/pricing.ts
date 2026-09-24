@@ -45,8 +45,11 @@ export const PRICING = {
 
 /** Offre d'entrée, proposée par tous les appels à l'action du site. */
 export const FREE_AUDIT = {
-  cta: "Réserver mon audit gratuit",
+  // « Demander » : il n'y a pas d'agenda en ligne, on envoie une demande.
+  cta: "Demander mon audit gratuit",
+  short: "Audit gratuit", // barre de navigation
   badge: "Audit gratuit · 30 min · sans engagement",
   summary:
-    "30 minutes par courriel ou en visio : un diagnostic du site et 3 recommandations prioritaires, sans engagement.",
+    "30 minutes en visioconférence (ou un retour écrit si tu préfères) : je regarde ton site ou ton projet, et tu repars avec 3 recommandations prioritaires, sans engagement.",
+  reply: "Je te réponds sous 1 jour ouvrable pour fixer le moment.",
 };

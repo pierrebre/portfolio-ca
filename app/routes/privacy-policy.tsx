@@ -80,18 +80,18 @@ export default function PrivacyPolicy() {
         <Breadcrumbs
           items={[
             { label: "Accueil", href: "/" },
-            { label: "Politique de Confidentialité" },
+            { label: "Politique de confidentialité" },
           ]}
         />
       </div>
 
       <section className="mx-auto max-w-4xl px-6 py-12">
         <h1 className="text-3xl font-bold mb-6">Politique de confidentialité</h1>
-        <p className="mb-2 text-sm text-base-content/60">
+        <p className="mb-2 text-sm text-base-content/70">
           Dernière mise à jour&nbsp;:{" "}
           <time dateTime={DATE_MODIFIED}>24 septembre 2026</time>
         </p>
-        <p className="mb-6 text-sm text-base-content/60">
+        <p className="mb-6 text-sm text-base-content/70">
           Date de prise d&apos;effet&nbsp;:{" "}
           <time dateTime={DATE_PUBLISHED}>3 juin 2025</time>
         </p>
@@ -137,9 +137,11 @@ export default function PrivacyPolicy() {
             famille, adresse courriel et message.
           </li>
           <li>
-            <strong>Demande d&apos;audit gratuit</strong>&nbsp;: adresse (URL)
-            du site à auditer, adresse courriel et, si tu en ajoutes, des
-            informations complémentaires.
+            <strong>Demande d&apos;audit gratuit</strong>&nbsp;: adresse
+            courriel et, si tu les indiques, l&apos;adresse de ton site, ton
+            besoin et quelques mots sur ton projet. La page et le bouton
+            depuis lesquels tu as envoyé la demande sont aussi transmis, sans
+            témoin ni traceur, pour savoir quels passages du site sont utiles.
           </li>
         </ul>
         <p className="mb-4">
@@ -219,8 +221,8 @@ export default function PrivacyPolicy() {
           Durée de conservation
         </h2>
         <p className="mb-4">
-          Les messages reçus via le formulaire de contact sont conservés
-          pendant&nbsp;12&nbsp;mois avant suppression définitive, sauf si une
+          Les messages reçus par les formulaires (contact et demande
+          d&apos;audit) sont conservés pendant&nbsp;12&nbsp;mois avant suppression définitive, sauf si une
           relation contractuelle est établie (auquel cas la durée légale de
           conservation comptable s&apos;applique).
         </p>

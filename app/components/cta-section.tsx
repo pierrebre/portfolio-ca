@@ -18,27 +18,28 @@ interface CtaSectionProps {
  */
 export default function CtaSection({ title, children, secondary }: CtaSectionProps) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-20 lg:px-8">
-      <div className="from-primary to-primary/90 overflow-hidden rounded-2xl bg-linear-to-t px-8 py-14 text-center shadow-xl lg:px-16 lg:py-20">
-        <p className="mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-primary-content text-sm font-medium">
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+      {/* Sombre : surface foncée bordée plutôt qu'un grand panneau clair */}
+      <div className="bg-primary text-primary-content dark:bg-base-300 dark:text-base-content dark:border-primary/40 overflow-hidden rounded-2xl px-6 py-12 text-center md:px-16 md:py-16 dark:border">
+        <p className="mb-6 inline-flex items-center gap-2 text-sm font-medium">
           <CalendarCheck className="h-5 w-5" aria-hidden="true" />
           {FREE_AUDIT.badge}
         </p>
 
-        <h2 className="text-primary-content text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+        <h2 className="text-3xl font-bold leading-tight tracking-tight text-balance md:text-4xl">
           {title}
         </h2>
 
-        <p className="text-primary-content mx-auto mt-6 max-w-2xl text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed">
           {children}
         </p>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <AuditButton className="btn w-full min-w-[250px] rounded-full font-semibold lg:w-auto" />
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <AuditButton source="fin de page" className="btn btn-lg bg-base-100 text-base-content hover:bg-base-200 dark:bg-primary dark:text-primary-content dark:hover:bg-primary/90 w-full rounded-full border-0 px-8 font-semibold sm:w-auto" />
           {secondary && (
             <Link
               to={secondary.to}
-              className="btn btn-ghost w-full min-w-[250px] rounded-full border border-primary-content/40 text-primary-content hover:bg-primary-content/10 lg:w-auto"
+              className="btn btn-lg btn-ghost border-primary-content/40 hover:bg-primary-content/10 dark:border-base-content/20 dark:hover:bg-base-content/5 w-full rounded-full border px-8 sm:w-auto"
             >
               {secondary.label}
             </Link>

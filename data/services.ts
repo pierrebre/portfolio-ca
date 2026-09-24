@@ -29,11 +29,11 @@ export const services: ServiceProps[] = [
     name: "Site web",
     problem: "J'ai besoin d'un site, ou le mien est à refaire.",
     description:
-      "Un site WordPress rapide, clair et conforme à la Loi 25, livré en quelques jours — puis entretenu chaque mois pour qu'il reste sûr et à jour.",
+      `Un site WordPress rapide et clair, que tu apprends à modifier toi-même, en ligne en ${PRICING.siteVitrine.delay} — puis entretenu chaque mois pour qu'il reste sûr et à jour.`,
     includes: [
       "Création, refonte ou boutique en ligne",
       "Hébergement, sécurité et sauvegardes",
-      "Suivi mensuel sans engagement annuel",
+      "Politique de confidentialité et consentement (Loi 25)",
     ],
     from: PRICING.siteVitrine.label,
   },
@@ -41,7 +41,7 @@ export const services: ServiceProps[] = [
     key: "optimisation-web-performance",
     icon: Rocket,
     name: "Performance",
-    problem: "Mon site est lent ou ne m'apporte pas de clients.",
+    problem: "Mon site est lent, surtout sur cellulaire.",
     description:
       "Un audit complet de ton site (vitesse, référencement technique, accessibilité, sécurité), puis les corrections, mesurées avant et après.",
     includes: [
@@ -57,11 +57,11 @@ export const services: ServiceProps[] = [
     name: "Automatisation & IA",
     problem: "Je perds des heures sur des tâches répétitives.",
     description:
-      "Formulaires, relances, CRM, rapports : je relie tes outils avec n8n, et j'ajoute un assistant IA là où il fait vraiment gagner du temps.",
+      "Confirmations, relances, CRM, rapports : je fais faire tes tâches répétitives par tes logiciels, et j'ajoute un assistant IA là où il fait vraiment gagner du temps.",
     includes: [
-      "Workflows sur mesure avec n8n",
+      "Tâches automatisées entre tes outils",
       "Assistant IA qui répond à partir de ton contenu",
-      "Données hébergées au Canada si tu le souhaites",
+      "Automatisations hébergées au Canada si tu le souhaites",
     ],
     from: PRICING.workflowSimple.label,
   },

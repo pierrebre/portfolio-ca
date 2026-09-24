@@ -20,7 +20,10 @@ Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnp
 ## Offre et prix
 
 - Tous les prix et délais viennent de `data/pricing.ts` (heures × taux horaire de 75 $/h) : jamais de montant en dur dans une page ou une FAQ. Les articles MDX citent quelques chiffres en dur (coût d'un site, maintenance) : les mettre à jour si la grille change.
-- Appel à l'action principal : `AuditButton` (libellé et offre dans `FREE_AUDIT`), qui ouvre la fenêtre d'audit rendue une seule fois dans `root.tsx` (côté client uniquement). Fin de page : un seul `CtaSection` (aucun sur les pages légales, la 404 et `/contact`).
+- 3 offres seulement (`data/services.ts`) : Site web, Performance, Automatisation & IA, chacune adossée à une étude de cas. Le suivi mensuel est commun aux 3 (`MonthlyPlans`). Ne pas réintroduire d'offre sans étude de cas ni de promesse qu'un travailleur autonome seul ne peut tenir (24/7, « toujours », % de disponibilité).
+- Appel à l'action principal : `AuditButton` (libellés `FREE_AUDIT.cta` / `.short`, « Demander » : il n'y a pas d'agenda en ligne), qui ouvre la fenêtre d'audit rendue une seule fois dans `root.tsx` (côté client uniquement). Sa prop `source` indique l'emplacement, transmis avec la demande. Fin de page : un seul `CtaSection` (aucun sur les pages légales, la 404 et `/contact`).
+- Chiffres de projets affichés hors étude de cas (accueil) : lus dans `content/projects` via un loader, jamais recopiés.
+- Vocabulaire québécois : courriel, visioconférence, soumission (pas « mail », « visio », « devis »).
 
 ## Code
 

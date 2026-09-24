@@ -40,6 +40,8 @@ export interface ProjectMeta {
   href?: string;
   /** Dernière modification de l'étude de cas (updatedDate, sinon date). */
   lastmod?: string;
+  /** Résultat en une phrase (ex. « Tous les problèmes résolus »). */
+  outcome?: string;
 }
 
 /** Champs propres à la page d'étude de cas. */
@@ -48,7 +50,6 @@ export interface CaseStudy extends ProjectMeta {
   metaTitle: string;
   metaDescription: string;
   subtitle?: string;
-  outcome?: string;
   date: string;
   updatedDate?: string;
   highlights: { value: string; label: string }[];
@@ -78,6 +79,7 @@ function toProjectMeta(slug: string, data: Record<string, unknown>, body: string
     featured: data.featured === true,
     href: body.trim() ? `/projects/${slug}` : undefined,
     lastmod: data.updatedDate || data.date ? String(data.updatedDate ?? data.date) : undefined,
+    outcome: data.outcome ? String(data.outcome) : undefined,
   };
 }
 
@@ -120,7 +122,6 @@ export async function getCaseStudy(slug: string): Promise<CaseStudy | null> {
     metaTitle: String(data.metaTitle ?? meta.title),
     metaDescription: String(data.metaDescription ?? meta.description),
     subtitle: data.subtitle ? String(data.subtitle) : undefined,
-    outcome: data.outcome ? String(data.outcome) : undefined,
     date: String(data.date),
     updatedDate: data.updatedDate ? String(data.updatedDate) : undefined,
     highlights: list(data.highlights),
