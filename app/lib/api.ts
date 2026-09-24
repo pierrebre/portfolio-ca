@@ -1,3 +1,6 @@
+// Au-delà, on abandonne plutôt que de laisser le bouton sur « Envoi… ».
+const TIMEOUT_MS = 15_000;
+
 const SEND_ERROR =
   "L'envoi a échoué. Merci de réessayer dans un instant ou d'écrire à contact@pierrebarbe.ca.";
 
@@ -21,9 +24,10 @@ export async function postToApi(path: string, body: unknown): Promise<void> {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
     });
   } catch (err) {
-    console.error(`[api] ${path} : requête impossible`, err);
+    console.error(`[api] ${path} : requête impossible ou trop longue`, err);
     throw new Error(SEND_ERROR);
   }
 

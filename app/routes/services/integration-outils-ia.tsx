@@ -138,7 +138,7 @@ export default function IntegrationOutilsIA() {
             <LinkCard to="/services/automatisation-workflows" title="L'IA seule ne suffit pas — combine-la avec de l'automatisation" label="Automatisation de workflows n8n" bg="bg-base-200" />
             <LinkCard to="/services/creation-maintenance-sites" title="Besoin d'un site pour héberger ton chatbot ?" label="Création & maintenance de sites" bg="bg-base-200" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
             <LinkCard to="/blog/chatbot-ia-site-web-pme" title="Chatbot IA pour site web : guide complet pour PME" label="Lire l'article" bg="bg-base-200" />
             <LinkCard to="/blog/automatiser-business-n8n-pme" title="Automatisation + IA : comment les combiner avec n8n" label="Lire l'article" bg="bg-base-200" />

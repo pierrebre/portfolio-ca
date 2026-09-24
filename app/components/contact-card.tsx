@@ -4,7 +4,7 @@ import { Phone } from "lucide-react";
 export default function ContactCard() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-20 lg:px-8">
-      <div className="from-primary to-primary/70 relative overflow-hidden rounded-2xl bg-linear-to-t shadow-xl">
+      <div className="from-primary to-primary/90 relative overflow-hidden rounded-2xl bg-linear-to-t shadow-xl">
         <div className="relative px-8 py-14 text-center lg:px-16 lg:py-20">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2.5 backdrop-blur-sm">
             <Phone className="text-primary-content h-5 w-5" aria-hidden="true" />
@@ -17,7 +17,7 @@ export default function ContactCard() {
             Parlons de vos objectifs
           </h2>
 
-          <p className="text-primary-content/90 mx-auto mt-6 max-w-2xl text-lg text-justify">
+          <p className="text-primary-content mx-auto mt-6 max-w-2xl text-lg text-justify">
             Un projet en tête ? Un site à optimiser ? Parlons-en. Contactez-moi
             pour un premier échange gratuit — par courriel ou visio, vous
             choisissez. C'est simple, rapide et sans engagement.

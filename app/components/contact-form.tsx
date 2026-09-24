@@ -4,18 +4,22 @@ import { z } from "zod";
 import { postToApi } from "~/lib/api";
 import { useToast } from "~/context/toast-context";
 import FormField from "./form-field";
+import { HoneypotField, NoScriptNotice } from "./form-guard";
+import { useHydrated } from "~/hooks/use-hydrated";
 
 const contactformSchema = z.object({
   firstName: z.string().min(1, { message: "Le prénom est requis" }),
   lastName: z.string().min(1, { message: "Le nom de famille est requis" }),
   email: z.string().email({ message: "Adresse e-mail invalide" }),
   message: z.string().min(1, { message: "Le message est requis" }),
+  company: z.string().optional(), // champ piège
 });
 
 type FormSchemaType = z.infer<typeof contactformSchema>;
 
 export default function ContactForm() {
   const { showToast } = useToast();
+  const hydrated = useHydrated();
   const {
     register,
     handleSubmit,
@@ -28,13 +32,21 @@ export default function ContactForm() {
       lastName: "",
       email: "",
       message: "",
+      company: "",
     },
   });
 
-  const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
+  const onSubmit: SubmitHandler<FormSchemaType> = async ({ company, ...data }) => {
+    const success = "Votre message a été envoyé avec succès !";
+    // Robot : on simule un succès sans rien envoyer
+    if (company) {
+      showToast(success, "success");
+      reset();
+      return;
+    }
     try {
       await postToApi("/send-email", data);
-      showToast("Votre message a été envoyé avec succès !", "success");
+      showToast(success, "success");
       reset();
     } catch (err: unknown) {
       showToast((err as Error).message, "error");
@@ -43,8 +55,15 @@ export default function ContactForm() {
 
   return (
     // noValidate : les messages de validation (zod, en français) remplacent
-    // les bulles natives du navigateur.
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-6 space-y-6">
+    // les bulles natives du navigateur. method="post" : si le formulaire
+    // partait quand même sans JS, les données ne finiraient pas dans l'URL.
+    <form
+      method="post"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="relative mt-6 space-y-6"
+    >
+      <HoneypotField registration={register("company")} />
       <div className="grid gap-6 md:grid-cols-2">
         <FormField id="contact-first-name" label="Prénom" error={errors.firstName?.message}>
           {(field) => (
@@ -96,10 +115,13 @@ export default function ContactForm() {
         )}
       </FormField>
 
+      <NoScriptNotice />
       <button
         type="submit"
         className="btn btn-primary w-full"
-        disabled={isSubmitting}
+        // Désactivé avant l'hydratation : sinon l'envoi natif contourne la
+        // validation et l'API.
+        disabled={!hydrated || isSubmitting}
       >
         {isSubmitting ? "Envoi…" : "Envoyer le message"}
       </button>

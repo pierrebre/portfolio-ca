@@ -202,13 +202,13 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                         <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
                         {post.category}
                       </span>
-                      <span className="text-base-content/50 flex items-center gap-1 text-sm">
+                      <span className="text-base-content/70 flex items-center gap-1 text-sm">
                         <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
                         <time dateTime={post.date}>
                           {formatPostDate(post.date)}
                         </time>
                       </span>
-                      <span className="text-base-content/50 flex items-center gap-1 text-sm">
+                      <span className="text-base-content/70 flex items-center gap-1 text-sm">
                         <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                         {post.readingTime} min de lecture
                       </span>

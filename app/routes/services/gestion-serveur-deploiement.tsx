@@ -123,7 +123,7 @@ export default function GestionServeurDeploiement() {
             <LinkCard to="/services/creation-maintenance-sites" title="Besoin aussi de maintenance applicative WordPress ?" label="Création & maintenance de sites" />
             <LinkCard to="/services/automatisation-workflows" title="J'héberge aussi n8n en self-hosted sur tes serveurs" label="Automatisation de workflows" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
             <LinkCard to="/blog/securite-wordpress-guide-pme" title="Guide sécurité WordPress pour PME" label="Lire l'article" />
             <LinkCard to="/blog/maintenance-site-web-pme-guide" title="Guide complet : maintenance de site web pour PME" label="Lire l'article" />

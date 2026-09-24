@@ -225,7 +225,7 @@ export default function OptimisationWebPerformance() {
             <LinkCard to="/services/audits-techniques-core-web-vitals" title="Tu veux d'abord un audit complet ?" label="Audits techniques & Core Web Vitals" />
             <LinkCard to="/services/creation-maintenance-sites" title="Ton WordPress a besoin d'une refonte ?" label="Création & maintenance de sites" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
             <LinkCard to="/blog/audit-performance-site-web" title="Comment auditer les performances de ton site web" label="Lire l'article" />
             <LinkCard to="/blog/optimisation-vitesse-wordpress" title="Optimiser la vitesse de ton site WordPress" label="Lire l'article" />

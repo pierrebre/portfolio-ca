@@ -107,11 +107,7 @@ const contactDetails = [
     label: "Téléphone",
     content: (
       <>
-        <a
-          href="tel:+14385436986"
-          className="link link-hover"
-          aria-label="Appeler le +1 438 543 6986"
-        >
+        <a href="tel:+14385436986" className="link link-hover">
           +1&nbsp;(438)&nbsp;543-6986
         </a>
         <br />

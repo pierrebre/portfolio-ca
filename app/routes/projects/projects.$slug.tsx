@@ -291,7 +291,7 @@ function PiscinesJolicoeur() {
               <Calendar className="h-3 w-3" aria-hidden="true" />
               Mars 2026
             </div>
-            <span className="text-base-content/50 self-center text-sm">
+            <span className="text-base-content/70 self-center text-sm">
               Mis à jour le{" "}
               <time dateTime="2026-08-21">21 août 2026</time>
             </span>
@@ -327,7 +327,7 @@ function PiscinesJolicoeur() {
           </p>
           <p className="text-base-content/70 text-sm mt-3">
             En savoir plus sur{" "}
-            <Link to="/blog/wordpress-pme-quebec-2026" className="text-primary hover:underline">
+            <Link to="/blog/wordpress-pme-quebec-2026" className="text-primary underline underline-offset-2 hover:no-underline">
               WordPress pour les PME québécoises en 2026
             </Link>
             .
@@ -379,7 +379,7 @@ function PiscinesJolicoeur() {
                     {correction.link && (
                       <Link
                         to={correction.link.href}
-                        className="text-primary text-sm hover:underline mt-2 inline-block"
+                        className="text-primary text-sm underline underline-offset-2 hover:no-underline mt-2 inline-block"
                       >
                         {correction.link.label}
                       </Link>
@@ -400,7 +400,7 @@ function PiscinesJolicoeur() {
           <p className="text-base-content/70 leading-relaxed">
             Je diagnostique et corrige ce type de panne, y compris sur un site que je n'ai pas
             développé.{" "}
-            <Link to="/contact" className="text-primary font-semibold hover:underline">
+            <Link to="/contact" className="text-primary font-semibold underline underline-offset-2 hover:no-underline">
               Réservez votre audit gratuit →
             </Link>
           </p>
@@ -425,7 +425,7 @@ function PiscinesJolicoeur() {
                       {row.label}
                     </th>
                     <td className="text-base-content/60">{row.before}</td>
-                    <td className="text-success font-semibold">{row.after}</td>
+                    <td className="text-green-700 dark:text-green-400 font-semibold">{row.after}</td>
                   </tr>
                 ))}
               </tbody>
@@ -433,7 +433,7 @@ function PiscinesJolicoeur() {
           </div>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-base-200 rounded-xl p-5 text-center">
-              <div className="text-3xl font-black text-success">5 / 5</div>
+              <div className="text-3xl font-black text-green-700 dark:text-green-400">5 / 5</div>
               <div className="text-base-content/60 text-sm mt-1">Problèmes résolus</div>
             </div>
             <div className="bg-base-200 rounded-xl p-5 text-center">
@@ -443,7 +443,7 @@ function PiscinesJolicoeur() {
           </div>
           <p className="text-base-content/70 mt-4 leading-relaxed">
             Client satisfait, collaboration en cours pour de nouvelles tâches. Un{" "}
-            <Link to="/blog/maintenance-site-web-pme-guide" className="text-primary hover:underline">
+            <Link to="/blog/maintenance-site-web-pme-guide" className="text-primary underline underline-offset-2 hover:no-underline">
               plan de maintenance régulier
             </Link>{" "}
             a été recommandé pour éviter que ces problèmes ne se reproduisent.
@@ -461,11 +461,9 @@ function PiscinesJolicoeur() {
             {faq.map((item) => (
               <FaqItem
                 key={item.index}
-                index={item.index}
                 question={item.question}
                 answer={item.answer}
                 accordionName="jolicoeur-faq"
-                idPrefix="jolicoeur-faq"
               />
             ))}
           </div>
@@ -482,7 +480,7 @@ function PiscinesJolicoeur() {
 
         {/* Lire aussi */}
         <section className="mt-8">
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mb-3">
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mb-3">
             Lire aussi
           </p>
           <div className="grid sm:grid-cols-2 gap-4">

@@ -207,7 +207,6 @@ export default function ServicesIndex() {
         questions={servicesQuestions}
         title="Questions fréquentes"
         accordionName="services-faq"
-        idPrefix="services-faq-item"
         schemaId="https://pierrebarbe.ca/services#faq"
         className="bg-base-200 py-20 md:py-24"
       />

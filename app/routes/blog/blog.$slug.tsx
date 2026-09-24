@@ -141,19 +141,19 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
               <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
               {post.category}
             </span>
-            <span className="text-base-content/50 flex items-center gap-1 text-sm">
+            <span className="text-base-content/70 flex items-center gap-1 text-sm">
               <Calendar className="h-4 w-4" aria-hidden="true" />
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             </span>
             {post.updatedDate && post.updatedDate !== post.date && (
-              <span className="text-primary/70 flex items-center gap-1 text-sm font-medium">
+              <span className="text-primary flex items-center gap-1 text-sm font-medium">
                 · Mis à jour le{" "}
                 <time dateTime={post.updatedDate}>
                   {formatPostDate(post.updatedDate)}
                 </time>
               </span>
             )}
-            <span className="text-base-content/50 flex items-center gap-1 text-sm">
+            <span className="text-base-content/70 flex items-center gap-1 text-sm">
               <Clock className="h-4 w-4" aria-hidden="true" />
               {post.readingTime} min de lecture
             </span>
@@ -175,7 +175,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
               <Link to="/about" className="font-semibold text-sm hover:text-primary transition-colors">
                 Pierre Barbé
               </Link>
-              <p className="text-base-content/50 text-xs">
+              <p className="text-base-content/70 text-xs">
                 Développeur web freelance · Montréal
               </p>
             </div>
@@ -189,7 +189,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
             prose-h2:mt-10 prose-h3:mt-6 prose-h3:mb-2
             prose-p:leading-relaxed
-            prose-a:no-underline hover:prose-a:underline
+            prose-a:underline-offset-2 hover:prose-a:no-underline
             prose-code:text-sm prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
             prose-code:before:content-none prose-code:after:content-none
             [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-base-content/10
@@ -210,7 +210,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
                 to={`/blog/${adjacent.prev.slug}`}
                 className="group flex flex-col gap-1 p-4 rounded-xl border border-base-content/10 hover:border-primary/30 hover:bg-primary/5 transition-all"
               >
-                <span className="text-base-content/50 text-xs flex items-center gap-1">
+                <span className="text-base-content/70 text-xs flex items-center gap-1">
                   <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                   Article précédent
                 </span>
@@ -227,7 +227,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
                 to={`/blog/${adjacent.next.slug}`}
                 className="group flex flex-col gap-1 p-4 rounded-xl border border-base-content/10 hover:border-primary/30 hover:bg-primary/5 transition-all text-right sm:col-start-2"
               >
-                <span className="text-base-content/50 text-xs flex items-center gap-1 justify-end">
+                <span className="text-base-content/70 text-xs flex items-center gap-1 justify-end">
                   Article suivant
                   <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
@@ -247,14 +247,14 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           <div>
             <p className="font-bold text-base">
               Écrit par{" "}
-              <Link to="/about" className="text-primary hover:underline">
+              <Link to="/about" className="text-primary underline underline-offset-2 hover:no-underline">
                 Pierre Barbé
               </Link>
             </p>
             <p className="text-base-content/70 text-sm mt-1 leading-relaxed">
               Développeur web freelance à Montréal, spécialisé en performance WordPress,
               automatisation n8n et intégration IA pour PME québécoises.{" "}
-              <Link to="/about" className="text-primary hover:underline">
+              <Link to="/about" className="text-primary underline underline-offset-2 hover:no-underline">
                 En savoir plus →
               </Link>
             </p>

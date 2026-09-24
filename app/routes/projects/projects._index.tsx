@@ -127,8 +127,8 @@ export default function Projects() {
       <section className="pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {projects.length === 0 ? (
-            <div className="text-center py-20 animate-on-scroll">
-              <p className="text-base-content/50 text-lg">
+            <div className="text-center py-20">
+              <p className="text-base-content/70 text-lg">
                 Les études de cas arrivent bientôt.
               </p>
               <Link to="/contact" className="btn btn-primary rounded-full mt-6">
@@ -140,7 +140,9 @@ export default function Projects() {
             {featured.map((project, idx) => (
               <article
                 key={project.slug}
-                className="card bg-base-100 border border-base-content/10 shadow-sm overflow-hidden animate-on-scroll"
+                // Le premier projet est visible dès l'arrivée : l'animer le
+                // masquerait jusqu'au chargement du JS (affichage retardé).
+                className={`card bg-base-100 border border-base-content/10 shadow-sm overflow-hidden ${idx > 0 ? "animate-on-scroll" : ""}`}
               >
                 <div className="card-body p-0">
                   <div
@@ -152,9 +154,12 @@ export default function Projects() {
                       aria-hidden="true"
                     >
                       <div className="text-center">
-                        <div className="text-6xl font-black text-primary/20 leading-none">
-                          {String(project.year)}
-                        </div>
+                        {/* Filigrane décoratif : l'année vient du CSS (attr),
+                            pas du contenu de la page */}
+                        <div
+                          data-year={project.year}
+                          className="text-6xl font-black text-primary/20 leading-none before:content-[attr(data-year)]"
+                        />
                         <div className="mt-4 flex flex-wrap justify-center gap-2">
                           {project.tags.slice(0, 3).map((tag) => (
                             <span
@@ -178,7 +183,7 @@ export default function Projects() {
                             <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
                             {project.category}
                           </span>
-                          <span className="text-base-content/50 flex items-center gap-1 text-sm">
+                          <span className="text-base-content/70 flex items-center gap-1 text-sm">
                             <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                             {project.duration}
                           </span>
@@ -187,7 +192,7 @@ export default function Projects() {
                         <h2 className="text-2xl font-bold mb-3">
                           {project.title}
                         </h2>
-                        <p className="text-base-content/50 text-sm font-medium mb-3">
+                        <p className="text-base-content/70 text-sm font-medium mb-3">
                           {project.client}
                         </p>
                         <p className="text-base-content/70 leading-relaxed mb-4">
@@ -251,14 +256,14 @@ export default function Projects() {
                       >
                         {project.category}
                       </span>
-                      <span className="text-base-content/50 text-xs flex items-center gap-1">
+                      <span className="text-base-content/70 text-xs flex items-center gap-1">
                         <Clock className="h-3 w-3" aria-hidden="true" />
                         {project.duration}
                       </span>
                     </div>
 
                     <h3 className="font-bold text-lg mb-1">{project.title}</h3>
-                    <p className="text-base-content/50 text-sm mb-3">
+                    <p className="text-base-content/70 text-sm mb-3">
                       {project.client}
                     </p>
                     <p className="text-base-content/70 text-sm leading-relaxed mb-4">
@@ -274,11 +279,11 @@ export default function Projects() {
                         />
                         <span className="text-sm">
                           <span className="font-medium">{project.metrics[0].label} :</span>{" "}
-                          <span className="text-error line-through text-xs">
+                          <span className="text-red-700 dark:text-red-400 line-through text-xs">
                             {project.metrics[0].before}
                           </span>
                           {" → "}
-                          <span className="text-success font-bold">
+                          <span className="text-green-700 dark:text-green-400 font-bold">
                             {project.metrics[0].after}
                           </span>
                         </span>

@@ -15,6 +15,7 @@ import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import ContactCard from "./components/contact-card";
 import { ToastProvider } from "./context/toast-context";
+import ErrorPage, { NOT_FOUND_MESSAGE } from "./components/error-page";
 
 // Force le pathname en minuscules pour éliminer la duplication de contenu
 // (ex. /SERVICES, /About, /Blog renvoyaient HTTP 200 avec le même contenu).
@@ -26,6 +27,19 @@ export function loader({ request }: Route.LoaderArgs) {
     throw redirect(url.toString(), 308);
   }
   return null;
+}
+
+// Le HTML ne dépend ni du visiteur ni de cookies (thème et formulaires sont
+// gérés côté client) : le CDN de Vercel peut le servir depuis son cache.
+// s-maxage ne vise que le CDN, purgé à chaque déploiement ; le navigateur
+// revalide toujours (max-age=0). Une page d'erreur n'est jamais mise en cache.
+// S'applique à toutes les routes qui n'exportent pas leur propre headers().
+export function headers({ errorHeaders }: Route.HeadersArgs) {
+  if (errorHeaders) return { "Cache-Control": "no-store" };
+  return {
+    "Cache-Control":
+      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+  };
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -94,8 +108,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <NavBar />
           <main id="main-content">
             {children}
+            {shouldShowContactCard && <ContactCard />}
           </main>
-          {shouldShowContactCard && <ContactCard />}
           <Footer />
         </ToastProvider>
         <ScrollRestoration />
@@ -109,32 +123,23 @@ export default function App() {
   return <Outlet />;
 }
 
+// Rendu à l'intérieur du Layout (en-tête, <main>, pied de page).
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "Une erreur inattendue s'est produite.";
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Erreur";
-    details =
-      error.status === 404
-        ? "La page demandée est introuvable."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return <ErrorPage title="404" message={NOT_FOUND_MESSAGE} />;
   }
 
+  // En production, aucun détail technique n'est montré au visiteur.
+  const devError = import.meta.env.DEV && error instanceof Error ? error : null;
+
   return (
-    // Rendu à l'intérieur du <main> du Layout : pas de second <main>.
-    <div className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </div>
+    <ErrorPage
+      title={isRouteErrorResponse(error) ? `Erreur ${error.status}` : "Erreur"}
+      message={
+        devError?.message ??
+        "Une erreur inattendue s'est produite. Réessayez dans un instant."
+      }
+      stack={devError?.stack}
+    />
   );
 }

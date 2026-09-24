@@ -201,7 +201,7 @@ export default function CreationMaintenanceSites() {
             <LinkCard to="/services/optimisation-web-performance" title="Ton site actuel est lent ?" label="Optimisation web-performance" />
             <LinkCard to="/services/automatisation-workflows" title="Tu veux automatiser la gestion de ton site ?" label="Automatisation de workflows" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
             <LinkCard to="/blog/securite-wordpress-guide-pme" title="Guide sécurité WordPress pour PME" label="Lire l'article" />
             <LinkCard to="/blog/maintenance-site-web-pme-guide" title="Guide complet : maintenance de site web pour PME" label="Lire l'article" />

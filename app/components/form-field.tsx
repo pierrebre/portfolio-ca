@@ -26,7 +26,7 @@ export default function FormField({ id, label, error, children }: FormFieldProps
         <span>{label}</span>
       </label>
       {error && (
-        <p id={errorId} className="text-error text-sm">
+        <p id={errorId} className="text-red-700 dark:text-red-400 text-sm">
           {error}
         </p>
       )}

@@ -175,7 +175,7 @@ export default function AutomatisationWorkflows() {
             <LinkCard to="/services/integration-outils-ia" title="Combine automatisation + IA pour des workflows intelligents" label="Intégration d'outils IA" />
             <LinkCard to="/services/gestion-serveur-deploiement" title="Héberger n8n sur ton propre serveur ?" label="Gestion serveur & déploiement" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
             <LinkCard to="/blog/automatiser-business-n8n-pme" title="Comment automatiser son business avec n8n en 2026" label="Lire l'article" />
             <LinkCard to="/blog/cout-site-web-quebec-prix" title="Combien coûte l'automatisation vs les coûts manuels ?" label="Lire l'article" />

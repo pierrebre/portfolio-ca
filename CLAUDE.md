@@ -19,6 +19,11 @@ Commandes et structure : voir `README.md`. Vérifier avec `pnpm typecheck && pnp
 
 - Liens internes avec `<Link>`, jamais `<a href="/…">` (rechargement complet).
 - Classes Tailwind écrites en entier, jamais construites (`alert-${type}` n'est pas généré).
-- Texte sur fond `primary` : `text-primary-content` (forcé en blanc dans `app.css` pour le contraste AA).
+- Texte sur fond `primary` : `text-primary-content` (blanc en clair, sombre en mode sombre : palette réglée dans `app.css` pour le contraste AA).
+- Texte secondaire : au moins `text-base-content/70` (en dessous, contraste insuffisant). Rouge/vert en texte : `text-red-700 dark:text-red-400` / `text-green-700 dark:text-green-400` (`error`/`success` de daisyUI sont trop clairs).
+- Lien au milieu d'un paragraphe : souligné (la couleur seule ne suffit pas).
+- Menus déroulants : bouton avec `aria-expanded`/`aria-controls` et `useDismiss` (Échap, clic extérieur), pas de rôle ARIA `menu`.
 - Police : Urbanist est la police par défaut, pas de classe à ajouter.
-- Formulaires : `postToApi` (`app/lib/api.ts`) et `FormField` ; les messages d'erreur montrés au visiteur ne doivent jamais être techniques.
+- Formulaires : `postToApi` (`app/lib/api.ts`), `FormField`, `HoneypotField` et bouton désactivé avant hydratation (`useHydrated`) ; les messages d'erreur montrés au visiteur ne doivent jamais être techniques.
+- Le HTML est mis en cache par le CDN (`headers()` dans `root.tsx`) : le rendu serveur ne doit rien contenir de propre à un visiteur.
+- Dépendances : `pnpm audit` doit rester vide ; le lockfile doit passer `pnpm install --frozen-lockfile` (c'est ce que fait Vercel).

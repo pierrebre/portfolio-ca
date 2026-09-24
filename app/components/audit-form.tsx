@@ -4,6 +4,8 @@ import { z } from "zod";
 import { postToApi } from "~/lib/api";
 import { useToast } from "~/context/toast-context";
 import FormField from "./form-field";
+import { HoneypotField, NoScriptNotice } from "./form-guard";
+import { useHydrated } from "~/hooks/use-hydrated";
 
 const auditFormSchema = z.object({
   websiteUrl: z
@@ -11,6 +13,7 @@ const auditFormSchema = z.object({
     .url({ message: "Une URL de site Web valide est requise" }),
   email: z.string().email({ message: "Adresse e-mail invalide" }),
   additionalInfo: z.string().optional(),
+  company: z.string().optional(), // champ piège
 });
 
 type AuditFormType = z.infer<typeof auditFormSchema>;
@@ -22,6 +25,7 @@ type AuditFormProps = {
 
 export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
   const { showToast } = useToast();
+  const hydrated = useHydrated();
   const {
     register,
     handleSubmit,
@@ -33,13 +37,22 @@ export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
       websiteUrl: "",
       email: "",
       additionalInfo: "",
+      company: "",
     },
   });
 
-  const onSubmit: SubmitHandler<AuditFormType> = async (data) => {
+  const onSubmit: SubmitHandler<AuditFormType> = async ({ company, ...data }) => {
+    const success = "Votre demande d'audit a été soumise avec succès !";
+    // Robot : on simule un succès sans rien envoyer
+    if (company) {
+      showToast(success, "success");
+      reset();
+      onSuccess();
+      return;
+    }
     try {
       await postToApi("/request-audit", data);
-      showToast("Votre demande d'audit a été soumise avec succès !", "success");
+      showToast(success, "success");
       reset();
       onSuccess();
     } catch (err: unknown) {
@@ -48,9 +61,14 @@ export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
   };
 
   return (
-    // noValidate : les messages de validation (zod, en français) remplacent
-    // les bulles natives du navigateur.
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-4 space-y-4">
+    // noValidate / method="post" : voir ContactForm.
+    <form
+      method="post"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="relative mt-4 space-y-4"
+    >
+      <HoneypotField registration={register("company")} />
       <FormField id="audit-website-url" label="URL du site Web" error={errors.websiteUrl?.message}>
         {(field) => (
           <input
@@ -88,6 +106,7 @@ export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
         )}
       </FormField>
 
+      <NoScriptNotice />
       <div className="modal-action flex justify-between">
         <button type="button" className="btn btn-outline" onClick={onCancel}>
           Annuler
@@ -95,7 +114,8 @@ export default function AuditForm({ onSuccess, onCancel }: AuditFormProps) {
         <button
           type="submit"
           className="btn btn-primary"
-          disabled={isSubmitting}
+          // Désactivé avant l'hydratation (voir ContactForm)
+          disabled={!hydrated || isSubmitting}
         >
           {isSubmitting ? "Envoi en cours..." : "Demander un audit"}
         </button>

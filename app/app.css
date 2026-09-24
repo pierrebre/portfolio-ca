@@ -2,18 +2,38 @@
 @plugin "daisyui" {
   /* Seuls les thèmes du ThemeToggle : `all` embarquait 35 thèmes dans le CSS. */
   themes: light --default, dark --prefersdark;
+  /* daisyUI n'embarque que les composants dont le nom apparaît dans le code,
+     mais il repère des mots : `timeline`, `.filter(`, `.join(`, `<Hero>`,
+     `ThemeToggle`… ajoutaient ces composants alors qu'aucun n'est utilisé. */
+  exclude: timeline, diff, filter, join, drawer, list, stat, status, loading, radio, select, tab, toggle, hero, stack, label, radialprogress, countdown, validator;
 }
 
 /* `dark:` suit le thème choisi (data-theme posé par le script anti-FOUC et le
    ThemeToggle) plutôt que prefers-color-scheme. */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-/* Texte sur fond primary : blanc pur dans les deux thèmes. Le primary-content
-   par défaut du thème dark (légèrement teinté) n'offre que ~4,1:1 sur primary,
-   sous le seuil AA de 4,5:1. Hors @layer pour primer sur les thèmes daisyUI,
-   déclarés dans @layer base. */
+/* Contraste AA du violet (primary). Hors @layer pour primer sur les thèmes
+   daisyUI, déclarés dans @layer base.
+   - Clair : texte blanc pur sur primary (8,3:1).
+   - Sombre : le primary de daisyUI (#605dff) sert aussi de couleur de texte et
+     n'offre que 3,4:1 sur le fond sombre ; aucune teinte ne passe à la fois
+     comme texte et sous du texte blanc. On l'éclaircit (texte : 5,9:1) et le
+     texte posé dessus devient sombre (5,9:1, 4,9:1 au survol). */
 :root {
   --color-primary-content: oklch(100% 0 0);
+}
+
+[data-theme="dark"] {
+  --color-primary: oklch(72% 0.18 277.117);
+  --color-primary-content: oklch(25.33% 0.016 252.42);
+}
+
+/* Sans data-theme (stockage bloqué, pas de JS), daisyUI suit le système. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-primary: oklch(72% 0.18 277.117);
+    --color-primary-content: oklch(25.33% 0.016 252.42);
+  }
 }
 
 /* ============================================================
@@ -161,12 +181,15 @@
   --tw-prose-captions: color-mix(in oklab, var(--color-base-content) 50%, transparent);
 }
 
-/* Tables : défilement horizontal sur mobile */
-.prose table {
-  display: block;
-  width: 100%;
+/* Tables : défilement horizontal sur mobile, dans le conteneur focalisable
+   ajouté par rehypeAccessibleContent (content.server.ts) */
+.prose .table-scroll {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+}
+
+.prose .table-scroll:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Task list items générés par remark-gfm (- [ ] / - [x]) */

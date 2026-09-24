@@ -133,7 +133,7 @@ export default function AuditsTechniquesCoreWebVitals() {
             <LinkCard to="/services/optimisation-web-performance" title="Ton audit révèle des problèmes de vitesse ?" label="Optimisation web-performance" />
             <LinkCard to="/services/creation-maintenance-sites" title="L'audit montre qu'une refonte serait plus rentable ?" label="Création & maintenance de sites" />
           </div>
-          <p className="text-base-content/50 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
+          <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
             <LinkCard to="/blog/audit-performance-site-web" title="Comment auditer les performances de ton site web" label="Lire l'article" />
             <LinkCard to="/blog/optimisation-vitesse-wordpress" title="Optimiser la vitesse de ton site WordPress" label="Lire l'article" />

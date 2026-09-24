@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router";
 import { ChevronDown } from "lucide-react";
 import { services, serviceUrl } from "data/services";
+import { useDismiss } from "~/hooks/use-dismiss";
 
 // Bouton de divulgation (aria-expanded + aria-controls) et simple liste de
 // liens : le rôle ARIA "menu" impose une navigation aux flèches qu'on n'offre pas.
@@ -10,29 +11,7 @@ export default function ServiceDropdown() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Ferme avec Échap et au clic extérieur
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-        buttonRef.current?.focus();
-      }
-    };
-    const handleClickOutside = (e: MouseEvent) => {
-      if (!dropdownRef.current?.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("keydown", handleEscape);
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  useDismiss(isOpen, setIsOpen, dropdownRef, buttonRef);
 
   return (
     <div className="relative" ref={dropdownRef}>
