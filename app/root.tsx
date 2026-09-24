@@ -19,11 +19,13 @@ import ErrorPage, { NOT_FOUND_MESSAGE } from "./components/error-page";
 // Force le pathname en minuscules pour éliminer la duplication de contenu
 // (ex. /SERVICES, /About, /Blog renvoyaient HTTP 200 avec le même contenu).
 // 308 = permanent + préserve méthode, recommandé par GSC.
-export function loader({ request }: Route.LoaderArgs) {
-  const url = new URL(request.url);
+// `url` et non `request.url` : avec v8_passThroughRequests, `request.url` d'une
+// requête de données garde le suffixe `.data`.
+export function loader({ url }: Route.LoaderArgs) {
   if (/[A-Z]/.test(url.pathname)) {
-    url.pathname = url.pathname.toLowerCase();
-    throw redirect(url.toString(), 308);
+    const target = new URL(url);
+    target.pathname = target.pathname.toLowerCase();
+    throw redirect(target.toString(), 308);
   }
   return null;
 }
