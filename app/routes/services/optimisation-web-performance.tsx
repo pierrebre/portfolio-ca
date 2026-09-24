@@ -8,8 +8,8 @@ import type { Route } from "./+types/optimisation-web-performance";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Optimisation performance web & Core Web Vitals | Montréal | Pierre Barbé",
-      description: "Ton site met plus de 3 secondes à charger ? J'audite et optimise la performance web de ton site WordPress, Shopify ou React : LCP, INP, CLS, images, cache. Audit gratuit 30 min disponible.",
+      title: "Optimisation de performance web à Montréal | Pierre Barbé",
+      description: "Ton site met plus de 3 s à charger ? J'optimise la performance de ton site WordPress, Shopify ou React : LCP, INP, CLS, images, cache. Audit gratuit 30 min.",
       url: "https://pierrebarbe.ca/services/optimisation-web-performance",
     }),
   ];

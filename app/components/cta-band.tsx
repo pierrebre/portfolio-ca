@@ -14,7 +14,7 @@ export default function CtaBand() {
         </p>
         <Link
           to="/contact"
-          className="btn btn-primary text-base-100 rounded-full px-8"
+          className="btn btn-primary rounded-full px-8"
         >
           Parle-moi de ton projet →
         </Link>

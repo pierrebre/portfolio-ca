@@ -1,22 +1,28 @@
-FROM node:20-alpine AS development-dependencies-env
-COPY . /app
+FROM node:22-alpine AS base
+RUN npm install -g pnpm@10.33.0
 WORKDIR /app
-RUN npm ci
 
-FROM node:20-alpine AS production-dependencies-env
-COPY ./package.json package-lock.json /app/
-WORKDIR /app
-RUN npm ci --omit=dev
+FROM base AS development-dependencies-env
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-FROM node:20-alpine AS build-env
-COPY . /app/
-COPY --from=development-dependencies-env /app/node_modules /app/node_modules
-WORKDIR /app
-RUN npm run build
+FROM base AS production-dependencies-env
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile --prod
 
-FROM node:20-alpine
-COPY ./package.json package-lock.json /app/
-COPY --from=production-dependencies-env /app/node_modules /app/node_modules
-COPY --from=build-env /app/build /app/build
-WORKDIR /app
-CMD ["npm", "run", "start"]
+FROM base AS build-env
+# Injectée dans le bundle client par Vite : à passer au build
+# (docker build --build-arg VITE_API_URL=https://…).
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+COPY . .
+COPY --from=development-dependencies-env /app/node_modules ./node_modules
+RUN pnpm build
+
+FROM base
+COPY package.json pnpm-lock.yaml ./
+COPY --from=production-dependencies-env /app/node_modules ./node_modules
+COPY --from=build-env /app/build ./build
+# Les articles MDX sont lus au runtime depuis content/blog.
+COPY --from=build-env /app/content ./content
+CMD ["pnpm", "start"]

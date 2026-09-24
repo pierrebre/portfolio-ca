@@ -8,8 +8,8 @@ import type { Route } from "./+types/audits-techniques-core-web-vitals";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Audit technique de site web & Core Web Vitals | Montréal | Pierre Barbé",
-      description: "Audit technique complet : Core Web Vitals, SEO, accessibilité, sécurité. Rapport clair avec plan d'action. Audit express gratuit (30 min) ou audit complet à partir de 500 $.",
+      title: "Audit technique de site web & Core Web Vitals | Montréal",
+      description: "Audit technique complet : Core Web Vitals, SEO, accessibilité, sécurité. Rapport clair avec plan d'action. Audit express gratuit (30 min) ou complet dès 500 $.",
       url: "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals",
     }),
   ];

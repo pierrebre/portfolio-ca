@@ -8,8 +8,8 @@ import type { Route } from "./+types/integration-outils-ia";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Intégration d'outils IA pour ton site web | Chatbots & IA | Montréal",
-      description: "Intègre l'IA sur ton site : chatbot GPT entraîné sur ton contenu, recherche sémantique, recommandations. Développeur IA freelance à Montréal. Données hébergées chez toi.",
+      title: "Intégration IA et chatbots pour ton site web | Montréal",
+      description: "Intègre l'IA sur ton site : chatbot GPT entraîné sur ton contenu, recherche sémantique, recommandations. Données hébergées chez toi. Développeur IA à Montréal.",
       url: "https://pierrebarbe.ca/services/integration-outils-ia",
     }),
   ];

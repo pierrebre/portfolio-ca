@@ -5,7 +5,15 @@ import ServiceDropdown from "./service-dropdown";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
+  // Le dropdown DaisyUI s'affiche tant qu'un de ses éléments a le focus :
+  // après un clic sur un lien, le focus reste dessus et le menu resterait
+  // ouvert sur la nouvelle page. On retire donc le focus pour le fermer.
+  const closeMenu = () => {
+    setMenuOpen(false);
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  };
 
   return (
     <div className="sticky top-0 z-50 mx-4 flex justify-center py-4">

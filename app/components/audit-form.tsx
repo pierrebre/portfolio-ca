@@ -1,6 +1,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { postToApi } from "~/lib/api";
 
 const auditFormSchema = z.object({
   websiteUrl: z
@@ -37,51 +38,25 @@ export default function AuditForm({ onSubmitResult }: AuditFormProps) {
 
   const onSubmit: SubmitHandler<AuditFormType> = async (data) => {
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/request-audit`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            websiteUrl: data.websiteUrl,
-            email: data.email,
-            additionalInfo: data.additionalInfo,
-          }),
-        }
+      await postToApi("/request-audit", {
+        websiteUrl: data.websiteUrl,
+        email: data.email,
+        additionalInfo: data.additionalInfo,
+      });
+      onSubmitResult?.(
+        true,
+        "Votre demande d'audit a été soumise avec succès !",
+        true
       );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        if (onSubmitResult) {
-          onSubmitResult(
-            false,
-            errorData.error ?? "Une erreur s'est produite",
-            false
-          );
-        }
-        throw new Error(errorData.error ?? "Une erreur s'est produite");
-      }
-
-      if (onSubmitResult) {
-        onSubmitResult(
-          true,
-          "Votre demande d'audit a été soumise avec succès !",
-          true
-        );
-      }
-
       reset();
     } catch (err: unknown) {
-      console.error(err);
-      if (onSubmitResult) {
-        const message =
-          err instanceof Error
-            ? err.message
-            : "Échec de la soumission de votre demande d'audit";
-        onSubmitResult(false, message, false);
-      }
+      onSubmitResult?.(
+        false,
+        err instanceof Error
+          ? err.message
+          : "Échec de la soumission de votre demande d'audit",
+        false
+      );
     }
   };
 

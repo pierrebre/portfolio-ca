@@ -3,6 +3,18 @@
   themes: all
 }
 
+/* `dark:` suit le thème choisi (data-theme posé par le script anti-FOUC et le
+   ThemeToggle) plutôt que prefers-color-scheme. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Texte sur fond primary : blanc pur dans les deux thèmes. Le primary-content
+   par défaut du thème dark (légèrement teinté) n'offre que ~4,1:1 sur primary,
+   sous le seuil AA de 4,5:1. Hors @layer pour primer sur les thèmes daisyUI,
+   déclarés dans @layer base. */
+:root {
+  --color-primary-content: oklch(100% 0 0);
+}
+
 /* ============================================================
    Toast progress bar
    ============================================================ */

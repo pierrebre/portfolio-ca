@@ -34,7 +34,7 @@ export default function Hero() {
             <div className="font-urbanist mb-12 flex flex-wrap gap-4">
               <Link
                 to="/contact"
-                className="btn btn-primary text-base-100 rounded-full px-8 py-3"
+                className="btn btn-primary rounded-full px-8 py-3"
               >
                 Réserve ton audit gratuit
                 <svg

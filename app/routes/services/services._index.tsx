@@ -12,7 +12,7 @@ import type { Route } from "./+types/services._index";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Services de développement web pour PME au Québec | Pierre Barbé",
+      title: "Services de développement web pour PME | Pierre Barbé",
       description: "6 services web pour PME : création de sites WordPress, optimisation performance, audits Core Web Vitals, automatisation n8n et intégration IA. Devis sous 24 h.",
       url: "https://pierrebarbe.ca/services",
     }),
@@ -215,6 +215,7 @@ export default function ServicesIndex() {
         title="Questions fréquentes"
         accordionName="services-faq"
         idPrefix="services-faq-item"
+        schemaId="https://pierrebarbe.ca/services#faq"
         className="bg-base-200 py-20 md:py-24"
       />
 

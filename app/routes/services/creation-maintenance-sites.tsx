@@ -8,8 +8,8 @@ import type { Route } from "./+types/creation-maintenance-sites";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Création & Maintenance de Sites WordPress & Shopify | Montréal | Pierre Barbé",
-      description: "Création de sites WordPress et Shopify rapides et durables pour PME du Québec. Forfaits maintenance à partir de 150 $/mois. Développeur freelance Montréal sans contrat annuel.",
+      title: "Création et maintenance de sites WordPress à Montréal",
+      description: "Sites WordPress et Shopify rapides et durables pour PME du Québec. Maintenance dès 150 $/mois, sans contrat annuel. Développeur freelance à Montréal.",
       url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
     }),
   ];

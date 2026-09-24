@@ -19,6 +19,27 @@ export type ToastProps = {
   duration?: number;
 };
 
+// Classes écrites en entier : Tailwind ne génère pas les classes construites
+// dynamiquement (`alert-${type}`), qui seraient absentes du CSS final.
+const ALERT_CLASSES: Record<NonNullable<ToastProps["type"]>, string> = {
+  success: "alert-success",
+  error: "alert-error",
+  warning: "alert-warning",
+  info: "alert-info",
+};
+
+const POSITION_CLASSES: Record<NonNullable<ToastProps["position"]>, string> = {
+  top: "toast-top toast-center",
+  "top-start": "toast-top toast-start",
+  "top-end": "toast-top toast-end",
+  bottom: "toast-bottom toast-center",
+  "bottom-start": "toast-bottom toast-start",
+  "bottom-end": "toast-bottom toast-end",
+  middle: "toast-middle toast-center",
+  "middle-start": "toast-middle toast-start",
+  "middle-end": "toast-middle toast-end",
+};
+
 const ICONS: Record<NonNullable<ToastProps["type"]>, React.ReactNode> = {
   success: <CheckCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
   error: <XCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />,
@@ -48,8 +69,8 @@ export default function Toast({
   };
 
   return (
-    <div className={`toast toast-${position} z-50`} role="alert" aria-live="polite">
-      <div className={`alert alert-${type} relative overflow-hidden pr-10 shadow-lg max-w-sm`}>
+    <div className={`toast ${POSITION_CLASSES[position]} z-50`} role="alert" aria-live="polite">
+      <div className={`alert ${ALERT_CLASSES[type]} relative overflow-hidden pr-10 shadow-lg max-w-sm`}>
         {ICONS[type]}
         <span className="font-medium text-sm">{message}</span>
         <button

@@ -49,9 +49,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {/* Preload du seul subset normal latin-ext nécessaire au-dessus du pli;
             les autres variantes (italique / latin de base) chargent via @font-face avec font-display: swap */}
         <link rel="preload" as="font" type="font/woff2" href="/fonts/L0x-DF02iFML4hGCyMqlbS0.woff2" crossOrigin="anonymous" />
-        {/* Hreflang — site monolingue FR-CA */}
-        <link rel="alternate" hrefLang="fr-CA" href="https://pierrebarbe.ca/" />
-        <link rel="alternate" hrefLang="x-default" href="https://pierrebarbe.ca/" />
+        {/* Pas de hreflang : site monolingue (lang="fr-CA" suffit). Une balise
+            globale pointerait toutes les pages vers l'accueil. */}
         {/* Hero image preload moved to home.tsx and about.tsx via links() export */}
         <link
           rel="icon"
@@ -76,10 +75,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           href="/blog/feed.xml"
         />
 
-<meta property="og:site_name" content="Pierre Barbé" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="fr_CA" />
-
+        {/* og:type / og:site_name / og:locale sont définis par le meta() de
+            chaque route — les répéter ici créait des doublons contradictoires. */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@PierreBarbe" />
         <meta name="twitter:site" content="@PierreBarbe" />

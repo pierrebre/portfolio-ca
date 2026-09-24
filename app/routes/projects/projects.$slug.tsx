@@ -3,6 +3,7 @@ import { ArrowLeft, CheckCircle, Calendar, Wrench } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import FaqItem from "~/components/faq-item";
 import JsonLd from "~/components/json-ld";
+import { AUTHOR_SCHEMA, PUBLISHER_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/projects.$slug";
 
 const CASE_STUDIES: Record<
@@ -16,9 +17,9 @@ const CASE_STUDIES: Record<
   "piscines-jolicoeur": {
     title: "Corrections WordPress & intégration CRM pour Service de Piscines Jolicoeur",
     metaTitle:
-      "Service de Piscines Jolicoeur — Corrections WordPress & intégration CRM | Pierre Barbé",
+      "WordPress & CRM : Piscines Jolicoeur | Pierre Barbé",
     metaDescription:
-      "Diagnostic et correction de dysfonctionnements sur un site WordPress avec intégration CRM Plannit pour une PME piscines sur la Rive-Nord de Montréal. Tous les problèmes résolus.",
+      "Diagnostic et correction d'un site WordPress relié au CRM Plannit pour une PME de piscines de la Rive-Nord de Montréal. Tous les problèmes résolus.",
   },
 };
 
@@ -53,6 +54,7 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:type", content: "article" },
+    { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
     { name: "twitter:title", content: study.metaTitle },
     { name: "twitter:description", content: study.metaDescription },
@@ -88,8 +90,8 @@ function PiscinesJolicoeur() {
         inLanguage: "fr-CA",
         isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
         mainEntityOfPage: { "@id": `${url}#webpage` },
-        author: { "@id": "https://pierrebarbe.ca/#person" },
-        publisher: { "@id": "https://pierrebarbe.ca/#organization" },
+        author: AUTHOR_SCHEMA,
+        publisher: PUBLISHER_SCHEMA,
         datePublished: "2026-04-04T00:00:00-05:00",
         dateModified: "2026-08-21T00:00:00-04:00",
         articleSection: "Études de cas",

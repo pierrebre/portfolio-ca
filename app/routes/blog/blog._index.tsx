@@ -4,6 +4,8 @@ import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import { getAllPosts } from "~/lib/content.server";
+import { formatPostDate } from "~/utils/date";
+import { AUTHOR_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/blog._index";
 
 export async function loader() {
@@ -16,7 +18,7 @@ export function meta({}: Route.MetaArgs) {
   const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
   return [
-    { title: "Blog — Web performance, automatisation & éco-conception | Pierre Barbé" },
+    { title: "Blog — Web performance & automatisation | Pierre Barbé" },
     { tagName: "link", rel: "canonical", href: url },
     {
       name: "description",
@@ -38,6 +40,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
     { name: "twitter:title", content: "Blog — Web performance & automatisation | Pierre Barbé" },
     {
@@ -89,7 +92,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
         url: "https://pierrebarbe.ca/blog",
         inLanguage: "fr-CA",
-        author: { "@id": "https://pierrebarbe.ca/#person" },
+        author: AUTHOR_SCHEMA,
         blogPost: posts.map((p) => ({
           "@type": "BlogPosting",
           "@id": `https://pierrebarbe.ca/blog/${p.slug}#article`,
@@ -98,7 +101,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           datePublished: p.date + "T00:00:00-05:00",
           articleSection: p.category,
           image: p.image ?? "https://pierrebarbe.ca/images/pb-og-image.jpg",
-          author: { "@type": "Person", "@id": "https://pierrebarbe.ca/#person", name: "Pierre Barbé", url: "https://pierrebarbe.ca/about" },
+          author: AUTHOR_SCHEMA,
         })),
       },
       {
@@ -215,11 +218,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                       <span className="text-base-content/50 flex items-center gap-1 text-sm">
                         <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
                         <time dateTime={post.date}>
-                          {new Date(post.date).toLocaleDateString("fr-CA", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
+                          {formatPostDate(post.date)}
                         </time>
                       </span>
                       <span className="text-base-content/50 flex items-center gap-1 text-sm">

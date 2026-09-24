@@ -3,6 +3,8 @@ import { Calendar, Clock, Tag, ArrowLeft, ArrowRight, ChevronLeft } from "lucide
 import Breadcrumbs from "~/components/breadcrumbs";
 import JsonLd from "~/components/json-ld";
 import { getPost, getAdjacentPosts } from "~/lib/content.server";
+import { formatPostDate } from "~/utils/date";
+import { AUTHOR_SCHEMA, PUBLISHER_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/blog.$slug";
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -27,9 +29,13 @@ export function meta({ data }: Route.MetaArgs) {
   const { post } = data;
   const url = `https://pierrebarbe.ca/blog/${post.slug}`;
   const image = post.image ?? "https://pierrebarbe.ca/images/pb-og-image.jpg";
+  // Google tronque les titres vers 60 caractères : la marque n'est ajoutée
+  // que si elle tient, pour ne pas couper le titre de l'article.
+  const brandedTitle = `${post.title} | Pierre Barbé`;
+  const title = brandedTitle.length <= 60 ? brandedTitle : post.title;
 
   return [
-    { title: `${post.title} | Pierre Barbé` },
+    { title },
     { tagName: "link", rel: "canonical", href: url },
     { name: "description", content: post.description },
     { property: "og:title", content: post.title },
@@ -40,6 +46,7 @@ export function meta({ data }: Route.MetaArgs) {
     { property: "og:image:height", content: "630" },
     { property: "og:image:alt", content: post.title },
     { property: "og:type", content: "article" },
+    { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
     { property: "article:published_time", content: `${post.date}T00:00:00-05:00` },
     { property: "article:modified_time", content: `${post.updatedDate ?? post.date}T00:00:00-05:00` },
@@ -81,8 +88,8 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         },
         datePublished: `${post.date}T00:00:00-05:00`,
         dateModified: `${post.updatedDate ?? post.date}T00:00:00-05:00`,
-        author: { "@id": "https://pierrebarbe.ca/#person" },
-        publisher: { "@id": "https://pierrebarbe.ca/#organization" },
+        author: AUTHOR_SCHEMA,
+        publisher: PUBLISHER_SCHEMA,
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id": url,
@@ -142,23 +149,13 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             </span>
             <span className="text-base-content/50 flex items-center gap-1 text-sm">
               <Calendar className="h-4 w-4" aria-hidden="true" />
-              <time dateTime={post.date}>
-                {new Date(post.date).toLocaleDateString("fr-CA", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
+              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             </span>
             {post.updatedDate && post.updatedDate !== post.date && (
               <span className="text-primary/70 flex items-center gap-1 text-sm font-medium">
                 · Mis à jour le{" "}
                 <time dateTime={post.updatedDate}>
-                  {new Date(post.updatedDate).toLocaleDateString("fr-CA", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {formatPostDate(post.updatedDate)}
                 </time>
               </span>
             )}

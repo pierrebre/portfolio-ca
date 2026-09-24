@@ -8,7 +8,7 @@ import type { Route } from "./+types/automatisation-workflows";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Automatisation de workflows avec n8n | Gain de temps pour PME | Montréal",
+      title: "Automatisation de workflows n8n pour PME | Montréal",
       description: "J'automatise tes tâches répétitives avec n8n : onboarding clients, rappels, rapports, intégrations API. À partir de 500 $. Développeur n8n freelance à Montréal.",
       url: "https://pierrebarbe.ca/services/automatisation-workflows",
     }),

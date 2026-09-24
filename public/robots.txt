@@ -1,10 +1,6 @@
 User-agent: *
 Allow: /
 
-# Empêcher l'indexation des assets
-Disallow: /fonts/
-Disallow: /favicon/
-
 # Endpoint interne React Router (manifest de navigation)
 Disallow: /__manifest
 

@@ -1,3 +1,29 @@
+/**
+ * Auteur et éditeur à inclure dans le JSON-LD des articles et études de cas.
+ * Google ne résout pas un "@id" défini sur une autre page : une référence
+ * { "@id" } seule laisse l'auteur sans nom. On inline donc les propriétés
+ * requises, avec le même @id que le graphe de l'accueil.
+ */
+export const AUTHOR_SCHEMA = {
+  "@type": "Person",
+  "@id": "https://pierrebarbe.ca/#person",
+  name: "Pierre Barbé",
+  url: "https://pierrebarbe.ca/about",
+};
+
+export const PUBLISHER_SCHEMA = {
+  "@type": "Organization",
+  "@id": "https://pierrebarbe.ca/#organization",
+  name: "Pierre Barbé",
+  url: "https://pierrebarbe.ca/",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://pierrebarbe.ca/images/pierre-barbe-logo.png",
+    width: 512,
+    height: 512,
+  },
+};
+
 interface SEOMetaProps {
   title: string;
   description: string;

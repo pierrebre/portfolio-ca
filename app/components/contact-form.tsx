@@ -1,6 +1,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { postToApi } from "~/lib/api";
 
 const contactformSchema = z.object({
   firstName: z.string().min(1, { message: "Le prénom est requis" }),
@@ -33,30 +34,11 @@ export default function ContactForm({ onSubmitResult }: ContactFormProps) {
 
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/send-email`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error ?? "Une erreur s'est produite");
-      }
-
+      await postToApi("/send-email", data);
       onSubmitResult?.(true, "Votre message a été envoyé avec succès !");
       reset();
     } catch (err: unknown) {
-      console.error(err);
-      const message =
-        err instanceof Error ? err.message : "Échec de l'envoi de votre message";
-      onSubmitResult?.(
-        false,
-        message
-      );
+      onSubmitResult?.(false, err instanceof Error ? err.message : undefined);
     }
   };
 

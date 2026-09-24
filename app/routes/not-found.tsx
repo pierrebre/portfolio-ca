@@ -10,10 +10,8 @@ export function meta({}: Route.MetaArgs) {
     { title: "Page non trouvée (404) | Pierre Barbé" },
     { name: "robots", content: "noindex, nofollow" },
     { name: "description", content: "Cette page n'existe pas ou a été déplacée. Retournez à l'accueil pour trouver ce que vous cherchez." },
-    { tagName: "link", rel: "canonical", href: "https://pierrebarbe.ca/" },
     { property: "og:title", content: "Page non trouvée | Pierre Barbé" },
     { property: "og:description", content: "Cette page n'existe pas. Retournez à l'accueil." },
-    { property: "og:url", content: "https://pierrebarbe.ca/" },
   ];
 }
 

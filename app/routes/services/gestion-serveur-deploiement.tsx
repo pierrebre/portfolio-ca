@@ -8,8 +8,8 @@ import type { Route } from "./+types/gestion-serveur-deploiement";
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
-      title: "Gestion serveur & déploiement de sites web | DevOps Montréal | Pierre Barbé",
-      description: "Gestion d'infrastructure serveur, CI/CD, sécurité et monitoring pour sites web au Québec. Ton site en ligne 24/7 sans que tu t'en occupes. Développeur DevOps freelance à Montréal.",
+      title: "Gestion serveur & déploiement de sites web | Montréal",
+      description: "Infrastructure serveur, CI/CD, sécurité et monitoring pour sites web au Québec. Ton site en ligne 24/7 sans que tu t'en occupes. DevOps freelance à Montréal.",
       url: "https://pierrebarbe.ca/services/gestion-serveur-deploiement",
     }),
   ];

@@ -1,7 +1,7 @@
 # SEO — État courant et actions
 
 **Dernier audit complet :** 2026-04-21 (score 73/100, brut local dans `audit-2026-04-21/`, gitignoré)
-**Dernière mise à jour de ce doc :** 2026-04-27
+**Dernière mise à jour de ce doc :** 2026-09-24
 
 ---
 
@@ -52,9 +52,9 @@
 - [ ] **Tier 1 #6** Section témoignages sur home ou /projects (3-5 quotes réels), puis `AggregateRating` une fois 5+ reviews Google collectées
 
 ### Code — Tier 2 quick wins (≤ 30 min chacun)
-- [ ] **#7** Ajouter `<link rel="alternate" hrefLang="fr-CA">` + `x-default` dans `app/root.tsx`
+- [x] ~~**#7** Ajouter `<link rel="alternate" hrefLang="fr-CA">` + `x-default` dans `app/root.tsx`~~ — abandonné (2026-09-24) : la balise globale pointait toutes les pages vers l'accueil ; inutile sur un site monolingue, retirée
 - [ ] **#10** Créer `app/routes/feed[.]xml.tsx` (RSS) sur le modèle de `sitemap[.]xml.tsx`
-- [ ] **#11** Réduire les font preloads de 4 à 1 dans `app/root.tsx:37-40`
+- [x] **#11** Réduire les font preloads de 4 à 1 dans `app/root.tsx` (déjà fait)
 - [ ] **#17** Ajouter `ga4_property_id` dans `~/.config/claude-seo/google-api.json` + accès Viewer au service account
 
 ---
@@ -68,13 +68,13 @@
 - [ ] **#9** Per-post OG images (3-5 cards manuelles ou générateur build-time)
 
 ### Technique
-- [ ] **#18** Re-export `pb-og-image.jpg` à qualité 45-55 (~120 KB)
+- [x] **#18** `pb-og-image.jpg` ré-exporté en vrai 1200×630 (321 Ko → 42 Ko) ; logo schema en 512×512 (2026-09-24)
 - [ ] **#19** Re-encoder hero `me.avif` qualité 62, max 1600px (~100 KB)
 - [ ] **#20** `prefers-reduced-motion` dans `app/app.css`
 - [ ] **#21** Image sitemap pour projets + posts blog
 - [ ] **#22** `Cross-Origin-Opener-Policy: same-origin` dans `vercel.json`
 - [ ] **#23** Soumettre HSTS preload sur https://hstspreload.org
-- [ ] **#26** Vérifier que la branch trigger d'IndexNow est bien `master` (prod), pas `develop`
+- [x] **#26** Workflow post-deploy déclenché sur `master` (prod) au lieu de `develop`, avec attente du déploiement Vercel (2026-09-24)
 
 ### Autorité
 - [ ] **#24** Profil Clutch.co (gratuit), 2-3 reviews clients passés
