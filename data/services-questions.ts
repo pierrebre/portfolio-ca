@@ -15,7 +15,7 @@ export const servicesQuestions: Question[] = [
     index: 1,
     question: "Quels délais pour un site livré ?",
     answer:
-      `Un site vitrine PME : ${PRICING.siteVitrine.delay} du kick-off à la mise en ligne. Un e-commerce : ${PRICING.woocommerce.delay}. Un audit technique + plan d'action : ${PRICING.auditComplet.delay}. Je fixe des jalons hebdo et je m'engage sur le délai dès le devis — pas de dérive.`,
+      `Un site vitrine PME : ${PRICING.siteVitrine.delay} du lancement à la mise en ligne, dès réception de tes contenus (textes, photos). Un e-commerce : ${PRICING.woocommerce.delay}. Un audit technique + plan d'action : ${PRICING.auditComplet.delay}. Je fixe des jalons clairs et je m'engage sur le délai dès le devis — pas de dérive.`,
   },
   {
     index: 2,

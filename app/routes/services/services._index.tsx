@@ -184,7 +184,7 @@ export default function ServicesIndex() {
               </div>
               <h3 className="font-bold text-lg mb-2">Exécution</h3>
               <p className="text-base-content/70 text-sm leading-relaxed">
-                Point hebdo, accès au repo Git en live, métriques mesurées avant
+                Points d'étape réguliers, accès au repo Git en live, métriques mesurées avant
                 et après (Lighthouse, Core Web Vitals, Ahrefs). Tu vois tout.
               </p>
             </li>

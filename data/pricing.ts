@@ -19,16 +19,17 @@ const offer = (hours: number) => {
 };
 
 export const PRICING = {
-  // Création de sites
-  siteVitrine: { ...offer(40), delay: "3 à 5 semaines" },
+  // Création de sites. Délais : du lancement à la mise en ligne, contenus
+  // fournis ; cohérents avec les heures (40 h ≈ une semaine de travail).
+  siteVitrine: { ...offer(40), delay: "5 à 10 jours ouvrables" },
   shopify: offer(40),
-  woocommerce: { ...offer(80), delay: "6 à 10 semaines" },
+  woocommerce: { ...offer(80), delay: "2 à 3 semaines" },
   siteSurMesure: offer(60), // Next.js / React
-  refonte: { from: offer(80), to: offer(200), delay: "6 à 12 semaines" },
+  refonte: { from: offer(80), to: offer(200), delay: "2 à 6 semaines" },
 
   // Performance et audits
   optimisation: offer(20),
-  auditComplet: { ...offer(8), delay: "5 à 10 jours" },
+  auditComplet: { ...offer(8), delay: "2 à 5 jours ouvrables" },
 
   // Automatisation (n8n)
   workflowSimple: offer(6),
