@@ -14,9 +14,9 @@ const contactSchema = {
       "@type": ["WebPage", "ContactPage"],
       "@id": `${SITE}/contact#webpage`,
       url: `${SITE}/contact`,
-      name: "Contact et devis site web à Montréal",
+      name: "Contact et soumission de site web à Montréal",
       description:
-        "Demande un devis site web ou un premier échange gratuit (mail ou visio). Développeur freelance à Montréal — Laval, Longueuil, partout au Québec.",
+        "Demande une soumission de site web ou un audit gratuit (courriel ou visioconférence). Développeur freelance à Montréal — Laval, Longueuil, partout au Québec.",
       inLanguage: "fr-CA",
       isPartOf: { "@id": `${SITE}/#website` },
       breadcrumb: { "@id": `${SITE}/contact#breadcrumb` },
@@ -95,6 +95,7 @@ const contactSchema = {
       sameAs: [
         "https://www.linkedin.com/in/pierre-barb%C3%A9/",
         "https://github.com/pierrebre",
+        "https://twitter.com/PierreBarbe",
       ],
       founder: { "@id": `${SITE}/#person` },
     },
@@ -137,7 +138,7 @@ const contactDetails = [
         Montréal, Laval, Longueuil, Rive-Sud, Rive-Nord
         <br />
         <span className="text-sm">
-          Et partout au Québec en télétravail — FR/EN.
+          Et partout au Québec et au Canada, à distance — FR/EN.
         </span>
       </>
     ),
@@ -149,22 +150,22 @@ export function meta({}: Route.MetaArgs) {
   const image = `${SITE}/images/pb-og-image.jpg`;
 
   return [
-    { title: "Contact & devis site web à Montréal — Pierre Barbé" },
+    { title: "Contact et soumission site web à Montréal — Pierre Barbé" },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
     { tagName: "link", rel: "canonical", href: url },
     {
       name: "description",
       content:
-        "Demande un devis site web ou un premier échange gratuit (mail ou visio). Développeur freelance à Montréal, Laval, Longueuil & Québec. Réponse sous 24 h.",
+        "Demande une soumission ou un audit gratuit (courriel ou visioconférence). Développeur web freelance à Montréal, Laval, Longueuil et Québec. Réponse sous 24 h.",
     },
     {
       property: "og:title",
-      content: "Contact & devis site web à Montréal — Pierre Barbé",
+      content: "Contact et soumission site web à Montréal — Pierre Barbé",
     },
     {
       property: "og:description",
       content:
-        "Devis site web gratuit ou premier échange (mail ou visio). Montréal, Laval, Longueuil & Québec. Réponse sous 24 h.",
+        "Soumission de site web ou audit gratuit (courriel ou visioconférence). Montréal, Laval, Longueuil et Québec. Réponse sous 24 h.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -174,11 +175,11 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Pierre Barbé" },
     { property: "og:locale", content: "fr_CA" },
-    { name: "twitter:title", content: "Contact & devis site web à Montréal — Pierre Barbé" },
+    { name: "twitter:title", content: "Contact et soumission site web à Montréal — Pierre Barbé" },
     {
       name: "twitter:description",
       content:
-        "Devis site web gratuit ou premier échange (mail ou visio). Montréal, Laval, Longueuil & Québec.",
+        "Soumission de site web ou audit gratuit (courriel ou visioconférence). Montréal, Laval, Longueuil et Québec.",
     },
     { name: "twitter:image", content: image },
   ];
@@ -201,7 +202,7 @@ export default function Contact() {
       <section className="py-20">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl font-bold md:text-5xl">
-            Devis site web &amp; premier échange gratuit — Montréal
+            Soumission et audit gratuit — Montréal
           </h1>
 
           <div className="mt-6 flex items-center justify-center gap-4">
@@ -213,8 +214,9 @@ export default function Contact() {
           <p className="text-base-content/80 mt-6 text-lg md:text-xl text-center max-w-3xl mx-auto">
             Développeur web freelance à Montréal, je conçois des sites rapides,
             bien référencés et éco-conçus pour les PME du Québec. Parle-moi de
-            ton projet de création ou refonte — je te réponds sous 24 h avec un
-            devis clair, sans engagement ni vente forcée.
+            ton projet (site, performance ou automatisation) : je te réponds
+            sous 24 h (jours ouvrables), puis la soumission suit sous 24-48 h après
+            notre premier échange — sans engagement ni vente forcée.
           </p>
         </div>
       </section>
@@ -242,7 +244,7 @@ export default function Contact() {
               <h2 className="card-title text-2xl">Un projet ? Une question ?</h2>
               <p className="text-base-content/80 mb-4">
                 Décris-moi ton besoin&nbsp;: je reviens vers toi rapidement avec
-                les prochaines étapes et un devis clair.
+                les prochaines étapes et une soumission claire.
               </p>
 
               <ContactForm />

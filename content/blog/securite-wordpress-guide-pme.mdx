@@ -1,37 +1,38 @@
 ---
-title: "Sécuriser votre site WordPress : 8 mesures essentielles"
-description: "73 % des PME canadiennes ont subi un incident de cybersécurité. Votre WordPress est-il protégé ? 8 mesures concrètes par un développeur web à Montréal."
+title: "Sécuriser ton site WordPress : 8 mesures essentielles"
+description: "73 % des PME canadiennes ont subi un incident de cybersécurité. Ton WordPress est-il protégé ? 8 mesures concrètes par un développeur web à Montréal."
 date: "2026-03-14"
-category: "Général"
-excerpt: "Chaque semaine, je reçois des appels de panique de PME dont le site WordPress a été piraté. Ce n'est pas de la malchance — c'est le résultat de failles évitables. Voici les 8 mesures que j'installe chez chaque nouveau client."
+updatedDate: "2026-09-24"
+category: "WordPress"
+excerpt: "Je reçois régulièrement des appels de panique de PME dont le site WordPress a été piraté. Ce n'est pas de la malchance — c'est le résultat de failles évitables. Voici les 8 mesures que j'installe chez chaque nouveau client."
 faq:
   - question: "Comment savoir si mon site WordPress a été piraté ?"
-    answer: "Les signes les plus courants : votre site affiche des publicités ou du contenu bizarre, Google Search Console signale des pages suspectes, votre hébergeur a bloqué le compte, vos visiteurs voient un avertissement de sécurité dans Chrome, votre site redirige vers d'autres sites, ou les performances ont soudainement chuté. En cas de doute, utilisez Sucuri SiteCheck (sucuri.net/website-scanner) — un scan gratuit en moins d'une minute."
+    answer: "Les signes les plus courants : ton site affiche des publicités ou du contenu bizarre, Google Search Console signale des pages suspectes, ton hébergeur a bloqué le compte, tes visiteurs voient un avertissement de sécurité dans Chrome, ton site redirige vers d'autres sites, ou les performances ont soudainement chuté. En cas de doute, utilise Sucuri SiteCheck (sucuri.net/website-scanner) — un scan gratuit en moins d'une minute."
   - question: "Est-ce que WordPress est plus vulnérable que les autres CMS ?"
-    answer: "Non — WordPress est ciblé davantage parce qu'il propulse une large majorité du web mondial (42,6 % selon W3Techs, mars 2026), ce qui en fait une cible rentable — pas parce qu'il est intrinsèquement moins sûr. Les piratages réussis exploitent presque toujours des failles connues dans des plugins non mis à jour, des mots de passe faibles, ou des thèmes abandonnés. Un WordPress bien maintenu et configuré est aussi sûr que n'importe quelle autre plateforme."
+    answer: "Non — WordPress est davantage ciblé parce qu'il propulse une part énorme du web mondial (42,6 % des sites selon W3Techs, mars 2026), ce qui en fait une cible rentable — pas parce qu'il est intrinsèquement moins sûr. Les piratages réussis exploitent presque toujours des failles connues dans des plugins non mis à jour, des mots de passe faibles, ou des thèmes abandonnés. Un WordPress bien maintenu et configuré est aussi sûr que n'importe quelle autre plateforme."
   - question: "Combien coûte la récupération d'un site WordPress piraté ?"
-    answer: "Entre 500 $ et 3 500 $ selon la gravité du piratage, le nombre de fichiers infectés et si vous avez un backup récent utilisable. Sans backup, le coût peut être beaucoup plus élevé — voire la perte totale du site. Un forfait de maintenance annuel coûte typiquement entre 1 200 $ et 3 600 $/an. Le calcul est vite fait."
+    answer: "Entre 500 $ et 3 500 $ selon la gravité du piratage, le nombre de fichiers infectés et l'existence d'une sauvegarde récente utilisable. Sans sauvegarde, le coût peut être beaucoup plus élevé — voire mener à la perte totale du site. Un forfait de maintenance pour un site vitrine coûte typiquement entre 1 200 $ et 3 600 $ par an : à peu près le prix d'un seul nettoyage, mais il couvre aussi les mises à jour, les sauvegardes et la surveillance qui rendent ce genre d'incident beaucoup plus rare."
   - question: "Mon hébergeur gère-t-il la sécurité de mon site WordPress ?"
-    answer: "Votre hébergeur sécurise l'infrastructure (serveur, réseau), mais pas votre application WordPress. La sécurité de votre installation WordPress — plugins, thèmes, mots de passe, configuration — est entièrement votre responsabilité. Même avec le meilleur hébergeur du monde, un plugin WordPress non mis à jour depuis 2 ans reste une porte d'entrée pour les pirates."
+    answer: "Ton hébergeur sécurise l'infrastructure (serveur, réseau), mais pas ton application WordPress. La sécurité de ton installation WordPress — plugins, thèmes, mots de passe, configuration — est entièrement ta responsabilité. Même avec le meilleur hébergeur du monde, un plugin WordPress non mis à jour depuis 2 ans reste une porte d'entrée pour les pirates."
 ---
 
-Chaque semaine, je reçois au moins un appel de panique d'une PME québécoise : « Mon site affiche des publicités bizarres » ou « Google dit que mon site est dangereux ». Ce n'est pas de la malchance — c'est le résultat prévisible de mises à jour ignorées, de mots de passe faibles et de plugins non maintenus.
+Je reçois régulièrement des appels de panique de PME québécoises : « Mon site affiche des publicités bizarres » ou « Google dit que mon site est dangereux ». Ce n'est pas de la malchance — c'est le résultat prévisible de mises à jour ignorées, de mots de passe faibles et de plugins non maintenus.
 
-Comme nous l'analysons dans notre [guide complet sur l'optimisation WordPress](/blog/optimisation-vitesse-wordpress), WordPress propulse 42,6 % du web mondial (<a href="https://w3techs.com/technologies/details/cm-wordpress" target="_blank" rel="noopener noreferrer">W3Techs, mars 2026</a>). C'est une qualité — communauté massive, flexibilité, écosystème riche. C'est aussi un risque : c'est la cible numéro 1 des pirates informatiques. Pas parce que WordPress est mal conçu, mais parce que représenter plus de quatre sites sur dix dans le monde, c'est être une cible rentable.
+Comme je l'explique dans mon [guide complet sur l'optimisation WordPress](/blog/optimisation-vitesse-wordpress), WordPress propulse 42,6 % du web mondial (<a href="https://w3techs.com/technologies/details/cm-wordpress" target="_blank" rel="noopener noreferrer">W3Techs, mars 2026</a>). C'est une qualité — communauté massive, flexibilité, écosystème riche. C'est aussi un risque : c'est une cible de choix pour les pirates informatiques. Pas parce que WordPress est mal conçu, mais parce que représenter plus de quatre sites sur dix dans le monde, c'est être une cible rentable.
 
-73 % des PME canadiennes ont subi au moins un incident de cybersécurité (BDC). Beaucoup auraient pu être évités avec quelques mesures de base.
+Selon la <a href="https://www.bdc.ca/fr/articles-outils/blogue/cyberattaque-encore-trop-deni-parmi-pme" target="_blank" rel="noopener noreferrer">BDC</a>, 73 % des PME canadiennes ont déjà subi au moins un incident de cybersécurité. Beaucoup auraient pu être évités avec quelques mesures de base.
 
 La bonne nouvelle : sécuriser un site WordPress n'est ni compliqué ni coûteux. Voici les 8 mesures que j'installe systématiquement chez mes clients PME à Montréal et au Québec.
 
 ## Pourquoi WordPress est ciblé — et pourquoi ce n'est pas une raison de le quitter
 
-La grande majorité des piratages WordPress réussis exploitent des failles déjà connues et déjà corrigées par des mises à jour. Le problème n'est pas WordPress — c'est le manque de maintenance.
+La grande majorité des piratages WordPress réussis exploitent des failles déjà connues et déjà corrigées par des mises à jour. Et selon <a href="https://patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" target="_blank" rel="noopener noreferrer">Patchstack</a>, l'immense majorité des vulnérabilités WordPress découvertes chaque année se trouvent dans des plugins et des thèmes, pas dans WordPress lui-même. Le problème n'est pas WordPress — c'est le manque de maintenance.
 
 **Les 3 vecteurs d'attaque les plus fréquents :**
 
 1. **Plugins abandonnés ou non mis à jour** : un plugin qui n'a pas été mis à jour depuis 2 ans contient probablement des vulnérabilités connues des pirates
 2. **Mots de passe faibles ou réutilisés** : les attaques par force brute testent des millions de combinaisons automatiquement
-3. **Thèmes nulled (piratés)** : des thèmes premium obtenus gratuitement sur des sites douteux — qui contiennent souvent des backdoors
+3. **Thèmes « nulled » (piratés)** : des thèmes premium obtenus gratuitement sur des sites douteux — qui contiennent souvent des portes dérobées
 
 Un WordPress correctement maintenu est aussi sûr que n'importe quelle autre plateforme web. Voir aussi mon [guide d'optimisation WordPress](/blog/optimisation-vitesse-wordpress) — performance et sécurité partagent les mêmes bonnes pratiques.
 
@@ -41,28 +42,28 @@ Un WordPress correctement maintenu est aussi sûr que n'importe quelle autre pla
 
 C'est la mesure la plus importante, et la plus souvent négligée.
 
-WordPress core, plugins et thèmes doivent être mis à jour dès qu'une mise à jour est disponible. Pas dans 3 semaines « quand j'aurai le temps ». Dès que possible.
+WordPress, plugins et thèmes doivent être mis à jour dès qu'une mise à jour est disponible. Pas dans 3 semaines « quand j'aurai le temps ». Dès que possible.
 
 Pourquoi ? Parce que lorsqu'une faille de sécurité est corrigée dans une mise à jour, elle est simultanément publiée dans les notes de version — ce qui indique aux pirates exactement quelle vulnérabilité exploiter sur les sites qui n'ont pas encore mis à jour.
 
 **Mon approche :**
 
 - Mises à jour mineures (correctifs de sécurité) : automatiques
-- Mises à jour majeures : testées d'abord sur un environnement de staging, puis appliquées en production
+- Mises à jour majeures : testées d'abord sur un environnement de préproduction, puis appliquées en production
 - Vérification mensuelle de l'ensemble des plugins
 
 Chez un client à Montréal qui n'avait pas fait de mises à jour pendant 8 mois, j'ai trouvé 3 plugins avec des vulnérabilités critiques connues — dont un qui permettait d'exécuter du code arbitraire à distance. Le site avait été infecté depuis au moins 6 semaines sans que le client s'en soit aperçu.
 
 ### 2. Mots de passe forts + authentification à deux facteurs
 
-Un mot de passe faible sur un compte administrateur WordPress, c'est comme laisser votre clé sous le paillasson. Les attaques par force brute testent automatiquement des milliers de combinaisons par heure.
+Un mot de passe faible sur un compte administrateur WordPress, c'est comme laisser ta clé sous le paillasson. Les attaques par force brute testent automatiquement des milliers de combinaisons par heure.
 
 **Les règles de base :**
 
 - Jamais d'identifiant « admin » (c'est le premier que les robots essaient)
 - Mot de passe d'au moins 16 caractères, aléatoire, jamais réutilisé
-- Utilisez un gestionnaire de mots de passe (Bitwarden est gratuit et excellent)
-- Activez l'authentification à deux facteurs (2FA) sur tous les comptes administrateurs
+- Utilise un gestionnaire de mots de passe (Bitwarden est gratuit et excellent)
+- Active l'authentification à deux facteurs (2FA) sur tous les comptes administrateurs
 
 Pour le 2FA sur WordPress, les plugins **WP 2FA** ou **Google Authenticator** sont simples à configurer. Ça prend 10 minutes et ça élimine la quasi-totalité des attaques par force brute réussies.
 
@@ -78,140 +79,140 @@ Les attaques par force brute peuvent tenter des centaines de milliers de combina
 
 Plugin : **Limit Login Attempts Reloaded** (gratuit, simple à configurer).
 
-Combiné avec le 2FA, vous avez éliminé pratiquement toutes les chances de réussite d'une attaque par force brute.
+Combiné avec le 2FA, tu élimines pratiquement toutes les chances de réussite d'une attaque par force brute.
 
 ### 4. Installer un pare-feu applicatif (WAF)
 
-Un pare-feu applicatif web (WAF) filtre le trafic malveillant avant qu'il atteigne votre site. Il bloque les tentatives d'injection SQL, les attaques XSS, les scans de vulnérabilités et les bots malveillants.
+Un pare-feu applicatif web (WAF) filtre le trafic malveillant avant qu'il atteigne ton site. Il bloque les tentatives d'injection SQL, les attaques XSS, les scans de vulnérabilités et les robots malveillants.
 
 **Options pour WordPress :**
 
-- **Wordfence** (version gratuite) : WAF + scan de malware + blocage de bots. Couvre l'essentiel pour la plupart des PME.
-- **Sucuri** (payant, à partir de ~199 $/an) : WAF cloud + CDN + nettoyage de malware garanti. Recommandé pour les sites e-commerce ou qui gèrent des données sensibles.
-- **Cloudflare** (plan gratuit disponible) : WAF + CDN + protection DDoS au niveau DNS, avant même que les requêtes atteignent votre serveur.
+- **Wordfence** (version gratuite) : WAF + scan de logiciels malveillants + blocage de robots. Couvre l'essentiel pour la plupart des PME.
+- **Sucuri** (payant, à partir d'environ 200 $US/an) : WAF infonuagique + CDN + nettoyage de logiciels malveillants inclus. Recommandé pour les sites e-commerce ou qui gèrent des données sensibles.
+- **Cloudflare** (plan gratuit disponible) : WAF + CDN + protection DDoS au niveau DNS, avant même que les requêtes atteignent ton serveur.
 
 Un WAF, c'est comme une porte blindée : il n'empêche pas quelqu'un de frapper, mais il empêche les tentatives d'intrusion de fonctionner.
 
 ### 5. Sauvegardes automatiques quotidiennes
 
-Les sauvegardes sont votre assurance vie numérique. Si tout échoue — piratage, erreur humaine, mise à jour qui casse le site — une sauvegarde récente vous permet de revenir à une version propre en quelques minutes.
+Les sauvegardes sont ton assurance vie numérique. Si tout échoue — piratage, erreur humaine, mise à jour qui casse le site — une sauvegarde récente te permet de revenir à une version propre en quelques minutes.
 
 **Ce qu'une bonne stratégie de sauvegarde doit inclure :**
 
 - Sauvegarde quotidienne du site complet (fichiers + base de données)
-- Stockage hors serveur (Google Drive, Amazon S3, ou Dropbox) — garder les backups sur le même serveur que le site, c'est garder sa clé dans la serrure
+- Stockage hors serveur (Google Drive, Amazon S3, ou Dropbox) — garder les sauvegardes sur le même serveur que le site, c'est laisser sa clé dans la serrure
 - Conservation d'au moins 30 jours d'historique
 - Test de restauration au moins une fois par trimestre
 
-Plugin recommandé : **UpdraftPlus** (version gratuite suffisante pour l'essentiel). Il automatise les sauvegardes et les envoie vers le stockage cloud de votre choix.
+Plugin recommandé : **UpdraftPlus** (version gratuite suffisante pour l'essentiel). Il automatise les sauvegardes et les envoie vers le stockage infonuagique de ton choix.
 
 Sans sauvegarde récente, récupérer un site piraté coûte entre 500 $ et 3 500 $. Avec une sauvegarde propre, c'est une restauration de 30 minutes.
 
 ### 6. Certificat SSL (HTTPS obligatoire)
 
-En 2026, un site en HTTP est un signal d'alarme — pour Google et pour vos visiteurs. Le HTTPS chiffre les données qui transitent entre le navigateur du visiteur et votre serveur, protégeant notamment les informations soumises dans les formulaires.
+En 2026, un site en HTTP est un signal d'alarme — pour Google et pour tes visiteurs. Le HTTPS chiffre les données qui transitent entre le navigateur du visiteur et ton serveur, protégeant notamment les informations soumises dans les formulaires.
 
 **Pourquoi c'est obligatoire :**
 
-- Google pénalise les sites HTTP dans ses résultats de recherche depuis 2018
-- Chrome affiche un avertissement « Non sécurisé » sur les sites HTTP
-- La [Loi 25](/blog/loi-25-site-web-conformite-pme) vous oblige à protéger les renseignements personnels en transit — le HTTPS est la mesure technique de base pour y répondre
+- Le HTTPS est un signal de classement de Google depuis 2014 (léger, mais réel)
+- Chrome affiche un avertissement « Non sécurisé » sur les sites HTTP depuis 2018
+- La [Loi 25](/blog/loi-25-site-web-conformite-pme) t'oblige à protéger les renseignements personnels en transit — le HTTPS est la mesure technique de base pour y répondre
 
-La quasi-totalité des hébergeurs modernes incluent Let's Encrypt (certificat SSL gratuit) dans leurs forfaits. Si vous êtes encore en HTTP, contactez votre hébergeur — c'est probablement une configuration de 5 minutes.
+La quasi-totalité des hébergeurs modernes incluent Let's Encrypt (certificat SSL gratuit) dans leurs forfaits. Si tu es encore en HTTP, contacte ton hébergeur — c'est probablement une configuration de 5 minutes.
 
-Vérification rapide : regardez la barre d'adresse de votre navigateur. Vous devriez voir un cadenas et « https:// » avant votre domaine.
+Vérification rapide : regarde la barre d'adresse de ton navigateur. Tu devrais voir un cadenas et « https:// » avant ton domaine.
 
 ### 7. Nettoyer les plugins et thèmes inutilisés
 
-Chaque plugin installé sur votre WordPress, même désactivé, représente une surface d'attaque potentielle. Un plugin désactivé peut contenir des fichiers exécutables accessibles depuis le web.
+Chaque plugin installé sur ton WordPress, même désactivé, représente une surface d'attaque potentielle. Un plugin désactivé peut contenir des fichiers exécutables accessibles depuis le web.
 
-**Ma règle :** supprimer (pas juste désactiver) tout plugin ou thème que vous n'utilisez pas activement.
+**Ma règle :** supprimer (pas juste désactiver) tout plugin ou thème que tu n'utilises pas activement.
 
 **Guide pour faire le ménage :**
 
-- Listez tous vos plugins et demandez-vous à quoi sert chacun
-- Visez 10 à 15 plugins maximum pour un site vitrine
-- Supprimez les thèmes non utilisés (gardez seulement votre thème actif + un thème par défaut WordPress)
-- Si un plugin n'a pas été mis à jour depuis plus de 2 ans sur le répertoire WordPress.org, cherchez une alternative maintenue
+- Liste tous tes plugins et demande-toi à quoi sert chacun
+- Vise 10 à 15 plugins maximum pour un site vitrine
+- Supprime les thèmes non utilisés (garde seulement ton thème actif + un thème par défaut WordPress)
+- Si un plugin n'a pas été mis à jour depuis plus de 2 ans sur le répertoire WordPress.org, cherche une alternative maintenue
 
-Ce nettoyage améliore aussi votre performance — chaque plugin supprimé est du code qui ne s'exécute plus. Voir mon [guide complet d'optimisation WordPress](/blog/optimisation-vitesse-wordpress) pour les détails.
+Ce nettoyage améliore aussi ta performance — chaque plugin supprimé est du code qui ne s'exécute plus. Voir mon [guide complet d'optimisation WordPress](/blog/optimisation-vitesse-wordpress) pour les détails.
 
 ### 8. Choisir un hébergement sécurisé
 
-Votre hébergeur est la fondation de tout. Un hébergement bas de gamme sur des serveurs partagés avec des centaines d'autres sites peut vous exposer à des contaminations croisées — si un voisin se fait infecter, ça peut affecter votre site.
+Ton hébergeur est la fondation de tout. Un hébergement bas de gamme sur des serveurs partagés avec des centaines d'autres sites peut t'exposer à des contaminations croisées — si un voisin se fait infecter, ça peut affecter ton site.
 
 **Ce que je recherche dans un hébergement pour les PME québécoises :**
 
-- **Isolation des comptes** : votre site est isolé des autres, une infection d'un voisin ne peut pas se propager
-- **PHP 8.x** : plus sécurisé et plus rapide que les versions antérieures
+- **Isolation des comptes** : ton site est isolé des autres, une infection d'un voisin ne peut pas se propager
+- **PHP 8.3 ou plus récent** : une version encore supportée reçoit les correctifs de sécurité
 - **WAF intégré** : certains hébergeurs (SiteGround, WP Engine, Kinsta) incluent un WAF au niveau serveur
-- **Serveurs au Canada** : pour la performance ET pour la conformité Loi 25 (vos données restent au Québec)
-- **Support réactif** : si votre site est compromis un vendredi soir, vous avez besoin d'aide
+- **Serveurs au Québec ou au Canada** : pour la performance, et pour simplifier la conformité Loi 25 (un hébergement au Québec évite le transfert hors Québec des données stockées sur ton site)
+- **Support réactif** : si ton site est compromis un vendredi soir, tu as besoin d'aide
 
 Je vais être direct : un hébergement à 3 $ par mois, ce n'est probablement pas assez. Pour un site qui génère des revenus, un hébergement WordPress géré entre 25 $ et 50 $/mois est le bon investissement.
 
 ## Mon site WordPress est piraté — que faire ?
 
-Pas de panique, mais agissez vite. Voici les étapes dans l'ordre.
+Pas de panique, mais agis vite. Voici les étapes dans l'ordre.
 
 **1. Mettre le site en mode maintenance immédiatement**
 
-Empêchez les visiteurs d'arriver sur un site infecté — pour leur protection et pour la réputation de votre entreprise. La plupart des plugins de sécurité permettent de le faire en un clic.
+Empêche les visiteurs d'arriver sur un site infecté — pour leur protection et pour la réputation de ton entreprise. La plupart des plugins de sécurité permettent de le faire en un clic.
 
-**2. Contacter votre hébergeur**
+**2. Contacter ton hébergeur**
 
-Appelez (pas envoyez un courriel — appelez). Expliquez la situation. Les hébergeurs sérieux ont des outils de détection de malware et peuvent isoler votre compte pendant l'investigation.
+Appelle (n'envoie pas un courriel — appelle). Explique la situation. Les hébergeurs sérieux ont des outils de détection de logiciels malveillants et peuvent isoler ton compte pendant l'investigation.
 
 **3. Scanner avec un outil externe**
 
-Sucuri SiteCheck (sucuri.net/website-scanner) fait un scan externe gratuit de votre site pour détecter les malwares connus, les blacklists Google et les redirections suspectes. C'est un bon premier diagnostic.
+Sucuri SiteCheck (sucuri.net/website-scanner) fait un scan externe gratuit de ton site pour détecter les logiciels malveillants connus, les listes noires Google et les redirections suspectes. C'est un bon premier diagnostic.
 
-**4. Restaurer depuis un backup propre si possible**
+**4. Restaurer depuis une sauvegarde propre si possible**
 
-Si vous avez une sauvegarde antérieure à l'infection — idéalement d'avant les 30 derniers jours — la restauration est souvent le chemin le plus rapide. Assurez-vous que le backup est propre (avant l'infection) avant de restaurer.
+Si tu as une sauvegarde antérieure à l'infection, la restauration est souvent le chemin le plus rapide. Assure-toi que la sauvegarde date bien d'avant l'infection avant de restaurer.
 
 **5. Mettre à jour tout ce qui peut l'être**
 
-Après restauration : mettez à jour WordPress, tous les plugins et tous les thèmes immédiatement.
+Après restauration : mets à jour WordPress, tous les plugins et tous les thèmes immédiatement.
 
 **6. Changer tous les mots de passe**
 
-WordPress admin, FTP, panneau d'hébergement, base de données — changez tout. L'attaquant a peut-être déjà ces informations.
+Administration WordPress, FTP, panneau d'hébergement, base de données — change tout. L'attaquant a peut-être déjà ces informations.
 
 **7. Faire appel à un professionnel si nécessaire**
 
-Si le piratage est complexe — injection de code dans plusieurs fichiers, backdoors cachées, réinfection répétée — faites appel à un professionnel. Un nettoyage post-piratage coûte entre 500 $ et 3 500 $ selon la gravité. Sachant qu'un forfait de maintenance annuel coûte entre 1 200 $ et 3 600 $/an, la prévention est toujours moins coûteuse.
+Si le piratage est complexe — injection de code dans plusieurs fichiers, portes dérobées cachées, réinfection répétée — fais appel à un professionnel. Un nettoyage après piratage coûte entre 500 $ et 3 500 $ selon la gravité. Sachant qu'un forfait de maintenance annuel pour un site vitrine coûte entre 1 200 $ et 3 600 $, la prévention revient à peu près au prix d'un seul incident — et elle réduit fortement le risque d'en subir d'autres.
 
 ## Checklist sécurité WordPress — à faire maintenant
 
 - ✅ Mises à jour WordPress, plugins et thèmes : toutes à jour
 - ✅ Identifiant « admin » supprimé, remplacé par un identifiant unique
-- ✅ Mots de passe forts (16+ caractères) sur tous les comptes admin
+- ✅ Mots de passe forts (16+ caractères) sur tous les comptes administrateurs
 - ✅ Authentification à deux facteurs (2FA) activée
 - ✅ Tentatives de connexion limitées (plugin installé)
 - ✅ URL de connexion `/wp-login.php` modifiée
 - ✅ WAF actif (Wordfence, Sucuri ou Cloudflare)
-- ✅ Sauvegardes automatiques quotidiennes vers stockage externe
+- ✅ Sauvegardes automatiques quotidiennes vers un stockage externe
 - ✅ Certificat SSL (HTTPS) actif
 - ✅ Plugins et thèmes inutilisés supprimés
 - ✅ Hébergement sécurisé avec isolation des comptes
 
-Si vous avez coché tous ces points, votre site est dans le top 5 % des sites WordPress en termes de sécurité.
+Si tu as coché tous ces points, tu as fermé les portes d'entrée que je vois le plus souvent exploitées sur les sites WordPress piratés.
 
 ---
 
-La sécurité n'est pas une case à cocher une fois par an — c'est le **cœur battant d'une stratégie de maintenance proactive**. Mises à jour, sauvegardes automatiques, surveillance active : ces 8 mesures ne valent leur plein potentiel que si elles s'inscrivent dans un [plan de maintenance WordPress mensuel structuré](/blog/maintenance-site-web-pme-guide). À l'inverse, une maintenance régulière sans attention portée à la sécurité reste incomplète. Les deux démarches se renforcent mutuellement.
+La sécurité n'est pas une case à cocher une fois par an — c'est le **cœur d'une stratégie de maintenance proactive**. Mises à jour, sauvegardes automatiques, surveillance active : ces 8 mesures ne donnent leur plein potentiel que si elles s'inscrivent dans un [plan de maintenance WordPress mensuel structuré](/blog/maintenance-site-web-pme-guide). À l'inverse, une maintenance régulière sans attention portée à la sécurité reste incomplète. Les deux démarches se renforcent mutuellement.
 
-Et si votre site traite des données personnelles (formulaires, commandes, inscriptions), la [conformité Loi 25](/blog/loi-25-site-web-conformite-pme) est une obligation légale supplémentaire à prendre en compte.
+Et si ton site traite des données personnelles (formulaires, commandes, inscriptions), la [conformité Loi 25](/blog/loi-25-site-web-conformite-pme) est une obligation légale supplémentaire à prendre en compte.
 
 ---
 
-> 💡 **Inquiet pour la sécurité de votre site WordPress ?**
+> 💡 **Inquiet pour la sécurité de ton site WordPress ?**
 >
-> Je réalise des audits de sécurité complets pour les PME québécoises et j'installe les protections adaptées à votre situation. Mieux vaut prévenir que payer pour réparer.
+> Mon [audit complet](/services/optimisation-web-performance) vérifie aussi la sécurité de ton site (HTTPS, plugins vulnérables ou abandonnés, versions en fin de vie). J'installe ensuite les protections adaptées à ta situation et je les tiens à jour dans le cadre du suivi mensuel. Mieux vaut prévenir que payer pour réparer.
 >
-> [→ Demander un audit de sécurité](https://pierrebarbe.ca/contact)
+> [→ Parlons de la sécurité de ton site](/contact)
 
 ---
 
-*Besoin de sécuriser et de maintenir votre site WordPress ? Découvrez mes [services de création et maintenance de sites](/services/creation-maintenance-sites) ou [contactez-moi](/contact) pour un audit de sécurité adapté à votre situation.*
+*Besoin de sécuriser et de maintenir ton site WordPress ? Découvre mes [services de création et maintenance de sites](/services/creation-maintenance-sites) ou [écris-moi](/contact) pour faire le point sur la sécurité de ton site.*

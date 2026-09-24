@@ -6,25 +6,26 @@ import {
   redirect,
   Scripts,
   ScrollRestoration,
-  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
-import ContactCard from "./components/contact-card";
+import AuditModal from "./components/audit-modal";
 import { ToastProvider } from "./context/toast-context";
 import ErrorPage, { NOT_FOUND_MESSAGE } from "./components/error-page";
 
 // Force le pathname en minuscules pour éliminer la duplication de contenu
 // (ex. /SERVICES, /About, /Blog renvoyaient HTTP 200 avec le même contenu).
 // 308 = permanent + préserve méthode, recommandé par GSC.
-export function loader({ request }: Route.LoaderArgs) {
-  const url = new URL(request.url);
+// `url` et non `request.url` : avec v8_passThroughRequests, `request.url` d'une
+// requête de données garde le suffixe `.data`.
+export function loader({ url }: Route.LoaderArgs) {
   if (/[A-Z]/.test(url.pathname)) {
-    url.pathname = url.pathname.toLowerCase();
-    throw redirect(url.toString(), 308);
+    const target = new URL(url);
+    target.pathname = target.pathname.toLowerCase();
+    throw redirect(target.toString(), 308);
   }
   return null;
 }
@@ -43,11 +44,6 @@ export function headers({ errorHeaders }: Route.HeadersArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
-
-  const hideContactCardOn = ["/contact"];
-  const shouldShowContactCard = !hideContactCardOn.includes(location.pathname);
-
   return (
     <html lang="fr-CA" suppressHydrationWarning>
       <head>
@@ -108,7 +104,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <NavBar />
           <main id="main-content">
             {children}
-            {shouldShowContactCard && <ContactCard />}
+            {/* Fenêtre de demande d'audit, ouverte par tous les AuditButton */}
+            <AuditModal />
           </main>
           <Footer />
         </ToastProvider>
@@ -137,7 +134,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       title={isRouteErrorResponse(error) ? `Erreur ${error.status}` : "Erreur"}
       message={
         devError?.message ??
-        "Une erreur inattendue s'est produite. Réessayez dans un instant."
+        "Une erreur inattendue s'est produite. Réessaie dans un instant."
       }
       stack={devError?.stack}
     />

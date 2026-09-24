@@ -80,14 +80,14 @@ export default function LegalNotice() {
         <Breadcrumbs
           items={[
             { label: "Accueil", href: "/" },
-            { label: "Mentions Légales" },
+            { label: "Mentions légales" },
           ]}
         />
       </div>
 
       <section className="mx-auto max-w-4xl px-6 py-12">
         <h1 className="text-3xl font-bold mb-6">Mentions légales</h1>
-        <p className="mb-4 text-sm text-base-content/60">
+        <p className="mb-4 text-sm text-base-content/70">
           Dernière mise à jour&nbsp;:{" "}
           <time dateTime={DATE_MODIFIED}>16 avril 2026</time>
         </p>

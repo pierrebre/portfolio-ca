@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import CtaSection from "~/components/cta-section";
+import { FREE_AUDIT } from "data/pricing";
 import JsonLd from "~/components/json-ld";
 import { getAllPosts } from "~/lib/content.server";
 import { categoryBadgeClass, categoryButtonClass } from "~/utils/blog-categories";
@@ -24,17 +26,17 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
+        "Articles pratiques sur la web-performance, WordPress, l'automatisation n8n, l'IA et la Loi 25 pour les PME québécoises.",
     },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
     {
       property: "og:title",
-      content: "Blog — Web performance, automatisation & éco-conception",
+      content: "Blog — Web performance, WordPress & automatisation",
     },
     {
       property: "og:description",
       content:
-        "Articles pratiques sur la web-performance, l'automatisation n8n et l'éco-conception pour PME du Québec.",
+        "Articles pratiques sur la web-performance, WordPress et l'automatisation pour les PME du Québec.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -46,7 +48,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:title", content: "Blog — Web performance & automatisation | Pierre Barbé" },
     {
       name: "twitter:description",
-      content: "Articles pratiques sur la web-performance, n8n et l'éco-conception.",
+      content: "Articles pratiques sur la web-performance, WordPress et n8n.",
     },
     { name: "twitter:image", content: image },
   ];
@@ -76,7 +78,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
         "@id": "https://pierrebarbe.ca/blog#blog",
         name: "Blog — Pierre Barbé",
         description:
-          "Articles pratiques sur la web-performance WordPress, l'automatisation n8n et l'éco-conception web pour PME québécoises.",
+          "Articles pratiques sur la web-performance, WordPress, l'automatisation n8n, l'IA et la Loi 25 pour les PME québécoises.",
         url: "https://pierrebarbe.ca/blog",
         inLanguage: "fr-CA",
         author: AUTHOR_SCHEMA,
@@ -170,13 +172,13 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
 
           {posts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-base-content/60 text-lg">
-                Aucun article pour le moment. Revenez bientôt !
+              <p className="text-base-content/70 text-lg">
+                Aucun article pour le moment. Reviens bientôt !
               </p>
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-base-content/60 text-lg">
+              <p className="text-base-content/70 text-lg">
                 Aucun article dans cette catégorie pour le moment.
               </p>
               <button
@@ -242,18 +244,12 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
               ))}
             </div>
           )}
-
-          {/* CTA contact */}
-          <div className="mt-16 text-center">
-            <p className="text-base-content/70 mb-4">
-              Un sujet que vous aimeriez que j&apos;aborde ?
-            </p>
-            <Link to="/contact" className="btn btn-primary rounded-full px-8">
-              Suggérer un article
-            </Link>
-          </div>
         </div>
       </section>
+
+      <CtaSection title="Un site à faire avancer ?">
+        {FREE_AUDIT.summary}
+      </CtaSection>
     </div>
   );
 }

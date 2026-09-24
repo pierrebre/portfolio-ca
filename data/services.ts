@@ -1,18 +1,19 @@
-import {
-  Laptop,
-  Bot,
-  ClipboardCheck,
-  Server,
-  BrainCircuit,
-  Rocket,
-} from "lucide-react";
+import { Laptop, Bot, Rocket } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { PRICING } from "./pricing";
 
 export type ServiceProps = {
   readonly key: string;
   readonly icon: LucideIcon;
+  /** Nom court (menus, cartes). */
   readonly name: string;
+  /** Le besoin tel que le client le formule. */
+  readonly problem: string;
   readonly description: string;
+  /** Ce que comprend l'offre, en 3 points. */
+  readonly includes: readonly string[];
+  /** Prix d'entrée affiché, issu de data/pricing.ts. */
+  readonly from: string;
 };
 
 /** URL de la page d'un service : les routes suivent sa clé. */
@@ -20,47 +21,48 @@ export function serviceUrl(key: string): string {
   return `/services/${key}`;
 }
 
+// Trois offres, chacune adossée à au moins une étude de cas réelle.
 export const services: ServiceProps[] = [
   {
     key: "creation-maintenance-sites",
     icon: Laptop,
-    name: "Création & Maintenance de Sites",
+    name: "Site web",
+    problem: "J'ai besoin d'un site, ou le mien est à refaire.",
     description:
-      "Tu as besoin d'un nouveau site ou d'une refonte complète ? Je développe des sites WordPress rapides, propres et durables. Et je reste disponible après la mise en ligne — pas de disparition.",
+      `Un site WordPress rapide et clair, que tu apprends à modifier toi-même, en ligne en ${PRICING.siteVitrine.delay} — puis entretenu chaque mois pour qu'il reste sûr et à jour.`,
+    includes: [
+      "Création, refonte ou boutique en ligne",
+      "Hébergement, sécurité et sauvegardes",
+      "Politique de confidentialité et consentement (Loi 25)",
+    ],
+    from: PRICING.siteVitrine.label,
   },
   {
     key: "optimisation-web-performance",
     icon: Rocket,
-    name: "Optimisation Web‑Performance",
+    name: "Performance",
+    problem: "Mon site est lent, surtout sur cellulaire.",
     description:
-      "Un site lent perd des visiteurs — et Google le sait. J'analyse ta performance et j'optimise le temps de chargement jusqu'à ce que ça file. Résultat moyen : +38 points Lighthouse.",
+      "Un audit complet de ton site (vitesse, référencement technique, accessibilité, sécurité), puis les corrections, mesurées avant et après.",
+    includes: [
+      "Audit écrit avec priorités et coûts",
+      "Optimisation de la vitesse et du SEO technique",
+      "Résultats mesurés avant/après",
+    ],
+    from: PRICING.auditComplet.label,
   },
   {
     key: "automatisation-workflows",
     icon: Bot,
-    name: "Automatisation de Workflows (n8n)",
+    name: "Automatisation & IA",
+    problem: "Je perds des heures sur des tâches répétitives.",
     description:
-      "Envois de courriels, mises à jour de contenu, rapports, synchronisation de données — j'automatise tes processus avec n8n et autres outils. Un client économise 10 h par semaine grâce à ça.",
-  },
-  {
-    key: "audits-techniques-core-web-vitals",
-    icon: ClipboardCheck,
-    name: "Audits Techniques & Core Web Vitals",
-    description:
-      "Ton site semble mou ? Je réalise des audits clairs et vulgarisés sur tes Core Web Vitals, l'accessibilité et la santé globale du site — avec des recommandations actionnables.",
-  },
-  {
-    key: "gestion-serveur-deploiement",
-    icon: Server,
-    name: "Gestion Serveur & Déploiement",
-    description:
-      "Serveurs, mises à jour, pipelines de déploiement — je gère la technique en coulisses pour que ton site reste en ligne, sécurisé et sans souci.",
-  },
-  {
-    key: "integration-outils-ia",
-    icon: BrainCircuit,
-    name: "Intégration d'Outils IA",
-    description:
-      "Du chatbot aux recommandations de contenu, j'intègre des outils IA qui apportent une vraie valeur à tes utilisateurs — pas juste une tendance à cocher.",
+      "Confirmations, relances, CRM, rapports : je fais faire tes tâches répétitives par tes logiciels, et j'ajoute un assistant IA là où il fait vraiment gagner du temps.",
+    includes: [
+      "Tâches automatisées entre tes outils",
+      "Assistant IA qui répond à partir de ton contenu",
+      "Automatisations hébergées au Canada si tu le souhaites",
+    ],
+    from: PRICING.workflowSimple.label,
   },
 ];

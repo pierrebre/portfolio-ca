@@ -18,12 +18,13 @@ export default function FormField({ id, label, error, children }: FormFieldProps
 
   return (
     <div>
+      {/* DaisyUI attend le libellé avant le champ pour le faire flotter */}
       <label className="floating-label">
+        <span>{label}</span>
         {children({
           id,
           ...(error ? { "aria-invalid": true, "aria-describedby": errorId } : {}),
         })}
-        <span>{label}</span>
       </label>
       {error && (
         <p id={errorId} className="text-red-700 dark:text-red-400 text-sm">

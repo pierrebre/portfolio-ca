@@ -6,9 +6,11 @@ import {
   Users,
   CheckCircle,
   ExternalLink,
-  Mail,
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import AuditButton from "~/components/audit-button";
+import { HOURLY_RATE, formatPrice } from "data/pricing";
+import CtaSection from "~/components/cta-section";
 import JsonLd from "~/components/json-ld";
 import { AUTHOR_SCHEMA } from "~/utils/seo";
 import type { Route } from "./+types/about";
@@ -38,7 +40,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Développeur web freelance à Montréal, spécialisé en web-performance, automatisation n8n et éco-conception. Découvrez mon parcours, ma stack et mes valeurs.",
+        "Développeur web freelance à Montréal : sites WordPress, performance web et automatisation n8n pour PME. Découvre mon parcours, mes outils et mes valeurs.",
     },
     { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
     {
@@ -48,7 +50,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "Parcours, stack technique, certifications et valeurs d'un développeur web freelance basé à Montréal.",
+        "Parcours, outils et valeurs d'un développeur web freelance basé à Montréal.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -69,15 +71,15 @@ export function meta({}: Route.MetaArgs) {
 const timeline = [
   {
     year: "2025",
-    title: "Freelance & Spécialisation performance",
+    title: "Freelance et spécialisation performance",
     description:
-      "+38 points Lighthouse sur un e-commerce WordPress. Mise en place de pipelines CI/CD et workflows n8n pour des PME montréalaises. Lancement de pierrebarbe.ca avec un score Lighthouse 95+.",
+      "+38 points Lighthouse sur un e-commerce WordPress. Déploiements automatisés et workflows n8n pour des PME montréalaises. Lancement de pierrebarbe.ca avec un score Lighthouse 95+.",
   },
   {
     year: "2024",
-    title: "Automatisation & intégration IA",
+    title: "Automatisation et premiers projets d'IA",
     description:
-      "Premiers projets d'intégration IA : chatbots GPT entraînés sur contenu client, recherche sémantique. Déploiement de workflows n8n pour cliniques et agences. Spécialisation DevOps sur VPS Linux.",
+      "Premiers assistants IA qui répondent à partir du contenu du client. Workflows n8n pour des cliniques et des agences. Hébergement et mise en ligne sur serveurs Linux.",
   },
   {
     year: "2023",
@@ -101,12 +103,12 @@ const timeline = [
 
 const stack = [
   {
-    category: "Frontend",
-    items: ["React", "Next.js", "React Router", "TypeScript", "Tailwind CSS", "DaisyUI"],
+    category: "Sites & e-commerce",
+    items: ["WordPress", "WooCommerce", "Shopify"],
   },
   {
-    category: "Backend & CMS",
-    items: ["Node.js", "WordPress", "WooCommerce", "Shopify"],
+    category: "Développement",
+    items: ["React", "Next.js", "React Router", "TypeScript", "Node.js", "Tailwind CSS", "daisyUI"],
   },
   {
     category: "Performance & SEO",
@@ -114,10 +116,10 @@ const stack = [
   },
   {
     category: "Automatisation & IA",
-    items: ["n8n", "Make (Integromat)", "OpenAI API", "Resend", "Zapier"],
+    items: ["n8n", "Make (Integromat)", "Zapier", "OpenAI API", "Anthropic API", "Resend"],
   },
   {
-    category: "Infra & DevOps",
+    category: "Hébergement & mise en ligne",
     items: ["Vercel", "Docker", "GitHub Actions", "Nginx", "Linux VPS"],
   },
 ];
@@ -127,13 +129,13 @@ const values = [
     icon: Zap,
     title: "Performance avant tout",
     description:
-      "Un site lent perd des clients. Je mesure, j'optimise, je mesure encore. Chaque milliseconde compte — pour vos utilisateurs et pour Google.",
+      "Un site lent perd des clients. Je mesure, j'optimise, je mesure encore. Chaque milliseconde compte — pour tes visiteurs et pour Google.",
   },
   {
     icon: Leaf,
     title: "Éco-conception",
     description:
-      "Le numérique représente 4 % des émissions mondiales. Un site éco-conçu est aussi un site plus rapide. Ces deux objectifs vont de pair.",
+      "Un site plus léger consomme moins d'énergie, sur le serveur comme sur le téléphone de tes visiteurs — et il charge plus vite. Ces deux objectifs vont de pair.",
   },
   {
     icon: Users,
@@ -158,7 +160,7 @@ const aboutSchema = {
       url: "https://pierrebarbe.ca/about",
       name: "À propos — Pierre Barbé, développeur web freelance Montréal",
       description:
-        "Développeur web freelance à Montréal, spécialisé en web-performance, automatisation n8n et éco-conception.",
+        "Développeur web freelance à Montréal : sites WordPress, performance web et automatisation n8n pour PME.",
       inLanguage: "fr-CA",
       isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
       about: { "@id": "https://pierrebarbe.ca/#person" },
@@ -170,7 +172,7 @@ const aboutSchema = {
       url: "https://pierrebarbe.ca/about",
       name: "À propos — Pierre Barbé",
       dateCreated: "2025-01-01T00:00:00-05:00",
-      dateModified: "2026-04-21T00:00:00-04:00",
+      dateModified: "2026-09-24T00:00:00-04:00",
       // Person complète : ProfilePage exige un mainEntity avec au moins un
       // nom, et Google ne va pas chercher la définition sur l'accueil.
       mainEntity: {
@@ -178,7 +180,7 @@ const aboutSchema = {
         alternateName: "Pierre Barbe",
         jobTitle: "Développeur Web Freelance",
         description:
-          "Développeur web freelance à Montréal, spécialisé en web-performance, WordPress, automatisation n8n et intégration IA pour PME québécoises.",
+          "Développeur web freelance à Montréal : sites WordPress, performance web, automatisation n8n et IA pour PME québécoises.",
         image: "https://pierrebarbe.ca/images/me.avif",
         sameAs: [
           "https://www.linkedin.com/in/pierre-barb%C3%A9/",
@@ -235,20 +237,17 @@ export default function About() {
                 <span className="text-primary block mt-1">développeur web freelance à Montréal</span>
               </h1>
               <p className="text-base-content/80 mt-6 text-lg leading-relaxed">
-                Depuis 2021, j'aide les PME, e-commerces et agences du Québec à avoir
+                Depuis 2022, j'aide les PME, e-commerces et agences du Québec à avoir
                 des sites plus rapides, plus verts et mieux automatisés. Basé à Montréal,
                 je travaille partout au Canada en télétravail — en français ou en anglais.
               </p>
               <p className="text-base-content/80 mt-4 text-lg leading-relaxed">
                 Mon approche : du concret, de la transparence, et pas de promesses
-                creuses. Je mesure, j'optimise, je documente. Vous savez toujours
+                creuses. Je mesure, j'optimise, je documente. Tu sais toujours
                 exactement ce que je fais et pourquoi.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link to="/contact" className="btn btn-primary rounded-full px-8">
-                  <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
-                  Me contacter
-                </Link>
+                <AuditButton className="btn btn-primary rounded-full px-8" />
                 <a
                   href="https://www.linkedin.com/in/pierre-barb%C3%A9/"
                   target="_blank"
@@ -280,12 +279,12 @@ export default function About() {
                 <div className="grid grid-cols-3 gap-6">
                   {[
                     { value: "50+", label: "Projets" },
-                    { value: "100%", label: "Livraisons" },
-                    { value: "3+", label: "Ans" },
+                    { value: "2022", label: "Premiers clients" },
+                    { value: "FR/EN", label: "Langues" },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center">
                       <div className="text-primary text-xl font-bold">{stat.value}</div>
-                      <div className="text-base-content/60 text-xs">{stat.label}</div>
+                      <div className="text-base-content/70 text-xs">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -356,9 +355,9 @@ export default function About() {
       <section className="bg-base-200 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold md:text-4xl">Stack technique</h2>
+            <h2 className="text-3xl font-bold md:text-4xl">Mes outils</h2>
             <p className="text-base-content/70 mt-4">
-              Les outils que j'utilise au quotidien sur mes projets clients.
+              Les outils que j'utilise sur mes projets clients (et pour ce site, codé en React).
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -404,28 +403,28 @@ export default function About() {
             <div className="bg-base-200 rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-3 text-primary">Pas d'intermédiaire</h3>
               <p className="text-base-content/80 text-sm leading-relaxed">
-                Vous parlez directement à la personne qui code. Pas de chef de
+                Tu parles directement à la personne qui code. Pas de chef de
                 projet qui traduit, pas de briefs mal transmis, pas de délais qui
-                s'étirent entre les équipes. La boucle entre vos retours et le
-                déploiement prend des heures, pas des semaines.
+                s'étirent entre les équipes. Entre tes retours et leur mise en
+                ligne, ça se compte en jours, pas en semaines.
               </p>
             </div>
             <div className="bg-base-200 rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-3 text-primary">Tarifs plus justes</h3>
               <p className="text-base-content/80 text-sm leading-relaxed">
                 Pas de locaux à payer, pas de couche commerciale, pas de marge
-                sur des freelances sous-traitants. Le budget va dans le code et
-                l'optimisation. Pour la plupart des projets PME, c'est 30 à 50 %
-                moins cher qu'une agence à qualité égale.
+                sur des freelances sous-traitants. Le budget va dans le travail
+                sur ton site. Mon taux est affiché ({formatPrice(HOURLY_RATE)}/h)
+                et chaque soumission en découle : tu peux comparer.
               </p>
             </div>
             <div className="bg-base-200 rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-3 text-primary">Code transparent</h3>
               <p className="text-base-content/80 text-sm leading-relaxed">
-                Vous recevez un repo Git propre, une documentation claire et un
-                code que n'importe quel autre développeur peut reprendre. Pas de
-                lock-in technologique, pas de dépendance à mes outils. Votre
-                projet reste le vôtre.
+                Ton site, ton nom de domaine et ton hébergement sont à ton nom.
+                Tu reçois une documentation claire et un code que n'importe quel
+                autre développeur peut reprendre : aucune dépendance à moi ni à
+                mes outils. Ton projet reste le tien.
               </p>
             </div>
           </div>
@@ -434,9 +433,9 @@ export default function About() {
             <p className="text-base-content/80 leading-relaxed">
               <strong>L'agence reste pertinente</strong> pour les gros projets
               multi-disciplinaires (branding + vidéo + pub + web + 10 profils
-              coordonnés). Pour un site performant, un audit technique ou une
-              automatisation ciblée, un freelance spécialisé livre plus vite, à
-              meilleur coût. Si votre besoin dépasse mon périmètre, je vous
+              coordonnés). Pour un site performant, un audit ou une
+              automatisation ciblée, un freelance spécialisé est souvent plus
+              rapide et moins cher. Si ton besoin dépasse mon périmètre, je te
               redirige — je préfère ne pas prendre un projet plutôt que le bâcler.
             </p>
           </div>
@@ -488,33 +487,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Travaillons ensemble</h2>
-          <p className="text-base-content/70 mt-4 text-lg leading-relaxed">
-            Vous avez un projet, un site à optimiser ou un processus à automatiser ?
-            Parlons-en — premier échange gratuit, par mail ou visio.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10 py-3">
-              Parle-moi de ton projet
-            </Link>
-            <Link
-              to="/blog"
-              className="btn btn-ghost rounded-full px-10 py-3 border border-base-content/20"
-            >
-              Lire le blog
-            </Link>
-            <Link
-              to="/services"
-              className="btn btn-ghost rounded-full px-10 py-3 border border-base-content/20"
-            >
-              Voir mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Travaillons ensemble" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        Tu as un projet, un site à optimiser ou un processus à automatiser ? Parlons-en — premier échange gratuit, par courriel ou en visioconférence.
+      </CtaSection>
     </div>
   );
 }

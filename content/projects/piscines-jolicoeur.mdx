@@ -1,0 +1,96 @@
+---
+# Carte de /projects
+title: "Corrections WordPress & intégration CRM — Service de Piscines Jolicoeur"
+client: "Service de Piscines Jolicoeur (Rive-Nord de Montréal)"
+category: "Maintenance & corrections"
+tags: ["WordPress", "Fluent Forms", "Plannit CRM", "API REST", "PHP"]
+description: "Diagnostic et correction de dysfonctionnements sur un site WordPress avec intégration CRM Plannit pour une PME piscines. Formulaire cassé, mapping CRM erroné, soumissions en double."
+challenge: "Le site présentait plusieurs dysfonctionnements dans la liaison formulaire–CRM, restés invisibles côté visiteur : données mal mappées, champs manquants, logique conditionnelle cassée et soumissions en double."
+solution: "Diagnostic complet par journalisation des envois et analyse du code PHP. Correction du mapping services, ajout des champs manquants, correction de la logique conditionnelle et suppression des déclenchements en double."
+metrics:
+  - { label: "Problèmes non résolus", before: "5", after: "0" }
+duration: "Mars 2026"
+year: 2026
+featured: true
+
+# Étude de cas (/projects/piscines-jolicoeur)
+headline: "Corrections WordPress & intégration CRM pour Service de Piscines Jolicoeur"
+metaTitle: "WordPress & CRM : Piscines Jolicoeur | Pierre Barbé"
+metaDescription: "Diagnostic et correction d'un site WordPress relié au CRM Plannit pour une PME de piscines de la Rive-Nord de Montréal. Tous les problèmes résolus."
+subtitle: "PME spécialisée en piscines creusées · Rive-Nord de Montréal · En activité depuis 1999"
+outcome: "Tous les problèmes résolus"
+date: "2026-04-04"
+updatedDate: "2026-09-24"
+highlights:
+  - { value: "5 / 5", label: "Problèmes résolus" }
+  - { value: "En cours", label: "Collaboration active" }
+midCta:
+  title: "Un site WordPress qui dysfonctionne ? Un formulaire qui ne transmet pas les bonnes données à ton CRM ?"
+  text: "Je diagnostique et corrige ce type de panne, y compris sur un site que je n'ai pas développé."
+faq:
+  - question: "Peux-tu intervenir sur un site WordPress que tu n'as pas développé ?"
+    answer: "Oui, c'est même la majorité de mes interventions de correction. Je pars du code en place et des données réellement transmises, sans dépendre de la documentation d'origine. Un accès administrateur WordPress et un accès SFTP suffisent pour lancer le diagnostic."
+  - question: "Qu'est-ce qui casse une intégration formulaire → CRM ?"
+    answer: "Les causes les plus fréquentes : un mapping de champs qui ne correspond plus aux identifiants attendus par le CRM, une mise à jour de plugin qui change le comportement d'un hook, une logique conditionnelle configurée avec le mauvais opérateur, ou un déclenchement en double après l'ajout d'une extension. Ce sont des pannes silencieuses : côté visiteur le formulaire semble fonctionner, mais les données arrivent fausses, incomplètes ou dupliquées."
+  - question: "Comment savoir si mon formulaire envoie les bonnes données à mon CRM ?"
+    answer: "Le test le plus simple : remplis toi-même une soumission complète, puis compare ligne par ligne ce que tu as saisi avec la fiche créée dans le CRM. Champ vide, service mal identifié, fiche en double : chacun de ces écarts est un signal. Si le formulaire comporte des conditions d'affichage, refais le test pour chaque service proposé — c'est souvent là que les écarts se cachent."
+services:
+  - { to: "/services/creation-maintenance-sites", title: "Site web : création et maintenance" }
+  - { to: "/services/automatisation-workflows", title: "Automatisation & IA" }
+related:
+  - { to: "/blog/wordpress-pme-quebec-2026", title: "WordPress pour les PME québécoises en 2026" }
+  - { to: "/blog/automatiser-business-n8n-pme", title: "Automatiser son business avec n8n" }
+cta:
+  title: "Un projet similaire ?"
+  text: "Formulaire cassé, intégration CRM défaillante ou site WordPress à reprendre en main — je peux t'aider."
+---
+
+## Le défi
+
+Le site WordPress du client présentait plusieurs dysfonctionnements dans la liaison entre son formulaire de soumission (Fluent Forms Pro) et son CRM Plannit. En l'absence de suivi technique, les données ne remontaient plus correctement : services mal mappés, champs manquants, logique conditionnelle cassée, et soumissions en double causées par un hook WordPress qui se déclenchait deux fois.
+
+Concrètement, chaque demande arrivait incomplète ou dupliquée dans le CRM. À l'approche de la saison, ça veut dire du temps perdu à rappeler des clients pour redemander des informations qu'ils avaient déjà fournies — et un risque réel de laisser filer une soumission.
+
+En savoir plus sur [WordPress pour les PME québécoises en 2026](/blog/wordpress-pme-quebec-2026).
+
+## La méthode de diagnostic
+
+Ni documentation d'origine, ni historique des modifications : tout le diagnostic s'est appuyé sur le code en place et sur les données réellement envoyées au CRM.
+
+1. **Reproduire avant de corriger.** Série de soumissions de test sur le formulaire en ligne pour reproduire chaque comportement signalé et écarter les fausses pistes.
+2. **Observer les données réelles.** Logging temporaire sur les appels sortants vers l'API du CRM pour voir la charge utile exacte, champ par champ, telle qu'elle part du site.
+3. **Remonter à la cause.** Lecture du code PHP et des hooks WordPress pour relier chaque symptôme à son origine : mapping, condition d'affichage ou ordre de déclenchement.
+4. **Corriger puis revalider.** Correction ciblée, sans refonte, suivie d'une nouvelle série de tests pour confirmer que les données arrivent complètes et sans doublon.
+
+## Les corrections
+
+### Mapping des services vers le CRM
+
+Les services sélectionnés par les visiteurs arrivaient en texte brut au lieu d'être associés aux bons identifiants du CRM. Construction d'un mapping PHP sur mesure avec gestion des cas spéciaux (apostrophes, services multi-valeurs).
+
+### Champ « Déjà client ? » non transmis
+
+Un champ du formulaire n'était pas inclus dans les données envoyées au CRM. Ajout du mapping vers les champs personnalisés de Plannit.
+
+### Page « Vie privée » mal positionnée
+
+Retrait du menu principal, proposition de placement dans le pied de page. Conseil sur la conformité Loi 25 : [voir mon guide Loi 25 pour PME](/blog/loi-25-site-web-conformite-pme).
+
+### Procédure invisible pour un service
+
+La logique conditionnelle du formulaire utilisait le mauvais opérateur, empêchant l'affichage d'une procédure importante. Correction de la condition + remplacement d'un texte de remplissage (Lorem ipsum) resté en ligne.
+
+### Soumissions en double dans le CRM
+
+Un hook WordPress se déclenchait deux fois par soumission, créant des doublons dans Plannit. Diagnostic par journalisation des envois et analyse de leurs horodatages, puis correction du déclenchement.
+
+## Résultats
+
+| Point de contrôle | Avant | Après |
+|---|---|---|
+| Services transmis au CRM | Texte brut non reconnu | Identifiants Plannit corrects |
+| Champs du formulaire remontés | Incomplets | Complets |
+| Soumissions en double | À chaque envoi | 0 |
+| Procédure conditionnelle | Jamais affichée | Affichée au bon service |
+
+Client satisfait, collaboration en cours pour de nouvelles tâches. Un [plan de maintenance régulier](/blog/maintenance-site-web-pme-guide) a été recommandé pour éviter que ces problèmes ne se reproduisent.

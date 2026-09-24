@@ -1,4 +1,5 @@
 import type { UseFormRegisterReturn } from "react-hook-form";
+import { Link } from "react-router";
 
 /**
  * Champ piège anti-spam : hors écran, masqué aux lecteurs d'écran et hors du
@@ -27,5 +28,21 @@ export function NoScriptNotice() {
         </a>
       </p>
     </noscript>
+  );
+}
+
+/**
+ * Mention Loi 25 sous chaque formulaire. `onNavigate` ferme la fenêtre d'audit
+ * avant d'ouvrir la politique (sinon elle resterait par-dessus la page).
+ */
+export function PrivacyNotice({ onNavigate }: { onNavigate?: () => void }) {
+  return (
+    <p className="text-base-content/70 text-xs">
+      Tes informations servent uniquement à te répondre. Détails dans la{" "}
+      <Link to="/politique-confidentialite" className="underline" onClick={onNavigate}>
+        politique de confidentialité
+      </Link>
+      .
+    </p>
   );
 }

@@ -1,27 +1,43 @@
-import Hero from "~/components/hero";
-import Problem from "~/components/problem";
+import { Link } from "react-router";
+import Hero, { HERO_IMAGE, type HeroProof } from "~/components/hero";
 import Services from "~/components/services";
-import Results from "~/components/results";
-import CtaBand from "~/components/cta-band";
-import WhyMe from "~/components/why-me";
+import Proof from "~/components/proof";
 import Process from "~/components/process";
 import Faq from "~/components/faq";
-import AuditModal from "~/components/audit-modal";
 import JsonLd from "~/components/json-ld";
+import CtaSection from "~/components/cta-section";
+import { getAllProjects } from "~/lib/projects.server";
+import { services, serviceUrl } from "data/services";
+import { FREE_AUDIT } from "data/pricing";
 
 import type { Route } from "./+types/home";
 
+// Mêmes chiffres que les études de cas : l'accueil lit content/projects.
+export async function loader() {
+  const projects = await getAllProjects();
+  const clinic = projects.find((p) => p.slug === "automatisation-n8n-clinique");
+  const metric = clinic?.metrics[0];
+  const proof: HeroProof | undefined = metric && {
+    label: "Administratif par semaine",
+    before: metric.before,
+    after: metric.after,
+    context: "Clinique de santé, Montréal",
+  };
+  return { projects, proof };
+}
+
 export function links() {
   return [
-    // imageSrcSet/imageSizes identiques à l'<img> : sans eux, un écran haute
-    // densité précharge me-800 puis télécharge aussi me.avif choisi par srcset.
+    // Portrait affiché en desktop seulement (vignette de 48 px sur mobile) :
+    // préchargé à partir de 1024 px, avec srcset/sizes identiques à l'<img>.
     {
       rel: "preload",
       as: "image",
       type: "image/avif",
-      href: "/images/me-800.avif",
-      imageSrcSet: "/images/me-800.avif 800w, /images/me.avif 1122w",
-      imageSizes: "(max-width: 1024px) 100vw, 50vw",
+      href: HERO_IMAGE.src,
+      imageSrcSet: HERO_IMAGE.srcSet,
+      imageSizes: HERO_IMAGE.sizes,
+      media: "(min-width: 1024px)",
     },
   ];
 }
@@ -43,7 +59,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Premier échange gratuit.",
+        "Développeur web freelance à Montréal : je crée, j'accélère et j'entretiens le site de ta PME et j'automatise tes tâches répétitives. Audit gratuit.",
     },
     {
       property: "og:title",
@@ -52,7 +68,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Premier échange gratuit.",
+        "Je crée, j'accélère et j'entretiens le site de ta PME. Prix affichés, audit gratuit de 30 minutes.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -74,7 +90,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "twitter:description",
       content:
-        "Premier échange gratuit, web‑performance et automatisation pour PME québécoises.",
+        "Sites WordPress, performance et automatisation pour PME québécoises. Audit gratuit de 30 minutes.",
     },
     { name: "twitter:image", content: image },
     {
@@ -84,7 +100,8 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const { projects, proof } = loaderData;
   const url = "https://pierrebarbe.ca/";
   const image = "https://pierrebarbe.ca/images/pb-og-image.jpg";
 
@@ -99,7 +116,7 @@ export default function Home() {
         alternateName: "Pierre Barbe",
         jobTitle: "Développeur Web Freelance",
         description:
-          "Développeur web freelance spécialisé en React Router v7, React, WordPress, SEO et automatisation (n8n) à Montréal",
+          "Développeur web freelance à Montréal : sites WordPress, performance web et automatisation (n8n, IA) pour les PME du Québec",
         url,
         image: "https://pierrebarbe.ca/images/me.avif",
         email: "contact@pierrebarbe.ca",
@@ -135,7 +152,7 @@ export default function Home() {
         "@id": `${url}#business`,
         name: "Pierre Barbé",
         description:
-          "Services de développement web freelance à Montréal : création de sites rapides, optimisation web-performance, WordPress, SEO et automatisation pour PME et agences du Québec",
+          "Développeur web freelance à Montréal : création et maintenance de sites WordPress, audit et optimisation de la performance, automatisation et IA pour les PME du Québec",
         url,
         telephone: "+1-438-543-6986",
         email: "contact@pierrebarbe.ca",
@@ -208,7 +225,7 @@ export default function Home() {
         url,
         name: "Pierre Barbé — Développeur Web Freelance Montréal",
         description:
-          "Développeur web freelance à Montréal. Sites rapides, bien référencés et faciles à maintenir pour PME québécoises.",
+          "Développeur web freelance à Montréal : sites WordPress, performance et automatisation pour les PME du Québec.",
         inLanguage: "fr-CA",
         publisher: { "@id": `${url}#organization` },
         hasPart: [
@@ -224,9 +241,9 @@ export default function Home() {
         "@type": ["WebPage", "HomePage"],
         "@id": `${url}#webpage`,
         url,
-        name: "Développeur web freelance Montréal | Sites rapides & automatisation — Pierre Barbé",
+        name: "Développeur web freelance Montréal — Pierre Barbé",
         description:
-          "Développeur web freelance à Montréal. J'aide les PME québécoises à avoir des sites rapides, bien référencés et faciles à maintenir. Premier échange gratuit.",
+          "Je crée, j'accélère et j'entretiens le site web des PME québécoises, et j'automatise leurs tâches répétitives. Prix affichés, audit gratuit de 30 minutes.",
         inLanguage: "fr-CA",
         isPartOf: { "@id": `${url}#website` },
         about: { "@id": `${url}#person` },
@@ -239,93 +256,46 @@ export default function Home() {
         },
       },
 
-      // 6. Services
-      {
+      // 6. Les 3 offres (même source que les cartes)
+      ...services.map((service) => ({
         "@type": "Service",
-        "@id": `${url}#service-nextjs`,
-        name: "Développement Next.js & React",
-        description:
-          "Création de sites web rapides et performants avec Next.js et React pour PME et agences",
-        url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
+        "@id": `https://pierrebarbe.ca${serviceUrl(service.key)}#service`,
+        name: service.name,
+        description: service.description,
+        url: `https://pierrebarbe.ca${serviceUrl(service.key)}`,
         provider: { "@id": `${url}#person` },
-        serviceType: "Web Development",
-        areaServed: { "@type": "City", name: "Montréal" },
-        availableChannel: {
-          "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact",
-        },
-      },
-      {
-        "@type": "Service",
-        "@id": `${url}#service-wordpress`,
-        name: "Développement WordPress",
-        description:
-          "Création et optimisation de sites WordPress sur mesure pour PME québécoises",
-        url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
-        provider: { "@id": `${url}#person` },
-        serviceType: "WordPress Development",
-        areaServed: { "@type": "City", name: "Montréal" },
-        availableChannel: {
-          "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact",
-        },
-      },
-      {
-        "@type": "Service",
-        "@id": `${url}#service-seo`,
-        name: "Optimisation SEO & Web Performance",
-        description:
-          "Audit SEO gratuit, optimisation de la vitesse et amélioration du référencement naturel",
-        url: "https://pierrebarbe.ca/services/optimisation-web-performance",
-        provider: { "@id": `${url}#person` },
-        serviceType: "SEO Services",
         areaServed: [
           { "@type": "City", name: "Montréal" },
           { "@type": "State", name: "Québec" },
         ],
-        availableChannel: {
-          "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact",
-        },
-        offers: {
-          "@type": "Offer",
-          name: "Premier échange gratuit",
-          description: "Premier échange gratuit par courriel ou visio pour cadrer ton projet",
-          price: "0",
-          priceCurrency: "CAD",
-        },
-      },
-      {
-        "@type": "Service",
-        "@id": `${url}#service-automation`,
-        name: "Automatisation (n8n, Make)",
-        description:
-          "Automatisation de processus métier avec n8n et Make pour gagner du temps",
-        url: "https://pierrebarbe.ca/services/automatisation-workflows",
-        provider: { "@id": `${url}#person` },
-        serviceType: "Business Automation",
-        areaServed: { "@type": "Country", name: "Canada" },
-        availableChannel: {
-          "@type": "ServiceChannel",
-          serviceUrl: "https://pierrebarbe.ca/contact",
-        },
-      },
-
+      })),
     ],
   };
 
   return (
     <>
       <JsonLd data={schema} />
-      <Hero />
-      <Problem />
+      <Hero proof={proof} featured={projects.find((p) => p.href)} />
       <Services />
-      <Results />
-      <CtaBand />
-      <WhyMe />
+      <Proof projects={projects} />
       <Process />
-      <Faq />
-      <AuditModal />
+      <Faq
+        intro={
+          <p>
+            Une autre question ?{" "}
+            <Link to="/contact" className="underline">
+              Écris-moi
+            </Link>
+            . {FREE_AUDIT.reply.replace(" pour fixer le moment", "")}
+          </p>
+        }
+        className="bg-base-100 py-16 md:py-24"
+      />
+      <CtaSection title="Commence par un audit gratuit de 30 minutes">
+        Envoie-moi l'adresse de ton site, ou quelques lignes sur ton projet si tu n'en as
+        pas encore. {FREE_AUDIT.reply} Tu repars avec 3 recommandations prioritaires, sans
+        engagement.
+      </CtaSection>
     </>
   );
 }

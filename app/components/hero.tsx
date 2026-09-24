@@ -1,102 +1,144 @@
 import { Link } from "react-router";
+import { ArrowRight, CalendarCheck } from "lucide-react";
+import AuditButton from "./audit-button";
+import { FREE_AUDIT, PRICING } from "data/pricing";
+import type { ProjectMeta } from "~/lib/projects.server";
 
-export default function Hero() {
+/** Un résultat réel, tiré d'une étude de cas (content/projects). */
+export interface HeroProof {
+  label: string;
+  before: string;
+  after: string;
+  context: string;
+}
+
+export const HERO_IMAGE = {
+  src: "/images/me-800.avif",
+  srcSet: "/images/me-800.avif 800w, /images/me.avif 1122w",
+  // Photo à droite en desktop, vignette de 48 px sur mobile : les deux
+  // utilisent me-800, téléchargée une seule fois.
+  sizes: "(min-width: 1024px) 40vw, 48px",
+};
+
+export default function Hero({
+  proof,
+  featured,
+}: {
+  proof?: HeroProof;
+  featured?: ProjectMeta;
+}) {
   return (
-    <section
-      id="home"
-      className="bg-base-100 relative min-h-screen overflow-hidden"
-    >
-      <div className="absolute top-0 left-0 hidden h-full w-full lg:block">
-        <div className="from-primary/20 to-primary/5 absolute top-32 -left-20 h-96 w-96 rounded-full bg-linear-to-br blur-3xl" />
-        <div className="from-secondary/20 to-secondary/5 absolute right-10 bottom-20 h-72 w-72 rounded-full bg-linear-to-br blur-3xl" />
-      </div>
-
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-16 lg:flex-row">
-          <div className="relative z-10 lg:w-1/2">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="bg-base-content/40 h-px w-8" />
-              <span className="text-base-content/80 text-sm font-medium tracking-widest uppercase">
-                Je fais travailler ton site pour toi
-              </span>
-            </div>
-
-            <h1 className="text-base-content mb-6 text-4xl font-bold md:text-5xl lg:text-[3rem]">
+    <section id="home" className="bg-base-100">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-12 lg:px-8 lg:pt-16 lg:pb-20">
+        <div className="lg:col-span-7">
+          <h1>
+            <span className="text-primary block text-sm font-semibold sm:text-base">
               Développeur web freelance à Montréal
-            </h1>
+            </span>{" "}
+            <span className="mt-3 block text-4xl leading-[1.08] font-bold tracking-tight text-balance sm:text-5xl lg:text-[3.5rem]">
+              Je crée, j'accélère et j'entretiens le site web de ta PME
+            </span>
+          </h1>
+          <p className="text-base-content/80 mt-6 max-w-xl text-lg leading-relaxed sm:text-xl">
+            Tu parles directement à la personne qui fait le travail, les prix sont
+            affichés d'avance, et je reste là après la mise en ligne. J'automatise
+            aussi les tâches répétitives de ton bureau.
+          </p>
 
-            <p className="text-base-content/80 mb-8 max-w-xl text-lg">
-              J'aide les PME québécoises à avoir des sites rapides, bien
-              référencés et faciles à maintenir. Performance, automatisation,
-              résultats mesurables.
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <AuditButton className="btn btn-primary btn-lg rounded-full px-7" source="haut de page">
+              {FREE_AUDIT.cta}
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </AuditButton>
+            {/* Ancre dans la page : pas de <Link> nécessaire */}
+            <a
+              href="#offres"
+              className="btn btn-ghost btn-lg border-base-content/20 rounded-full px-7"
+            >
+              Voir les prix
+            </a>
+          </div>
+          <p className="text-base-content/70 mt-4 flex items-center gap-2 text-sm font-medium">
+            <CalendarCheck className="text-primary h-4 w-4 flex-shrink-0" aria-hidden="true" />
+            {FREE_AUDIT.badge}
+          </p>
+
+          {/* Mobile : le visage reste visible sans occuper un écran entier */}
+          <div className="mt-6 flex items-center gap-3 lg:hidden">
+            <img
+              src={HERO_IMAGE.src}
+              alt=""
+              className="h-12 w-12 rounded-full object-cover object-top"
+              width={48}
+              height={48}
+            />
+            <p className="text-sm">
+              <span className="font-semibold">Pierre Barbé</span>
+              <br />
+              <span className="text-base-content/70">
+                Ton seul contact, du premier échange à la maintenance
+              </span>
             </p>
-
-            <div className="mb-12 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
-                className="btn btn-primary rounded-full px-8 py-3"
-              >
-                Réserve ton audit gratuit
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </Link>
-
-              <Link
-                to="/services"
-                className="btn btn-ghost border-base-content/20 hover:bg-base-content/5 rounded-full px-8 py-3"
-              >
-                Voir ce que je fais
-              </Link>
-            </div>
-
-            <div className="border-base-content/10 grid max-w-lg grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-3">
-              {[
-                { value: "100%", label: "Livraisons" },
-                { value: "3+", label: "Ans" },
-                { value: "< 24 h", label: "Temps de réponse" },
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="border-base-content/10 border-l pl-4"
-                >
-                  <div className="text-primary text-2xl font-bold">
-                    {stat.value}
-                  </div>
-                  <div className="text-base-content/60 text-sm">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          <div className="relative lg:w-1/2">
-            <div className="relative overflow-hidden rounded-xl shadow-lg">
-              <img
-                src="/images/me-800.avif"
-                srcSet="/images/me-800.avif 800w, /images/me.avif 1122w"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                alt="Portrait de Pierre Barbé, développeur web freelance basé à Montréal spécialisé en performance web et automatisation."
-                className="h-auto max-h-[580px] w-full object-cover"
-                width={800}
-                height={1000}
-                loading="eager"
-                fetchPriority="high"
-              />
+          <dl className="border-base-content/10 mt-10 grid gap-5 border-t pt-8 sm:grid-cols-3 sm:gap-6">
+            <div>
+              <dt className="text-base-content/70 text-sm font-medium">Site vitrine WordPress</dt>
+              <dd className="mt-1 text-2xl font-bold">
+                <span className="text-base-content/70 text-base font-normal">dès </span>
+                {PRICING.siteVitrine.label}
+              </dd>
+              <dd className="text-base-content/70 mt-1 text-sm">
+                en ligne en {PRICING.siteVitrine.delay}
+              </dd>
             </div>
+            {proof && (
+              <div>
+                <dt className="text-base-content/70 text-sm font-medium">{proof.label}</dt>
+                <dd className="mt-1 text-2xl font-bold">
+                  <span className="sr-only">de </span>
+                  {proof.before}{" "}
+                  <span className="text-base-content/70 font-normal" aria-hidden="true">→</span>
+                  <span className="sr-only"> à </span>{" "}
+                  <span className="text-green-700 dark:text-green-400">{proof.after}</span>
+                </dd>
+                <dd className="text-base-content/70 mt-1 text-sm">{proof.context}</dd>
+              </div>
+            )}
+            {featured?.href && (
+              <div>
+                <dt className="text-base-content/70 text-sm font-medium">Étude de cas</dt>
+                <dd className="mt-1 text-lg leading-snug font-bold">
+                  {featured.client.replace(/\s*\(.*\)$/, "")}
+                </dd>
+                <dd className="mt-1 text-sm">
+                  <Link to={featured.href} className="text-primary font-medium underline underline-offset-2">
+                    {featured.outcome ?? "Lire l'étude de cas"}
+                  </Link>
+                </dd>
+              </div>
+            )}
+          </dl>
+        </div>
+
+        <div className="relative hidden lg:col-span-5 lg:block">
+          <img
+            src={HERO_IMAGE.src}
+            srcSet={HERO_IMAGE.srcSet}
+            sizes={HERO_IMAGE.sizes}
+            alt="Pierre Barbé"
+            className="aspect-[4/5] w-full rounded-2xl object-cover"
+            width={800}
+            height={1000}
+            loading="eager"
+            fetchPriority="high"
+          />
+          <div className="bg-base-100 border-base-content/10 absolute -bottom-6 -left-8 max-w-64 rounded-xl border p-4 shadow-lg">
+            <p className="font-semibold">Pierre Barbé</p>
+            <p className="text-base-content/70 text-sm">
+              Une seule personne, du premier échange à la maintenance. Pas de ticket, pas
+              d'intermédiaire.
+            </p>
           </div>
         </div>
       </div>

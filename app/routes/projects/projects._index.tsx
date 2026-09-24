@@ -6,10 +6,16 @@ import {
   Tag,
 } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
+import AuditButton from "~/components/audit-button";
+import CtaSection from "~/components/cta-section";
 import JsonLd from "~/components/json-ld";
 import { useIntersectionObserver } from "~/hooks/use-intersection-observer";
-import { projects } from "data/projects";
+import { getAllProjects } from "~/lib/projects.server";
 import type { Route } from "./+types/projects._index";
+
+export async function loader() {
+  return { projects: await getAllProjects() };
+}
 
 export function meta({}: Route.MetaArgs) {
   const url = "https://pierrebarbe.ca/projects";
@@ -28,7 +34,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "Résultats mesurables sur de vrais projets québécois : performance, e-commerce, automatisation et éco-conception.",
+        "Résultats mesurables sur de vrais projets québécois : corrections WordPress, performance, automatisation et création de sites.",
     },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
@@ -48,7 +54,7 @@ export function meta({}: Route.MetaArgs) {
 
 const CATEGORY_COLORS: Record<string, string> = {
   "Web Performance": "badge-primary",
-  "E-commerce": "badge-secondary",
+  "Maintenance & corrections": "badge-secondary",
   Automatisation: "badge-accent",
   "Création de site": "badge-success",
 };
@@ -62,7 +68,7 @@ const projectsSchema = {
       url: "https://pierrebarbe.ca/projects",
       name: "Projets — Études de cas | Pierre Barbé",
       description:
-        "Études de cas concrets : web performance, e-commerce, automatisation et éco-conception pour PME québécoises.",
+        "Études de cas concrets : corrections WordPress, web performance, automatisation et création de sites pour PME québécoises.",
       inLanguage: "fr-CA",
       isPartOf: { "@id": "https://pierrebarbe.ca/#website" },
     },
@@ -87,7 +93,8 @@ const projectsSchema = {
   ],
 };
 
-export default function Projects() {
+export default function Projects({ loaderData }: Route.ComponentProps) {
+  const { projects } = loaderData;
   const featured = projects.filter((p) => p.featured);
   const others = projects.filter((p) => !p.featured);
   const pageRef = useIntersectionObserver();
@@ -131,9 +138,7 @@ export default function Projects() {
               <p className="text-base-content/70 text-lg">
                 Les études de cas arrivent bientôt.
               </p>
-              <Link to="/contact" className="btn btn-primary rounded-full mt-6">
-                Discutons de ton projet
-              </Link>
+              <AuditButton className="btn btn-primary rounded-full mt-6" />
             </div>
           ) : null}
           <div className="space-y-12">
@@ -201,18 +206,20 @@ export default function Projects() {
 
                         <div className="space-y-3 mb-6">
                           <div>
-                            <h3 className="text-sm font-semibold text-base-content/60 uppercase tracking-wide mb-1">Défi</h3>
+                            <h3 className="text-sm font-semibold text-base-content/70 uppercase tracking-wide mb-1">Défi</h3>
                             <p className="text-base-content/70 text-sm leading-relaxed">{project.challenge}</p>
                           </div>
                           <div>
-                            <h3 className="text-sm font-semibold text-base-content/60 uppercase tracking-wide mb-1">Solution</h3>
+                            <h3 className="text-sm font-semibold text-base-content/70 uppercase tracking-wide mb-1">Solution</h3>
                             <p className="text-base-content/70 text-sm leading-relaxed">{project.solution}</p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-3">
-                        {project.href && (
+                      {/* Un seul appel à l'action pour toute la page, en bas :
+                          pas de bouton de contact par projet */}
+                      {project.href && (
+                        <div className="flex flex-wrap gap-3">
                           <Link
                             to={project.href}
                             className="btn btn-primary btn-sm rounded-full gap-1"
@@ -220,15 +227,8 @@ export default function Projects() {
                             Voir l'étude de cas
                             <ArrowRight className="h-4 w-4" aria-hidden="true" />
                           </Link>
-                        )}
-                        <Link
-                          to="/contact"
-                          className={`btn btn-sm rounded-full gap-1 ${project.href ? "btn-ghost border border-base-content/20" : "btn-primary"}`}
-                        >
-                          Projet similaire ?
-                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                        </Link>
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -297,28 +297,9 @@ export default function Projects() {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Ton projet, les prochains chiffres</h2>
-          <p className="text-base-content/70 mt-4 text-lg">
-            Chaque site est différent. Commençons par un premier échange gratuit
-            (mail ou visio) pour identifier où se trouvent tes gains les plus
-            rapides.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary rounded-full px-10">
-              Parle-moi de ton projet
-            </Link>
-            <Link
-              to="/services"
-              className="btn btn-ghost rounded-full px-10 border border-base-content/20"
-            >
-              Voir mes services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaSection title="Ton projet, les prochains chiffres" secondary={{ to: "/services", label: "Voir tous mes services" }}>
+        Chaque site est différent. Commençons par un premier échange gratuit (courriel ou visioconférence) pour identifier où se trouvent tes gains les plus rapides.
+      </CtaSection>
     </div>
   );
 }

@@ -45,7 +45,7 @@ export async function loader(_: Route.LoaderArgs) {
   <channel>
     <title>Blog — Pierre Barbé</title>
     <link>${BASE_URL}/blog</link>
-    <description>Articles sur la web-performance, l'automatisation et l'éco-conception pour PME québécoises.</description>
+    <description>Articles sur la web-performance, WordPress, l'automatisation et la Loi 25 pour les PME québécoises.</description>
     <language>fr-CA</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${FEED_URL}" rel="self" type="application/rss+xml" />

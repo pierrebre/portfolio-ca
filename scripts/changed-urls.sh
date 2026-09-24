@@ -23,47 +23,24 @@ while IFS= read -r file; do
       # Also reindex /blog index
       URLS="${URLS}${BASE_URL}/blog\n"
       ;;
-    # Service pages
-    app/routes/services/optimisation-web-performance.tsx)
-      URLS="${URLS}${BASE_URL}/services/optimisation-web-performance\n" ;;
-    app/routes/services/creation-maintenance-sites.tsx)
-      URLS="${URLS}${BASE_URL}/services/creation-maintenance-sites\n" ;;
-    app/routes/services/automatisation-workflows.tsx)
-      URLS="${URLS}${BASE_URL}/services/automatisation-workflows\n" ;;
-    app/routes/services/audits-techniques-core-web-vitals.tsx)
-      URLS="${URLS}${BASE_URL}/services/audits-techniques-core-web-vitals\n" ;;
-    app/routes/services/gestion-serveur-deploiement.tsx)
-      URLS="${URLS}${BASE_URL}/services/gestion-serveur-deploiement\n" ;;
-    app/routes/services/integration-outils-ia.tsx)
-      URLS="${URLS}${BASE_URL}/services/integration-outils-ia\n" ;;
-    app/routes/services/services._index.tsx)
-      URLS="${URLS}${BASE_URL}/services\n" ;;
-    # Project pages
-    app/routes/projects/projects._index.tsx)
-      URLS="${URLS}${BASE_URL}/projects\n" ;;
-    app/routes/projects/projects.\$slug.tsx)
-      URLS="${URLS}${BASE_URL}/projects/piscines-jolicoeur\n" ;;
-    data/projects.ts)
-      URLS="${URLS}${BASE_URL}/projects\n" ;;
-    # Données partagées
-    data/services.ts)
-      URLS="${URLS}${BASE_URL}/services\n${BASE_URL}/\n" ;;
-    data/services-questions.ts)
-      URLS="${URLS}${BASE_URL}/services\n" ;;
-    data/questions.ts|data/process-steps.ts)
-      URLS="${URLS}${BASE_URL}/\n" ;;
-    # Main pages
-    app/routes/home.tsx|app/components/hero.tsx)
-      URLS="${URLS}${BASE_URL}/\n" ;;
-    app/routes/about.tsx)
-      URLS="${URLS}${BASE_URL}/about\n" ;;
-    app/routes/contact.tsx)
-      URLS="${URLS}${BASE_URL}/contact\n" ;;
-    # Shared layout/components affect all pages — reindex homepage
-    app/root.tsx|app/components/navbar.tsx|app/components/footer.tsx)
-      URLS="${URLS}${BASE_URL}/\n" ;;
+    # Études de cas : la carte sur /projects, et la page si le fichier a un corps
+    content/projects/*.mdx)
+      URLS="${URLS}${BASE_URL}/projects\n"
+      if awk 'c>=2{print} /^---$/{c++}' "$file" | grep -q '[^[:space:]]'; then
+        URLS="${URLS}${BASE_URL}/projects/$(basename "$file" .mdx)\n"
+      fi
+      ;;
   esac
 done <<< "$CHANGED_FILES"
+
+# Pages fixes : celles dont la date a changé dans data/lastmod.json (tenu à
+# jour par « pnpm lastmod », qui détecte tout changement de contenu rendu).
+while IFS= read -r path; do
+  [ -n "$path" ] && URLS="${URLS}${BASE_URL}${path}\n"
+done < <(node -e '
+  const [before, after] = process.argv.slice(1).map((s) => (s ? JSON.parse(s) : {}));
+  for (const [path, e] of Object.entries(after)) if (before[path]?.lastmod !== e.lastmod) console.log(path);
+' "$(git show "$BASE_SHA:data/lastmod.json" 2>/dev/null || true)" "$(git show "$HEAD_SHA:data/lastmod.json" 2>/dev/null || true)")
 
 # Deduplicate and output
 if [ -n "$URLS" ]; then
