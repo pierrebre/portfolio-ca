@@ -1,80 +1,82 @@
-import { Laptop, CheckCircle, Wrench, Shield } from "lucide-react";
+import { Laptop, CheckCircle, ShoppingCart, RefreshCw, Server, Shield, HardDrive, Bell } from "lucide-react";
 import Breadcrumbs from "~/components/breadcrumbs";
 import CtaSection from "~/components/cta-section";
 import LinkCard from "~/components/link-card";
 import JsonLd from "~/components/json-ld";
+import MonthlyPlans from "~/components/monthly-plans";
 import { generateSEOMeta, generateServicePageSchema } from "~/utils/seo";
 import type { Route } from "./+types/creation-maintenance-sites";
 import { PRICING } from "data/pricing";
+
+const URL = "https://pierrebarbe.ca/services/creation-maintenance-sites";
 
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
       title: "Création et maintenance de sites WordPress à Montréal",
-      description: `Sites WordPress et Shopify rapides et durables pour PME du Québec. Maintenance dès ${PRICING.maintenanceEssentiel.label}/mois, sans contrat annuel. Développeur freelance à Montréal.`,
-      url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
+      description: `Site vitrine WordPress dès ${PRICING.siteVitrine.label}, livré en ${PRICING.siteVitrine.delay}. Refonte, boutique en ligne et maintenance dès ${PRICING.maintenanceEssentiel.label}/mois.`,
+      url: URL,
     }),
   ];
 }
 
-const maintenancePlans = [
+const offers = [
   {
-    name: "Essentiel",
-    price: `${PRICING.maintenanceEssentiel.label}/mois`,
-    features: [
-      "Mises à jour WordPress/plugins",
-      "Sauvegardes hebdomadaires",
-      "Monitoring uptime 24/7",
-      "Support par courriel (48h)",
-      "1 h de corrections/mois",
-    ],
-    highlight: false,
+    icon: Laptop,
+    title: "Site vitrine WordPress",
+    desc: "5 à 10 pages pour présenter ton entreprise et recevoir des demandes : accueil, services, à propos, contact. Construit sans constructeur de pages lourd, donc rapide et simple à modifier toi-même.",
+    price: `À partir de ${PRICING.siteVitrine.label}`,
+    delay: PRICING.siteVitrine.delay,
   },
   {
-    name: "Pro",
-    price: `${PRICING.maintenancePro.label}/mois`,
-    features: [
-      "Tout l'Essentiel",
-      "Sauvegardes quotidiennes",
-      "Support prioritaire (24h)",
-      "3 h de corrections/mois",
-      "Optimisation mensuelle",
-      "Rapport mensuel",
-    ],
-    highlight: true,
+    icon: ShoppingCart,
+    title: "Boutique en ligne",
+    desc: "Shopify si tu veux démarrer vite sans gérer de serveur ; WooCommerce si tu veux garder la main sur tes données et éviter les frais par vente. Paiements, taxes TPS/TVQ et livraison configurés.",
+    price: `À partir de ${PRICING.shopify.label} (Shopify) · ${PRICING.woocommerce.label} (WooCommerce)`,
+    delay: PRICING.woocommerce.delay,
   },
   {
-    name: "Premium",
-    price: `${PRICING.maintenancePremium.label}/mois`,
-    features: [
-      "Tout le Pro",
-      "Support même jour",
-      "5 h de corrections/mois",
-      "2 h de développement incluses",
-      "Optimisation hebdomadaire",
-      "Audit SEO trimestriel",
-    ],
-    highlight: false,
+    icon: RefreshCw,
+    title: "Refonte d'un site existant",
+    desc: "Ton site a vieilli, il est lent ou impossible à modifier ? Je le refais en gardant ce qui marche : contenus, adresses des pages et référencement acquis (redirections comprises).",
+    price: `${PRICING.refonte.from.label} à ${PRICING.refonte.to.label}`,
+    delay: PRICING.refonte.delay,
   },
+];
+
+const included = [
+  "Design adapté à ton image, pensé d'abord pour le mobile",
+  "Vitesse et Core Web Vitals dans le vert à la livraison",
+  "SEO technique : structure, balises, sitemap, Google Search Console",
+  "Conformité Loi 25 : politique de confidentialité, consentement aux témoins",
+  "Formation pour modifier tes contenus toi-même",
+  "30 jours de support après la mise en ligne",
+];
+
+const hosting = [
+  { icon: Server, title: "Hébergement adapté", desc: "Un hébergement fiable avec serveurs au Canada, à ton nom et sur ton compte. Je m'occupe de la configuration et de la migration." },
+  { icon: Shield, title: "Sécurité", desc: "HTTPS, en-têtes de sécurité, mises à jour appliquées et vérifiées, accès protégés par double authentification." },
+  { icon: HardDrive, title: "Sauvegardes", desc: "Sauvegardes automatiques stockées hors du serveur, et restauration testée : une sauvegarde qu'on n'a jamais restaurée ne vaut rien." },
+  { icon: Bell, title: "Surveillance", desc: "Je reçois une alerte si ton site ne répond plus, et j'interviens pendant mes heures ouvrables selon ton forfait." },
 ];
 
 export default function CreationMaintenanceSites() {
   const schema = generateServicePageSchema({
-    name: "Création & Maintenance de Sites WordPress",
-    description: `Création de sites WordPress et Shopify rapides et durables pour PME du Québec. Forfaits maintenance sans contrat annuel à partir de ${PRICING.maintenanceEssentiel.label}/mois.`,
-    url: "https://pierrebarbe.ca/services/creation-maintenance-sites",
+    name: "Création et maintenance de sites WordPress",
+    description: `Création de sites WordPress et de boutiques en ligne pour PME du Québec, hébergement, sécurité et maintenance. Site vitrine à partir de ${PRICING.siteVitrine.label}.`,
+    url: URL,
     serviceType: "Web Development and Maintenance",
     areaServed: ["Montréal", "Québec"],
     offers: {
-      name: "Forfait maintenance Essentiel",
-      description: "Mises à jour, sauvegardes hebdomadaires, monitoring 24/7, support et 1 h de corrections par mois. Sans contrat annuel.",
-      price: String(PRICING.maintenanceEssentiel.price),
+      name: "Site vitrine WordPress",
+      description: `Site vitrine de 5 à 10 pages, livré en ${PRICING.siteVitrine.delay} : design, SEO technique, conformité Loi 25, formation et 30 jours de support.`,
+      price: String(PRICING.siteVitrine.price),
       priceCurrency: "CAD",
     },
     breadcrumbs: [
       { name: "Accueil", url: "https://pierrebarbe.ca/" },
       { name: "Services", url: "https://pierrebarbe.ca/services" },
-      { name: "Création & Maintenance de Sites", url: "https://pierrebarbe.ca/services/creation-maintenance-sites" },
+      { name: "Site web", url: URL },
     ],
   });
 
@@ -87,131 +89,117 @@ export default function CreationMaintenanceSites() {
           items={[
             { label: "Accueil", href: "/" },
             { label: "Services", href: "/services" },
-            { label: "Création & Maintenance de Sites" },
+            { label: "Site web" },
           ]}
         />
       </div>
 
       {/* Hero */}
       <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
-              <Laptop className="h-4 w-4 text-primary" aria-hidden="true" />
-              <span className="text-primary text-sm font-medium">Sites performants et durables</span>
-            </div>
-            <h1 className="text-4xl font-bold md:text-5xl mb-6">
-              Création et maintenance de sites web WordPress & Shopify
-            </h1>
-            <p className="text-base-content/80 mx-auto max-w-3xl text-lg md:text-xl">
-              Tu as besoin d'un site neuf qui charge vite et convertit ? Ou d'un contrat de maintenance
-              pour que ton site actuel arrête de casser à chaque mise à jour ? Je crée des sites
-              WordPress et Shopify propres, rapides et faciles à maintenir. Et contrairement à certains,
-              je ne disparais pas après la mise en ligne.
-            </p>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
+            <Laptop className="h-4 w-4 text-primary" aria-hidden="true" />
+            <span className="text-primary text-sm font-medium">
+              Site vitrine livré en {PRICING.siteVitrine.delay}
+            </span>
           </div>
+          <h1 className="text-4xl font-bold md:text-5xl mb-6">
+            Création et maintenance de sites WordPress
+          </h1>
+          <p className="text-base-content/80 mx-auto max-w-3xl text-lg md:text-xl">
+            Tu as besoin d'un site neuf, ou le tien est à refaire ? Je construis des sites
+            WordPress rapides, clairs et faciles à modifier, puis je m'occupe de l'hébergement,
+            de la sécurité et des mises à jour pour que tu n'aies plus à y penser.
+          </p>
         </div>
       </section>
 
-      {/* Création */}
+      {/* Offres */}
       <section className="bg-base-200 py-16 md:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-10">Création de site web</h2>
+          <h2 className="text-3xl font-bold mb-10">Ce que je construis</h2>
           <div className="space-y-6">
-            {[
-              {
-                icon: Wrench,
-                title: "WordPress",
-                desc: "WordPress propulse 43 % du web — et pour de bonnes raisons. Mais un WordPress mal construit, c'est un cauchemar de maintenance. Je développe des sites WordPress sans Elementor, sans page builder lourd, avec un thème sur mesure ou léger (Gutenberg natif). Résultat : un site 3x plus rapide et 10x plus facile à maintenir.",
-                price: `À partir de ${PRICING.siteVitrine.label}`,
-              },
-              {
-                icon: Shield,
-                title: "Shopify",
-                desc: "Pour l'e-commerce, Shopify est souvent le meilleur choix pour les PME. Pas de gestion serveur, pas de mises à jour de sécurité, et un écosystème d'apps solide. Je configure, personnalise et optimise ta boutique Shopify pour qu'elle convertisse mieux dès le premier jour.",
-                price: `À partir de ${PRICING.shopify.label}`,
-              },
-              {
-                icon: Laptop,
-                title: "Next.js / React",
-                desc: "Pour les projets qui ont besoin de plus de puissance — applications web, dashboards, sites avec des interactions complexes. C'est ce qui propulse pierrebarbe.ca.",
-                price: `À partir de ${PRICING.siteSurMesure.label}`,
-              },
-            ].map((item) => (
+            {offers.map((item) => (
               <div key={item.title} className="bg-base-100 rounded-2xl p-6 border border-base-content/10">
                 <div className="flex items-center gap-3 mb-3">
                   <item.icon className="h-5 w-5 text-primary" aria-hidden="true" />
                   <h3 className="font-bold text-xl">{item.title}</h3>
                 </div>
                 <p className="text-base-content/80 leading-relaxed mb-3">{item.desc}</p>
-                <p className="text-primary font-semibold text-sm">{item.price}</p>
+                <p className="text-sm">
+                  <span className="text-primary font-semibold">{item.price}</span>
+                  <span className="text-base-content/70"> · délai : {item.delay}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-base-content/70 text-sm mt-6">
+            Délais comptés du lancement à la mise en ligne, dès réception de tes contenus (textes, photos).
+          </p>
+        </div>
+      </section>
+
+      {/* Inclus */}
+      <section className="py-16 md:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-8">Inclus dans chaque site</h2>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {included.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-base-content/80">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-base-content/70 mt-8">
+            Non inclus : la rédaction de tes textes et les photos professionnelles. Ton site,
+            ton nom de domaine et ton hébergement restent à ton nom.
+          </p>
+        </div>
+      </section>
+
+      {/* Hébergement & sécurité */}
+      <section className="bg-base-200 py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-4 text-center">Hébergement, sécurité et sauvegardes</h2>
+          <p className="text-base-content/70 text-center mb-12 max-w-2xl mx-auto">
+            La partie technique en coulisses, pour que ton site reste en ligne et protégé.
+          </p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {hosting.map((item) => (
+              <div key={item.title} className="bg-base-100 rounded-2xl p-6 border border-base-content/10">
+                <div className="bg-primary/10 w-10 h-10 rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                </div>
+                <h3 className="font-bold mb-2">{item.title}</h3>
+                <p className="text-base-content/70 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Maintenance */}
-      <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-4">
-            <h2 className="text-3xl font-bold">Forfaits maintenance</h2>
-          </div>
-          <p className="text-base-content/70 text-center mb-12">
-            Pas de contrat annuel obligatoire. Résiliable en 30 jours.
-            Tu paies pour un service, pas pour être enfermé.
-          </p>
-          <div className="grid gap-6 md:grid-cols-3">
-            {maintenancePlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`rounded-2xl p-6 border ${
-                  plan.highlight
-                    ? "bg-primary text-primary-content border-primary"
-                    : "bg-base-100 border-base-content/10"
-                }`}
-              >
-                <h3 className={`font-bold text-xl mb-1 ${plan.highlight ? "text-primary-content" : ""}`}>
-                  {plan.name}
-                </h3>
-                <p className={`text-2xl font-black mb-6 ${plan.highlight ? "text-primary-content" : "text-primary"}`}>
-                  {plan.price}
-                </p>
-                <ul className="space-y-2">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
-                      <CheckCircle
-                        className={`h-4 w-4 flex-shrink-0 mt-0.5 ${plan.highlight ? "text-primary-content/80" : "text-primary"}`}
-                        aria-hidden="true"
-                      />
-                      <span className={plan.highlight ? "text-primary-content/90" : "text-base-content/80"}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MonthlyPlans />
 
       {/* Liens internes */}
       <section className="bg-base-200 py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold mb-6">Services complémentaires</h2>
+          <h2 className="text-xl font-bold mb-6">Pour aller plus loin</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <LinkCard to="/services/optimisation-web-performance" title="Ton site actuel est lent ?" label="Optimisation web-performance" />
-            <LinkCard to="/services/automatisation-workflows" title="Tu veux automatiser la gestion de ton site ?" label="Automatisation de workflows" />
+            <LinkCard to="/projects/piscines-jolicoeur" title="Étude de cas : un site WordPress et son CRM remis d'aplomb" label="Lire l'étude de cas" />
+            <LinkCard to="/services/optimisation-web-performance" title="Ton site actuel est surtout lent ?" label="Performance" />
           </div>
           <p className="text-base-content/70 text-xs font-medium uppercase tracking-wide mt-8 mb-3">Lire aussi</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <LinkCard to="/blog/securite-wordpress-guide-pme" title="Guide sécurité WordPress pour PME" label="Lire l'article" />
+            <LinkCard to="/blog/cout-site-web-quebec-prix" title="Combien coûte un site web au Québec en 2026 ?" label="Lire l'article" />
             <LinkCard to="/blog/maintenance-site-web-pme-guide" title="Guide complet : maintenance de site web pour PME" label="Lire l'article" />
           </div>
         </div>
       </section>
 
-      <CtaSection title="Discutons de ton projet" secondary={{ to: "/services", label: "Voir tous mes services" }}>
-        Chaque projet est différent. Un premier échange (mail ou visio) suffit pour identifier la meilleure approche et te donner une fourchette de prix réaliste. C'est gratuit.
+      <CtaSection title="Discutons de ton site" secondary={{ to: "/services", label: "Voir les 3 offres" }}>
+        Un premier échange gratuit suffit pour cadrer ton besoin et te donner un prix réaliste.
+        Tu repars avec des recommandations claires, même si on ne travaille pas ensemble.
       </CtaSection>
     </div>
   );

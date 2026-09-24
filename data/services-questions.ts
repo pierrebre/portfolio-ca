@@ -9,7 +9,7 @@ export const servicesQuestions: Question[] = [
     index: 0,
     question: "Quel est le budget moyen d'un site web pour une PME au Québec ?",
     answer:
-      `Je facture ${RATE}, ou au forfait calculé sur ce taux. Un site vitrine PME soigné (design sur mesure, perf Lighthouse 90+, SEO technique, conformité Loi 25) démarre à ${PRICING.siteVitrine.label} CAD, soit environ ${PRICING.siteVitrine.hours} h de travail. Une boutique en ligne démarre à ${PRICING.shopify.label} sur Shopify et à ${PRICING.woocommerce.label} sur WooCommerce. Automatisation n8n : à partir de ${PRICING.workflowSimple.label} ; intégration IA : à partir de ${PRICING.chatbot.label}. Détail complet dans mon guide « coût d'un site web au Québec » sur le blog.`,
+      `Je facture ${RATE}, ou au forfait calculé sur ce taux. Un site vitrine PME soigné (design adapté à ton image, vitesse dans le vert, SEO technique, conformité Loi 25) démarre à ${PRICING.siteVitrine.label}, soit environ ${PRICING.siteVitrine.hours} h de travail. Une boutique en ligne démarre à ${PRICING.shopify.label} sur Shopify et à ${PRICING.woocommerce.label} sur WooCommerce. Audit complet d'un site existant : ${PRICING.auditComplet.label}. Automatisation n8n : à partir de ${PRICING.workflowSimple.label} ; assistant IA : à partir de ${PRICING.assistantIa.label}. Détail complet dans mon guide « coût d'un site web au Québec » sur le blog.`,
   },
   {
     index: 1,
@@ -21,13 +21,13 @@ export const servicesQuestions: Question[] = [
     index: 2,
     question: "Tu travailles avec quelles technologies ?",
     answer:
-      "Côté CMS : WordPress + WooCommerce (pour les PME qui veulent gérer leur contenu) ou Shopify pour les e-commerces. Côté custom : React, Next.js, React Router, TypeScript, Tailwind. Automatisation : n8n, Make, OpenAI. Infra : Vercel, VPS Linux, Docker. Stack détaillée sur la page « à propos ».",
+      "Sites : WordPress + WooCommerce (pour les PME qui veulent gérer leur contenu elles-mêmes) ou Shopify pour l'e-commerce. Je développe aussi en React et TypeScript quand un projet le demande (ce site en est un exemple). Automatisation : n8n, Make, API d'IA (OpenAI, Anthropic). Hébergement : VPS Linux, Docker, Vercel. Stack détaillée sur la page « à propos ».",
   },
   {
     index: 3,
     question: "Est-ce que tu assures la maintenance après la livraison ?",
     answer:
-      "Oui, option mensuelle : mises à jour de sécurité, sauvegardes, monitoring performance, petits correctifs. Je propose 3 paliers (essentiel, standard, premium) selon la criticité du site. Voir le service création & maintenance.",
+      `Oui, en option mensuelle : mises à jour de sécurité, sauvegardes, surveillance, suivi de la vitesse et de tes automatisations, petites corrections. 3 forfaits (Essentiel ${PRICING.maintenanceEssentiel.label}, Pro ${PRICING.maintenancePro.label}, Premium ${PRICING.maintenancePremium.label} par mois), sans engagement annuel.`,
   },
   {
     index: 4,

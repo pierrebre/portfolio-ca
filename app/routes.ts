@@ -24,15 +24,14 @@ export default [
       "automatisation-workflows",
       "routes/services/automatisation-workflows.tsx"
     ),
-    route(
+    // Pages regroupées dans les 3 offres : redirection 301
+    ...[
       "audits-techniques-core-web-vitals",
-      "routes/services/audits-techniques-core-web-vitals.tsx"
-    ),
-    route(
       "gestion-serveur-deploiement",
-      "routes/services/gestion-serveur-deploiement.tsx"
+      "integration-outils-ia",
+    ].map((slug) =>
+      route(slug, "routes/services/legacy-redirect.tsx", { id: `legacy-${slug}` })
     ),
-    route("integration-outils-ia", "routes/services/integration-outils-ia.tsx"),
   ]),
 
   ...prefix("blog", [

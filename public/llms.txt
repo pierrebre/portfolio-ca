@@ -1,15 +1,13 @@
 # pierrebarbe.ca
 
 ## About
-Pierre Barbé — Développeur web freelance à Montréal spécialisé en WordPress, performance web, automatisation n8n et intégration IA pour PME au Québec.
+Pierre Barbé — Développeur web freelance à Montréal spécialisé en sites WordPress, performance web et automatisation (n8n, IA) pour PME au Québec.
 
-## Services
-- Optimisation de performance web et Core Web Vitals : https://pierrebarbe.ca/services/optimisation-web-performance
-- Création et maintenance de sites WordPress & Shopify : https://pierrebarbe.ca/services/creation-maintenance-sites
-- Automatisation de workflows avec n8n : https://pierrebarbe.ca/services/automatisation-workflows
-- Audits techniques et Core Web Vitals : https://pierrebarbe.ca/services/audits-techniques-core-web-vitals
-- Gestion de serveur et déploiement : https://pierrebarbe.ca/services/gestion-serveur-deploiement
-- Intégration d'outils IA : https://pierrebarbe.ca/services/integration-outils-ia
+## Services (3 offres)
+- Site web — création, refonte et maintenance de sites WordPress, boutiques Shopify/WooCommerce, hébergement et sécurité : https://pierrebarbe.ca/services/creation-maintenance-sites
+- Performance — audit complet (vitesse, SEO technique, accessibilité, sécurité) et optimisation : https://pierrebarbe.ca/services/optimisation-web-performance
+- Automatisation & IA — workflows n8n et assistant IA : https://pierrebarbe.ca/services/automatisation-workflows
+- Tarifs : taux horaire de 75 $/h, site vitrine à partir de 3 000 $, forfaits de suivi de 150 $ à 600 $/mois : https://pierrebarbe.ca/services
 
 ## Blog
 - Optimisation vitesse WordPress : https://pierrebarbe.ca/blog/optimisation-vitesse-wordpress

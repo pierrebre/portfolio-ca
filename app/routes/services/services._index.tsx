@@ -6,13 +6,14 @@ import { servicesQuestions } from "data/services-questions";
 import { generateSEOMeta } from "~/utils/seo";
 import Breadcrumbs from "~/components/breadcrumbs";
 import CtaSection from "~/components/cta-section";
+import MonthlyPlans from "~/components/monthly-plans";
 import type { Route } from "./+types/services._index";
 
 export function meta({}: Route.MetaArgs) {
   return [
     ...generateSEOMeta({
       title: "Services de développement web pour PME | Pierre Barbé",
-      description: "6 services web pour PME : création de sites WordPress, optimisation performance, audits Core Web Vitals, automatisation n8n et intégration IA. Devis sous 24 h.",
+      description: "3 offres claires pour PME au Québec : site web WordPress, audit et optimisation de la performance, automatisation n8n et IA. Prix affichés, devis sous 24-48 h.",
       url: "https://pierrebarbe.ca/services",
     }),
   ];
@@ -33,7 +34,7 @@ export default function ServicesIndex() {
         "@id": "https://pierrebarbe.ca/services#webpage",
         "url": "https://pierrebarbe.ca/services",
         "name": "Services de développement web pour PME au Québec",
-        "description": "6 services web pour PME : création WordPress, optimisation performance, audits Core Web Vitals, automatisation n8n et intégration IA.",
+        "description": "3 offres pour PME : site web WordPress, audit et optimisation de la performance, automatisation n8n et IA.",
         "inLanguage": "fr-CA",
         "isPartOf": {
           "@id": "https://pierrebarbe.ca/#website"
@@ -42,12 +43,7 @@ export default function ServicesIndex() {
           "@id": "https://pierrebarbe.ca/services#breadcrumb"
         },
         "hasPart": [
-          { "@id": "https://pierrebarbe.ca/services/optimisation-web-performance#service" },
-          { "@id": "https://pierrebarbe.ca/services/creation-maintenance-sites#service" },
-          { "@id": "https://pierrebarbe.ca/services/automatisation-workflows#service" },
-          { "@id": "https://pierrebarbe.ca/services/audits-techniques-core-web-vitals#service" },
-          { "@id": "https://pierrebarbe.ca/services/gestion-serveur-deploiement#service" },
-          { "@id": "https://pierrebarbe.ca/services/integration-outils-ia#service" }
+          ...servicesList.map((service) => ({ "@id": `${service.url}#service` })),
         ]
       },
       {
@@ -111,16 +107,15 @@ export default function ServicesIndex() {
               Services de développement web pour PME au Québec
             </h1>
             <p className="text-base-content/80 mx-auto max-w-3xl text-lg leading-relaxed">
-              Création de sites, optimisation performance, automatisation et
-              intégration IA — 6 prestations claires pensées pour les PME, e-commerces
-              et agences du Québec. Tarifs transparents, livrables mesurables,
-              zéro promesse creuse.
+              Trois offres, pour les trois besoins que me décrivent le plus souvent
+              les PME du Québec : un site à créer ou à refaire, un site qui ne
+              performe pas, et des heures perdues sur des tâches répétitives.
+              Prix affichés, livrables mesurables.
             </p>
             <p className="text-base-content/70 mx-auto max-w-3xl text-base mt-4 leading-relaxed">
-              Que ton site soit lent, vieillissant ou qu'il traîne de la patte
-              côté SEO — ou que tu partes de zéro — je livre du concret avec des
-              métriques avant/après. Premier échange gratuit (mail ou visio),
-              devis sous 24 h, réponse en français ou en anglais.
+              Tu ne sais pas par où commencer ? Le premier diagnostic est gratuit
+              (courriel ou visio), et le devis arrive sous 24-48 h. Réponse en
+              français ou en anglais.
             </p>
           </div>
         </div>
@@ -129,13 +124,12 @@ export default function ServicesIndex() {
       <section className="py-16 bg-base-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
-            <h2 className="text-3xl font-bold md:text-4xl">Mes 6 services</h2>
+            <h2 className="text-3xl font-bold md:text-4xl">3 offres, selon ton besoin</h2>
             <p className="text-base-content/70 mt-3 max-w-2xl mx-auto">
-              Chaque service répond à un besoin précis. Clique pour voir le
-              détail, les livrables et les tarifs.
+              Clique sur une offre pour voir le détail, les livrables, les délais et les tarifs.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-8 lg:grid-cols-3">
             {services.map((service) => (
               <ServiceCard key={service.key} service={service} />
             ))}
@@ -184,8 +178,8 @@ export default function ServicesIndex() {
               </div>
               <h3 className="font-bold text-lg mb-2">Exécution</h3>
               <p className="text-base-content/70 text-sm leading-relaxed">
-                Points d'étape réguliers, accès au repo Git en live, métriques mesurées avant
-                et après (Lighthouse, Core Web Vitals, Ahrefs). Tu vois tout.
+                Points d'étape réguliers, accès au code en tout temps, résultats
+                mesurés avant et après (vitesse, Core Web Vitals, référencement).
               </p>
             </li>
             <li className="bg-base-200 rounded-2xl p-6">
@@ -194,21 +188,22 @@ export default function ServicesIndex() {
               </div>
               <h3 className="font-bold text-lg mb-2">Livraison & suivi</h3>
               <p className="text-base-content/70 text-sm leading-relaxed">
-                Rapport final avec résultats chiffrés, documentation et
-                formation si besoin. Garantie 30 jours + option maintenance
-                mensuelle.
+                Bilan chiffré, documentation et formation si besoin. 30 jours de
+                support compris, puis suivi mensuel si tu le souhaites.
               </p>
             </li>
           </ol>
         </div>
       </section>
 
+      <MonthlyPlans className="bg-base-200" />
+
       <Faq
         questions={servicesQuestions}
         title="Questions fréquentes"
         accordionName="services-faq"
         schemaId="https://pierrebarbe.ca/services#faq"
-        className="bg-base-200 py-20 md:py-24"
+        className="py-20 md:py-24"
       />
 
       <CtaSection title="Pas sûr de ce qu'il te faut ?" secondary={{ to: "/about", label: "Qui suis-je ?" }}>

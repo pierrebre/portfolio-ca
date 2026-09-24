@@ -19,35 +19,28 @@ const offer = (hours: number) => {
 };
 
 export const PRICING = {
-  // Création de sites. Délais : du lancement à la mise en ligne, contenus
-  // fournis ; cohérents avec les heures (40 h ≈ une semaine de travail).
+  // 1. Site web. Délais : du lancement à la mise en ligne, contenus fournis ;
+  // cohérents avec les heures (40 h ≈ une semaine de travail).
   siteVitrine: { ...offer(40), delay: "5 à 10 jours ouvrables" },
   shopify: offer(40),
   woocommerce: { ...offer(80), delay: "2 à 3 semaines" },
-  siteSurMesure: offer(60), // Next.js / React
   refonte: { from: offer(80), to: offer(200), delay: "2 à 6 semaines" },
 
-  // Performance et audits
-  optimisation: offer(20),
+  // 2. Performance : l'audit complet précède l'optimisation.
   auditComplet: { ...offer(8), delay: "2 à 5 jours ouvrables" },
+  optimisation: offer(20),
 
-  // Automatisation (n8n)
+  // 3. Automatisation & IA
   workflowSimple: offer(6),
   workflowMoyen: offer(20),
   workflowSysteme: offer(40),
+  assistantIa: offer(30), // assistant IA qui répond à partir de ton contenu
 
-  // Intégration IA
-  chatbot: offer(30),
-  rechercheSemantique: offer(40),
-  iaSurMesure: offer(50),
-
-  // Forfaits mensuels (heures de travail comprises chaque mois)
+  // Forfaits de suivi mensuel, communs aux 3 offres (heures comprises chaque
+  // mois : entretien courant + corrections ou améliorations).
   maintenanceEssentiel: offer(2),
   maintenancePro: offer(4),
   maintenancePremium: offer(8),
-  suiviPerformance: offer(4),
-  maintenanceWorkflows: offer(2),
-  maintenanceIa: offer(3),
 };
 
 /** Offre d'entrée, proposée par tous les appels à l'action du site. */

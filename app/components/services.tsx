@@ -3,7 +3,6 @@ import ServiceCard from "./service-card";
 import { services } from "data/services";
 
 export default function Services() {
-  const featuredServices = services.slice(0, 3);
 
   return (
     <section id="services" className="bg-base-100 py-20 md:py-28">
@@ -16,16 +15,14 @@ export default function Services() {
             Ce que je fais concrètement
           </h2>
         </div>
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {featuredServices.map((service) => (
+        <div className="grid gap-8 lg:grid-cols-3">
+          {services.map((service) => (
             <ServiceCard key={service.key} service={service} />
           ))}
         </div>
-        <p className="text-base-content/60 mt-10 text-center text-sm">
-          Je fais aussi des audits techniques, de la gestion serveur et du
-          déploiement.{" "}
+        <p className="text-base-content/70 mt-10 text-center text-sm">
           <Link to="/services" className="link link-primary font-medium">
-            Voir tous mes services →
+            Comparer les 3 offres et les forfaits de suivi →
           </Link>
         </p>
       </div>

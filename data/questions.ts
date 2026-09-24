@@ -43,13 +43,13 @@ export const questions = [
     index: 5,
     question: "Tu connais WordPress ? Et Shopify ?",
     answer:
-      "Oui. Je travaille principalement avec WordPress et Next.js, et je connais aussi Shopify. Mon approche, c'est de recommander la technologie qui fait le plus de sens pour TON projet — pas celle que je préfère. On en discute pendant le premier échange.",
+      "Oui. Je travaille principalement avec WordPress, et aussi avec Shopify pour l'e-commerce. Mon approche, c'est de recommander la technologie qui fait le plus de sens pour TON projet — pas celle que je préfère. On en discute pendant le premier échange.",
   },
   {
     index: 6,
     question: "T'as déjà travaillé avec des entreprises dans mon secteur ?",
     answer:
-      "J'ai travaillé avec des cliniques médicales, des studios de yoga, des e-commerces et d'autres PME québécoises. Chaque secteur a ses particularités, mais les fondamentaux sont les mêmes : un site rapide, bien référencé et facile à utiliser. Si tu veux voir des exemples, contacte-moi — je te montre ce qui se rapproche le plus de ton projet.",
+      "Mes études de cas couvrent une clinique de santé, une boutique en ligne, un cabinet-conseil et une entreprise de piscines de la Rive-Nord. Chaque secteur a ses particularités, mais les fondamentaux sont les mêmes : un site rapide, bien référencé et facile à utiliser. Écris-moi : je te montre le projet qui se rapproche le plus du tien.",
   },
   {
     index: 7,
