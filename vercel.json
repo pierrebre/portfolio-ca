@@ -2,9 +2,94 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/blog/core-web-vitals-guide-pme",
-      "destination": "/blog/audit-performance-site-web",
-      "permanent": true
+      "source": "/about",
+      "destination": "https://pierrebarbe.dev/a-propos/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "destination": "https://pierrebarbe.dev/devis/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/:slug(creation-maintenance-sites|gestion-serveur-deploiement)",
+      "destination": "https://pierrebarbe.dev/creation-site-internet-rennes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/:slug(optimisation-web-performance|audits-techniques-core-web-vitals)",
+      "destination": "https://pierrebarbe.dev/refonte-site-internet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/automatisation-workflows",
+      "destination": "https://pierrebarbe.dev/automatisation-ia/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/integration-outils-ia",
+      "destination": "https://pierrebarbe.dev/consultant-ia/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/:slug(audit-performance-site-web|core-web-vitals-guide-pme|cout-site-lent-pme-conversions|optimisation-vitesse-wordpress)",
+      "destination": "https://pierrebarbe.dev/refonte-site-internet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/:slug(automatiser-business-n8n-pme|n8n-vs-zapier-vs-make-pme-2026)",
+      "destination": "https://pierrebarbe.dev/automatisation-ia/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/chatbot-ia-site-web-pme",
+      "destination": "https://pierrebarbe.dev/consultant-ia/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/cout-site-web-quebec-prix",
+      "destination": "https://pierrebarbe.dev/tarifs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/developpeur-web-freelance-montreal",
+      "destination": "https://pierrebarbe.dev/ressources/freelance-ou-agence/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/wordpress-pme-quebec-2026",
+      "destination": "https://pierrebarbe.dev/creation-site-internet-rennes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/:path*",
+      "destination": "https://pierrebarbe.dev/realisations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/politique-confidentialite",
+      "destination": "https://pierrebarbe.dev/confidentialite/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "https://pierrebarbe.dev/mentions-legales/",
+      "statusCode": 301
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "https://pierrebarbe.dev/robots.txt",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "https://pierrebarbe.dev/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/((?!\\.well-known/).*)",
+      "destination": "https://pierrebarbe.dev/",
+      "statusCode": 301
     }
   ],
   "headers": [
